@@ -12,6 +12,9 @@ public class CharacterSelectMenuScript : MonoBehaviour
         // Similar style to the main game script
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+
+        // Setup the client
+        GameObject.Find("NetworkManager").GetComponent<NetworkManagerScript>().Connect();
     }
 
     void Update()
@@ -32,6 +35,7 @@ public class CharacterSelectMenuScript : MonoBehaviour
 	public void BackButtonDown()
     {
         Debug.Log("Back");
+        GameObject.Find("NetworkManager").GetComponent<NetworkManagerScript>().Disconnect();
         SceneManager.LoadScene("MainMenu");
     }
 }
