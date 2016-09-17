@@ -1,3 +1,11 @@
+#### Manual additions ####
+
+# The built player (assuming "program") is always used
+program.exe
+program_Data/
+
+
+#### End of manual additions ####
 
 # Created by https://www.gitignore.io/api/visualstudio,csharp,unity
 
