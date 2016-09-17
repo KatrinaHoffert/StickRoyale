@@ -3,9 +3,15 @@ using System.Collections;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEditor;
+using UnityEngine.UI;
 
 public class JoinGameMenuScript : MonoBehaviour
 {
+    /// <summary>
+    /// The text input's object, supplied by Unity.
+    /// </summary>
+    public InputField hostIpInput;
+
     private GameObject lastSelectedButton;
 
     void Start()
@@ -32,7 +38,7 @@ public class JoinGameMenuScript : MonoBehaviour
     /// </summary>
     public void JoinGameButtonDown()
     {
-        Debug.Log("Join Game");
+        Debug.Log("Join Game of " + hostIpInput.text);
     }
 
     /// <summary>
