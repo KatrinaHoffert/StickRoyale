@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
+using UnityEditor;
 
 public class MainMenuScript : MonoBehaviour
 {
@@ -11,11 +13,6 @@ public class MainMenuScript : MonoBehaviour
 
     void Start()
     {
-        // Initially select the new game button
-        var defaultButtonSelection = GameObject.Find("NewGameButton");
-        EventSystem.current.SetSelectedGameObject(defaultButtonSelection);
-        lastSelectedButton = defaultButtonSelection;
-
         // Not using the mouse -- hide it. In the editor, press escape to unlock the mouse (necessary
         // so that you can stop playing the game.
         Cursor.visible = false;
@@ -42,6 +39,7 @@ public class MainMenuScript : MonoBehaviour
 	public void NewGameButtonDown()
     {
         Debug.Log("New Game");
+        SceneManager.LoadScene("CharacterSelectMenu");
     }
 
     /// <summary>
@@ -50,6 +48,7 @@ public class MainMenuScript : MonoBehaviour
     public void JoinGameButtonDown()
     {
         Debug.Log("Join Game");
+        SceneManager.LoadScene("JoinGameMenu");
     }
 
     /// <summary>
