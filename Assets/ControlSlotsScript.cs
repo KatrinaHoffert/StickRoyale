@@ -13,6 +13,8 @@ public class ControlSlotsScript : NetworkBehaviour
         slots[1] = new ControlSlot() { controlType = ControlType.Network };
         slots[2] = new ControlSlot() { controlType = ControlType.Closed };
         slots[3] = new ControlSlot() { controlType = ControlType.Closed };
+
+        DontDestroyOnLoad(gameObject);
     }
 }
 
