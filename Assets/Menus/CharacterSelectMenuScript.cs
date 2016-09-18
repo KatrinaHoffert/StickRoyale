@@ -11,7 +11,7 @@ public class CharacterSelectMenuScript : MonoBehaviour
     /// the new game or join game menus). Also used since which screen we came from determines
     /// whether or not we're a client.
     /// </summary>
-    public static string backButtonTarget;
+    public static string backButtonTarget = "MainMenu";
 
     private GameObject lastSelectedButton;
 
