@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.Networking;
 
 public class CharacterSelectMenuScript : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class CharacterSelectMenuScript : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         // Setup the client
-        GameObject.Find("NetworkManager").GetComponent<NetworkManagerScript>().Connect();
+        GameObject.Find("NetworkManager").GetComponent<NetworkManagerScript>().ConnectHost();
     }
 
     void Update()
@@ -28,7 +29,7 @@ public class CharacterSelectMenuScript : MonoBehaviour
             lastSelectedButton = EventSystem.current.currentSelectedGameObject;
         }
     }
-
+    
     /// <summary>
     /// Called when the "back" button is pressed.
     /// </summary>

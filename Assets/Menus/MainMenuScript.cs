@@ -2,7 +2,6 @@
 using System.Collections;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
-using UnityEditor;
 
 public class MainMenuScript : MonoBehaviour
 {
