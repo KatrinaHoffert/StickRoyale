@@ -38,6 +38,7 @@ public class MainMenuScript : MonoBehaviour
 	public void NewGameButtonDown()
     {
         Debug.Log("New Game");
+        CharacterSelectMenuScript.backButtonTarget = "MainMenu";
         SceneManager.LoadScene("CharacterSelectMenu");
     }
 
@@ -47,6 +48,7 @@ public class MainMenuScript : MonoBehaviour
     public void JoinGameButtonDown()
     {
         Debug.Log("Join Game");
+        CharacterSelectMenuScript.backButtonTarget = "JoinGameMenu";
         SceneManager.LoadScene("JoinGameMenu");
     }
 

@@ -6,6 +6,13 @@ using UnityEngine.Networking;
 
 public class CharacterSelectMenuScript : MonoBehaviour
 {
+    /// <summary>
+    /// What scene the back button goes to (since we can arrive at this scene through either
+    /// the new game or join game menus). Also used since which screen we came from determines
+    /// whether or not we're a client.
+    /// </summary>
+    public static string backButtonTarget;
+
     private GameObject lastSelectedButton;
 
     void Start()
@@ -14,8 +21,11 @@ public class CharacterSelectMenuScript : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
-        // Setup the client
-        GameObject.Find("NetworkManager").GetComponent<NetworkManagerScript>().ConnectHost();
+        if (backButtonTarget == "MainMenu")
+        {
+            // We're the host
+            GameObject.Find("NetworkManager").GetComponent<NetworkManagerScript>().ConnectHost();
+        }
     }
 
     void Update()
@@ -37,6 +47,6 @@ public class CharacterSelectMenuScript : MonoBehaviour
     {
         Debug.Log("Back");
         GameObject.Find("NetworkManager").GetComponent<NetworkManagerScript>().Disconnect();
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene(backButtonTarget);
     }
 }
