@@ -25,5 +25,19 @@ public class PlayerBase : NetworkBehaviour
     public override void OnStartLocalPlayer()
     {
         playerName = "You";
+
+        // If we're not the host, set us to a network slot
+        if (!isServer)
+        {
+            var controlSlotsObj = GameObject.Find("ControlSlots").GetComponent<ControlSlotsScript>();
+            foreach(var slot in controlSlotsObj.slots)
+            {
+                if(slot.controlType == ControlType.Network && slot.networkPlayerId == null)
+                {
+                    slot.networkPlayerId = uniquePlayerId;
+                    return;
+                }
+            }
+        }
     }
 }
