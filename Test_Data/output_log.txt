@@ -1,0 +1,123 @@
+Initialize engine version: 5.4.1f1 (649f48bbbf0f)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 660M (ID=0xfd4)
+    Vendor:   NVIDIA
+    VRAM:     1989 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Erik\Documents\Cmpt306\cmpt306\Test_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Erik\Documents\Cmpt306\cmpt306\Test_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Erik\Documents\Cmpt306\cmpt306\Test_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Erik\Documents\Cmpt306\cmpt306\Test_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Erik\Documents\Cmpt306\cmpt306\Test_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Erik\Documents\Cmpt306\cmpt306\Test_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\Erik\Documents\Cmpt306\cmpt306\Test_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\Erik\Documents\Cmpt306\cmpt306\Test_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+- Completed reload, in  0.050 seconds
+Platform assembly: C:\Users\Erik\Documents\Cmpt306\cmpt306\Test_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\Erik\Documents\Cmpt306\cmpt306\Test_Data\Managed\System.dll (this message is harmless)
+desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+Initialize engine version: 5.4.1f1 (649f48bbbf0f)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 660M (ID=0xfd4)
+    Vendor:   NVIDIA
+    VRAM:     1989 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Erik\Documents\Cmpt306\cmpt306\Test_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Erik\Documents\Cmpt306\cmpt306\Test_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Erik\Documents\Cmpt306\cmpt306\Test_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Erik\Documents\Cmpt306\cmpt306\Test_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Erik\Documents\Cmpt306\cmpt306\Test_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Erik\Documents\Cmpt306\cmpt306\Test_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\Erik\Documents\Cmpt306\cmpt306\Test_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\Erik\Documents\Cmpt306\cmpt306\Test_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+- Completed reload, in  0.059 seconds
+Platform assembly: C:\Users\Erik\Documents\Cmpt306\cmpt306\Test_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\Erik\Documents\Cmpt306\cmpt306\Test_Data\Managed\System.dll (this message is harmless)
+desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+UnloadTime: 0.780003 ms
+<RI> Initialized touch support.
+UnloadTime: 0.794115 ms
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: e80c -> priority: 1 
+  Thread -> id: 92c4 -> priority: 1 
+Initialize engine version: 5.4.1f1 (649f48bbbf0f)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 660M (ID=0xfd4)
+    Vendor:   NVIDIA
+    VRAM:     1989 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Erik\Documents\Cmpt306\cmpt306\Test_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Erik\Documents\Cmpt306\cmpt306\Test_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Erik\Documents\Cmpt306\cmpt306\Test_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Erik\Documents\Cmpt306\cmpt306\Test_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Erik\Documents\Cmpt306\cmpt306\Test_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Erik\Documents\Cmpt306\cmpt306\Test_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\Erik\Documents\Cmpt306\cmpt306\Test_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\Erik\Documents\Cmpt306\cmpt306\Test_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+- Completed reload, in  0.046 seconds
+Platform assembly: C:\Users\Erik\Documents\Cmpt306\cmpt306\Test_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\Erik\Documents\Cmpt306\cmpt306\Test_Data\Managed\System.dll (this message is harmless)
+desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 0.770595 ms
+New Game
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 5.503645 ms
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 435.
+Total: 0.373751 ms (FindLiveObjects: 0.023519 ms CreateObjectMapping: 0.018815 ms MarkObjects: 0.327139 ms  DeleteObjects: 0.003848 ms)
+
+Starting host
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Join Game
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 5.373217 ms
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 208.
+Total: 0.301481 ms (FindLiveObjects: 0.035065 ms CreateObjectMapping: 0.043618 ms MarkObjects: 0.217237 ms  DeleteObjects: 0.004703 ms)
+
+Attempting to join game of 127.0.0.1:7777
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Connecting client
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Connection 127.0.0.1 successful
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.775727 ms
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 439.
+Total: 0.423357 ms (FindLiveObjects: 0.023947 ms CreateObjectMapping: 0.018815 ms MarkObjects: 0.372468 ms  DeleteObjects: 0.007697 ms)
+
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 7494 -> priority: 1 
+  Thread -> id: 2440 -> priority: 1 
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 12388 -> priority: 1 
+  Thread -> id: 1163c -> priority: 1 
