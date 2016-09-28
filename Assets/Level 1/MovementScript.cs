@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 using System.Collections;
 
-public class MovementScript : MonoBehaviour {
+public class MovementScript : NetworkBehaviour {
 
     private Vector2 moveForce;
     private Rigidbody2D rigid;
@@ -19,13 +20,28 @@ public class MovementScript : MonoBehaviour {
 
     void FixedUpdate()
     {
-        ApplyMoveForce(moveForce);
+        if (!isLocalPlayer)
+        {
+            return;
+        }
+        if (moveForce.x>0.5f)
+        {
+            gameObject.transform.rotation.Set(0f, 0f, 0f, 0f);
+        } else
+        {
+            gameObject.transform.rotation.Set(0f, 180f, 0f, 0f);
+        }
+
+        if(rigid.velocity.magnitude<4)
+        {
+            ApplyMoveForce(moveForce);
+        }
+
     }
 
     /// <summary>
     /// Applies the moveforce to the gameObject
     /// </summary>
-
     private void ApplyMoveForce(Vector2 force)
     {
         rigid.AddForce(force);
