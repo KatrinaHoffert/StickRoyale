@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using System.Collections.Generic;
 
 public class CharacterSelectMenuScript : MonoBehaviour
 {
@@ -22,6 +23,9 @@ public class CharacterSelectMenuScript : MonoBehaviour
             // We're the host
             GameObject.Find("NetworkManager").GetComponent<NetworkManagerScript>().ConnectHost();
         }
+
+        // Host must be p0, so disable the select there
+        GameObject.Find("P0Control").GetComponent<Dropdown>().enabled = false;
     }
     
     /// <summary>
@@ -34,17 +38,10 @@ public class CharacterSelectMenuScript : MonoBehaviour
         SceneManager.LoadScene(backButtonTarget);
     }
 
-    public void ControlChange0(int value) { ControlChange(0, value); }
-    public void ControlChange1(int value) { ControlChange(1, value); }
-    public void ControlChange2(int value) { ControlChange(2, value); }
-    public void ControlChange3(int value) { ControlChange(3, value); }
-
-    /// <summary>
-    /// For some stupid reason, Unity provides no way to change a dropdown value without the
-    /// "on change" event firing. And that screws things up, so we have to effectively disable 
-    /// the on change event's work when we're programmatically changing the dropdowns.
-    /// </summary>
-    private bool programmaticControlChangesOccurring = false;
+     public void ControlChange0(int value) { ControlChange(0, value); }
+     public void ControlChange1(int value) { ControlChange(1, value); }
+     public void ControlChange2(int value) { ControlChange(2, value); }
+     public void ControlChange3(int value) { ControlChange(3, value); }
 
     /// <summary>
     /// Updates the control slots (<see cref="ControlSlotsScript.slots"/> with the set control changes as well
@@ -54,50 +51,15 @@ public class CharacterSelectMenuScript : MonoBehaviour
     /// <param name="value">The new value in the slot that changed.</param>
     private void ControlChange(int slot, int value)
     {
-        if (programmaticControlChangesOccurring) return;
+        // Map of the dropdown values to the actual control types
+        Dictionary<int, ControlType> dropdownControlTypes = new Dictionary<int, ControlType>();
+        dropdownControlTypes[0] = ControlType.Closed;
+        dropdownControlTypes[1] = ControlType.Network;
+        dropdownControlTypes[2] = ControlType.AI;
 
         var controlSlotsObj = GameObject.Find("ControlSlots").GetComponent<ControlSlotsScript>();
-
-        // There must be a host, so if unset, re-set it.
-        if(controlSlotsObj.slots[slot].controlType == ControlType.Host)
-        {
-            Debug.Log("Tried to unset 'host' in slot " + slot + ". Aborting.");
-            programmaticControlChangesOccurring = true;
-            GameObject.Find("P" + slot + "Control").GetComponent<Dropdown>().value = (int)ControlType.Host;
-            programmaticControlChangesOccurring = false;
-            return;
-        }
-        
-        // If we're setting it somewhere, it must exist somewhere else. Swap those controls.
-        if(value == (int)ControlType.Host)
-        {
-            // Figure out where the host currently is
-            var allDropdowns = new GameObject[]
-            {
-                GameObject.Find("P0Control"),
-                GameObject.Find("P1Control"),
-                GameObject.Find("P2Control"),
-                GameObject.Find("P3Control")
-            };
-
-            for(int dropdownSlot = 0; dropdownSlot < allDropdowns.Length; ++dropdownSlot)
-            {
-                var dropdown = allDropdowns[dropdownSlot].GetComponent<Dropdown>();
-                if(dropdown.value == (int)ControlType.Host && dropdownSlot != slot)
-                {
-                    Debug.Log("Control " + slot + " is new host. Control " + dropdownSlot + " had host. Setting it to " + controlSlotsObj.slots[slot].controlType.ToString());
-                    // Found the existing host -- give it the value of who we just made the host
-                    programmaticControlChangesOccurring = true;
-                    dropdown.value = (int)controlSlotsObj.slots[slot].controlType;
-                    programmaticControlChangesOccurring = false;
-                    controlSlotsObj.slots[dropdownSlot].controlType = controlSlotsObj.slots[slot].controlType;
-                    break;
-                }
-            }
-        }
-
-        // And update the internal slots
-        controlSlotsObj.slots[slot].controlType = (ControlType)value;
+        controlSlotsObj.slots[slot].controlType = dropdownControlTypes[value];
+        Debug.Log("Player " + slot + " now has control type " + controlSlotsObj.slots[slot].controlType);
 
         UpdateCharacterImages();
     }

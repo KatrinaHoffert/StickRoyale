@@ -505,7 +505,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Network
+  m_Text: AI
 --- !u!222 &165078142
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1378,13 +1378,7 @@ MonoBehaviour:
   m_Value: 1
   m_Options:
     m_Options:
-    - m_Text: Closed
-      m_Image: {fileID: 0}
     - m_Text: Host
-      m_Image: {fileID: 0}
-    - m_Text: Network
-      m_Image: {fileID: 0}
-    - m_Text: AI
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1593,8 +1587,6 @@ MonoBehaviour:
   m_Options:
     m_Options:
     - m_Text: Closed
-      m_Image: {fileID: 0}
-    - m_Text: Host
       m_Image: {fileID: 0}
     - m_Text: Network
       m_Image: {fileID: 0}
@@ -2305,8 +2297,6 @@ MonoBehaviour:
   m_Options:
     m_Options:
     - m_Text: Closed
-      m_Image: {fileID: 0}
-    - m_Text: Host
       m_Image: {fileID: 0}
     - m_Text: Network
       m_Image: {fileID: 0}
@@ -4716,8 +4706,6 @@ MonoBehaviour:
   m_Options:
     m_Options:
     - m_Text: Closed
-      m_Image: {fileID: 0}
-    - m_Text: Host
       m_Image: {fileID: 0}
     - m_Text: Network
       m_Image: {fileID: 0}
