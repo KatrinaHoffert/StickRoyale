@@ -18,10 +18,20 @@ public class CharacterSelectMenuScript : MonoBehaviour
 
     void Start()
     {
+        // If we came from the main menu, we must be the host. Otherwise we're a client. This is the
+        // easiest way to check this since the host might not be setup yet and hence we don't know if
+        // we're a host or client (and the player objects might not have been spawned).
         if (backButtonTarget == "MainMenu")
         {
             // We're the host
             GameObject.Find("NetworkManager").GetComponent<NetworkManagerScript>().ConnectHost();
+        }
+        else
+        {
+            // Non-hosts need to disable control dropdowns
+            GameObject.Find("P1Control").GetComponent<Dropdown>().enabled = false;
+            GameObject.Find("P2Control").GetComponent<Dropdown>().enabled = false;
+            GameObject.Find("P3Control").GetComponent<Dropdown>().enabled = false;
         }
 
         // Host must be p0, so disable the select there
