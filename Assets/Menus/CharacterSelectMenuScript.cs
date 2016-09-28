@@ -15,30 +15,12 @@ public class CharacterSelectMenuScript : MonoBehaviour
     /// </summary>
     public static string backButtonTarget = "MainMenu";
 
-    private GameObject lastSelectedButton;
-
     void Start()
     {
-        // Similar style to the main game script
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-
         if (backButtonTarget == "MainMenu")
         {
             // We're the host
             GameObject.Find("NetworkManager").GetComponent<NetworkManagerScript>().ConnectHost();
-        }
-    }
-
-    void Update()
-    {
-        if (EventSystem.current.currentSelectedGameObject == null)
-        {
-            EventSystem.current.SetSelectedGameObject(lastSelectedButton);
-        }
-        else
-        {
-            lastSelectedButton = EventSystem.current.currentSelectedGameObject;
         }
     }
     

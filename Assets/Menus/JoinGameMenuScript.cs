@@ -12,27 +12,6 @@ public class JoinGameMenuScript : MonoBehaviour
     /// </summary>
     public InputField hostIpInput;
 
-    private GameObject lastSelectedButton;
-
-    void Start()
-    {
-        // Similar style to the main game script
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-    }
-
-    void Update()
-    {
-        if (EventSystem.current.currentSelectedGameObject == null)
-        {
-            EventSystem.current.SetSelectedGameObject(lastSelectedButton);
-        }
-        else
-        {
-            lastSelectedButton = EventSystem.current.currentSelectedGameObject;
-        }
-    }
-
     /// <summary>
     /// Called when the "join game" button is pressed.
     /// </summary>
