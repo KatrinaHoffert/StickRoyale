@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using Newtonsoft.Json;
 
 /// <summary>
 /// A part of the player that is used for communicating menu choices.
@@ -41,7 +42,7 @@ public class PlayerMenuCommunications : NetworkBehaviour
         var slots = GameObject.Find("ControlSlots").GetComponent<ControlSlotsScript>().slots;
 
         // By sheer madness, JsonUtility cannot serialize arrays, so gotta serialize the elements individually
-        RpcSendHostSlots(JsonUtility.ToJson(slots[0]), JsonUtility.ToJson(slots[1]), JsonUtility.ToJson(slots[2]), JsonUtility.ToJson(slots[3]));
+        RpcSendHostSlots(JsonConvert.SerializeObject(slots));
     }
 
     /// <summary>
@@ -50,22 +51,16 @@ public class PlayerMenuCommunications : NetworkBehaviour
     /// arrays).
     /// </summary>
     [ClientRpc]
-    public void RpcSendHostSlots(string controlSlot0, string controlSlot1, string controlSlot2, string controlSlot3)
+    public void RpcSendHostSlots(string jsonControlSlots)
     {
         // Only need to execute this on the clients
         if (!isServer)
         {
             var slots = GameObject.Find("ControlSlots").GetComponent<ControlSlotsScript>().slots;
-            JsonUtility.FromJsonOverwrite(controlSlot0, slots[0]);
-            JsonUtility.FromJsonOverwrite(controlSlot1, slots[1]);
-            JsonUtility.FromJsonOverwrite(controlSlot2, slots[2]);
-            JsonUtility.FromJsonOverwrite(controlSlot3, slots[3]);
-
-            // Could JsonUtility be any freaking buggier than it is? Nulls got converted to empty strings. Fix that.
-            foreach(var slot in slots)
+            var deserializedControlSlots = JsonConvert.DeserializeObject<ControlSlot[]>(jsonControlSlots);
+            for(int slot = 0; slot < slots.Length; ++slot)
             {
-                if (slot.chosenCharacter == "") slot.chosenCharacter = null;
-                if (slot.networkPlayerId == "") slot.networkPlayerId = null;
+                slots[slot] = deserializedControlSlots[slot];
             }
 
             // Update dropdowns and images
