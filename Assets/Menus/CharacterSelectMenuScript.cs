@@ -180,7 +180,7 @@ public class CharacterSelectMenuScript : MonoBehaviour
         foreach (var player in players)
         {
             // New player? Give them a unique ID and send that across the network.
-            if(player.uniquePlayerId == "")
+            if(String.IsNullOrEmpty(player.uniquePlayerId))
             {
                 player.uniquePlayerId = Guid.NewGuid().ToString();
                 NetworkServer.SendToClientOfPlayer(player.gameObject, CustomMessageTypes.PlayerSetUniqueId, new StringMessage(player.uniquePlayerId));
@@ -237,7 +237,7 @@ public class CharacterSelectMenuScript : MonoBehaviour
             // Decide what the image should be for this slot
             string imageName;
             if (controlSlots[slot].controlType == ControlType.Closed) imageName = "CharacterImages/EmptySlot";
-            else if (controlSlots[slot].chosenCharacter == null) imageName = "CharacterImages/UnknownCharacter";
+            else if (String.IsNullOrEmpty(controlSlots[slot].chosenCharacter)) imageName = "CharacterImages/UnknownCharacter";
             else imageName = "CharacterImages/" + controlSlots[slot].chosenCharacter;
 
             // Note that resources must be relative to the Resources folder.
