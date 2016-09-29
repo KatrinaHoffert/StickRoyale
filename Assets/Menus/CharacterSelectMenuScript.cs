@@ -100,9 +100,39 @@ public class CharacterSelectMenuScript : MonoBehaviour
         dropdownControlTypes[0] = ControlType.Closed;
         dropdownControlTypes[1] = ControlType.Network;
         dropdownControlTypes[2] = ControlType.AI;
+
+        Debug.Log("Set player in slot " + slot + " as control type " + dropdownControlTypes[value]);
+
+        // Did we close a network slot? Move the network player to another available slot if there is one
+        if (controlSlots[slot].controlType == ControlType.Network)
+        {
+            bool foundSlotForPlayer = false;
+            for (int possibleSlot = 1; possibleSlot < controlSlots.Length; ++possibleSlot)
+            {
+                if (possibleSlot == slot) continue;
+                // Found a slot -- switch the network player to this one
+                if(controlSlots[possibleSlot].controlType == ControlType.Network && controlSlots[possibleSlot].networkPlayerId == null)
+                {
+                    Debug.Log("Network player in slot " + slot + " moved to slot " + possibleSlot);
+                    controlSlots[possibleSlot].networkPlayerId = controlSlots[slot].networkPlayerId;
+                    controlSlots[slot].networkPlayerId = null;
+                    foundSlotForPlayer = true;
+                    break;
+                }
+            }
+
+            // If we didn't find a slot for them, kick 'em and clear the ID of the slot
+            if(!foundSlotForPlayer)
+            {
+                Debug.Log("Network player in slot " + slot + " kicked because their slot was closed and no open slots could be found");
+                var player = Global.GetPlayerById(controlSlots[slot].networkPlayerId);
+                player.connectionToClient.Disconnect();
+                controlSlots[slot].networkPlayerId = null;
+            }
+        }
         
+        // And actually update the slot
         controlSlots[slot].controlType = dropdownControlTypes[value];
-        Debug.Log("Player " + slot + " now has control type " + controlSlots[slot].controlType);
 
         UpdateCharacterImages();
     }

@@ -20,7 +20,26 @@ public class Global : MonoBehaviour {
             }
         }
 
-        throw new Exception("No player object found for this player (something is very wrong or this was called too soon)");
+        throw new InvalidOperationException("No player object found for this player (something is very wrong or this was called too soon)");
+    }
+
+    /// <summary>
+    /// Gets a player by their unique ID.
+    /// </summary>
+    /// <param name="playerId">The ID of the desired player.</param>
+    /// <returns>The <see cref="PlayerBase"/> of the desired player.</returns>
+    public static PlayerBase GetPlayerById(string playerId)
+    {
+        PlayerBase[] players = FindObjectsOfType<PlayerBase>();
+        foreach (var player in players)
+        {
+            if (player.uniquePlayerId == playerId)
+            {
+                return player;
+            }
+        }
+
+        throw new InvalidOperationException("No player has the ID " + playerId);
     }
 
     /// <summary>
