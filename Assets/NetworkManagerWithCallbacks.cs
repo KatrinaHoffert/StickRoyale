@@ -24,6 +24,11 @@ public class NetworkManagerWithCallbacks : NetworkManager
     /// </summary>
     public static IList<Action<NetworkConnection>> onClientDisconnectCallbacks = new List<Action<NetworkConnection>>();
 
+    /// <summary>
+    /// A list of functions that will be called when `OnServerAddPlayer` fires.
+    /// </summary>
+    public static IList<Action<NetworkConnection, short>> onServerAddPlayerCallbacks = new List<Action<NetworkConnection, short>>();
+
     public override void OnClientConnect(NetworkConnection conn)
     {
         base.OnClientConnect(conn);
@@ -40,5 +45,11 @@ public class NetworkManagerWithCallbacks : NetworkManager
     {
         base.OnClientDisconnect(conn);
         foreach (var func in onClientDisconnectCallbacks) func(conn);
+    }
+
+    public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId)
+    {
+        base.OnServerAddPlayer(conn, playerControllerId);
+        foreach (var func in onServerAddPlayerCallbacks) func(conn, playerControllerId);
     }
 }

@@ -23,8 +23,13 @@ public class CharacterSelectMenuScript : MonoBehaviour
         // we're a host or client (and the player objects might not have been spawned).
         if (backButtonTarget == "MainMenu")
         {
-            // We're the host
-            GameObject.Find("NetworkManager").GetComponent<NetworkManagerScript>().ConnectHost();
+            // We're the host. This callback is actually called for every player join, but that's fine,
+            // since it's idempotent.
+            GameObject.Find("NetworkManager").GetComponent<NetworkManagerScript>().ConnectHost(() =>
+            {
+                GameObject.Find("ControlSlots").GetComponent<ControlSlotsScript>().slots[0].networkPlayerId = Global.GetOurPlayer().uniquePlayerId;
+                Debug.Log("Slot: " +  GameObject.Find("ControlSlots").GetComponent<ControlSlotsScript>().slots[0]);
+            });
         }
         else
         {
@@ -34,7 +39,8 @@ public class CharacterSelectMenuScript : MonoBehaviour
             GameObject.Find("P3Control").GetComponent<Dropdown>().enabled = false;
         }
 
-        // Host must be p0, so disable the select there
+        // Host must be p0, so disable the select there (it's not a real dropdown anyway, since there's
+        // only one option)
         GameObject.Find("P0Control").GetComponent<Dropdown>().enabled = false;
     }
     

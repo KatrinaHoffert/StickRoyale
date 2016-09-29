@@ -64,4 +64,9 @@ public class ControlSlot
     /// an empty slot.
     /// </summary>
     public string networkPlayerId;
+
+    public override string ToString()
+    {
+        return "{controlType: " + controlType + ", chosenCharacter: " + chosenCharacter + ", networkPlayerId: " + networkPlayerId + "}";
+    }
 }

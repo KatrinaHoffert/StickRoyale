@@ -2,17 +2,29 @@
 using System.Collections;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
+using System;
 
 public class NetworkManagerScript : MonoBehaviour
 {
-    public void ConnectHost()
+    /// <summary>
+    /// Sets up and initializes the host. 
+    /// </summary>
+    /// <param name="playerJoinedCallback">Will be called every time a player joins the game.</param>
+    public void ConnectHost(Action playerJoinedCallback)
     {
+        NetworkManagerWithCallbacks.onServerAddPlayerCallbacks.Add((conn, id) => playerJoinedCallback());
+
         // If we haven't already connected to a host, we become the host. Note that we might
         // already be the host!
         Debug.Log("Starting host");
         GetComponent<NetworkManager>().StartHost();
     }
 
+    /// <summary>
+    /// Connects a client to the host running at the specified network location.
+    /// </summary>
+    /// <param name="ip">IP address of the host.</param>
+    /// <param name="port">Port of the host.</param>
     public void ConnectClient(string ip, int port)
     {
         Debug.Log("Connecting client");
@@ -35,15 +47,11 @@ public class NetworkManagerScript : MonoBehaviour
         GetComponent<NetworkManager>().networkAddress = ip;
         GetComponent<NetworkManager>().networkPort = port;
         GetComponent<NetworkManager>().StartClient();
-        /*GetComponent<NetworkManager>().client.RegisterHandler(MsgType.Connect, (msg) =>
-        {
-            // Load the character select menu (where we'll trigger the 'ready' flag)
-            Debug.Log("Connection successful");
-            SceneManager.LoadScene("CharacterSelectMenu");
-            ClientScene.Ready(NetworkClient.allClients[0].connection);
-        });*/
     }
 
+    /// <summary>
+    /// Disconnects us (regardless of whether we're a host or client) and performs cleanup of networked objects.
+    /// </summary>
     public void Disconnect()
     {
         Debug.Log("Disconnecting");
