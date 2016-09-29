@@ -16,8 +16,13 @@ public class CharacterSelectMenuScript : MonoBehaviour
     /// </summary>
     public static string backButtonTarget = "MainMenu";
 
+    private ControlSlot[] controlSlots;
+
     void Start()
     {
+        // Initialize the control slots
+        controlSlots = GameObject.Find("ControlSlots").GetComponent<ControlSlotsScript>().slots;
+
         // If we came from the main menu, we must be the host. Otherwise we're a client. This is the
         // easiest way to check this since the host might not be setup yet and hence we don't know if
         // we're a host or client (and the player objects might not have been spawned).
@@ -26,8 +31,6 @@ public class CharacterSelectMenuScript : MonoBehaviour
             // We're the host. This callback is actually called for every player join, but that's fine.
             GameObject.Find("NetworkManager").GetComponent<NetworkManagerScript>().ConnectHost(() =>
             {
-                var controlSlots = GameObject.Find("ControlSlots").GetComponent<ControlSlotsScript>().slots;
-
                 // Set the host's player ID
                 controlSlots[0].networkPlayerId = Global.GetOurPlayer().uniquePlayerId;
 
@@ -76,6 +79,24 @@ public class CharacterSelectMenuScript : MonoBehaviour
         // only one option)
         GameObject.Find("P0Control").GetComponent<Dropdown>().enabled = false;
     }
+
+    /// <summary>
+    /// Called when 
+    /// </summary>
+    /// <param name="name"></param>
+    public void CharacterButtonClicked(string name)
+    {
+        // Find our slot
+        var ourPlayerId = Global.GetOurPlayer().uniquePlayerId;
+        for(int slot = 0; slot < controlSlots.Length; ++slot)
+        {
+            if(controlSlots[slot].networkPlayerId == ourPlayerId)
+            {
+                Debug.Log("Selected character " + name + " for player " + slot);
+                controlSlots[slot].chosenCharacter = name;
+            }
+        }
+    }
     
     /// <summary>
     /// Called when the "back" button is pressed.
@@ -105,10 +126,9 @@ public class CharacterSelectMenuScript : MonoBehaviour
         dropdownControlTypes[0] = ControlType.Closed;
         dropdownControlTypes[1] = ControlType.Network;
         dropdownControlTypes[2] = ControlType.AI;
-
-        var controlSlotsObj = GameObject.Find("ControlSlots").GetComponent<ControlSlotsScript>();
-        controlSlotsObj.slots[slot].controlType = dropdownControlTypes[value];
-        Debug.Log("Player " + slot + " now has control type " + controlSlotsObj.slots[slot].controlType);
+        
+        controlSlots[slot].controlType = dropdownControlTypes[value];
+        Debug.Log("Player " + slot + " now has control type " + controlSlots[slot].controlType);
 
         UpdateCharacterImages();
     }
@@ -118,7 +138,6 @@ public class CharacterSelectMenuScript : MonoBehaviour
     /// </summary>
     private void UpdateCharacterImages()
     {
-        var controlSlotsObj = GameObject.Find("ControlSlots").GetComponent<ControlSlotsScript>();
         var allImages = new GameObject[]
         {
             GameObject.Find("P0Image"),
@@ -131,9 +150,9 @@ public class CharacterSelectMenuScript : MonoBehaviour
         {
             // Decide what the image should be for this slot
             string imageName;
-            if (controlSlotsObj.slots[slot].controlType == ControlType.Closed) imageName = "CharacterImages/EmptySlot";
-            else if (controlSlotsObj.slots[slot].chosenCharacter == null) imageName = "CharacterImages/UnknownCharacter";
-            else imageName = "CharacterImages/" + controlSlotsObj.slots[slot].chosenCharacter;
+            if (controlSlots[slot].controlType == ControlType.Closed) imageName = "CharacterImages/EmptySlot";
+            else if (controlSlots[slot].chosenCharacter == null) imageName = "CharacterImages/UnknownCharacter";
+            else imageName = "CharacterImages/" + controlSlots[slot].chosenCharacter;
 
             // Note that resources must be relative to the Resources folder.
             var loadedSprite = Resources.Load<Sprite>(imageName);
