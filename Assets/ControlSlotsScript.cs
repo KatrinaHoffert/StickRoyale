@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.Networking;
+using System;
 
 public class ControlSlotsScript : NetworkBehaviour
 {
@@ -47,6 +48,7 @@ public enum ControlType
 /// <summary>
 /// A player slot.
 /// </summary>
+[Serializable]
 public class ControlSlot
 {
     /// <summary>
