@@ -973,8 +973,8 @@ RectTransform:
   m_RootOrder: 3
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 91}
-  m_SizeDelta: {x: 500, y: 60}
+  m_AnchoredPosition: {x: 0, y: 97}
+  m_SizeDelta: {x: 545, y: 89}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2057870231
 MonoBehaviour:
@@ -997,7 +997,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 48
+    m_FontSize: 64
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 4
@@ -1008,7 +1008,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Our game title!
+  m_Text: Stick Royale
 --- !u!222 &2057870232
 CanvasRenderer:
   m_ObjectHideFlags: 0
