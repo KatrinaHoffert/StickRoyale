@@ -55,9 +55,9 @@ public class CharacterSelectMenuScript : MonoBehaviour
     }
 
     /// <summary>
-    /// Called when 
+    /// Called when a character button is clicked.
     /// </summary>
-    /// <param name="name"></param>
+    /// <param name="name">The name of the chosen character.</param>
     public void CharacterButtonClicked(string name)
     {
         // Find our slot
@@ -68,6 +68,8 @@ public class CharacterSelectMenuScript : MonoBehaviour
             {
                 Debug.Log("Selected character " + name + " for player " + slot);
                 controlSlots[slot].chosenCharacter = name;
+                if(Global.PlayerIsClient()) Global.GetOurPlayer().gameObject.GetComponent<PlayerMenuCommunications>().CmdChooseCharacter(slot, name);
+                else Global.GetOurPlayer().gameObject.GetComponent<PlayerMenuCommunications>().RpcChooseCharacter(slot, name);
             }
         }
         UpdateCharacterImages();
@@ -179,7 +181,7 @@ public class CharacterSelectMenuScript : MonoBehaviour
     /// <summary>
     /// Updates all the character images based on the data in the control slots (ie, <see cref="ControlSlotsScript.slots"/>).
     /// </summary>
-    private void UpdateCharacterImages()
+    public void UpdateCharacterImages()
     {
         var allImages = new GameObject[]
         {
