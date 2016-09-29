@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using System;
+using UnityEngine.Networking.NetworkSystem;
 
 public class NetworkManagerScript : MonoBehaviour
 {
@@ -47,6 +48,20 @@ public class NetworkManagerScript : MonoBehaviour
         GetComponent<NetworkManager>().networkAddress = ip;
         GetComponent<NetworkManager>().networkPort = port;
         GetComponent<NetworkManager>().StartClient();
+
+        NetworkManager.singleton.client.RegisterHandler(CustomMessageTypes.PlayerSetUniqueId, OnUniquePlayerIdAssigned);
+    }
+
+    /// <summary>
+    /// Called via message passing for the host to set the 
+    /// </summary>
+    /// <param name="netMsg">A <see cref="StringMessage"/> that contains simply the unique player ID that has
+    /// been assigned to us.</param>
+    public void OnUniquePlayerIdAssigned(NetworkMessage netMsg)
+    {
+        string id = netMsg.ReadMessage<StringMessage>().value;
+        Debug.Log("Host has assigned us ID: " + id);
+        Global.GetOurPlayer().uniquePlayerId = id;
     }
 
     /// <summary>

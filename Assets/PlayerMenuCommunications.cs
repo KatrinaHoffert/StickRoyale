@@ -40,8 +40,6 @@ public class PlayerMenuCommunications : NetworkBehaviour
     public void SendHostSlots()
     {
         var slots = GameObject.Find("ControlSlots").GetComponent<ControlSlotsScript>().slots;
-
-        // By sheer madness, JsonUtility cannot serialize arrays, so gotta serialize the elements individually
         RpcSendHostSlots(JsonConvert.SerializeObject(slots));
     }
 

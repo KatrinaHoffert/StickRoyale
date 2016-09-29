@@ -7,6 +7,8 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using System.Collections.Generic;
 using System.Linq;
+using System;
+using UnityEngine.Networking.NetworkSystem;
 
 public class CharacterSelectMenuScript : MonoBehaviour
 {
@@ -37,6 +39,7 @@ public class CharacterSelectMenuScript : MonoBehaviour
             GameObject.Find("NetworkManager").GetComponent<NetworkManagerScript>().ConnectHost(() =>
             {
                 // Set the host's player ID
+                Global.GetOurPlayer().uniquePlayerId = Guid.NewGuid().ToString();
                 controlSlots[0].networkPlayerId = Global.GetOurPlayer().uniquePlayerId;
 
                 AssignUnassignedPlayersToNetworkSlots();
@@ -175,6 +178,14 @@ public class CharacterSelectMenuScript : MonoBehaviour
         PlayerBase[] players = FindObjectsOfType<PlayerBase>();
         foreach (var player in players)
         {
+            // New player? Give them a unique ID and send that across the network.
+            if(player.uniquePlayerId == "")
+            {
+                player.uniquePlayerId = Guid.NewGuid().ToString();
+                NetworkServer.SendToClientOfPlayer(player.gameObject, CustomMessageTypes.PlayerSetUniqueId, new StringMessage(player.uniquePlayerId));
+                Debug.Log("New player detected. Given ID " + player.uniquePlayerId);
+            }
+
             bool networkPlayerHasSlot = false;
             foreach (var slot in controlSlots)
             {
