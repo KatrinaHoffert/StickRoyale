@@ -15,11 +15,12 @@ public class PlayerBase : NetworkBehaviour
     /// A unique ID for this player. Generated after the player is fully connected (or when the
     /// host is initialized).
     /// </summary>
-    public string uniquePlayerId = Guid.NewGuid().ToString();
+    public string uniquePlayerId;
 
     void Awake()
     {
         DontDestroyOnLoad(gameObject);
+        uniquePlayerId = Guid.NewGuid().ToString();
     }
 
     public override void OnStartLocalPlayer()

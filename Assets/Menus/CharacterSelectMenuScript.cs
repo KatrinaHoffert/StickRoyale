@@ -23,12 +23,45 @@ public class CharacterSelectMenuScript : MonoBehaviour
         // we're a host or client (and the player objects might not have been spawned).
         if (backButtonTarget == "MainMenu")
         {
-            // We're the host. This callback is actually called for every player join, but that's fine,
-            // since it's idempotent.
+            // We're the host. This callback is actually called for every player join, but that's fine.
             GameObject.Find("NetworkManager").GetComponent<NetworkManagerScript>().ConnectHost(() =>
             {
-                GameObject.Find("ControlSlots").GetComponent<ControlSlotsScript>().slots[0].networkPlayerId = Global.GetOurPlayer().uniquePlayerId;
-                Debug.Log("Slot: " +  GameObject.Find("ControlSlots").GetComponent<ControlSlotsScript>().slots[0]);
+                var controlSlots = GameObject.Find("ControlSlots").GetComponent<ControlSlotsScript>().slots;
+
+                // Set the host's player ID
+                controlSlots[0].networkPlayerId = Global.GetOurPlayer().uniquePlayerId;
+
+                // Check if there's any new players that have not been assigned a slot. If so, assign them a slot. Otherwise, kick them.
+                PlayerBase[] players = FindObjectsOfType<PlayerBase>();
+                foreach (var player in players)
+                {
+                    bool networkPlayerHasSlot = false;
+                    foreach(var slot in controlSlots)
+                    {
+                        if (slot.networkPlayerId == player.uniquePlayerId) networkPlayerHasSlot = true;
+                    }
+                    
+                    if (!networkPlayerHasSlot)
+                    {
+                        // Any free slots?
+                        bool foundEmptySlot = false;
+                        foreach (var slot in controlSlots)
+                        {
+                            if (slot.controlType == ControlType.Network && slot.networkPlayerId == null)
+                            {
+                                slot.networkPlayerId = player.uniquePlayerId;
+                                foundEmptySlot = true;
+                                break;
+                            }
+                        }
+                        
+                        if(!foundEmptySlot)
+                        {
+                            Debug.Log("A player attempted to connect, but there was no network slots. They were disconnected.");
+                            player.connectionToClient.Disconnect();
+                        }
+                    }
+                }
             });
         }
         else
