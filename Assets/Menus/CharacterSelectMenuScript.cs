@@ -70,6 +70,7 @@ public class CharacterSelectMenuScript : MonoBehaviour
                 controlSlots[slot].chosenCharacter = name;
             }
         }
+        UpdateCharacterImages();
     }
     
     /// <summary>
