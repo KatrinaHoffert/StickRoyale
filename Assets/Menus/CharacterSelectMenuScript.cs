@@ -60,7 +60,7 @@ public class CharacterSelectMenuScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        ClearDisconnectedPlayers();
+        if(!Global.PlayerIsClient()) ClearDisconnectedPlayers();
     }
 
     /// <summary>
