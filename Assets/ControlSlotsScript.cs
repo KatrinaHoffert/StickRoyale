@@ -5,6 +5,9 @@ using System;
 
 public class ControlSlotsScript : NetworkBehaviour
 {
+    /// <summary>
+    /// The representation of what slots are available for players and how they are populated.
+    /// </summary>
     public ControlSlot[] slots = new ControlSlot[4];
 
     void Awake()

@@ -24,6 +24,7 @@ public class PlayerBase : NetworkBehaviour
 
     public override void OnStartLocalPlayer()
     {
+        // A crucial aspect for identifying our own player object.
         playerName = "You";
     }
 }

@@ -53,7 +53,7 @@ public class NetworkManagerScript : MonoBehaviour
     }
 
     /// <summary>
-    /// Called via message passing for the host to set the 
+    /// Called via message passing for the host to set this player's ID.
     /// </summary>
     /// <param name="netMsg">A <see cref="StringMessage"/> that contains simply the unique player ID that has
     /// been assigned to us.</param>

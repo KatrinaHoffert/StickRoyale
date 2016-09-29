@@ -9,25 +9,29 @@ using Newtonsoft.Json;
 /// </summary>
 public class PlayerMenuCommunications : NetworkBehaviour
 {
+    /// <summary>
+    /// Called by the client to inform the host of having chosen a character. Host will then
+    /// inform everyone else (including itself).
+    /// 
+    /// Perhaps should consider taking in the unique ID instead of the slot in case that happens to
+    /// change at the very same time? Seems like a minor issue, though, and doesn't easily occur.
+    /// </summary>
+    /// <param name="slot">Slot of the player.</param>
+    /// <param name="character">Character they chose.</param>
     [Command]
     public void CmdChooseCharacter(int slot, string character)
     {
-        ChooseCharacter(slot, character);
         RpcChooseCharacter(slot, character);
     }
 
+    /// <summary>
+    /// Called by the host to inform all clients (including itself) that a certain slot was assigned a
+    /// certain character. We update the control slots and the GUI accordingly.
+    /// </summary>
+    /// <param name="slot"></param>
+    /// <param name="character"></param>
     [ClientRpc]
     public void RpcChooseCharacter(int slot, string character)
-    {
-        ChooseCharacter(slot, character);
-    }
-
-    /// <summary>
-    /// Sets the character for this slot as the the chosen character, then updated the GUI.
-    /// </summary>
-    /// <param name="slot">The slot of the player.</param>
-    /// <param name="character">The character they chose.</param>
-    private void ChooseCharacter(int slot, string character)
     {
         Debug.Log("Player " + slot + " has chosen character " + character);
         GameObject.Find("ControlSlots").GetComponent<ControlSlotsScript>().slots[slot].chosenCharacter = character;
@@ -66,11 +70,5 @@ public class PlayerMenuCommunications : NetworkBehaviour
             charMenu.UpdateControlDropdowns();
             charMenu.UpdateCharacterImages();
         }
-    }
-
-    [Command]
-    public void CmdRequestHostSendSlots()
-    {
-        SendHostSlots();
     }
 }
