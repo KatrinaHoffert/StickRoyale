@@ -135,14 +135,14 @@ public class CharacterSelectMenuScript : MonoBehaviour
         Debug.Log("Set player in slot " + slot + " as control type " + dropdownControlTypes[value]);
 
         // Did we close a network slot? Move the network player to another available slot if there is one
-        if (controlSlots[slot].controlType == ControlType.Network && controlSlots[slot].networkPlayerId != null)
+        if (controlSlots[slot].controlType == ControlType.Network && !String.IsNullOrEmpty(controlSlots[slot].networkPlayerId))
         {
             bool foundSlotForPlayer = false;
             for (int possibleSlot = 1; possibleSlot < controlSlots.Length; ++possibleSlot)
             {
                 if (possibleSlot == slot) continue;
                 // Found a slot -- switch the network player to this one
-                if (controlSlots[possibleSlot].controlType == ControlType.Network && controlSlots[possibleSlot].networkPlayerId == null)
+                if (controlSlots[possibleSlot].controlType == ControlType.Network && String.IsNullOrEmpty(controlSlots[possibleSlot].networkPlayerId))
                 {
                     Debug.Log("Network player in slot " + slot + " moved to slot " + possibleSlot);
                     controlSlots[possibleSlot].networkPlayerId = controlSlots[slot].networkPlayerId;
@@ -199,7 +199,7 @@ public class CharacterSelectMenuScript : MonoBehaviour
                 bool foundFreeSlot = false;
                 foreach (var slot in controlSlots)
                 {
-                    if (slot.controlType == ControlType.Network && slot.networkPlayerId == null)
+                    if (slot.controlType == ControlType.Network && String.IsNullOrEmpty(slot.networkPlayerId))
                     {
                         slot.networkPlayerId = player.uniquePlayerId;
                         foundFreeSlot = true;
