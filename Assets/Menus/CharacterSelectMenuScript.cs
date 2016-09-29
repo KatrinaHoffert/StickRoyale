@@ -58,6 +58,18 @@ public class CharacterSelectMenuScript : MonoBehaviour
         GameObject.Find("P0Control").GetComponent<Dropdown>().enabled = false;
     }
 
+    /// <summary>
+    /// Number of FixedUpdates we've had without our player character existing -- too many and we'll
+    /// assume we've been disconnected.
+    /// </summary>
+    private int fixedFramesWithoutPlayer = 0;
+
+    /// <summary>
+    /// Number of frames after which we'll kick the player. With the current timestep of 0.02, 100 frames
+    /// is 2 seconds.
+    /// </summary>
+    const int fixedFramesWithoutPlayerMax = 100;
+
     void FixedUpdate()
     {
         try
@@ -67,6 +79,15 @@ public class CharacterSelectMenuScript : MonoBehaviour
         catch
         {
             // Do nothing, since it's normal for `PlayerIsClient` to fail if this ticks before the player prefabs are made
+            if(fixedFramesWithoutPlayer < fixedFramesWithoutPlayerMax)
+            {
+                ++fixedFramesWithoutPlayer;
+            }
+            else
+            {
+                Debug.Log("Exceeded limit of frames without a player object -- disconnecting");
+                SceneManager.LoadScene("DisconnectedScreen");
+            }
         }
     }
 
