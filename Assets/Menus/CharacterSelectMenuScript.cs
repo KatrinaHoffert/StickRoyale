@@ -58,6 +58,11 @@ public class CharacterSelectMenuScript : MonoBehaviour
         GameObject.Find("P0Control").GetComponent<Dropdown>().enabled = false;
     }
 
+    void FixedUpdate()
+    {
+        ClearDisconnectedPlayers();
+    }
+
     /// <summary>
     /// Called when a character button is clicked.
     /// </summary>
@@ -270,5 +275,31 @@ public class CharacterSelectMenuScript : MonoBehaviour
         }
 
         programmaticControlChange = false;
+    }
+
+    /// <summary>
+    /// Clears disconnected players from the control slots and alerts other clients of what changed.
+    /// </summary>
+    private void ClearDisconnectedPlayers()
+    {
+        bool madeChanges = false;
+        PlayerBase[] players = FindObjectsOfType<PlayerBase>();
+        for(int slot = 0; slot < controlSlots.Length; ++slot)
+        {
+            // If there's no players with the control slot's ID, clear the slot
+            if(!String.IsNullOrEmpty(controlSlots[slot].networkPlayerId) && !players.Any(player => player.uniquePlayerId == controlSlots[slot].networkPlayerId))
+            {
+                Debug.Log("Slot " + slot + " is disconnected; clearing.");
+                controlSlots[slot].chosenCharacter = null;
+                controlSlots[slot].networkPlayerId = null;
+                madeChanges = true;
+            }
+        }
+
+        // If we made changes, let everyone else know
+        if(madeChanges)
+        {
+            Global.GetOurPlayer().gameObject.GetComponent<PlayerMenuCommunications>().SendHostSlots();
+        }
     }
 }
