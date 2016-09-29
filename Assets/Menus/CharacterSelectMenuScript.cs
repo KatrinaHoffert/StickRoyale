@@ -87,11 +87,12 @@ public class CharacterSelectMenuScript : MonoBehaviour
     {
         Debug.Log("Back");
         GameObject.Find("NetworkManager").GetComponent<NetworkManagerScript>().Disconnect();
-        SceneManager.LoadScene(backButtonTarget);
 
         // Cleanup stuff that otherwise get left behind
-        Destroy(GameObject.Find("ControlSlots"));
-        Destroy(GameObject.Find("NetworkManager"));
+        DestroyImmediate(GameObject.Find("ControlSlots"));
+        DestroyImmediate(GameObject.Find("NetworkManager"));
+
+        SceneManager.LoadScene(backButtonTarget);
     }
 
     public void ControlChange0(int value) { ControlChange(0, value); }

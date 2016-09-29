@@ -19,6 +19,13 @@ public class ControlSlotsScript : NetworkBehaviour
         slots[3] = new ControlSlot() { controlType = ControlType.Closed };
 
         DontDestroyOnLoad(gameObject);
+
+        // Solution to the madness of duplicate objects somehow being retained (WTF?)
+        // See: http://answers.unity3d.com/answers/485933/view.html
+        if (FindObjectsOfType(GetType()).Length > 1)
+        {
+            Destroy(gameObject);
+        }
     }
 }
 
