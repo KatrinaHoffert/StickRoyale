@@ -6,6 +6,7 @@ using UnityEngine.Networking;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using System.Collections.Generic;
+using System.Linq;
 
 public class CharacterSelectMenuScript : MonoBehaviour
 {
@@ -62,9 +63,9 @@ public class CharacterSelectMenuScript : MonoBehaviour
     {
         // Find our slot
         var ourPlayerId = Global.GetOurPlayer().uniquePlayerId;
-        for(int slot = 0; slot < controlSlots.Length; ++slot)
+        for (int slot = 0; slot < controlSlots.Length; ++slot)
         {
-            if(controlSlots[slot].networkPlayerId == ourPlayerId)
+            if (controlSlots[slot].networkPlayerId == ourPlayerId)
             {
                 Debug.Log("Selected character " + name + " for player " + slot);
                 controlSlots[slot].chosenCharacter = name;
@@ -75,11 +76,11 @@ public class CharacterSelectMenuScript : MonoBehaviour
         }
         UpdateCharacterImages();
     }
-    
+
     /// <summary>
     /// Called when the "back" button is pressed.
     /// </summary>
-	public void BackButtonDown()
+    public void BackButtonDown()
     {
         Debug.Log("Back");
         GameObject.Find("NetworkManager").GetComponent<NetworkManagerScript>().Disconnect();
@@ -90,10 +91,24 @@ public class CharacterSelectMenuScript : MonoBehaviour
         Destroy(GameObject.Find("NetworkManager"));
     }
 
-     public void ControlChange0(int value) { ControlChange(0, value); }
-     public void ControlChange1(int value) { ControlChange(1, value); }
-     public void ControlChange2(int value) { ControlChange(2, value); }
-     public void ControlChange3(int value) { ControlChange(3, value); }
+    public void ControlChange0(int value) { ControlChange(0, value); }
+    public void ControlChange1(int value) { ControlChange(1, value); }
+    public void ControlChange2(int value) { ControlChange(2, value); }
+    public void ControlChange3(int value) { ControlChange(3, value); }
+
+    /// <summary>
+    /// Map of the dropdown values to the actual control types.
+    /// </summary>
+    private Dictionary<int, ControlType> GetDropdownControlMapping()
+    {
+        Dictionary<int, ControlType> dropdownControlTypes = new Dictionary<int, ControlType>();
+        dropdownControlTypes[0] = ControlType.Closed;
+        dropdownControlTypes[1] = ControlType.Network;
+        dropdownControlTypes[2] = ControlType.AI;
+        return dropdownControlTypes;
+    }
+
+    private bool programmaticControlChange = false;
 
     /// <summary>
     /// Updates the control slots (<see cref="ControlSlotsScript.slots"/> with the set control changes as well
@@ -103,11 +118,9 @@ public class CharacterSelectMenuScript : MonoBehaviour
     /// <param name="value">The new value in the slot that changed.</param>
     private void ControlChange(int slot, int value)
     {
-        // Map of the dropdown values to the actual control types
-        Dictionary<int, ControlType> dropdownControlTypes = new Dictionary<int, ControlType>();
-        dropdownControlTypes[0] = ControlType.Closed;
-        dropdownControlTypes[1] = ControlType.Network;
-        dropdownControlTypes[2] = ControlType.AI;
+        if (programmaticControlChange) return;
+
+        Dictionary<int, ControlType> dropdownControlTypes = GetDropdownControlMapping();
 
         Debug.Log("Set player in slot " + slot + " as control type " + dropdownControlTypes[value]);
 
@@ -119,7 +132,7 @@ public class CharacterSelectMenuScript : MonoBehaviour
             {
                 if (possibleSlot == slot) continue;
                 // Found a slot -- switch the network player to this one
-                if(controlSlots[possibleSlot].controlType == ControlType.Network && controlSlots[possibleSlot].networkPlayerId == null)
+                if (controlSlots[possibleSlot].controlType == ControlType.Network && controlSlots[possibleSlot].networkPlayerId == null)
                 {
                     Debug.Log("Network player in slot " + slot + " moved to slot " + possibleSlot);
                     controlSlots[possibleSlot].networkPlayerId = controlSlots[slot].networkPlayerId;
@@ -130,7 +143,7 @@ public class CharacterSelectMenuScript : MonoBehaviour
             }
 
             // If we didn't find a slot for them, kick 'em and clear the ID of the slot
-            if(!foundSlotForPlayer)
+            if (!foundSlotForPlayer)
             {
                 Debug.Log("Network player in slot " + slot + " kicked because their slot was closed and no open slots could be found");
                 var player = Global.GetPlayerById(controlSlots[slot].networkPlayerId);
@@ -138,11 +151,13 @@ public class CharacterSelectMenuScript : MonoBehaviour
                 controlSlots[slot].networkPlayerId = null;
             }
         }
-        
+
         // And actually update the slot
         controlSlots[slot].controlType = dropdownControlTypes[value];
 
         UpdateCharacterImages();
+        
+        Global.GetOurPlayer().gameObject.GetComponent<PlayerMenuCommunications>().SendHostSlots();
     }
 
     /// <summary>
@@ -196,7 +211,7 @@ public class CharacterSelectMenuScript : MonoBehaviour
             GameObject.Find("P3Image")
         };
 
-        for(int slot = 0; slot < allImages.Length; ++slot)
+        for (int slot = 0; slot < allImages.Length; ++slot)
         {
             // Decide what the image should be for this slot
             string imageName;
@@ -206,7 +221,7 @@ public class CharacterSelectMenuScript : MonoBehaviour
 
             // Note that resources must be relative to the Resources folder.
             var loadedSprite = Resources.Load<Sprite>(imageName);
-            if(loadedSprite != null)
+            if (loadedSprite != null)
             {
                 allImages[slot].GetComponent<Image>().sprite = loadedSprite;
             }
@@ -215,5 +230,19 @@ public class CharacterSelectMenuScript : MonoBehaviour
                 Debug.LogError("Couldn't load image for " + imageName + " (slot " + slot + ")", this);
             }
         }
+    }
+
+    public void UpdateControls()
+    {
+        programmaticControlChange = true;
+
+        // Flipping the mapping to map ControlTypes to the dropdown values
+        Dictionary<ControlType, int> dropdownControlTypes = GetDropdownControlMapping().ToDictionary(item => item.Value, item => item.Key);
+
+        GameObject.Find("P1Control").GetComponent<Dropdown>().value = dropdownControlTypes[controlSlots[1].controlType];
+        GameObject.Find("P2Control").GetComponent<Dropdown>().value = dropdownControlTypes[controlSlots[2].controlType];
+        GameObject.Find("P3Control").GetComponent<Dropdown>().value = dropdownControlTypes[controlSlots[3].controlType];
+
+        programmaticControlChange = false;
     }
 }
