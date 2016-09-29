@@ -33,12 +33,22 @@ public class PlayerMenuCommunications : NetworkBehaviour
         GameObject.Find("Canvas").GetComponent<CharacterSelectMenuScript>().UpdateCharacterImages();
     }
     
+    /// <summary>
+    /// Called by the host to send clients its control slots (serialized into JSON).
+    /// </summary>
     public void SendHostSlots()
     {
         var slots = GameObject.Find("ControlSlots").GetComponent<ControlSlotsScript>().slots;
+
+        // By sheer madness, JsonUtility cannot serialize arrays, so gotta serialize the elements individually
         RpcSendHostSlots(JsonUtility.ToJson(slots[0]), JsonUtility.ToJson(slots[1]), JsonUtility.ToJson(slots[2]), JsonUtility.ToJson(slots[3]));
     }
 
+    /// <summary>
+    /// Called on the clients to update the control slots to the hosts's data and the GUI for that accordingly.
+    /// The parameters are JSON objects for each control slot (since JsonUtility cannot deserialize
+    /// arrays).
+    /// </summary>
     [ClientRpc]
     public void RpcSendHostSlots(string controlSlot0, string controlSlot1, string controlSlot2, string controlSlot3)
     {
@@ -58,9 +68,9 @@ public class PlayerMenuCommunications : NetworkBehaviour
                 if (slot.networkPlayerId == "") slot.networkPlayerId = null;
             }
 
-            // Update selects and images
+            // Update dropdowns and images
             var charMenu = GameObject.Find("Canvas").GetComponent<CharacterSelectMenuScript>();
-            charMenu.UpdateControls();
+            charMenu.UpdateControlDropdowns();
             charMenu.UpdateCharacterImages();
         }
     }

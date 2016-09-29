@@ -108,6 +108,12 @@ public class CharacterSelectMenuScript : MonoBehaviour
         return dropdownControlTypes;
     }
 
+    /// <summary>
+    /// Unity provides no way to change a dropdown without triggering its event handler. Which will cause
+    /// bugs when we're trying to programmatically change the value. Hence, we must have a toggle that
+    /// will disable the event handler for programmatic changes. ie, if this is true, the event handler
+    /// does nothing.
+    /// </summary>
     private bool programmaticControlChange = false;
 
     /// <summary>
@@ -232,16 +238,21 @@ public class CharacterSelectMenuScript : MonoBehaviour
         }
     }
 
-    public void UpdateControls()
+    /// <summary>
+    /// Updates the control dropdowns based on the values of the control slots (which have presumably
+    /// been updated from the host).
+    /// </summary>
+    public void UpdateControlDropdowns()
     {
         programmaticControlChange = true;
 
         // Flipping the mapping to map ControlTypes to the dropdown values
         Dictionary<ControlType, int> dropdownControlTypes = GetDropdownControlMapping().ToDictionary(item => item.Value, item => item.Key);
 
-        GameObject.Find("P1Control").GetComponent<Dropdown>().value = dropdownControlTypes[controlSlots[1].controlType];
-        GameObject.Find("P2Control").GetComponent<Dropdown>().value = dropdownControlTypes[controlSlots[2].controlType];
-        GameObject.Find("P3Control").GetComponent<Dropdown>().value = dropdownControlTypes[controlSlots[3].controlType];
+        for(int slot = 1; slot < controlSlots.Length; ++slot)
+        {
+            GameObject.Find("P" + slot + "Control").GetComponent<Dropdown>().value = dropdownControlTypes[controlSlots[slot].controlType];
+        }
 
         programmaticControlChange = false;
     }
