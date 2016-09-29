@@ -60,7 +60,14 @@ public class CharacterSelectMenuScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(!Global.PlayerIsClient()) ClearDisconnectedPlayers();
+        try
+        {
+            if (!Global.PlayerIsClient()) ClearDisconnectedPlayers();
+        }
+        catch
+        {
+            // Do nothing, since it's normal for `PlayerIsClient` to fail if this ticks before the player prefabs are made
+        }
     }
 
     /// <summary>
