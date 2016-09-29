@@ -43,6 +43,7 @@ public class NetworkManagerScript : MonoBehaviour
         NetworkManagerWithCallbacks.onClientDisconnectCallbacks.Add(conn =>
         {
             Debug.Log("Connection " + conn.address + " disconnected");
+            SceneManager.LoadScene("DisconnectedScreen");
         });
 
         GetComponent<NetworkManager>().networkAddress = ip;
