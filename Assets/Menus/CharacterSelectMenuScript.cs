@@ -202,6 +202,9 @@ public class CharacterSelectMenuScript : MonoBehaviour
                     {
                         slot.networkPlayerId = player.uniquePlayerId;
                         foundFreeSlot = true;
+
+                        // Now that we've got a slot for the user, update all players' control slots to match ours
+                        Global.GetOurPlayer().gameObject.GetComponent<PlayerMenuCommunications>().SendHostSlots();
                         break;
                     }
                 }

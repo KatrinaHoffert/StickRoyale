@@ -67,4 +67,10 @@ public class PlayerMenuCommunications : NetworkBehaviour
             charMenu.UpdateCharacterImages();
         }
     }
+
+    [Command]
+    public void CmdRequestHostSendSlots()
+    {
+        SendHostSlots();
+    }
 }
