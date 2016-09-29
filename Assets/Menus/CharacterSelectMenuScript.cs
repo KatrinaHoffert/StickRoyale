@@ -84,6 +84,10 @@ public class CharacterSelectMenuScript : MonoBehaviour
         Debug.Log("Back");
         GameObject.Find("NetworkManager").GetComponent<NetworkManagerScript>().Disconnect();
         SceneManager.LoadScene(backButtonTarget);
+
+        // Cleanup stuff that otherwise get left behind
+        Destroy(GameObject.Find("ControlSlots"));
+        Destroy(GameObject.Find("NetworkManager"));
     }
 
      public void ControlChange0(int value) { ControlChange(0, value); }
@@ -204,7 +208,7 @@ public class CharacterSelectMenuScript : MonoBehaviour
             var loadedSprite = Resources.Load<Sprite>(imageName);
             if(loadedSprite != null)
             {
-                var image = allImages[slot].GetComponent<Image>().sprite = loadedSprite;
+                allImages[slot].GetComponent<Image>().sprite = loadedSprite;
             }
             else
             {
