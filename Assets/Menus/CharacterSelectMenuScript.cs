@@ -112,7 +112,7 @@ public class CharacterSelectMenuScript : MonoBehaviour
         Debug.Log("Set player in slot " + slot + " as control type " + dropdownControlTypes[value]);
 
         // Did we close a network slot? Move the network player to another available slot if there is one
-        if (controlSlots[slot].controlType == ControlType.Network)
+        if (controlSlots[slot].controlType == ControlType.Network && controlSlots[slot].networkPlayerId != null)
         {
             bool foundSlotForPlayer = false;
             for (int possibleSlot = 1; possibleSlot < controlSlots.Length; ++possibleSlot)
