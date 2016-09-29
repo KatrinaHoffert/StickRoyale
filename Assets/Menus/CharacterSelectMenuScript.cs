@@ -68,8 +68,9 @@ public class CharacterSelectMenuScript : MonoBehaviour
             {
                 Debug.Log("Selected character " + name + " for player " + slot);
                 controlSlots[slot].chosenCharacter = name;
-                if(Global.PlayerIsClient()) Global.GetOurPlayer().gameObject.GetComponent<PlayerMenuCommunications>().CmdChooseCharacter(slot, name);
-                else Global.GetOurPlayer().gameObject.GetComponent<PlayerMenuCommunications>().RpcChooseCharacter(slot, name);
+                var playerComm = Global.GetOurPlayer().gameObject.GetComponent<PlayerMenuCommunications>();
+                if (Global.PlayerIsClient()) playerComm.CmdChooseCharacter(slot, name);
+                else playerComm.RpcChooseCharacter(slot, name);
             }
         }
         UpdateCharacterImages();
