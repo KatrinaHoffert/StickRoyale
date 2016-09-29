@@ -16,6 +16,10 @@ public class CharacterSelectMenuScript : MonoBehaviour
     /// </summary>
     public static string backButtonTarget = "MainMenu";
 
+    /// <summary>
+    /// A reference to the control slots belonging to the `ControlSlots` object's `ControlSlotsScript`
+    /// component. Here as a field because it's used consistently throughout this class.
+    /// </summary>
     private ControlSlot[] controlSlots;
 
     void Start()
@@ -34,37 +38,7 @@ public class CharacterSelectMenuScript : MonoBehaviour
                 // Set the host's player ID
                 controlSlots[0].networkPlayerId = Global.GetOurPlayer().uniquePlayerId;
 
-                // Check if there's any new players that have not been assigned a slot. If so, assign them a slot. Otherwise, kick them.
-                PlayerBase[] players = FindObjectsOfType<PlayerBase>();
-                foreach (var player in players)
-                {
-                    bool networkPlayerHasSlot = false;
-                    foreach(var slot in controlSlots)
-                    {
-                        if (slot.networkPlayerId == player.uniquePlayerId) networkPlayerHasSlot = true;
-                    }
-                    
-                    if (!networkPlayerHasSlot)
-                    {
-                        // Any free slots?
-                        bool foundEmptySlot = false;
-                        foreach (var slot in controlSlots)
-                        {
-                            if (slot.controlType == ControlType.Network && slot.networkPlayerId == null)
-                            {
-                                slot.networkPlayerId = player.uniquePlayerId;
-                                foundEmptySlot = true;
-                                break;
-                            }
-                        }
-                        
-                        if(!foundEmptySlot)
-                        {
-                            Debug.Log("A player attempted to connect, but there was no network slots. They were disconnected.");
-                            player.connectionToClient.Disconnect();
-                        }
-                    }
-                }
+                AssignUnassignedPlayersToNetworkSlots();
             });
         }
         else
@@ -131,6 +105,44 @@ public class CharacterSelectMenuScript : MonoBehaviour
         Debug.Log("Player " + slot + " now has control type " + controlSlots[slot].controlType);
 
         UpdateCharacterImages();
+    }
+
+    /// <summary>
+    /// Check if there's any new players that have not been assigned a slot. If so, assign them a
+    /// slot. Otherwise, kick them.
+    /// </summary>
+    private void AssignUnassignedPlayersToNetworkSlots()
+    {
+        PlayerBase[] players = FindObjectsOfType<PlayerBase>();
+        foreach (var player in players)
+        {
+            bool networkPlayerHasSlot = false;
+            foreach (var slot in controlSlots)
+            {
+                if (slot.networkPlayerId == player.uniquePlayerId) networkPlayerHasSlot = true;
+            }
+
+            if (!networkPlayerHasSlot)
+            {
+                // Any free slots?
+                bool foundFreeSlot = false;
+                foreach (var slot in controlSlots)
+                {
+                    if (slot.controlType == ControlType.Network && slot.networkPlayerId == null)
+                    {
+                        slot.networkPlayerId = player.uniquePlayerId;
+                        foundFreeSlot = true;
+                        break;
+                    }
+                }
+
+                if (!foundFreeSlot)
+                {
+                    Debug.Log("A player attempted to connect, but there was no network slots. They were disconnected.");
+                    player.connectionToClient.Disconnect();
+                }
+            }
+        }
     }
 
     /// <summary>
