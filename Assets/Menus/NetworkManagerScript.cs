@@ -29,6 +29,7 @@ public class NetworkManagerScript : MonoBehaviour
     public void ConnectClient(string ip, int port)
     {
         Debug.Log("Connecting client");
+        GameObject.Find("LoadingAnimation").GetComponent<SpriteRenderer>().enabled = true;
 
         // Event callbacks
         NetworkManagerWithCallbacks.onClientConnectCallbacks.Add(conn =>

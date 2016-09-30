@@ -12,6 +12,12 @@ public class JoinGameMenuScript : MonoBehaviour
     /// </summary>
     public InputField hostIpInput;
 
+    void Start()
+    {
+        // Only show the spinner when we're doing the loading.
+        GameObject.Find("LoadingAnimation").GetComponent<SpriteRenderer>().enabled = false;
+    }
+
     /// <summary>
     /// Called when the "join game" button is pressed.
     /// </summary>
