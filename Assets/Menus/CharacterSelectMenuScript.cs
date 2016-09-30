@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 using UnityEngine.Networking.NetworkSystem;
+using Newtonsoft.Json;
 
 public class CharacterSelectMenuScript : MonoBehaviour
 {
@@ -55,10 +56,11 @@ public class CharacterSelectMenuScript : MonoBehaviour
         }
         else
         {
-            // Non-hosts need to disable control dropdowns
+            // Non-hosts need to disable control dropdowns and the start button
             GameObject.Find("P1Control").GetComponent<Dropdown>().enabled = false;
             GameObject.Find("P2Control").GetComponent<Dropdown>().enabled = false;
             GameObject.Find("P3Control").GetComponent<Dropdown>().enabled = false;
+            GameObject.Find("StartGameButton").GetComponent<Button>().enabled = false;
         }
 
         // Host must be p0, so disable the select there (it's not a real dropdown anyway, since there's
@@ -188,6 +190,49 @@ public class CharacterSelectMenuScript : MonoBehaviour
         UpdateCharacterImages();
         
         Global.GetOurPlayer().gameObject.GetComponent<PlayerMenuCommunications>().SendHostSlots();
+    }
+
+    public void StartButtonClicked()
+    {
+        bool gameIsValid = true;
+        string failureReason = "";
+
+        for(int slot = 0; slot < controlSlots.Length; ++slot)
+        {
+            // The host and network slots must have characters selected and have an ID set
+            if(controlSlots[slot].controlType == ControlType.Host || controlSlots[slot].controlType == ControlType.Network)
+            {
+                if (string.IsNullOrEmpty(controlSlots[slot].networkPlayerId))
+                {
+                    gameIsValid = false;
+                    failureReason = "Player slot " + slot + " has not been populated by a network player";
+                    break;
+                }
+                if (string.IsNullOrEmpty(controlSlots[slot].chosenCharacter))
+                {
+                    gameIsValid = false;
+                    failureReason = "Player " + slot + " has not selected a character";
+                    break;
+                }
+            }
+            // No AI slots allowed right now
+            else if(controlSlots[slot].controlType == ControlType.AI)
+            {
+                gameIsValid = false;
+                failureReason = "Player " + slot + " is AI. AI has not been implemented yet!";
+                break;
+            }
+        }
+
+        if(gameIsValid)
+        {
+            // TODO: We're all good, load level select
+            Debug.Log("Starting game. Chosen controls are: " + JsonConvert.SerializeObject(controlSlots));
+        }
+        else
+        {
+            Debug.Log("Cannot start game. Reason: " + failureReason);
+        }
     }
 
     /// <summary>
