@@ -30,6 +30,13 @@ public class CharacterSelectMenuScript : MonoBehaviour
         // Initialize the control slots
         controlSlots = GameObject.Find("ControlSlots").GetComponent<ControlSlotsScript>().slots;
 
+        // All the "you" indicators should be disabled. They'll be selectively enabled depending on
+        // which slot we're in.
+        GameObject.Find("P0YouIndicator").GetComponent<Image>().enabled = false;
+        GameObject.Find("P1YouIndicator").GetComponent<Image>().enabled = false;
+        GameObject.Find("P2YouIndicator").GetComponent<Image>().enabled = false;
+        GameObject.Find("P3YouIndicator").GetComponent<Image>().enabled = false;
+
         // If we came from the main menu, we must be the host. Otherwise we're a client. This is the
         // easiest way to check this since the host might not be setup yet and hence we don't know if
         // we're a host or client (and the player objects might not have been spawned).
@@ -43,6 +50,7 @@ public class CharacterSelectMenuScript : MonoBehaviour
                 controlSlots[0].networkPlayerId = Global.GetOurPlayer().uniquePlayerId;
 
                 AssignUnassignedPlayersToNetworkSlots();
+                UpdateCharacterImages();
             });
         }
         else
@@ -261,6 +269,20 @@ public class CharacterSelectMenuScript : MonoBehaviour
             else
             {
                 Debug.LogError("Couldn't load image for " + imageName + " (slot " + slot + ")", this);
+            }
+        }
+
+        // Enable the "you" indicator for the slot we're in
+        var ourId = Global.GetOurPlayer().uniquePlayerId;
+        for(int slot = 0; slot < controlSlots.Length; ++slot)
+        {
+            if(controlSlots[slot].networkPlayerId == ourId)
+            {
+                GameObject.Find("P" + slot + "YouIndicator").GetComponent<Image>().enabled = true;
+            }
+            else
+            {
+                GameObject.Find("P" + slot + "YouIndicator").GetComponent<Image>().enabled = false;
             }
         }
     }
