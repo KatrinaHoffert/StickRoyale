@@ -14,12 +14,14 @@ public class JoinGameMenuScript : MonoBehaviour
 
     void Start()
     {
-        // Only show the spinner when we're doing the loading.
+        // Only show the spinner when we're doing the loading (done in
+        // NetworkManagerScript.ConnectClient).
         GameObject.Find("LoadingAnimation").GetComponent<SpriteRenderer>().enabled = false;
     }
 
     /// <summary>
-    /// Called when the "join game" button is pressed.
+    /// Called when the "join game" button is pressed. Initiates the process of connecting to the host
+    /// and will transition to the character select menu upon completed connection.
     /// </summary>
     public void JoinGameButtonDown()
     {

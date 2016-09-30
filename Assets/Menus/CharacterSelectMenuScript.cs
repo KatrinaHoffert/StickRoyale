@@ -16,13 +16,14 @@ public class CharacterSelectMenuScript : MonoBehaviour
     /// <summary>
     /// What scene the back button goes to (since we can arrive at this scene through either
     /// the new game or join game menus). Also used since which screen we came from determines
-    /// whether or not we're a client.
+    /// whether or not we're a client. Note that this is only properly set if we start the game
+    /// in the main menu!
     /// </summary>
     public static string backButtonTarget = "MainMenu";
 
     /// <summary>
-    /// A reference to the control slots belonging to the `ControlSlots` object's `ControlSlotsScript`
-    /// component. Here as a field because it's used consistently throughout this class.
+    /// A reference to the control slots belonging to the <see cref="ControlSlotsScript.slots"/> 
+    /// variable. Here as a field because it's used consistently throughout this class.
     /// </summary>
     private ControlSlot[] controlSlots;
 
@@ -72,6 +73,8 @@ public class CharacterSelectMenuScript : MonoBehaviour
     {
         try
         {
+            // Here we're having the host continuously check to see if any players disconnected, so that we can
+            // cleanup their slot.
             if (!Global.PlayerIsClient()) ClearDisconnectedPlayers();
         }
         catch
@@ -192,6 +195,10 @@ public class CharacterSelectMenuScript : MonoBehaviour
         Global.GetOurPlayer().gameObject.GetComponent<PlayerMenuCommunications>().SendHostSlots();
     }
 
+    /// <summary>
+    /// Called when the start game button is clicked. Will validate if the control slots are valid, and if so,
+    /// transition to the next step.
+    /// </summary>
     public void StartButtonClicked()
     {
         bool gameIsValid = true;

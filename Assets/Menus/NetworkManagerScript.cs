@@ -39,6 +39,7 @@ public class NetworkManagerScript : MonoBehaviour
         });
         NetworkManagerWithCallbacks.onClientErrorCallbacks.Add((conn, errorId) =>
         {
+            // Not sure where this is used from -- never seen it hit yet
             Debug.Log("Connection " + conn.address + " failed, error " + errorId);
         });
         NetworkManagerWithCallbacks.onClientDisconnectCallbacks.Add(conn =>

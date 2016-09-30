@@ -28,8 +28,8 @@ public class PlayerMenuCommunications : NetworkBehaviour
     /// Called by the host to inform all clients (including itself) that a certain slot was assigned a
     /// certain character. We update the control slots and the GUI accordingly.
     /// </summary>
-    /// <param name="slot"></param>
-    /// <param name="character"></param>
+    /// <param name="slot">Slot of the player.</param>
+    /// <param name="character">Character they chose.</param>
     [ClientRpc]
     public void RpcChooseCharacter(int slot, string character)
     {
@@ -49,9 +49,8 @@ public class PlayerMenuCommunications : NetworkBehaviour
 
     /// <summary>
     /// Called on the clients to update the control slots to the hosts's data and the GUI for that accordingly.
-    /// The parameters are JSON objects for each control slot (since JsonUtility cannot deserialize
-    /// arrays).
     /// </summary>
+    /// <param name="jsonControlSlots">A JSON representation of the <see cref="ControlSlotsScript.slots"/>.</param>
     [ClientRpc]
     public void RpcSendHostSlots(string jsonControlSlots)
     {
