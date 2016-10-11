@@ -1,9 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.Networking;
+using System;
 
 public class ControlSlotsScript : NetworkBehaviour
 {
+    /// <summary>
+    /// The representation of what slots are available for players and how they are populated.
+    /// </summary>
     public ControlSlot[] slots = new ControlSlot[4];
 
     void Awake()
@@ -15,6 +19,10 @@ public class ControlSlotsScript : NetworkBehaviour
         slots[3] = new ControlSlot() { controlType = ControlType.Closed };
 
         DontDestroyOnLoad(gameObject);
+
+        // Solution to the madness of duplicate objects somehow being retained (WTF?)
+        // See: http://answers.unity3d.com/answers/485933/view.html
+        if (FindObjectsOfType(GetType()).Length > 1) Destroy(gameObject);
     }
 }
 
@@ -47,6 +55,7 @@ public enum ControlType
 /// <summary>
 /// A player slot.
 /// </summary>
+[Serializable]
 public class ControlSlot
 {
     /// <summary>
@@ -64,4 +73,9 @@ public class ControlSlot
     /// an empty slot.
     /// </summary>
     public string networkPlayerId;
+
+    public override string ToString()
+    {
+        return "{controlType: " + controlType + ", chosenCharacter: " + chosenCharacter + ", networkPlayerId: " + networkPlayerId + "}";
+    }
 }
