@@ -2,7 +2,7 @@
 using UnityEngine.Networking;
 using System.Collections;
 
-public class MovementScript : NetworkBehaviour {
+public class MovementScript : MonoBehaviour {
 
     private Vector2 moveForce;
     private Rigidbody2D rigid;
@@ -20,10 +20,6 @@ public class MovementScript : NetworkBehaviour {
 
     void FixedUpdate()
     {
-        if (!isLocalPlayer)
-        {
-            return;
-        }
         if (moveForce.x>0.5f)
         {
             gameObject.transform.rotation.Set(0f, 0f, 0f, 0f);
