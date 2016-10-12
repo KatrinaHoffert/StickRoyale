@@ -10,7 +10,7 @@ public class MovementScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         moveForce = new Vector2(0f, 0f);
-        rigid = GameObject.FindObjectOfType<Rigidbody2D>();
+        rigid = gameObject.GetComponent<Rigidbody2D>();
     }
 	
 	// Update is called once per frame
@@ -49,5 +49,10 @@ public class MovementScript : MonoBehaviour {
     void ChangeMoveForce(Vector2 newForce)
     {
         moveForce = newForce;
+    }
+
+    private void Jump(Vector2 jumpForce)
+    {
+        rigid.AddForce(jumpForce);
     }
 }

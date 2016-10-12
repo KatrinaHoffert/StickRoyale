@@ -5563,3 +5563,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab6dc5ba691e6ee4ab202c14fffcc6f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprites: {fileID: 21300000, guid: bbacca2d459925244b034a2827ed4bff, type: 3}

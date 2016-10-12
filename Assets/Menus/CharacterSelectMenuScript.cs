@@ -21,6 +21,9 @@ public class CharacterSelectMenuScript : MonoBehaviour
     /// </summary>
     public static string backButtonTarget = "MainMenu";
 
+
+    public Sprite sprites;
+
     /// <summary>
     /// A reference to the control slots belonging to the <see cref="ControlSlotsScript.slots"/> 
     /// variable. Here as a field because it's used consistently throughout this class.
@@ -234,7 +237,25 @@ public class CharacterSelectMenuScript : MonoBehaviour
         if(gameIsValid)
         {
             // TODO: We're all good, load level select
+
             Debug.Log("Starting game. Chosen controls are: " + JsonConvert.SerializeObject(controlSlots));
+            //NetworkManager.ServerChangeScene("level1");
+            SceneManager.LoadScene("level1");
+            
+            PlayerBase[] players = FindObjectsOfType<PlayerBase>();
+            foreach(var player in players)
+            {
+                
+                player.gameObject.AddComponent<Rigidbody2D>();
+                player.gameObject.AddComponent<SpriteRenderer>();
+                player.gameObject.GetComponent<SpriteRenderer>().sprite = sprites;
+                player.gameObject.AddComponent<BoxCollider2D>();
+                player.gameObject.AddComponent<MovementScript>();
+                player.gameObject.AddComponent<PlayerMovement>();
+                
+            }
+            
+
         }
         else
         {

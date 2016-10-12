@@ -1,41 +1,55 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.Networking;
-using System.Collections;
 
 public class PlayerMovement : NetworkBehaviour {
-    Vector2 playerMoveSpeedRight;
-    Vector2 playerStop;
-    Vector2 playerMoveSpeedLeft;
+    public Vector2 playerMoveSpeedRight;
+    public Vector2 playerStop;
+    public Vector2 playerMoveSpeedLeft;
+    public Vector2 jumpForce;
+    float direction;
+    float vertical;
 
 	// Use this for initialization
 	void Start () {
-        playerMoveSpeedRight = new Vector2(5f, 0f);
+        playerMoveSpeedRight = new Vector2(10f, 0f);
         playerStop = playerMoveSpeedRight - playerMoveSpeedRight;
-        playerMoveSpeedRight = new Vector2(-5f, 0f);
+        playerMoveSpeedLeft = new Vector2(-10f, 0f);
+        jumpForce = new Vector2(0f, 50f);
+
 
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if(!isLocalPlayer)
+        if(Time.frameCount>700)
         {
-            return;
+
+            if (!gameObject.GetComponent<NetworkIdentity>().isLocalPlayer)
+            {
+                return;
+            }
         }
 
-	    if(Input.GetKeyDown("d")) {
+
+
+
+        direction = Input.GetAxis("Horizontal");
+        vertical = Input.GetAxis("Vertical");
+        if (direction>0) {
             GetComponent<MovementScript>().SendMessage("ChangeMoveForce", playerMoveSpeedRight);
         }
-        if(Input.GetKeyUp("d"))
+        if(direction==0)
         {
             GetComponent<MovementScript>().SendMessage("ChangeMoveForce", playerStop);
         }
-        if (Input.GetKeyDown("a"))
+        if (direction<0)
         {
             GetComponent<MovementScript>().SendMessage("ChangeMoveForce", playerMoveSpeedLeft);
         }
-        if (Input.GetKeyUp("a"))
+        if(vertical>0)
         {
-            GetComponent<MovementScript>().SendMessage("ChangeMoveForce", playerStop);
+            GetComponent<MovementScript>().SendMessage("Jump", jumpForce);
         }
     }
 }
