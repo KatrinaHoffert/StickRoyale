@@ -15,35 +15,26 @@ public class PlayerMovement : NetworkBehaviour {
         playerMoveSpeedRight = new Vector2(10f, 0f);
         playerStop = playerMoveSpeedRight - playerMoveSpeedRight;
         playerMoveSpeedLeft = new Vector2(-10f, 0f);
-        jumpForce = new Vector2(0f, 50f);
+        jumpForce = new Vector2(0f, 30f);
 
 
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if(Time.frameCount>700)
+
+        if (!isLocalPlayer)
         {
-
-            if (!gameObject.GetComponent<NetworkIdentity>().isLocalPlayer)
-            {
-                return;
-            }
+            return;
         }
-
-
-
-
         direction = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
-        if (direction>0) {
-            GetComponent<MovementScript>().SendMessage("ChangeMoveForce", playerMoveSpeedRight);
-        }
-        if(direction==0)
+        if (direction == 0)
         {
             GetComponent<MovementScript>().SendMessage("ChangeMoveForce", playerStop);
-        }
-        if (direction<0)
+        } else if (direction>0) {
+            GetComponent<MovementScript>().SendMessage("ChangeMoveForce", playerMoveSpeedRight);
+        } else if (direction<0)
         {
             GetComponent<MovementScript>().SendMessage("ChangeMoveForce", playerMoveSpeedLeft);
         }

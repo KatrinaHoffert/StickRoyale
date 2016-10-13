@@ -16,23 +16,23 @@ Platform assembly: C:\Users\Erik\Documents\Cmpt306\cmpt306\Test_Data\Managed\Uni
 Loading C:\Users\Erik\Documents\Cmpt306\cmpt306\Test_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
 Platform assembly: C:\Users\Erik\Documents\Cmpt306\cmpt306\Test_Data\Managed\Newtonsoft.Json.dll (this message is harmless)
 Loading C:\Users\Erik\Documents\Cmpt306\cmpt306\Test_Data\Managed\Newtonsoft.Json.dll into Unity Child Domain
-- Completed reload, in  0.097 seconds
+- Completed reload, in  0.077 seconds
 Platform assembly: C:\Users\Erik\Documents\Cmpt306\cmpt306\Test_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\Erik\Documents\Cmpt306\cmpt306\Test_Data\Managed\System.dll (this message is harmless)
 desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 0.870662 ms
+UnloadTime: 0.989545 ms
 Join Game
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
 
 Unloading 7 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 5.070884 ms
+UnloadTime: 6.431616 ms
 
 Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 243.
-Total: 0.232205 ms (FindLiveObjects: 0.016677 ms CreateObjectMapping: 0.012401 ms MarkObjects: 0.198849 ms  DeleteObjects: 0.003848 ms)
+Total: 0.338686 ms (FindLiveObjects: 0.023947 ms CreateObjectMapping: 0.018815 ms MarkObjects: 0.289935 ms  DeleteObjects: 0.005131 ms)
 
 Attempting to join game of localhost
  
@@ -47,12 +47,12 @@ Connection 127.0.0.1 successful
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
 
 Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.802241 ms
+UnloadTime: 0.810366 ms
 
 Unloading 25 unused Assets to reduce memory usage. Loaded Objects now: 465.
-Total: 0.461417 ms (FindLiveObjects: 0.026513 ms CreateObjectMapping: 0.021381 ms MarkObjects: 0.369475 ms  DeleteObjects: 0.043618 ms)
+Total: 0.471252 ms (FindLiveObjects: 0.026940 ms CreateObjectMapping: 0.018815 ms MarkObjects: 0.378028 ms  DeleteObjects: 0.046612 ms)
 
-Host has assigned us ID: 7bbfa0c3-bbf7-45b5-87b1-b0300778e771
+Host has assigned us ID: 1b7b1174-5f61-43f2-bc0d-d3368963a8f2
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
 
@@ -75,3 +75,6 @@ To add a scene to the build settings use the menu File->Build Settings...
  
 (Filename:  Line: 532)
 
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 57a4 -> priority: 1 
+  Thread -> id: 57a8 -> priority: 1 

@@ -239,7 +239,8 @@ public class CharacterSelectMenuScript : MonoBehaviour
             // TODO: We're all good, load level select
 
             Debug.Log("Starting game. Chosen controls are: " + JsonConvert.SerializeObject(controlSlots));
-            //NetworkManager.ServerChangeScene("level1");
+
+            //Delete soon
             SceneManager.LoadScene("level1");
             
             PlayerBase[] players = FindObjectsOfType<PlayerBase>();
@@ -254,7 +255,7 @@ public class CharacterSelectMenuScript : MonoBehaviour
                 player.gameObject.AddComponent<PlayerMovement>();
                 
             }
-            
+            // END
 
         }
         else

@@ -18,6 +18,9 @@ public class MovementScript : MonoBehaviour {
 	
 	}
 
+    /// <summary>
+    /// Apply move forces to character based on the current move force.
+    /// </summary>
     void FixedUpdate()
     {
         if (moveForce.x>0.5f)
@@ -51,6 +54,10 @@ public class MovementScript : MonoBehaviour {
         moveForce = newForce;
     }
 
+    /// <summary>
+    ///  Applys a jumpforce to the character.
+    /// </summary>
+    /// <param name="jumpForce"></param>
     private void Jump(Vector2 jumpForce)
     {
         rigid.AddForce(jumpForce);
