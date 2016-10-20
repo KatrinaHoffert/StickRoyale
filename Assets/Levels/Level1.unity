@@ -294,6 +294,7 @@ GameObject:
   - 224: {fileID: 663687140}
   - 222: {fileID: 663687142}
   - 114: {fileID: 663687141}
+  - 148: {fileID: 663687143}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -347,17 +348,29 @@ MonoBehaviour:
     m_MaxSize: 40
     m_Alignment: 0
     m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_RichText: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 
 --- !u!222 &663687142
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 663687139}
+--- !u!148 &663687143
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 663687139}
+  m_Enabled: 1
+  m_StateSynchronization: 1
+  m_Observed: {fileID: 663687140}
+  m_ViewID:
+    m_ID: 1
+    m_Type: 1
 --- !u!1 &778023112
 GameObject:
   m_ObjectHideFlags: 0

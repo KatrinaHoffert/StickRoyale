@@ -1,13 +1,19 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
+
 public class testPlayerScript : NetworkBehaviour
 {
+    [SyncVar]
+    public int hitpoints;
     void Start()
     {
-
+        hitpoints = 100;
+   
     }
-    void Update()
+    void FixedUpdate()
     {
+        
         if (!isLocalPlayer)
         {
             return;
@@ -17,5 +23,41 @@ public class testPlayerScript : NetworkBehaviour
 
   
         transform.Translate(x, y, 0);
+
+        CmdDie();
+       
+
+      
+
+
+    }
+    /// <summary>
+    /// Die if below certain y
+    /// command is used to send data from client to server
+    /// </summary>
+    [Command]
+    void CmdDie()
+    {
+        if (transform.position.y < -300)
+        {
+
+            this.hitpoints = 0;
+
+        }
+    }
+
+    [Command]
+    void CmdDamaged(int damage)
+    {
+        this.hitpoints = this.hitpoints - damage;
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        //CmdDamaged(1);
+        if(col.gameObject.tag == "Player")
+        {
+            CmdDamaged(1);
+        }
     }
 }

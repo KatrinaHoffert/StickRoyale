@@ -3,18 +3,24 @@ using System.Collections;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
-public class levelscript : MonoBehaviour {
+public class levelscript : NetworkBehaviour {
 
-    private GameObject [] players = new GameObject[4];
+    public static GameObject [] players;
     private NetworkStartPosition[] spawnPoints;
-    private int[] hitpoints = new int[4];
-   
+    private static GameObject[] indicators;
+    private static GameObject[] hitbars;
+
+
+
+
 
     // Use this for initialization
     void Start () {
         //CharacterSelectMenuScript.controlSlots[0].networkPlayerId
         spawnPoints = FindObjectsOfType<NetworkStartPosition>();
         players = GameObject.FindGameObjectsWithTag("Player");
+        indicators = new GameObject[players.Length];
+        hitbars = new GameObject[players.Length];
         for (int i=0; i<players.Length; i++)
         {
 
@@ -23,16 +29,14 @@ public class levelscript : MonoBehaviour {
 
                //puts players in spawn points
                 players[i].transform.position = spawnPoints[i].transform.position;
-                hitpoints[i] = 100;
-                //status[i] = new GameObject();
-                //status[i].AddComponent<Text>();
-                //status[i].transform.position = new Vector2(i * 200 - 400, 400);
-
-                //status[i] = 
-                //Text status = GameObject.Find("Text").GetComponent<Text>();
-                 //status.text = players[i].GetComponent<PlayerBase>().playerName + "\n" + players[i].GetComponent<PlayerBase>().uniquePlayerId + "\n" + hitpoints[i] + "/100";
-                
-                //GameObject.Find("Canvas").
+                players[i].GetComponent<testPlayerScript>().hitpoints = 100;
+                Text status = GameObject.Find("Text").GetComponent<Text>();
+                status.text = status.text + "player "+ (i+1) + "\n" + players[i].GetComponent<PlayerBase>().uniquePlayerId + "\n" + players[i].GetComponent<testPlayerScript>().hitpoints + "/100\n" ;
+                indicators[i] = Instantiate((GameObject)Resources.Load("Text"));
+                indicators[i].GetComponent<Text>().text = "player " + (i+1);
+                indicators[i].transform.SetParent(GameObject.Find("Canvas").transform);
+                hitbars[i] = Instantiate((GameObject)Resources.Load("redbar"));
+            
 
             }
                         
@@ -40,9 +44,29 @@ public class levelscript : MonoBehaviour {
 
         
 	}
+
+    
+    public void updateStats()
+    {
+        Text status = GameObject.Find("Text").GetComponent<Text>();
+        
+        status.text = "";
+        for (int i = 0; i < players.Length; i++)
+        {
+            status.text = status.text + "player " + (i + 1) + "\n" + players[i].GetComponent<PlayerBase>().uniquePlayerId + "\n" + players[i].GetComponent<testPlayerScript>().hitpoints + "/100\n";
+        }
+    }
 	
 	// Update is called once per frame
-	void Update () {
-	
-	}
+	void FixedUpdate () {
+        updateStats();
+        for(int i=0; i<players.Length; i++)
+        {
+            indicators[i].transform.position = players[i].transform.position + new Vector3(300,250,0);
+            hitbars[i].transform.position = players[i].transform.position + new Vector3(0,30,0);
+            hitbars[i].transform.FindChild("greenbar").transform.localScale = new Vector3((players[i].GetComponent<testPlayerScript>().hitpoints / 100), 1,1);
+            
+        }
+        
+    }
 }
