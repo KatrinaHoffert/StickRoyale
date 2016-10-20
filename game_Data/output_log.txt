@@ -1,0 +1,90 @@
+Initialize engine version: 5.4.1f1 (649f48bbbf0f)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: AMD Radeon(TM) HD 8610G (ID=0x990f)
+    Vendor:   ATI
+    VRAM:     749 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Si\Desktop\levelselect\game_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Si\Desktop\levelselect\game_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Si\Desktop\levelselect\game_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Si\Desktop\levelselect\game_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Si\Desktop\levelselect\game_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Si\Desktop\levelselect\game_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\Si\Desktop\levelselect\game_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\Si\Desktop\levelselect\game_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\Si\Desktop\levelselect\game_Data\Managed\Newtonsoft.Json.dll (this message is harmless)
+Loading C:\Users\Si\Desktop\levelselect\game_Data\Managed\Newtonsoft.Json.dll into Unity Child Domain
+- Completed reload, in  0.447 seconds
+Platform assembly: C:\Users\Si\Desktop\levelselect\game_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\Si\Desktop\levelselect\game_Data\Managed\System.dll (this message is harmless)
+desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 1.796324 ms
+Join Game
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Unloading 7 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 13.444346 ms
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 251.
+Total: 0.507582 ms (FindLiveObjects: 0.035662 ms CreateObjectMapping: 0.036151 ms MarkObjects: 0.425509 ms  DeleteObjects: 0.008793 ms)
+
+Attempting to join game of localhost
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Connecting client
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Connection 127.0.0.1 successful
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 2.100679 ms
+
+Unloading 25 unused Assets to reduce memory usage. Loaded Objects now: 471.
+Total: 1.420645 ms (FindLiveObjects: 0.061066 ms CreateObjectMapping: 0.053249 ms MarkObjects: 1.239889 ms  DeleteObjects: 0.064485 ms)
+
+Host has assigned us ID: e175986d-7d7a-44a9-bd23-e6f6dc2dc8a9
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Platform assembly: C:\Users\Si\Desktop\levelselect\game_Data\Managed\System.Runtime.Serialization.dll (this message is harmless)
+Selected character Placeholder for player 1
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Selected character Placeholder for player 1
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Player 1 has chosen character Placeholder
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Player 1 has chosen character Placeholder
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.449957 ms
+
+Unloading 17 unused Assets to reduce memory usage. Loaded Objects now: 230.
+Total: 0.693224 ms (FindLiveObjects: 0.025892 ms CreateObjectMapping: 0.022472 ms MarkObjects: 0.618479 ms  DeleteObjects: 0.025403 ms)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.967289 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 243.
+Total: 0.681010 ms (FindLiveObjects: 0.019052 ms CreateObjectMapping: 0.024915 ms MarkObjects: 0.617501 ms  DeleteObjects: 0.018564 ms)
+
+Log: connection {1} has been disconnected by timeout; address {::ffff:127.0.0.1:7777}
+Setting up 1 worker threads for Enlighten.
+  Thread -> id: 19cc -> priority: 1 
