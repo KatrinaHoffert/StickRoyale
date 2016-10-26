@@ -11,6 +11,7 @@ public class PlayerMovement : NetworkBehaviour {
     public int on_Floor;
     float direction;
     float vertical;
+    public int jumpsleft;
 
     // Use this for initialization
     void Start()
@@ -19,6 +20,7 @@ public class PlayerMovement : NetworkBehaviour {
         playerStop = playerMoveSpeedRight - playerMoveSpeedRight;
         playerMoveSpeedLeft = new Vector2(-40f, 0f);
         jumpForce = new Vector2(0f, 30f);
+        max_Jumps = 1;
 
     }
 	
@@ -40,7 +42,7 @@ public class PlayerMovement : NetworkBehaviour {
         {
             GetComponent<MovementScript>().SendMessage("ChangeMoveForce", playerMoveSpeedLeft);
         }
-        if(vertical>0)
+        if(vertical>0 && jumpsleft>0)
         {
             GetComponent<MovementScript>().SendMessage("Jump", jumpForce);
         }
@@ -50,6 +52,10 @@ public class PlayerMovement : NetworkBehaviour {
 
     void onTriggerEnter2D(Collision2D coll)
     {
-        max_Jumps = 1;
+        if(coll.gameObject.CompareTag("Floor"))
+        {
+            jumpsleft = max_Jumps;
+        }
+
     }
 }

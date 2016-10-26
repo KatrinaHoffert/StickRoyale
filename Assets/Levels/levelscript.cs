@@ -20,14 +20,8 @@ public class levelscript : MonoBehaviour {
 
             if (CharacterSelectMenuScript.controlSlots[i].controlType != 0)
             {
-				players[i].gameObject.AddComponent<Rigidbody2D>();
-                players[i].gameObject.GetComponent<Rigidbody2D>().freezeRotation = true;
-				players[i].gameObject.AddComponent<SpriteRenderer>();
-				players[i].gameObject.GetComponent<SpriteRenderer>().sprite = sprites;
-				players[i].gameObject.AddComponent<BoxCollider2D>();
-				players[i].gameObject.AddComponent<MovementScript>();
-			    players[i].gameObject.AddComponent<PlayerMovement>();
 
+                initializePlayer(players[i]);
 
                 //puts players in spawn points
                 players[i].transform.position = spawnPoints[i].transform.position;
@@ -53,4 +47,18 @@ public class levelscript : MonoBehaviour {
 	void Update () {
 	
 	}
+    /// <summary>
+    /// Add parts to the player prefab 
+    /// </summary>
+    /// <param name="player"></param>
+    void initializePlayer(GameObject player)
+    {
+        player.gameObject.AddComponent<Rigidbody2D>();
+        player.gameObject.GetComponent<Rigidbody2D>().freezeRotation = true;
+        player.gameObject.AddComponent<SpriteRenderer>();
+        player.gameObject.GetComponent<SpriteRenderer>().sprite = sprites;
+        player.gameObject.AddComponent<BoxCollider2D>();
+        player.gameObject.AddComponent<MovementScript>();
+        player.gameObject.AddComponent<PlayerMovement>();
+    }
 }
