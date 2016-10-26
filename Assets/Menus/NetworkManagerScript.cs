@@ -7,10 +7,16 @@ using UnityEngine.Networking.NetworkSystem;
 
 public class NetworkManagerScript : MonoBehaviour
 {
+
+    public static GameObject getNetworkManager()
+    {
+        return GameObject.Find("NetworkManager");
+    }
     /// <summary>
     /// Sets up and initializes the host. 
     /// </summary>
     /// <param name="playerJoinedCallback">Will be called every time a player joins the game.</param>
+    /// 
     public void ConnectHost(Action playerJoinedCallback)
     {
         NetworkManagerWithCallbacks.onServerAddPlayerCallbacks.Add((conn, id) => playerJoinedCallback());
@@ -19,6 +25,7 @@ public class NetworkManagerScript : MonoBehaviour
         // already be the host!
         Debug.Log("Starting host");
         GetComponent<NetworkManager>().StartHost();
+        
     }
 
     /// <summary>

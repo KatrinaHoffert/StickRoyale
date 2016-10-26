@@ -11,12 +11,14 @@ public class JoinGameMenuScript : MonoBehaviour
     /// The text input's object, supplied by Unity.
     /// </summary>
     public InputField hostIpInput;
+   
 
     void Start()
     {
         // Only show the spinner when we're doing the loading (done in
         // NetworkManagerScript.ConnectClient).
         GameObject.Find("LoadingAnimation").GetComponent<SpriteRenderer>().enabled = false;
+        
     }
 
     /// <summary>

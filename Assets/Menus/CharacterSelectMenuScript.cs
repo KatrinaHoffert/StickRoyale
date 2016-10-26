@@ -11,7 +11,7 @@ using System;
 using UnityEngine.Networking.NetworkSystem;
 using Newtonsoft.Json;
 
-public class CharacterSelectMenuScript : MonoBehaviour
+public class CharacterSelectMenuScript : NetworkBehaviour
 {
     /// <summary>
     /// What scene the back button goes to (since we can arrive at this scene through either
@@ -28,7 +28,7 @@ public class CharacterSelectMenuScript : MonoBehaviour
     /// A reference to the control slots belonging to the <see cref="ControlSlotsScript.slots"/> 
     /// variable. Here as a field because it's used consistently throughout this class.
     /// </summary>
-    private ControlSlot[] controlSlots;
+    public static ControlSlot[] controlSlots;
 
     void Start()
     {
@@ -236,6 +236,7 @@ public class CharacterSelectMenuScript : MonoBehaviour
 
         if(gameIsValid)
         {
+<<<<<<< HEAD
             // TODO: We're all good, load level select
 
             Debug.Log("Starting game. Chosen controls are: " + JsonConvert.SerializeObject(controlSlots));
@@ -257,6 +258,14 @@ public class CharacterSelectMenuScript : MonoBehaviour
             }
             // END
 
+=======
+            // TODO: We're all good, load level 
+            Debug.Log("Starting game. Chosen controls are: " + JsonConvert.SerializeObject(controlSlots));
+            //SceneManager.LoadScene("LevelSelect");
+            NetworkManagerScript.getNetworkManager().GetComponent<NetworkManager>().ServerChangeScene("LevelSelect");           
+            
+         
+>>>>>>> refs/remotes/origin/master
         }
         else
         {
@@ -405,4 +414,6 @@ public class CharacterSelectMenuScript : MonoBehaviour
             Global.GetOurPlayer().gameObject.GetComponent<PlayerMenuCommunications>().SendHostSlots();
         }
     }
+
+
 }
