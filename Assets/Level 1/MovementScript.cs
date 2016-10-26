@@ -10,11 +10,12 @@ public class MovementScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         moveForce = new Vector2(0f, 0f);
-        rigid = gameObject.GetComponent<Rigidbody2D>();
+        rigid = gameObject.GetComponentInParent<Rigidbody2D>();
     }
 	
 	// Update is called once per frame
 	void Update () {
+        gameObject.transform.parent = rigid.gameObject.transform;     
 	
 	}
 

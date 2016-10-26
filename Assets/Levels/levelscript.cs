@@ -8,6 +8,8 @@ public class levelscript : MonoBehaviour {
     private GameObject [] players = new GameObject[4];
     private NetworkStartPosition[] spawnPoints;
     private int[] hitpoints = new int[4];
+
+    public GameObject knight;
    
 
     // Use this for initialization
@@ -53,11 +55,14 @@ public class levelscript : MonoBehaviour {
     /// <param name="player"></param>
     void initializePlayer(GameObject player)
     {
+        GameObject newplayer = (GameObject) Instantiate(knight, player.gameObject.transform.position, player.transform.rotation);
+        player.transform.parent = newplayer.transform;
+        /*
         player.gameObject.AddComponent<Rigidbody2D>();
         player.gameObject.GetComponent<Rigidbody2D>().freezeRotation = true;
         player.gameObject.AddComponent<SpriteRenderer>();
         player.gameObject.GetComponent<SpriteRenderer>().sprite = sprites;
-        player.gameObject.AddComponent<BoxCollider2D>();
+        player.gameObject.AddComponent<BoxCollider2D>();*/
         player.gameObject.AddComponent<MovementScript>();
         player.gameObject.AddComponent<PlayerMovement>();
     }
