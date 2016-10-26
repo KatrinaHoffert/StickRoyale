@@ -15,9 +15,9 @@ public class PlayerMovement : NetworkBehaviour {
     // Use this for initialization
     void Start()
     {
-        playerMoveSpeedRight = new Vector2(10f, 0f);
+        playerMoveSpeedRight = new Vector2(40f, 0f);
         playerStop = playerMoveSpeedRight - playerMoveSpeedRight;
-        playerMoveSpeedLeft = new Vector2(-10f, 0f);
+        playerMoveSpeedLeft = new Vector2(-40f, 0f);
         jumpForce = new Vector2(0f, 30f);
 
     }

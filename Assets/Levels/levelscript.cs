@@ -4,7 +4,7 @@ using UnityEngine.Networking;
 using UnityEngine.UI;
 
 public class levelscript : MonoBehaviour {
-
+    public Sprite sprites;
     private GameObject [] players = new GameObject[4];
     private NetworkStartPosition[] spawnPoints;
     private int[] hitpoints = new int[4];
@@ -20,8 +20,16 @@ public class levelscript : MonoBehaviour {
 
             if (CharacterSelectMenuScript.controlSlots[i].controlType != 0)
             {
+				players[i].gameObject.AddComponent<Rigidbody2D>();
+                players[i].gameObject.GetComponent<Rigidbody2D>().freezeRotation = true;
+				players[i].gameObject.AddComponent<SpriteRenderer>();
+				players[i].gameObject.GetComponent<SpriteRenderer>().sprite = sprites;
+				players[i].gameObject.AddComponent<BoxCollider2D>();
+				players[i].gameObject.AddComponent<MovementScript>();
+			    players[i].gameObject.AddComponent<PlayerMovement>();
 
-               //puts players in spawn points
+
+                //puts players in spawn points
                 players[i].transform.position = spawnPoints[i].transform.position;
                 hitpoints[i] = 100;
                 //status[i] = new GameObject();

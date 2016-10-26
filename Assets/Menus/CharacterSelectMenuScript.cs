@@ -22,7 +22,7 @@ public class CharacterSelectMenuScript : NetworkBehaviour
     public static string backButtonTarget = "MainMenu";
 
 
-    public Sprite sprites;
+
 
     /// <summary>
     /// A reference to the control slots belonging to the <see cref="ControlSlotsScript.slots"/> 
@@ -236,36 +236,16 @@ public class CharacterSelectMenuScript : NetworkBehaviour
 
         if(gameIsValid)
         {
-<<<<<<< HEAD
             // TODO: We're all good, load level select
 
-            Debug.Log("Starting game. Chosen controls are: " + JsonConvert.SerializeObject(controlSlots));
+            Debug.Log("Starting game. Chosen controls are: " + JsonConvert.SerializeObject(controlSlots));           
 
-            //Delete soon
-            SceneManager.LoadScene("level1");
-            
-            PlayerBase[] players = FindObjectsOfType<PlayerBase>();
-            foreach(var player in players)
-            {
-                
-                player.gameObject.AddComponent<Rigidbody2D>();
-                player.gameObject.AddComponent<SpriteRenderer>();
-                player.gameObject.GetComponent<SpriteRenderer>().sprite = sprites;
-                player.gameObject.AddComponent<BoxCollider2D>();
-                player.gameObject.AddComponent<MovementScript>();
-                player.gameObject.AddComponent<PlayerMovement>();
-                
-            }
             // END
 
-=======
             // TODO: We're all good, load level 
             Debug.Log("Starting game. Chosen controls are: " + JsonConvert.SerializeObject(controlSlots));
             //SceneManager.LoadScene("LevelSelect");
             NetworkManagerScript.getNetworkManager().GetComponent<NetworkManager>().ServerChangeScene("LevelSelect");           
-            
-         
->>>>>>> refs/remotes/origin/master
         }
         else
         {
