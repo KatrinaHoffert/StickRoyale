@@ -29,23 +29,55 @@ public class levelscript : NetworkBehaviour {
 
                //puts players in spawn points
                 players[i].transform.position = spawnPoints[i].transform.position;
+                //initial hp is 100
                 players[i].GetComponent<testPlayerScript>().hitpoints = 100;
+                //displays hp, id and for all players 
                 Text status = GameObject.Find("Text").GetComponent<Text>();
                 status.text = status.text + "player "+ (i+1) + "\n" + players[i].GetComponent<PlayerBase>().uniquePlayerId + "\n" + players[i].GetComponent<testPlayerScript>().hitpoints + "/100\n" ;
-                indicators[i] = Instantiate((GameObject)Resources.Load("Text"));
-                indicators[i].GetComponent<Text>().text = "player " + (i+1);
-                indicators[i].transform.SetParent(GameObject.Find("Canvas").transform);
+                //player indicators
+
+                if (i == 0)
+                {
+                    indicators[i] = Instantiate((GameObject)Resources.Load("player1"));
+                }
+                else if (i == 1)
+                {
+                    indicators[i] = Instantiate((GameObject)Resources.Load("player2"));
+                }
+                else if (i == 2)
+                {
+                    indicators[i] = Instantiate((GameObject)Resources.Load("player3"));
+                }
+                else if (i == 3)
+                {
+                    indicators[i] = Instantiate((GameObject)Resources.Load("player4"));
+                }
+
+               
                 hitbars[i] = Instantiate((GameObject)Resources.Load("redbar"));
             
 
             }
                         
         }
-
+    
         
 	}
-
+    /// <summary>
+    /// respawns if player is dead
+    /// </summary>
+    /// <param name="player"></param>
     
+    void respawn(GameObject player)
+    {
+        if (player.GetComponent<testPlayerScript>().hitpoints <= 0)
+        {
+            player.GetComponent<testPlayerScript>().hitpoints = 100;
+            player.transform.position = spawnPoints[Random.Range(0, spawnPoints.Length - 1)].transform.position;
+        }
+    }
+
+
     public void updateStats()
     {
         Text status = GameObject.Find("Text").GetComponent<Text>();
@@ -62,8 +94,11 @@ public class levelscript : NetworkBehaviour {
         updateStats();
         for(int i=0; i<players.Length; i++)
         {
-            indicators[i].transform.position = players[i].transform.position + new Vector3(300,250,0);
-            hitbars[i].transform.position = players[i].transform.position + new Vector3(0,30,0);
+
+
+            respawn(players[i]);
+            indicators[i].transform.position = players[i].transform.position + new Vector3( 0,90, 0);
+            hitbars[i].transform.position = players[i].transform.position +new  Vector3(-40,30,0);
             hitbars[i].transform.FindChild("greenbar").transform.localScale = new Vector3((players[i].GetComponent<testPlayerScript>().hitpoints / 100), 1,1);
             
         }

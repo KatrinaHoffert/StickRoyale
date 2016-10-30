@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class testPlayerScript : NetworkBehaviour
 {
     [SyncVar]
-    public int hitpoints;
+    public float hitpoints;
     void Start()
     {
         hitpoints = 100;
@@ -51,6 +51,8 @@ public class testPlayerScript : NetworkBehaviour
     {
         this.hitpoints = this.hitpoints - damage;
     }
+
+
 
     void OnCollisionEnter2D(Collision2D col)
     {
