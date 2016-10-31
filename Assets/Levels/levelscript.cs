@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
 public class levelscript : NetworkBehaviour {
 
     public static GameObject [] players;
@@ -14,16 +14,16 @@ public class levelscript : NetworkBehaviour {
 
 
 
-=======
-public class levelscript : MonoBehaviour {
+//=======
+//public class levelscript : MonoBehaviour {
     public Sprite sprites;
-    private GameObject [] players = new GameObject[4];
-    private NetworkStartPosition[] spawnPoints;
+    //private GameObject [] players = new GameObject[4];
+    //private NetworkStartPosition[] spawnPoints;
     private int[] hitpoints = new int[4];
 
     public GameObject knight;
    
->>>>>>> refs/remotes/origin/master
+//>>>>>>> refs/remotes/origin/master
 
     // Use this for initialization
     void Start () {
@@ -103,7 +103,7 @@ public class levelscript : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-<<<<<<< HEAD
+//<<<<<<< HEAD
 	void FixedUpdate () {
         updateStats();
         for(int i=0; i<players.Length; i++)
@@ -117,8 +117,8 @@ public class levelscript : MonoBehaviour {
             
         }
         
-=======
-	void Update () {
+//=======
+	//void Update () {
 	
 	}
     /// <summary>
@@ -137,6 +137,6 @@ public class levelscript : MonoBehaviour {
         player.gameObject.AddComponent<BoxCollider2D>();*/
         player.gameObject.AddComponent<MovementScript>();
         player.gameObject.AddComponent<PlayerMovement>();
->>>>>>> refs/remotes/origin/master
+//>>>>>>> refs/remotes/origin/master
     }
 }
