@@ -17,8 +17,6 @@ public class levelscript : NetworkBehaviour {
 //=======
 //public class levelscript : MonoBehaviour {
     public Sprite sprites;
-    //private GameObject [] players = new GameObject[4];
-    //private NetworkStartPosition[] spawnPoints;
     private int[] hitpoints = new int[4];
 
     public GameObject knight;
@@ -27,14 +25,18 @@ public class levelscript : NetworkBehaviour {
 
     // Use this for initialization
     void Start () {
-        //CharacterSelectMenuScript.controlSlots[0].networkPlayerId
+        //finds all objects of type networkstartposition and adds them to an array, this is better than hardcoding a different script for each level
+        //because you just neeed to add objects of type networkstartposition in each new level to make new spawnpoints
         spawnPoints = FindObjectsOfType<NetworkStartPosition>();
+        //get all objects of type player and adds them to an array
         players = GameObject.FindGameObjectsWithTag("Player");
+        //player labels are prefabs, this is easier than to try to use the canvas to do this
         indicators = new GameObject[players.Length];
+        //hitbars are simply two sprites, a green box on top of a red box
         hitbars = new GameObject[players.Length];
         for (int i=0; i<players.Length; i++)
         {
-
+            // if there is no player (control type == 0) than this does not do anything
             if (CharacterSelectMenuScript.controlSlots[i].controlType != 0)
             {
 
@@ -47,7 +49,7 @@ public class levelscript : NetworkBehaviour {
                 //displays hp, id and for all players 
                 Text status = GameObject.Find("Text").GetComponent<Text>();
                 status.text = status.text + "player "+ (i+1) + "\n" + players[i].GetComponent<PlayerBase>().uniquePlayerId + "\n" + players[i].GetComponent<testPlayerScript>().hitpoints + "/100\n" ;
-                //player indicators
+                //player indicators are loaded
 
                 if (i == 0)
                 {
@@ -66,7 +68,7 @@ public class levelscript : NetworkBehaviour {
                     indicators[i] = Instantiate((GameObject)Resources.Load("player4"));
                 }
 
-               
+               //greenbar is a child of redbar, it shrinks to reveal redbar as you get damaged
                 hitbars[i] = Instantiate((GameObject)Resources.Load("redbar"));
             
 
@@ -86,11 +88,12 @@ public class levelscript : NetworkBehaviour {
         if (player.GetComponent<testPlayerScript>().hitpoints <= 0)
         {
             player.GetComponent<testPlayerScript>().hitpoints = 100;
+            //placed in random spawnpoint
             player.transform.position = spawnPoints[Random.Range(0, spawnPoints.Length - 1)].transform.position;
         }
     }
 
-
+    //updates the canvas element displaying the player stats
     public void updateStats()
     {
         Text status = GameObject.Find("Text").GetComponent<Text>();
@@ -103,16 +106,19 @@ public class levelscript : NetworkBehaviour {
     }
 	
 	// Update is called once per frame
-//<<<<<<< HEAD
+
 	void FixedUpdate () {
         updateStats();
         for(int i=0; i<players.Length; i++)
         {
 
-
+            //respawn player if player is dead
             respawn(players[i]);
+            //move the player label to be above the appropriate player 
             indicators[i].transform.position = players[i].transform.position + new Vector3( 0,90, 0);
-            hitbars[i].transform.position = players[i].transform.position +new  Vector3(-40,30,0);
+            //move the player hitbar to be above the appropriate player
+            hitbars[i].transform.position = players[i].transform.position + new Vector3(-40, 30, 0);
+            //scales the green bar currenthp/maxhp to reveal the red bar to create a hitbar
             hitbars[i].transform.FindChild("greenbar").transform.localScale = new Vector3((players[i].GetComponent<testPlayerScript>().hitpoints / 100), 1,1);
             
         }
