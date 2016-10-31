@@ -1,0 +1,80 @@
+Initialize engine version: 5.4.1f1 (649f48bbbf0f)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 660M (ID=0xfd4)
+    Vendor:   NVIDIA
+    VRAM:     1989 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Erik\Documents\Cmpt306\cmpt306\Test_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Erik\Documents\Cmpt306\cmpt306\Test_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Erik\Documents\Cmpt306\cmpt306\Test_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Erik\Documents\Cmpt306\cmpt306\Test_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Erik\Documents\Cmpt306\cmpt306\Test_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Erik\Documents\Cmpt306\cmpt306\Test_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\Erik\Documents\Cmpt306\cmpt306\Test_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\Erik\Documents\Cmpt306\cmpt306\Test_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\Erik\Documents\Cmpt306\cmpt306\Test_Data\Managed\Newtonsoft.Json.dll (this message is harmless)
+Loading C:\Users\Erik\Documents\Cmpt306\cmpt306\Test_Data\Managed\Newtonsoft.Json.dll into Unity Child Domain
+- Completed reload, in  0.077 seconds
+Platform assembly: C:\Users\Erik\Documents\Cmpt306\cmpt306\Test_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\Erik\Documents\Cmpt306\cmpt306\Test_Data\Managed\System.dll (this message is harmless)
+desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 0.989545 ms
+Join Game
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Unloading 7 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 6.431616 ms
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 243.
+Total: 0.338686 ms (FindLiveObjects: 0.023947 ms CreateObjectMapping: 0.018815 ms MarkObjects: 0.289935 ms  DeleteObjects: 0.005131 ms)
+
+Attempting to join game of localhost
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Connecting client
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Connection 127.0.0.1 successful
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.810366 ms
+
+Unloading 25 unused Assets to reduce memory usage. Loaded Objects now: 465.
+Total: 0.471252 ms (FindLiveObjects: 0.026940 ms CreateObjectMapping: 0.018815 ms MarkObjects: 0.378028 ms  DeleteObjects: 0.046612 ms)
+
+Host has assigned us ID: 1b7b1174-5f61-43f2-bc0d-d3368963a8f2
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Platform assembly: C:\Users\Erik\Documents\Cmpt306\cmpt306\Test_Data\Managed\System.Runtime.Serialization.dll (this message is harmless)
+Selected character Placeholder for player 1
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Player 1 has chosen character Placeholder
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Log: connection {1} has been disconnected by timeout; address {::ffff:127.0.0.1:7777}
+Connection  disconnected
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Scene 'DisconnectedScreen' (-1) couldn't be loaded because it has not been added to the build settings or the AssetBundle has not been loaded.
+To add a scene to the build settings use the menu File->Build Settings...
+ 
+(Filename:  Line: 532)
+
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 57a4 -> priority: 1 
+  Thread -> id: 57a8 -> priority: 1 

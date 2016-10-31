@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
+<<<<<<< HEAD
 public class levelscript : NetworkBehaviour {
 
     public static GameObject [] players;
@@ -13,6 +14,16 @@ public class levelscript : NetworkBehaviour {
 
 
 
+=======
+public class levelscript : MonoBehaviour {
+    public Sprite sprites;
+    private GameObject [] players = new GameObject[4];
+    private NetworkStartPosition[] spawnPoints;
+    private int[] hitpoints = new int[4];
+
+    public GameObject knight;
+   
+>>>>>>> refs/remotes/origin/master
 
     // Use this for initialization
     void Start () {
@@ -27,7 +38,9 @@ public class levelscript : NetworkBehaviour {
             if (CharacterSelectMenuScript.controlSlots[i].controlType != 0)
             {
 
-               //puts players in spawn points
+                initializePlayer(players[i]);
+
+                //puts players in spawn points
                 players[i].transform.position = spawnPoints[i].transform.position;
                 //initial hp is 100
                 players[i].GetComponent<testPlayerScript>().hitpoints = 100;
@@ -90,6 +103,7 @@ public class levelscript : NetworkBehaviour {
     }
 	
 	// Update is called once per frame
+<<<<<<< HEAD
 	void FixedUpdate () {
         updateStats();
         for(int i=0; i<players.Length; i++)
@@ -103,5 +117,26 @@ public class levelscript : NetworkBehaviour {
             
         }
         
+=======
+	void Update () {
+	
+	}
+    /// <summary>
+    /// Add parts to the player prefab 
+    /// </summary>
+    /// <param name="player"></param>
+    void initializePlayer(GameObject player)
+    {
+        GameObject newplayer = (GameObject) Instantiate(knight, player.gameObject.transform.position, player.transform.rotation);
+        player.transform.parent = newplayer.transform;
+        /*
+        player.gameObject.AddComponent<Rigidbody2D>();
+        player.gameObject.GetComponent<Rigidbody2D>().freezeRotation = true;
+        player.gameObject.AddComponent<SpriteRenderer>();
+        player.gameObject.GetComponent<SpriteRenderer>().sprite = sprites;
+        player.gameObject.AddComponent<BoxCollider2D>();*/
+        player.gameObject.AddComponent<MovementScript>();
+        player.gameObject.AddComponent<PlayerMovement>();
+>>>>>>> refs/remotes/origin/master
     }
 }
