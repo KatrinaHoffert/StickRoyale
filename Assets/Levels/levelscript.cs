@@ -30,6 +30,9 @@ public class levelscript : NetworkBehaviour {
         spawnPoints = FindObjectsOfType<NetworkStartPosition>();
         //get all objects of type player and adds them to an array
         players = GameObject.FindGameObjectsWithTag("Player");
+
+        
+
         //player labels are prefabs, this is easier than to try to use the canvas to do this
         indicators = new GameObject[players.Length];
         //hitbars are simply two sprites, a green box on top of a red box
@@ -40,15 +43,17 @@ public class levelscript : NetworkBehaviour {
             if (CharacterSelectMenuScript.controlSlots[i].controlType != 0)
             {
 
-                initializePlayer(players[i]);
+                //initializePlayer(players[i]);
 
+                players[i].AddComponent<SpriteRenderer>();
+                players[i].GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("CharacterImages/" + CharacterSelectMenuScript.controlSlots[i].chosenCharacter) ;
                 //puts players in spawn points
                 players[i].transform.position = spawnPoints[i].transform.position;
                 //initial hp is 100
                 players[i].GetComponent<testPlayerScript>().hitpoints = 100;
                 //displays hp, id and for all players 
                 Text status = GameObject.Find("Text").GetComponent<Text>();
-                status.text = status.text + "player "+ (i+1) + "\n" + players[i].GetComponent<PlayerBase>().uniquePlayerId + "\n" + players[i].GetComponent<testPlayerScript>().hitpoints + "/100\n" ;
+               // status.text = status.text + "player "+ (i+1) + "\n"+ CharacterSelectMenuScript.controlSlots[i].chosenCharacter +"\n" + players[i].GetComponent<PlayerBase>().uniquePlayerId + "\n" + players[i].GetComponent<testPlayerScript>().hitpoints + "/100\n" ;
                 //player indicators are loaded
 
                 if (i == 0)
@@ -101,7 +106,7 @@ public class levelscript : NetworkBehaviour {
         status.text = "";
         for (int i = 0; i < players.Length; i++)
         {
-            status.text = status.text + "player " + (i + 1) + "\n" + players[i].GetComponent<PlayerBase>().uniquePlayerId + "\n" + players[i].GetComponent<testPlayerScript>().hitpoints + "/100\n";
+            status.text = status.text + "player " + (i + 1)+ "\n" + CharacterSelectMenuScript.controlSlots[i].chosenCharacter + "\n" + players[i].GetComponent<PlayerBase>().uniquePlayerId + "\n" + players[i].GetComponent<testPlayerScript>().hitpoints + "/100\n";
         }
     }
 	
