@@ -686,7 +686,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprites: {fileID: 21300000, guid: bbacca2d459925244b034a2827ed4bff, type: 3}
-  knight: {fileID: 1000013352960488, guid: 52be3c01491314a49b72aea13ac69dd2, type: 2}
+  knight: {fileID: 1000011894746956, guid: 5cdc4ccb14c8e4847a7a7b9a486d15ba, type: 2}
 --- !u!1 &1652490119
 GameObject:
   m_ObjectHideFlags: 0

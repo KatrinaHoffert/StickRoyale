@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Attack1
+  - Attack2
   layers:
   - Default
   - TransparentFX

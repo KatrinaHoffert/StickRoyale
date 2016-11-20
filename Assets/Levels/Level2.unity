@@ -827,6 +827,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprites: {fileID: 21300000, guid: bbacca2d459925244b034a2827ed4bff, type: 3}
+  knight: {fileID: 1000011894746956, guid: 5cdc4ccb14c8e4847a7a7b9a486d15ba, type: 2}
 --- !u!4 &2031281346
 Transform:
   m_ObjectHideFlags: 0
