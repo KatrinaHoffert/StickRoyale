@@ -1,8 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 using System.Collections;
 
-public class KnightHealth : MonoBehaviour {
+public class KnightHealth : NetworkBehaviour {
 
+
+    //sync var makes it sync between clients
+    [SyncVar]
     public int health = 100;
 
 	// Use this for initialization
@@ -14,8 +18,9 @@ public class KnightHealth : MonoBehaviour {
 	void Update () {
 	
 	}
-
-    public void Damage(int dam)
+    //makes the client update this
+    [Command]
+    public void CmdDamage(int dam)
     {
         health -= dam;
     }

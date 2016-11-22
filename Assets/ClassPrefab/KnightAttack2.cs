@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 using System.Collections;
 
-public class KnightAttack2 : MonoBehaviour {
+public class KnightAttack2 : NetworkBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -18,7 +19,7 @@ public class KnightAttack2 : MonoBehaviour {
     {
         if (coll.gameObject.CompareTag("Player"))
         {
-            coll.gameObject.GetComponent<KnightHealth>().SendMessage("Damage",5);
+            coll.gameObject.GetComponent<KnightHealth>().SendMessage("CmdDamage",5);
         }
     }
 }
