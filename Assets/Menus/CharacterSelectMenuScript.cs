@@ -65,6 +65,8 @@ public class CharacterSelectMenuScript : NetworkBehaviour
             GameObject.Find("P2Control").GetComponent<Dropdown>().enabled = false;
             GameObject.Find("P3Control").GetComponent<Dropdown>().enabled = false;
             GameObject.Find("StartGameButton").GetComponent<Button>().enabled = false;
+            //changed
+            GameObject.Find("StartText").GetComponent<Text>().text = "Ready!";
         }
 
         // Host must be p0, so disable the select there (it's not a real dropdown anyway, since there's
@@ -74,6 +76,11 @@ public class CharacterSelectMenuScript : NetworkBehaviour
 
     void FixedUpdate()
     {
+
+     
+
+
+
         try
         {
             // Here we're having the host continuously check to see if any players disconnected, so that we can
