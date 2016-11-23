@@ -6,8 +6,7 @@ public class KnightHealth : NetworkBehaviour {
 
 
     //sync var makes it sync between clients
-    [SyncVar]
-    public int health = 100;
+    [SyncVar]public int health = 100;
 
 	// Use this for initialization
 	void Start () {
@@ -18,10 +17,13 @@ public class KnightHealth : NetworkBehaviour {
 	void Update () {
 	
 	}
-    //makes the client update this
-    [Command]
-    public void CmdDamage(int dam)
+    
+    public void Damage(int dam)
     {
+        if(!gameObject.GetComponentInChildren<NetworkIdentity>().isServer)
+        {
+            return;
+        }
         health -= dam;
     }
 }

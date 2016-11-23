@@ -14,12 +14,14 @@ public class KnightAttack2 : NetworkBehaviour {
 	
 	}
 
-
+    
     void OnTriggerEnter2D(Collider2D coll)
     {
         if (coll.gameObject.CompareTag("Player"))
         {
-            coll.gameObject.GetComponent<KnightHealth>().SendMessage("CmdDamage",5);
+            //coll.gameObject.GetComponent<KnightHealth>().SendMessage("Damage",5);
+            Collider2D coll1 = coll;
+            gameObject.GetComponentInParent<KnightAttack>().SendMessage("CmdapplyDamageOnHit", coll);
         }
     }
 }

@@ -32,13 +32,16 @@ public class KnightAttack : NetworkBehaviour {
 	void Update () {
         if (gameObject.GetComponentInChildren<NetworkIdentity>().isLocalPlayer)
         {
-            if (Input.GetAxis("PrimaryAttack") > 0)
+            if (!isAttacking)
             {
-                attack1();
-            }
-            if (Input.GetAxis("SecondaryAttack") > 0)
-            {
-                attack2();
+                if (Input.GetAxis("PrimaryAttack") > 0)
+                {
+                    attack1();
+                }
+                if (Input.GetAxis("SecondaryAttack") > 0)
+                {
+                    attack2();
+                }
             }
         }
 
@@ -73,5 +76,11 @@ public class KnightAttack : NetworkBehaviour {
         attack1prefab.GetComponent<BoxCollider2D>().enabled = false;
         attack2prefab.GetComponent<BoxCollider2D>().enabled = false;
 
+    }
+
+    [Command]
+    void CmdapplyDamageOnHit(Collider2D target)
+    {
+        target.GetComponent<KnightHealth>().SendMessage("Damage", 5);
     }
 }
