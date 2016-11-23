@@ -1,11 +1,6 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Assets/Animations/Knight/Attack1.anim.meta
-guid: 8c9ced6aafa2d4c609df49a4693abb09
-timeCreated: 1479097954
-=======
 guid: faaed4e77d42903429b38a1eb55491d7
 timeCreated: 1479331039
->>>>>>> origin/LevelSelect:Assets/Animations/Knight/Attack1.anim.meta
 licenseType: Free
 NativeFormatImporter:
   userData: 

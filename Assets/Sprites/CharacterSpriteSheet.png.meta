@@ -1,10 +1,6 @@
 fileFormatVersion: 2
 guid: cfbd0a9e735c544a7a0275a22c77d246
-<<<<<<< HEAD
-timeCreated: 1479098861
-=======
 timeCreated: 1479411810
->>>>>>> origin/LevelSelect
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -62,8 +58,6 @@ TextureImporter:
     21300102: CharacterSpriteSheet_51
     21300104: CharacterSpriteSheet_52
     21300106: CharacterSpriteSheet_53
-<<<<<<< HEAD
-=======
     21300108: CharacterSpriteSheet_54
     21300110: CharacterSpriteSheet_55
     21300112: CharacterSpriteSheet_56
@@ -75,7 +69,6 @@ TextureImporter:
     21300124: CharacterSpriteSheet_62
     21300126: CharacterSpriteSheet_63
     21300128: CharacterSpriteSheet_64
->>>>>>> origin/LevelSelect
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -128,21 +121,12 @@ TextureImporter:
       name: CharacterSpriteSheet_0
       rect:
         serializedVersion: 2
-<<<<<<< HEAD
-        x: 0
-        y: 531
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-=======
         x: 6
         y: 531
         width: 49
         height: 62
       alignment: 0
       pivot: {x: 0, y: 0}
->>>>>>> origin/LevelSelect
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -150,21 +134,12 @@ TextureImporter:
       name: CharacterSpriteSheet_1
       rect:
         serializedVersion: 2
-<<<<<<< HEAD
-        x: 64
-        y: 531
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-=======
         x: 63
         y: 531
         width: 57
         height: 62
       alignment: 0
       pivot: {x: 0, y: 0}
->>>>>>> origin/LevelSelect
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -172,34 +147,12 @@ TextureImporter:
       name: CharacterSpriteSheet_2
       rect:
         serializedVersion: 2
-<<<<<<< HEAD
-        x: 128
-        y: 531
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: CharacterSpriteSheet_3
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 531
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-=======
         x: 135
         y: 532
         width: 46
         height: 61
       alignment: 0
       pivot: {x: 0, y: 0}
->>>>>>> origin/LevelSelect
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -207,34 +160,12 @@ TextureImporter:
       name: CharacterSpriteSheet_4
       rect:
         serializedVersion: 2
-<<<<<<< HEAD
-        x: 256
-        y: 531
-        width: 79
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: CharacterSpriteSheet_5
-      rect:
-        serializedVersion: 2
-        x: 361
-        y: 531
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-=======
         x: 199
         y: 532
         width: 46
         height: 61
       alignment: 0
       pivot: {x: 0, y: 0}
->>>>>>> origin/LevelSelect
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -242,34 +173,12 @@ TextureImporter:
       name: CharacterSpriteSheet_6
       rect:
         serializedVersion: 2
-<<<<<<< HEAD
-        x: 0
-        y: 467
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: CharacterSpriteSheet_7
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 467
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-=======
         x: 267
         y: 532
         width: 67
         height: 63
       alignment: 0
       pivot: {x: 0, y: 0}
->>>>>>> origin/LevelSelect
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -277,21 +186,12 @@ TextureImporter:
       name: CharacterSpriteSheet_8
       rect:
         serializedVersion: 2
-<<<<<<< HEAD
-        x: 128
-        y: 467
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-=======
         x: 6
         y: 466
         width: 46
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
->>>>>>> origin/LevelSelect
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -299,21 +199,12 @@ TextureImporter:
       name: CharacterSpriteSheet_9
       rect:
         serializedVersion: 2
-<<<<<<< HEAD
-        x: 192
-        y: 467
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-=======
         x: 64
         y: 467
         width: 65
         height: 62
       alignment: 0
       pivot: {x: 0, y: 0}
->>>>>>> origin/LevelSelect
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -321,32 +212,16 @@ TextureImporter:
       name: CharacterSpriteSheet_10
       rect:
         serializedVersion: 2
-<<<<<<< HEAD
-        x: 256
-        y: 467
-        width: 81
-        height: 64
-=======
         x: 149
         y: 481
         width: 34
         height: 37
->>>>>>> origin/LevelSelect
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-<<<<<<< HEAD
-      name: CharacterSpriteSheet_11
-      rect:
-        serializedVersion: 2
-        x: 361
-        y: 467
-        width: 64
-        height: 64
-=======
       name: CharacterSpriteSheet_12
       rect:
         serializedVersion: 2
@@ -354,24 +229,12 @@ TextureImporter:
         y: 470
         width: 54
         height: 59
->>>>>>> origin/LevelSelect
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-<<<<<<< HEAD
-      name: CharacterSpriteSheet_12
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 403
-        width: 69
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-=======
       name: CharacterSpriteSheet_14
       rect:
         serializedVersion: 2
@@ -381,22 +244,10 @@ TextureImporter:
         height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
->>>>>>> origin/LevelSelect
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-<<<<<<< HEAD
-      name: CharacterSpriteSheet_13
-      rect:
-        serializedVersion: 2
-        x: 71
-        y: 403
-        width: 57
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-=======
       name: CharacterSpriteSheet_15
       rect:
         serializedVersion: 2
@@ -406,20 +257,10 @@ TextureImporter:
         height: 66
       alignment: 0
       pivot: {x: 0, y: 0}
->>>>>>> origin/LevelSelect
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-<<<<<<< HEAD
-      name: CharacterSpriteSheet_14
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 403
-        width: 79
-        height: 64
-=======
       name: CharacterSpriteSheet_16
       rect:
         serializedVersion: 2
@@ -427,22 +268,12 @@ TextureImporter:
         y: 399
         width: 61
         height: 66
->>>>>>> origin/LevelSelect
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-<<<<<<< HEAD
-      name: CharacterSpriteSheet_15
-      rect:
-        serializedVersion: 2
-        x: 213
-        y: 403
-        width: 43
-        height: 64
-=======
       name: CharacterSpriteSheet_17
       rect:
         serializedVersion: 2
@@ -450,24 +281,12 @@ TextureImporter:
         y: 401
         width: 69
         height: 61
->>>>>>> origin/LevelSelect
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-<<<<<<< HEAD
-      name: CharacterSpriteSheet_16
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 403
-        width: 84
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-=======
       name: CharacterSpriteSheet_18
       rect:
         serializedVersion: 2
@@ -477,22 +296,10 @@ TextureImporter:
         height: 65
       alignment: 0
       pivot: {x: 0, y: 0}
->>>>>>> origin/LevelSelect
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-<<<<<<< HEAD
-      name: CharacterSpriteSheet_17
-      rect:
-        serializedVersion: 2
-        x: 359
-        y: 404
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-=======
       name: CharacterSpriteSheet_21
       rect:
         serializedVersion: 2
@@ -502,22 +309,10 @@ TextureImporter:
         height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
->>>>>>> origin/LevelSelect
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-<<<<<<< HEAD
-      name: CharacterSpriteSheet_18
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 341
-        width: 64
-        height: 59
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-=======
       name: CharacterSpriteSheet_26
       rect:
         serializedVersion: 2
@@ -527,22 +322,10 @@ TextureImporter:
         height: 54
       alignment: 0
       pivot: {x: 0, y: 0}
->>>>>>> origin/LevelSelect
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-<<<<<<< HEAD
-      name: CharacterSpriteSheet_19
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 338
-        width: 64
-        height: 60
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-=======
       name: CharacterSpriteSheet_27
       rect:
         serializedVersion: 2
@@ -552,22 +335,10 @@ TextureImporter:
         height: 57
       alignment: 0
       pivot: {x: 0, y: 0}
->>>>>>> origin/LevelSelect
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-<<<<<<< HEAD
-      name: CharacterSpriteSheet_20
-      rect:
-        serializedVersion: 2
-        x: 130
-        y: 339
-        width: 62
-        height: 60
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-=======
       name: CharacterSpriteSheet_28
       rect:
         serializedVersion: 2
@@ -577,22 +348,10 @@ TextureImporter:
         height: 55
       alignment: 0
       pivot: {x: 0, y: 0}
->>>>>>> origin/LevelSelect
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-<<<<<<< HEAD
-      name: CharacterSpriteSheet_21
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 338
-        width: 64
-        height: 61
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-=======
       name: CharacterSpriteSheet_29
       rect:
         serializedVersion: 2
@@ -602,22 +361,10 @@ TextureImporter:
         height: 58
       alignment: 0
       pivot: {x: 0, y: 0}
->>>>>>> origin/LevelSelect
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-<<<<<<< HEAD
-      name: CharacterSpriteSheet_22
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 339
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-=======
       name: CharacterSpriteSheet_30
       rect:
         serializedVersion: 2
@@ -627,22 +374,10 @@ TextureImporter:
         height: 54
       alignment: 0
       pivot: {x: 0, y: 0}
->>>>>>> origin/LevelSelect
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-<<<<<<< HEAD
-      name: CharacterSpriteSheet_23
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 339
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-=======
       name: CharacterSpriteSheet_31
       rect:
         serializedVersion: 2
@@ -652,22 +387,10 @@ TextureImporter:
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
->>>>>>> origin/LevelSelect
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-<<<<<<< HEAD
-      name: CharacterSpriteSheet_24
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 275
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-=======
       name: CharacterSpriteSheet_32
       rect:
         serializedVersion: 2
@@ -677,22 +400,10 @@ TextureImporter:
         height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
->>>>>>> origin/LevelSelect
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-<<<<<<< HEAD
-      name: CharacterSpriteSheet_25
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 275
-        width: 77
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-=======
       name: CharacterSpriteSheet_33
       rect:
         serializedVersion: 2
@@ -702,22 +413,10 @@ TextureImporter:
         height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
->>>>>>> origin/LevelSelect
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-<<<<<<< HEAD
-      name: CharacterSpriteSheet_26
-      rect:
-        serializedVersion: 2
-        x: 145
-        y: 275
-        width: 47
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-=======
       name: CharacterSpriteSheet_34
       rect:
         serializedVersion: 2
@@ -727,22 +426,10 @@ TextureImporter:
         height: 61
       alignment: 0
       pivot: {x: 0, y: 0}
->>>>>>> origin/LevelSelect
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-<<<<<<< HEAD
-      name: CharacterSpriteSheet_27
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 275
-        width: 72
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-=======
       name: CharacterSpriteSheet_36
       rect:
         serializedVersion: 2
@@ -752,22 +439,10 @@ TextureImporter:
         height: 51
       alignment: 0
       pivot: {x: 0, y: 0}
->>>>>>> origin/LevelSelect
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-<<<<<<< HEAD
-      name: CharacterSpriteSheet_28
-      rect:
-        serializedVersion: 2
-        x: 265
-        y: 275
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-=======
       name: CharacterSpriteSheet_37
       rect:
         serializedVersion: 2
@@ -777,22 +452,10 @@ TextureImporter:
         height: 57
       alignment: 0
       pivot: {x: 0, y: 0}
->>>>>>> origin/LevelSelect
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-<<<<<<< HEAD
-      name: CharacterSpriteSheet_29
-      rect:
-        serializedVersion: 2
-        x: 336
-        y: 275
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-=======
       name: CharacterSpriteSheet_38
       rect:
         serializedVersion: 2
@@ -802,22 +465,10 @@ TextureImporter:
         height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
->>>>>>> origin/LevelSelect
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-<<<<<<< HEAD
-      name: CharacterSpriteSheet_30
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 211
-        width: 74
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-=======
       name: CharacterSpriteSheet_39
       rect:
         serializedVersion: 2
@@ -827,22 +478,10 @@ TextureImporter:
         height: 57
       alignment: 0
       pivot: {x: 0, y: 0}
->>>>>>> origin/LevelSelect
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-<<<<<<< HEAD
-      name: CharacterSpriteSheet_31
-      rect:
-        serializedVersion: 2
-        x: 76
-        y: 211
-        width: 52
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-=======
       name: CharacterSpriteSheet_40
       rect:
         serializedVersion: 2
@@ -852,22 +491,10 @@ TextureImporter:
         height: 57
       alignment: 0
       pivot: {x: 0, y: 0}
->>>>>>> origin/LevelSelect
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-<<<<<<< HEAD
-      name: CharacterSpriteSheet_32
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 211
-        width: 72
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-=======
       name: CharacterSpriteSheet_41
       rect:
         serializedVersion: 2
@@ -877,22 +504,10 @@ TextureImporter:
         height: 57
       alignment: 0
       pivot: {x: 0, y: 0}
->>>>>>> origin/LevelSelect
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-<<<<<<< HEAD
-      name: CharacterSpriteSheet_33
-      rect:
-        serializedVersion: 2
-        x: 203
-        y: 211
-        width: 53
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-=======
       name: CharacterSpriteSheet_42
       rect:
         serializedVersion: 2
@@ -902,22 +517,10 @@ TextureImporter:
         height: 57
       alignment: 0
       pivot: {x: 0, y: 0}
->>>>>>> origin/LevelSelect
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-<<<<<<< HEAD
-      name: CharacterSpriteSheet_34
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 211
-        width: 81
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-=======
       name: CharacterSpriteSheet_45
       rect:
         serializedVersion: 2
@@ -927,22 +530,10 @@ TextureImporter:
         height: 57
       alignment: 0
       pivot: {x: 0, y: 0}
->>>>>>> origin/LevelSelect
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-<<<<<<< HEAD
-      name: CharacterSpriteSheet_35
-      rect:
-        serializedVersion: 2
-        x: 339
-        y: 211
-        width: 75
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-=======
       name: CharacterSpriteSheet_46
       rect:
         serializedVersion: 2
@@ -952,22 +543,10 @@ TextureImporter:
         height: 59
       alignment: 0
       pivot: {x: 0, y: 0}
->>>>>>> origin/LevelSelect
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-<<<<<<< HEAD
-      name: CharacterSpriteSheet_36
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 147
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-=======
       name: CharacterSpriteSheet_47
       rect:
         serializedVersion: 2
@@ -977,22 +556,10 @@ TextureImporter:
         height: 55
       alignment: 0
       pivot: {x: 0, y: 0}
->>>>>>> origin/LevelSelect
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-<<<<<<< HEAD
-      name: CharacterSpriteSheet_37
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 147
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-=======
       name: CharacterSpriteSheet_48
       rect:
         serializedVersion: 2
@@ -1002,22 +569,10 @@ TextureImporter:
         height: 53
       alignment: 0
       pivot: {x: 0, y: 0}
->>>>>>> origin/LevelSelect
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-<<<<<<< HEAD
-      name: CharacterSpriteSheet_38
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 147
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-=======
       name: CharacterSpriteSheet_49
       rect:
         serializedVersion: 2
@@ -1027,22 +582,10 @@ TextureImporter:
         height: 55
       alignment: 0
       pivot: {x: 0, y: 0}
->>>>>>> origin/LevelSelect
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-<<<<<<< HEAD
-      name: CharacterSpriteSheet_39
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 147
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-=======
       name: CharacterSpriteSheet_50
       rect:
         serializedVersion: 2
@@ -1052,22 +595,10 @@ TextureImporter:
         height: 55
       alignment: 0
       pivot: {x: 0, y: 0}
->>>>>>> origin/LevelSelect
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-<<<<<<< HEAD
-      name: CharacterSpriteSheet_40
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 147
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-=======
       name: CharacterSpriteSheet_51
       rect:
         serializedVersion: 2
@@ -1077,22 +608,10 @@ TextureImporter:
         height: 54
       alignment: 0
       pivot: {x: 0, y: 0}
->>>>>>> origin/LevelSelect
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-<<<<<<< HEAD
-      name: CharacterSpriteSheet_41
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 147
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-=======
       name: CharacterSpriteSheet_52
       rect:
         serializedVersion: 2
@@ -1102,22 +621,10 @@ TextureImporter:
         height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
->>>>>>> origin/LevelSelect
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-<<<<<<< HEAD
-      name: CharacterSpriteSheet_42
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 83
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-=======
       name: CharacterSpriteSheet_53
       rect:
         serializedVersion: 2
@@ -1127,22 +634,10 @@ TextureImporter:
         height: 66
       alignment: 0
       pivot: {x: 0, y: 0}
->>>>>>> origin/LevelSelect
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-<<<<<<< HEAD
-      name: CharacterSpriteSheet_43
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 83
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-=======
       name: CharacterSpriteSheet_54
       rect:
         serializedVersion: 2
@@ -1152,35 +647,10 @@ TextureImporter:
         height: 65
       alignment: 0
       pivot: {x: 0, y: 0}
->>>>>>> origin/LevelSelect
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-<<<<<<< HEAD
-      name: CharacterSpriteSheet_44
-      rect:
-        serializedVersion: 2
-        x: 119
-        y: 82
-        width: 77
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: CharacterSpriteSheet_45
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 83
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-=======
       name: CharacterSpriteSheet_56
       rect:
         serializedVersion: 2
@@ -1190,22 +660,10 @@ TextureImporter:
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
->>>>>>> origin/LevelSelect
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-<<<<<<< HEAD
-      name: CharacterSpriteSheet_46
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 83
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-=======
       name: CharacterSpriteSheet_57
       rect:
         serializedVersion: 2
@@ -1215,20 +673,10 @@ TextureImporter:
         height: 65
       alignment: 0
       pivot: {x: 0, y: 0}
->>>>>>> origin/LevelSelect
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-<<<<<<< HEAD
-      name: CharacterSpriteSheet_47
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 83
-        width: 64
-        height: 64
-=======
       name: CharacterSpriteSheet_58
       rect:
         serializedVersion: 2
@@ -1236,24 +684,12 @@ TextureImporter:
         y: 83
         width: 55
         height: 62
->>>>>>> origin/LevelSelect
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-<<<<<<< HEAD
-      name: CharacterSpriteSheet_48
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 11
-        width: 64
-        height: 71
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-=======
       name: CharacterSpriteSheet_59
       rect:
         serializedVersion: 2
@@ -1263,22 +699,10 @@ TextureImporter:
         height: 61
       alignment: 0
       pivot: {x: 0, y: 0}
->>>>>>> origin/LevelSelect
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-<<<<<<< HEAD
-      name: CharacterSpriteSheet_49
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 14
-        width: 64
-        height: 69
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-=======
       name: CharacterSpriteSheet_60
       rect:
         serializedVersion: 2
@@ -1288,22 +712,10 @@ TextureImporter:
         height: 54
       alignment: 0
       pivot: {x: 0, y: 0}
->>>>>>> origin/LevelSelect
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-<<<<<<< HEAD
-      name: CharacterSpriteSheet_50
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 19
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-=======
       name: CharacterSpriteSheet_61
       rect:
         serializedVersion: 2
@@ -1313,22 +725,10 @@ TextureImporter:
         height: 52
       alignment: 0
       pivot: {x: 0, y: 0}
->>>>>>> origin/LevelSelect
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-<<<<<<< HEAD
-      name: CharacterSpriteSheet_51
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 19
-        width: 110
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-=======
       name: CharacterSpriteSheet_62
       rect:
         serializedVersion: 2
@@ -1338,22 +738,10 @@ TextureImporter:
         height: 61
       alignment: 0
       pivot: {x: 0, y: 0}
->>>>>>> origin/LevelSelect
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-<<<<<<< HEAD
-      name: CharacterSpriteSheet_52
-      rect:
-        serializedVersion: 2
-        x: 304
-        y: 15
-        width: 24
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-=======
       name: CharacterSpriteSheet_63
       rect:
         serializedVersion: 2
@@ -1363,20 +751,10 @@ TextureImporter:
         height: 38
       alignment: 0
       pivot: {x: 0, y: 0}
->>>>>>> origin/LevelSelect
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-<<<<<<< HEAD
-      name: CharacterSpriteSheet_53
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 19
-        width: 90
-        height: 64
-=======
       name: CharacterSpriteSheet_64
       rect:
         serializedVersion: 2
@@ -1384,7 +762,6 @@ TextureImporter:
         y: 83
         width: 64
         height: 62
->>>>>>> origin/LevelSelect
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
