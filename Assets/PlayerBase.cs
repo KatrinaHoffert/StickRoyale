@@ -20,6 +20,7 @@ public class PlayerBase : NetworkBehaviour
     /// Should happen very quickly, but not instantly after the Player object is created. So must expect that this
     /// can be null during the initial connection period.
     /// </summary>
+    [SyncVar]
     public string uniquePlayerId;
 
     void Awake()

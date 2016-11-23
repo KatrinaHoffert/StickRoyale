@@ -26,16 +26,10 @@ public class MovementScript : MonoBehaviour {
     {
         if (moveForce.x>0.5f)
         {
-            gameObject.GetComponentInParent<Rigidbody2D>().transform.localEulerAngles = new Vector3(0f, 0f, 0f);
-            Debug.Log("Transform: " + gameObject.GetComponentInParent<Rigidbody2D>().transform.rotation.ToString());
-            Debug.Log(gameObject.GetComponentInParent<Rigidbody2D>().transform.ToString());
-            Debug.Log("should be facing right");
-        } else if(moveForce.x<-0.5f)
+            gameObject.transform.rotation.Set(0f, 0f, 0f, 0f);
+        } else
         {
-            gameObject.GetComponentInParent<Rigidbody2D>().transform.localEulerAngles = new Vector3(0f, 180f, 0f);
-            Debug.Log("Transform: " + gameObject.GetComponentInParent<Rigidbody2D>().transform.rotation.ToString());
-            Debug.Log(gameObject.GetComponentInParent<Rigidbody2D>().transform.ToString());
-            Debug.Log("Should be facing left");
+            gameObject.transform.rotation.Set(0f, 180f, 0f, 0f);
         }
 
         if(rigid.velocity.magnitude<4)
