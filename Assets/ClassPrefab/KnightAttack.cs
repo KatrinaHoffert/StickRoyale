@@ -10,6 +10,9 @@ public class KnightAttack : NetworkBehaviour {
     //refrences the attack prefabs. used for their colliders
     GameObject attack1prefab;
     GameObject attack2prefab;
+    public int attackDamage1 = 5;
+    public int attackDamage2 = 5;
+    
 
 	// Use this for initialization
 	void Start () {
@@ -78,9 +81,30 @@ public class KnightAttack : NetworkBehaviour {
 
     }
 
-    /*[Command]
-    void CmdapplyDamageOnHit(Collider2D target)
+    [Command]
+    void CmdapplyDamageOnHit1(string targetId)
     {
-        target.GetComponent<KnightHealth>().SendMessage("Damage", 5);
-    }*/
+        //target.GetComponent<KnightHealth>().SendMessage("Damage", 5);
+        PlayerBase[] players = FindObjectsOfType<PlayerBase>();
+        foreach (var player in players)
+        {
+            if (player.uniquePlayerId == targetId)
+            {
+                player.GetComponentInParent<KnightHealth>().SendMessage("CmdDamage",attackDamage1);
+            }
+        }
+    }
+    [Command]
+    void CmdapplyDamageOnHit2(string targetId)
+    {
+        //target.GetComponent<KnightHealth>().SendMessage("Damage", 5);
+        PlayerBase[] players = FindObjectsOfType<PlayerBase>();
+        foreach (var player in players)
+        {
+            if (player.uniquePlayerId == targetId)
+            {
+                player.GetComponentInParent<KnightHealth>().SendMessage("CmdDamage", attackDamage2);
+            }
+        }
+    }
 }

@@ -17,8 +17,8 @@ public class KnightHealth : NetworkBehaviour {
 	void Update () {
 	
 	}
-    
-    public void Damage(int dam)
+    [Command]
+    public void CmdDamage(int dam)
     {
         if(!gameObject.GetComponentInChildren<NetworkIdentity>().isServer)
         {
