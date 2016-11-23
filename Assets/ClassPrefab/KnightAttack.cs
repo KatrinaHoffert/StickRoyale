@@ -78,9 +78,9 @@ public class KnightAttack : NetworkBehaviour {
 
     }
 
-    [Command]
+    /*[Command]
     void CmdapplyDamageOnHit(Collider2D target)
     {
         target.GetComponent<KnightHealth>().SendMessage("Damage", 5);
-    }
+    }*/
 }

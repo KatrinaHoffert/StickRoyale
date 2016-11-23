@@ -21,7 +21,7 @@ public class KnightAttack2 : NetworkBehaviour {
         {
             //coll.gameObject.GetComponent<KnightHealth>().SendMessage("Damage",5);
             Collider2D coll1 = coll;
-            gameObject.GetComponentInParent<KnightAttack>().SendMessage("CmdapplyDamageOnHit", coll);
+            //gameObject.GetComponentInParent<KnightAttack>().SendMessage("CmdapplyDamageOnHit", coll1);
         }
     }
 }
