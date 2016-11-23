@@ -7,6 +7,7 @@ AnimatorController:
   m_PrefabInternal: {fileID: 0}
   m_Name: RogueController
   serializedVersion: 5
+<<<<<<< HEAD
   m_AnimatorParameters:
   - m_Name: Speed
     m_Type: 1
@@ -639,3 +640,7 @@ AnimatorStateMachine:
   m_ExitPosition: {x: 744, y: 324, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: 1102000011295868572}
+=======
+  m_AnimatorParameters: []
+  m_AnimatorLayers: []
+>>>>>>> origin/LevelSelect
