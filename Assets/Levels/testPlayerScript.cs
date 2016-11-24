@@ -6,16 +6,15 @@ public class testPlayerScript : NetworkBehaviour
 {
     // hitpoints uses syncvar so whenever it changes on the server it changes for all the clients too.
     [SyncVar]
-    public float hitpoints;
+    public int hitpoints;
+
     void Start()
     {
-        //initial hp = 100
         hitpoints = 100;
-   
     }
+
     void FixedUpdate()
     {
-        
         //if the localplayer presses keys move this character, if someone else presses keys do nothing
         if (!isLocalPlayer)
         {
@@ -31,12 +30,8 @@ public class testPlayerScript : NetworkBehaviour
 
         //die if y position is below a certain y
         CmdDie();
-       
-
-      
-
-
     }
+
     /// <summary>
     /// Die if below certain y, in this case -300
     /// the client must run this function so the command tag is used
@@ -46,11 +41,10 @@ public class testPlayerScript : NetworkBehaviour
     {
         if (transform.position.y < -300)
         {
-
             this.hitpoints = 0;
-
         }
     }
+
     /// <summary>
     /// deduct an integer value from hitpoints, the client must run this function so the command tag is used
     /// </summary>
@@ -60,16 +54,13 @@ public class testPlayerScript : NetworkBehaviour
     {
         this.hitpoints = this.hitpoints - damage;
     }
-
-
+    
     /// <summary>
     /// when a player collides with this player take 1 damage
     /// </summary>
-    /// <param name="col"></param>
-
+    /// <param name="col">The object we've collided with.</param>
     void OnCollisionEnter2D(Collision2D col)
     {
-        
         if(col.gameObject.tag == "Player")
         {
             CmdDamaged(1);
