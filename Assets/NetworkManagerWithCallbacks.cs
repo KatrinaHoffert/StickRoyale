@@ -9,8 +9,6 @@ using System;
 /// </summary>
 public class NetworkManagerWithCallbacks : NetworkManager
 {
-
-
     /// <summary>
     /// A list of functions that will be called when `OnClientConnect` fires.
     /// </summary>

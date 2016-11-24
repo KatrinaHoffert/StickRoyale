@@ -3,41 +3,15 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine.Networking;
 
-public class LevelSelectScript : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-    /// <summary>
-    /// level 1 is selected
-    /// </summary>
-    public void level1selected()
+public class LevelSelectScript : MonoBehaviour
+{
+    public void Level1Selected()
     {
-        //NetworkManger.
-        // SceneManager.LoadScene("Level1");
-        NetworkManagerScript.getNetworkManager().GetComponent<NetworkManager>().ServerChangeScene("Level1");
-
+        NetworkManagerScript.GetNetworkManager().GetComponent<NetworkManager>().ServerChangeScene("Level1");
     }
-
-    /// <summary>
-    /// level 2 is selected
-    /// </summary>
-    public void level2selected()
+    
+    public void Level2Selected()
     {
-
-        //SceneManager.LoadScene("Level2");
-        NetworkManagerScript.getNetworkManager().GetComponent<NetworkManager>().ServerChangeScene("Level2");
-
-
-
+        NetworkManagerScript.GetNetworkManager().GetComponent<NetworkManager>().ServerChangeScene("Level2");
     }
-
-
 }
-

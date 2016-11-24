@@ -21,9 +21,6 @@ public class CharacterSelectMenuScript : NetworkBehaviour
     /// </summary>
     public static string backButtonTarget = "MainMenu";
 
-
-
-
     /// <summary>
     /// A reference to the control slots belonging to the <see cref="ControlSlotsScript.slots"/> 
     /// variable. Here as a field because it's used consistently throughout this class.
@@ -76,11 +73,6 @@ public class CharacterSelectMenuScript : NetworkBehaviour
 
     void FixedUpdate()
     {
-
-     
-
-
-
         try
         {
             // Here we're having the host continuously check to see if any players disconnected, so that we can
@@ -244,15 +236,8 @@ public class CharacterSelectMenuScript : NetworkBehaviour
         if(gameIsValid)
         {
             // TODO: We're all good, load level select
-
-            Debug.Log("Starting game. Chosen controls are: " + JsonConvert.SerializeObject(controlSlots));           
-
-            // END
-
-            // TODO: We're all good, load level 
             Debug.Log("Starting game. Chosen controls are: " + JsonConvert.SerializeObject(controlSlots));
-            //SceneManager.LoadScene("LevelSelect");
-            NetworkManagerScript.getNetworkManager().GetComponent<NetworkManager>().ServerChangeScene("LevelSelect");           
+            NetworkManagerScript.GetNetworkManager().GetComponent<NetworkManager>().ServerChangeScene("LevelSelect");           
         }
         else
         {

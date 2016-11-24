@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class testPlayerScript : NetworkBehaviour
 {
-    // hitpoints uses syncvar so whenever it changes on the server it changes for all the clients too.
+    // The HP for the character
     [SyncVar]
     public int hitpoints;
 

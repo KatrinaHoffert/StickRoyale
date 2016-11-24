@@ -7,11 +7,14 @@ using UnityEngine.Networking.NetworkSystem;
 
 public class NetworkManagerScript : MonoBehaviour
 {
-
-    public static GameObject getNetworkManager()
+    /// <summary>
+    /// Gets the NetworkManager attached to this object.
+    /// </summary>
+    public static GameObject GetNetworkManager()
     {
         return GameObject.Find("NetworkManager");
     }
+
     /// <summary>
     /// Sets up and initializes the host. 
     /// </summary>
@@ -25,7 +28,6 @@ public class NetworkManagerScript : MonoBehaviour
         // already be the host!
         Debug.Log("Starting host");
         GetComponent<NetworkManager>().StartHost();
-        
     }
 
     /// <summary>

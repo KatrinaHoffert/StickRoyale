@@ -3,13 +3,28 @@ using System.Collections;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
-public class levelscript : NetworkBehaviour {
+public class levelscript : NetworkBehaviour
+{
+    /// <summary>
+    /// All the players, to avoid having to query for these unnecessarily.
+    /// </summary>
+    public static GameObject[] players;
 
-    public static GameObject [] players;
+    /// <summary>
+    /// The spawn points that this level has.
+    /// </summary>
     private NetworkStartPosition[] spawnPoints;
+
+    /// <summary>
+    /// Stores the indicator objects for each player.
+    /// </summary>
     private static GameObject[] indicators;
+
+    /// <summary>
+    /// Stores the hitbar objects for each player. The redbar is the object stored here and it has a child,
+    /// greenbar, that shrinks as HP is lost.
+    /// </summary>
     private static GameObject[] hitbars;
-    private int[] hitpoints = new int[4];
    
     void Start () {
         spawnPoints = FindObjectsOfType<NetworkStartPosition>();
@@ -37,8 +52,6 @@ public class levelscript : NetworkBehaviour {
                 indicators[i].transform.localScale = new Vector3(15, 15, 15);
                 
                 players[i].GetComponent<testPlayerScript>().hitpoints = 100;
-
-                // greenbar is a child of redbar, it shrinks to reveal redbar as you get damaged
                 hitbars[i] = Instantiate((GameObject)Resources.Load("redbar"));
                 hitbars[i].transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
             }
@@ -49,7 +62,7 @@ public class levelscript : NetworkBehaviour {
     /// Respawns if player is dead.
     /// </summary>
     /// <param name="player">The player to check if we should respawn.</param>
-    void respawn(GameObject player)
+    void respawnIfDead(GameObject player)
     {
         if (player.GetComponent<testPlayerScript>().hitpoints <= 0)
         {
@@ -78,16 +91,15 @@ public class levelscript : NetworkBehaviour {
     void FixedUpdate () {
         updateStats();
 
-        for(int i=0; i < players.Length; i++)
+        for(int i = 0; i < players.Length; i++)
         {
+            respawnIfDead(players[i]);
 
-            //respawn player if player is dead
-            respawn(players[i]);
-            //move the player label to be above the appropriate player 
+            // Update player label position
             indicators[i].transform.position = players[i].transform.position + new Vector3(0, 20, 0);
-            //move the player hitbar to be above the appropriate player
+            
+            // Update hitbar location and size
             hitbars[i].transform.position = players[i].transform.position + new Vector3(-10, 10, 0);
-            //scales the green bar currenthp/maxhp to reveal the red bar to create a hitbar
             hitbars[i].transform.FindChild("greenbar").transform.localScale = new Vector3((players[i].GetComponent<testPlayerScript>().hitpoints / 100.0f), 1, 1);
         }
 	}
