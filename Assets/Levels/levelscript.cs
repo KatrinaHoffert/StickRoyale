@@ -68,6 +68,7 @@ public class levelscript : NetworkBehaviour
         {
             player.GetComponent<testPlayerScript>().hitpoints = 100;
             player.transform.position = spawnPoints[Random.Range(0, spawnPoints.Length - 1)].transform.position;
+            player.GetComponent<Rigidbody2D>().velocity = new Vector2();
         }
     }
 
