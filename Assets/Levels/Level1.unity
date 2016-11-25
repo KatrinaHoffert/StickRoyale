@@ -130,7 +130,7 @@ GameObject:
   - 61: {fileID: 227092465}
   m_Layer: 0
   m_Name: basicPlatform (1)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -207,7 +207,7 @@ GameObject:
   - 61: {fileID: 288288182}
   m_Layer: 0
   m_Name: basicPlatform (2)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -405,7 +405,7 @@ GameObject:
   - 61: {fileID: 1040359396}
   m_Layer: 0
   m_Name: basicPlatform (4)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -482,7 +482,7 @@ GameObject:
   - 61: {fileID: 1222104436}
   m_Layer: 0
   m_Name: basicPlatform
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -559,7 +559,7 @@ GameObject:
   - 61: {fileID: 1579447790}
   m_Layer: 0
   m_Name: basicPlatform (3)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
