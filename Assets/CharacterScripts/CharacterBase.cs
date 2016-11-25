@@ -25,11 +25,13 @@ public class CharacterBase : MonoBehaviour
     }
 
     /// <summary>
-    /// Die if below certain y coordinate.
+    /// Die if fall off the edge of the level.
     /// </summary>
     void CheckForFallDeath()
     {
-        if (transform.position.y < -300)
+        // Levels are positioned in the first quadrant, so any negative number is off the level. We'll give a little
+        // leeway just in case.
+        if (transform.position.y < -5)
         {
             currentHitpoints = 0;
         }
