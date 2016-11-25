@@ -17,7 +17,7 @@ public class CharacterBase : MonoBehaviour
     /// <summary>
     /// Number of lives this player has.
     /// </summary>
-    public int lives = 1;
+    public int lives = 3;
 
     void Start()
     {
