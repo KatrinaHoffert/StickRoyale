@@ -45,17 +45,22 @@ public class CharacterBase : MonoBehaviour
     {
         currentHitpoints = currentHitpoints - hp;
     }
+
+    void DamageForce(Vector3 forceDirection)
+    {
+        gameObject.GetComponent<Rigidbody2D>().AddForce(forceDirection * 1000);
+    }
     
     /// <summary>
     /// when a player collides with this player take 1 damage
     /// </summary>
     /// <param name="col">The object we've collided with.</param>
-    void OnCollisionEnter2D(Collision2D col)
+    /*void OnCollisionEnter2D(Collision2D col)
     {
         // TODO: This is a dummy method to test damage taking
         if(col.gameObject.GetComponent<CharacterBase>() != null)
         {
             Damage(1);
         }
-    }
+    }*/
 }
