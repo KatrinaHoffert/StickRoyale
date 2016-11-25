@@ -25,6 +25,8 @@ public class LevelManager : MonoBehaviour
     /// greenbar, that shrinks as HP is lost.
     /// </summary>
     private static GameObject[] hitbars;
+
+    private static Stats stats;
    
     void Start () {
         spawnPoints = GameObject.FindGameObjectsWithTag("Respawn");
@@ -73,6 +75,11 @@ public class LevelManager : MonoBehaviour
                 hitbars[i] = Instantiate((GameObject)Resources.Load("redbar"));
             }
         }
+
+        // Create the game stats storing object
+        var statsObject = new GameObject("Stats");
+        stats = statsObject.AddComponent<Stats>();
+        DontDestroyOnLoad(statsObject);
     }
 
     /// <summary>
@@ -117,13 +124,13 @@ public class LevelManager : MonoBehaviour
 
         if (numPlayersAlive == 1)
         {
-            Debug.Log("Winning player: " + playerAliveName);
+            stats.winner = playerAliveName;
             SceneManager.LoadScene("PostGameScreen");
         }
         // Special case that could possibly happen
         else if(numPlayersAlive == 0)
         {
-            Debug.Log("Game ended in no winner");
+            stats.winner = "";
             SceneManager.LoadScene("PostGameScreen");
         }
     }

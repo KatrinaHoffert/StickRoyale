@@ -8,14 +8,21 @@ public class PostGameScreenScript : MonoBehaviour
 {
     void Start()
     {
-        // TODO: Set winner, stats
+        var stats = GameObject.Find("Stats").GetComponent<Stats>();
         var statsText = GameObject.Find("StatsText").GetComponent<Text>();
-        statsText.text = "Winnah is...";
+
+        string winnerLine = (stats.winner != "") ? "Winner is " + stats.winner + "!" : "No winner... :(";
+
+        statsText.text = winnerLine;
+
+        // TODO: Add more stats
     }
 
     public void NewGameButtonClicked()
     {
-        // TODO: Cleanup
+        // Cleanup first
+        DestroyImmediate(GameObject.Find("ControlSlots"));
+        DestroyImmediate(GameObject.Find("Stats"));
 
         SceneManager.LoadScene("CharacterSelectMenu");
     }
