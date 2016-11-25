@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.Networking;
 using System;
 
-public class ControlSlotsScript : NetworkBehaviour
+public class ControlSlotsScript : MonoBehaviour
 {
     /// <summary>
     /// The representation of what slots are available for players and how they are populated.

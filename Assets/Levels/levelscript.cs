@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.Networking;
 using UnityEngine.UI;
 
-public class levelscript : NetworkBehaviour
+public class levelscript : MonoBehaviour
 {
     /// <summary>
     /// All the players, to avoid having to query for these unnecessarily.
@@ -13,7 +12,7 @@ public class levelscript : NetworkBehaviour
     /// <summary>
     /// The spawn points that this level has.
     /// </summary>
-    private NetworkStartPosition[] spawnPoints;
+    private GameObject[] spawnPoints;
 
     /// <summary>
     /// Stores the indicator objects for each player.
@@ -27,8 +26,30 @@ public class levelscript : NetworkBehaviour
     private static GameObject[] hitbars;
    
     void Start () {
-        spawnPoints = FindObjectsOfType<NetworkStartPosition>();
-        players = GameObject.FindGameObjectsWithTag("Player");
+        spawnPoints = GameObject.FindGameObjectsWithTag("Respawn");
+
+        // Create player objects
+        var controlSlots = GameObject.Find("ControlSlots").GetComponent<ControlSlotsScript>().slots;
+        players = new GameObject[4];
+        for(int i = 0; i < controlSlots.Length; ++i)
+        {
+            if(controlSlots[i].controlType != ControlType.Closed)
+            {
+                players[i] = Instantiate((GameObject)Resources.Load("CharacterPrefabs/" + controlSlots[i].chosenCharacter));
+
+                // Name the objects for debugging
+                if(controlSlots[i].controlType == ControlType.Player)
+                {
+                    players[i].name = "Player";
+                }
+                else
+                {
+                    players[i].name = "AI" + i;
+                }
+
+                // TODO: Attach player and AI scripts
+            }
+        }
 
         // Player labels are prefabs, this is easier than to try to use the canvas to do this
         indicators = new GameObject[players.Length];
@@ -50,7 +71,8 @@ public class levelscript : NetworkBehaviour
                 // Load the appropriate prefab for the player's indicator
                 indicators[i] = Instantiate((GameObject)Resources.Load("player" + (i + 1)));
                 indicators[i].transform.localScale = new Vector3(15, 15, 15);
-                
+
+                players[i].AddComponent<testPlayerScript>();
                 players[i].GetComponent<testPlayerScript>().hitpoints = 100;
                 hitbars[i] = Instantiate((GameObject)Resources.Load("redbar"));
                 hitbars[i].transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
@@ -82,10 +104,11 @@ public class levelscript : NetworkBehaviour
         status.text = "";
         for (int i = 0; i < players.Length; i++)
         {
+            if (players[i] == null) continue;
+
             string characterName = CharacterSelectMenuScript.controlSlots[i].chosenCharacter;
-            string playerId = players[i].GetComponent<PlayerBase>().uniquePlayerId;
             int playerHp = players[i].GetComponent<testPlayerScript>().hitpoints;
-            status.text += "player " + (i + 1)+ "\n" + characterName + "\n" + playerId + "\n" + playerHp + "/100\n";
+            status.text += "player " + (i + 1)+ "\n" + characterName + "\n" + playerHp + "/100\n";
         }
     }
     
@@ -94,6 +117,8 @@ public class levelscript : NetworkBehaviour
 
         for(int i = 0; i < players.Length; i++)
         {
+            if (players[i] == null) continue;
+
             respawnIfDead(players[i]);
 
             // Update player label position

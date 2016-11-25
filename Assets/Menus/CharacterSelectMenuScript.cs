@@ -11,7 +11,7 @@ using System;
 using UnityEngine.Networking.NetworkSystem;
 using Newtonsoft.Json;
 
-public class CharacterSelectMenuScript : NetworkBehaviour
+public class CharacterSelectMenuScript : MonoBehaviour
 {
     /// <summary>
     /// A reference to the control slots belonging to the <see cref="ControlSlotsScript.slots"/> 
