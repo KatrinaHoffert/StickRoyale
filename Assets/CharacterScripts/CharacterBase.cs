@@ -14,6 +14,11 @@ public class CharacterBase : MonoBehaviour
     /// </summary>
     public int currentHitpoints;
 
+    /// <summary>
+    /// Number of lives this player has.
+    /// </summary>
+    public int lives = 3;
+
     void Start()
     {
         currentHitpoints = maxHitpoints;
@@ -27,7 +32,7 @@ public class CharacterBase : MonoBehaviour
     /// <summary>
     /// Die if fall off the edge of the level.
     /// </summary>
-    void CheckForFallDeath()
+    private void CheckForFallDeath()
     {
         // Levels are positioned in the first quadrant, so any negative number is off the level. We'll give a little
         // leeway just in case.
@@ -41,9 +46,15 @@ public class CharacterBase : MonoBehaviour
     /// Inflict some HP damage to this character.
     /// </summary>
     /// <param name="hp">Amount of HP points to deduct.</param>
-    void Damage(int hp)
+    public void Damage(int hp)
     {
         currentHitpoints = currentHitpoints - hp;
+    }
+
+    public void Die()
+    {
+        currentHitpoints = maxHitpoints;
+        --lives;
     }
     
     /// <summary>

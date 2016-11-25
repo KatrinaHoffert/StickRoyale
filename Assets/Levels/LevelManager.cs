@@ -78,14 +78,52 @@ public class LevelManager : MonoBehaviour
     /// Respawns if player is dead.
     /// </summary>
     /// <param name="player">The player to check if we should respawn.</param>
-    void RespawnIfDead(GameObject player)
+    private void RespawnIfDead(GameObject player)
     {
         var playerBase = player.GetComponent<CharacterBase>();
         if (playerBase.currentHitpoints <= 0)
         {
-            playerBase.currentHitpoints = playerBase.maxHitpoints;
-            player.transform.position = spawnPoints[Random.Range(0, spawnPoints.Length - 1)].transform.position;
-            player.GetComponent<Rigidbody2D>().velocity = new Vector2();
+            playerBase.Die();
+
+            if (playerBase.lives >= 0)
+            {
+                player.transform.position = spawnPoints[Random.Range(0, spawnPoints.Length - 1)].transform.position;
+                player.GetComponent<Rigidbody2D>().velocity = new Vector2();
+            }
+            else
+            {
+                Debug.Log(player.name + " has died");
+                VictoryConditionCheck();
+            }
+        }
+    }
+
+    private void VictoryConditionCheck()
+    {
+        int numPlayersAlive = 0;
+        string playerAliveName = "";
+        for (int i = 0; i < players.Length; ++i)
+        {
+            if (players[i] == null) continue;
+
+            var playerBase = players[i].GetComponent<CharacterBase>();
+            if (playerBase.lives >= 0)
+            {
+                ++numPlayersAlive;
+                playerAliveName = "Player " + i;
+            }
+        }
+
+        if (numPlayersAlive == 1)
+        {
+            // TODO: Transition to stats screen
+            Debug.Log("Winning player: " + playerAliveName);
+        }
+        // Special case that could possibly happen
+        else if(numPlayersAlive == 0)
+        {
+            // TODO: Transition to stats screen
+            Debug.Log("Game ended in no winner");
         }
     }
 
