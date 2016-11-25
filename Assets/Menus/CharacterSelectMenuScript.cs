@@ -19,16 +19,6 @@ public class CharacterSelectMenuScript : MonoBehaviour
     /// </summary>
     public static ControlSlot[] controlSlots;
 
-    /// <summary>
-    /// The names of all characters, used for randomly picking one.
-    /// </summary>
-    public readonly string[] characterOptions =
-    {
-        "Mage",
-        "Rogue",
-        "Knight"
-    };
-
     void Start()
     {
         // Initialize the control slots
@@ -37,6 +27,9 @@ public class CharacterSelectMenuScript : MonoBehaviour
         // Player must be p0, so disable the select there (it's not a real dropdown anyway, since there's
         // only one option)
         GameObject.Find("P0Control").GetComponent<Dropdown>().enabled = false;
+
+        // We might have arrived here via back button on level select -- update the images in case.
+        UpdateCharacterImages();
     }
 
     /// <summary>
@@ -85,19 +78,7 @@ public class CharacterSelectMenuScript : MonoBehaviour
     /// </summary>
     public void StartButtonClicked()
     {
-        // Assign random characters for slots without a selected character
-        for(int slot = 0; slot < controlSlots.Length; ++slot)
-        {
-            if(controlSlots[slot].controlType != ControlType.Closed)
-            {
-                if (string.IsNullOrEmpty(controlSlots[slot].chosenCharacter))
-                {
-                    controlSlots[slot].chosenCharacter = characterOptions[UnityEngine.Random.Range(0, characterOptions.Length)];
-                }
-            }
-        }
-        
-        Debug.Log("Starting game. Chosen controls are: " + JsonConvert.SerializeObject(controlSlots));
+        Debug.Log("Characters selected are: " + JsonConvert.SerializeObject(controlSlots));
         SceneManager.LoadScene("LevelSelect");
     }
     

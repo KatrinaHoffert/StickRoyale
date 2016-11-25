@@ -5,13 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Menus/MainMenu.unity
   - enabled: 1
     path: Assets/Menus/LevelSelect.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Menus/JoinGameMenu.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Menus/DisconnectedScreen.unity
   - enabled: 1
     path: Assets/Menus/CharacterSelectMenu.unity
@@ -19,5 +19,5 @@ EditorBuildSettings:
     path: Assets/Levels/Level1.unity
   - enabled: 1
     path: Assets/Levels/Level2.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Level 1/Level1.unity
