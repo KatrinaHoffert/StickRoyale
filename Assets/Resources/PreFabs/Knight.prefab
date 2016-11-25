@@ -21,6 +21,7 @@ GameObject:
   - 4: {fileID: 4000013919956776}
   - 212: {fileID: 212000012838467800}
   - 95: {fileID: 95000010436659936}
+  - 61: {fileID: 61000011557636252}
   m_Layer: 0
   m_Name: Knight
   m_TagString: Untagged
@@ -35,12 +36,26 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012713427078}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.24, y: -1.98, z: 0}
+  m_LocalPosition: {x: -14.830588, y: -76.11466, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!61 &61000011557636252
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012713427078}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 0.41, y: 0.55}
 --- !u!95 &95000010436659936
 Animator:
   serializedVersion: 3
@@ -50,7 +65,7 @@ Animator:
   m_GameObject: {fileID: 1000012713427078}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 54e9ea82b07f84492bfa28fbb1762f95, type: 2}
+  m_Controller: {fileID: 9100000, guid: 4896413b7979a3d4a9813f8ef8f64914, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -87,7 +102,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300072, guid: cfbd0a9e735c544a7a0275a22c77d246, type: 3}
+  m_Sprite: {fileID: 21300094, guid: cfbd0a9e735c544a7a0275a22c77d246, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
