@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class levelscript : MonoBehaviour
+public class LevelManager : MonoBehaviour
 {
     /// <summary>
     /// All the players, to avoid having to query for these unnecessarily.
@@ -41,13 +41,14 @@ public class levelscript : MonoBehaviour
                 if(controlSlots[i].controlType == ControlType.Player)
                 {
                     players[i].name = "Player";
+                    players[i].AddComponent<PlayerMovement>();
                 }
                 else
                 {
                     players[i].name = "AI" + i;
                 }
 
-                // TODO: Attach player and AI scripts
+                // TODO: Attach player and AI scripts above
             }
         }
 
@@ -72,8 +73,7 @@ public class levelscript : MonoBehaviour
                 indicators[i] = Instantiate((GameObject)Resources.Load("player" + (i + 1)));
                 indicators[i].transform.localScale = new Vector3(15, 15, 15);
 
-                players[i].AddComponent<testPlayerScript>();
-                players[i].GetComponent<testPlayerScript>().hitpoints = 100;
+                players[i].AddComponent<CharacterBase>();
                 hitbars[i] = Instantiate((GameObject)Resources.Load("redbar"));
                 hitbars[i].transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
             }
@@ -84,11 +84,12 @@ public class levelscript : MonoBehaviour
     /// Respawns if player is dead.
     /// </summary>
     /// <param name="player">The player to check if we should respawn.</param>
-    void respawnIfDead(GameObject player)
+    void RespawnIfDead(GameObject player)
     {
-        if (player.GetComponent<testPlayerScript>().hitpoints <= 0)
+        var playerBase = player.GetComponent<CharacterBase>();
+        if (playerBase.currentHitpoints <= 0)
         {
-            player.GetComponent<testPlayerScript>().hitpoints = 100;
+            playerBase.currentHitpoints = playerBase.maxHitpoints;
             player.transform.position = spawnPoints[Random.Range(0, spawnPoints.Length - 1)].transform.position;
             player.GetComponent<Rigidbody2D>().velocity = new Vector2();
         }
@@ -107,8 +108,9 @@ public class levelscript : MonoBehaviour
             if (players[i] == null) continue;
 
             string characterName = CharacterSelectMenuScript.controlSlots[i].chosenCharacter;
-            int playerHp = players[i].GetComponent<testPlayerScript>().hitpoints;
-            status.text += "player " + (i + 1)+ "\n" + characterName + "\n" + playerHp + "/100\n";
+            int playerHp = players[i].GetComponent<CharacterBase>().currentHitpoints;
+            int playerMaxHp = players[i].GetComponent<CharacterBase>().maxHitpoints;
+            status.text += "player " + (i + 1)+ "\n" + characterName + "\n" + playerHp + "/" + playerMaxHp + "\n";
         }
     }
     
@@ -119,14 +121,16 @@ public class levelscript : MonoBehaviour
         {
             if (players[i] == null) continue;
 
-            respawnIfDead(players[i]);
+            RespawnIfDead(players[i]);
 
             // Update player label position
             indicators[i].transform.position = players[i].transform.position + new Vector3(0, 20, 0);
-            
+
             // Update hitbar location and size
+            int playerHp = players[i].GetComponent<CharacterBase>().currentHitpoints;
+            int playerMaxHp = players[i].GetComponent<CharacterBase>().maxHitpoints;
             hitbars[i].transform.position = players[i].transform.position + new Vector3(-10, 10, 0);
-            hitbars[i].transform.FindChild("greenbar").transform.localScale = new Vector3((players[i].GetComponent<testPlayerScript>().hitpoints / 100.0f), 1, 1);
+            hitbars[i].transform.FindChild("greenbar").transform.localScale = new Vector3((playerHp / (float)playerMaxHp), 1, 1);
         }
 	}
 }
