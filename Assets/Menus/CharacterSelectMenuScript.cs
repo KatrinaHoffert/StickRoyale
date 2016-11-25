@@ -119,7 +119,7 @@ public class CharacterSelectMenuScript : MonoBehaviour
             // Decide what the image should be for this slot
             string imageName;
             if (controlSlots[slot].controlType == ControlType.Closed) imageName = "CharacterImages/EmptySlot";
-            else if (String.IsNullOrEmpty(controlSlots[slot].chosenCharacter)) imageName = "CharacterImages/UnknownCharacter";
+            else if (String.IsNullOrEmpty(controlSlots[slot].chosenCharacter)) imageName = "CharacterImages/RandomWhiteBackground";
             else imageName = "CharacterImages/" + controlSlots[slot].chosenCharacter;
 
             // Note that resources must be relative to the Resources folder.
