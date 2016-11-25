@@ -56,17 +56,9 @@ public class CharacterBase : MonoBehaviour
         currentHitpoints = maxHitpoints;
         --lives;
     }
-    
-    /// <summary>
-    /// when a player collides with this player take 1 damage
-    /// </summary>
-    /// <param name="col">The object we've collided with.</param>
-    void OnCollisionEnter2D(Collision2D col)
+
+    void DamageForce(Vector3 forceDirection)
     {
-        // TODO: This is a dummy method to test damage taking
-        if(col.gameObject.GetComponent<CharacterBase>() != null)
-        {
-            Damage(1);
-        }
+        gameObject.GetComponent<Rigidbody2D>().AddForce(forceDirection * 1000);
     }
 }
