@@ -13,8 +13,8 @@ public class ControlSlotsScript : NetworkBehaviour
     void Awake()
     {
         // Default control slots layout
-        slots[0] = new ControlSlot() { controlType = ControlType.Host };
-        slots[1] = new ControlSlot() { controlType = ControlType.Network };
+        slots[0] = new ControlSlot() { controlType = ControlType.Player };
+        slots[1] = new ControlSlot() { controlType = ControlType.AI };
         slots[2] = new ControlSlot() { controlType = ControlType.Closed };
         slots[3] = new ControlSlot() { controlType = ControlType.Closed };
 
@@ -39,12 +39,7 @@ public enum ControlType
     /// <summary>
     /// The human host of the game.
     /// </summary>
-    Host,
-
-    /// <summary>
-    /// A network slot for other human clients.
-    /// </summary>
-    Network,
+    Player,
 
     /// <summary>
     /// An AI controlled player.
@@ -68,14 +63,8 @@ public class ControlSlot
     /// </summary>
     public string chosenCharacter;
 
-    /// <summary>
-    /// The ID of the populated network player, if this control slot is a network one. Null symbolizes
-    /// an empty slot.
-    /// </summary>
-    public string networkPlayerId;
-
     public override string ToString()
     {
-        return "{controlType: " + controlType + ", chosenCharacter: " + chosenCharacter + ", networkPlayerId: " + networkPlayerId + "}";
+        return "{controlType: " + controlType + ", chosenCharacter: " + chosenCharacter + "}";
     }
 }

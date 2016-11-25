@@ -7,11 +7,11 @@ public class LevelSelectScript : MonoBehaviour
 {
     public void Level1Selected()
     {
-        NetworkManagerScript.GetNetworkManager().GetComponent<NetworkManager>().ServerChangeScene("Level1");
+        SceneManager.LoadScene("Level1");
     }
     
     public void Level2Selected()
     {
-        NetworkManagerScript.GetNetworkManager().GetComponent<NetworkManager>().ServerChangeScene("Level2");
+        SceneManager.LoadScene("Level2");
     }
 }
