@@ -66,11 +66,10 @@ public class LevelManager : MonoBehaviour
 
                 // Load the appropriate prefab for the player's indicator
                 indicators[i] = Instantiate((GameObject)Resources.Load("player" + (i + 1)));
-                indicators[i].transform.localScale = new Vector3(15, 15, 15);
+                indicators[i].transform.localScale = new Vector3(1, 1, 1);
 
                 players[i].AddComponent<CharacterBase>();
                 hitbars[i] = Instantiate((GameObject)Resources.Load("redbar"));
-                hitbars[i].transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
             }
         }
     }
@@ -119,12 +118,12 @@ public class LevelManager : MonoBehaviour
             RespawnIfDead(players[i]);
 
             // Update player label position
-            indicators[i].transform.position = players[i].transform.position + new Vector3(0, 20, 0);
+            indicators[i].transform.position = players[i].transform.position + new Vector3(0, 1.6f, 0);
 
             // Update hitbar location and size
             int playerHp = players[i].GetComponent<CharacterBase>().currentHitpoints;
             int playerMaxHp = players[i].GetComponent<CharacterBase>().maxHitpoints;
-            hitbars[i].transform.position = players[i].transform.position + new Vector3(-10, 10, 0);
+            hitbars[i].transform.position = players[i].transform.position + new Vector3(-0.8f, 0.9f, 0);
             hitbars[i].transform.FindChild("greenbar").transform.localScale = new Vector3((playerHp / (float)playerMaxHp), 1, 1);
         }
 	}
