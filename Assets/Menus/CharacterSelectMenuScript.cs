@@ -19,6 +19,16 @@ public class CharacterSelectMenuScript : MonoBehaviour
     /// </summary>
     public static ControlSlot[] controlSlots;
 
+    /// <summary>
+    /// The names of all characters, used for randomly picking one.
+    /// </summary>
+    public readonly string[] characterOptions =
+    {
+        "Mage",
+        "Rogue",
+        "Knight"
+    };
+
     void Start()
     {
         // Initialize the control slots
@@ -82,8 +92,7 @@ public class CharacterSelectMenuScript : MonoBehaviour
             {
                 if (string.IsNullOrEmpty(controlSlots[slot].chosenCharacter))
                 {
-                    // TODO: Make this pick a random character!
-                    controlSlots[slot].chosenCharacter = "Mage";
+                    controlSlots[slot].chosenCharacter = characterOptions[UnityEngine.Random.Range(0, characterOptions.Length)];
                 }
             }
         }
