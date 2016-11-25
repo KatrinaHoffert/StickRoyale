@@ -46,9 +46,8 @@ public class LevelManager : MonoBehaviour
                 else
                 {
                     players[i].name = "AI" + i;
+                    // TODO: AI script
                 }
-
-                // TODO: Attach player and AI scripts above
             }
         }
 
@@ -62,10 +61,6 @@ public class LevelManager : MonoBehaviour
         {
             if (CharacterSelectMenuScript.controlSlots[i].controlType != ControlType.Closed)
             {
-                // Placeholder image for the character
-                players[i].AddComponent<SpriteRenderer>();
-                players[i].GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("CharacterImages/" + CharacterSelectMenuScript.controlSlots[i].chosenCharacter);
-
                 // Puts players in spawn points (assumes there's at least 4 spawn points)
                 players[i].transform.position = spawnPoints[i].transform.position;
 
