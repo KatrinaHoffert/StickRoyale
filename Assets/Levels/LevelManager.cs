@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -116,14 +117,14 @@ public class LevelManager : MonoBehaviour
 
         if (numPlayersAlive == 1)
         {
-            // TODO: Transition to stats screen
             Debug.Log("Winning player: " + playerAliveName);
+            SceneManager.LoadScene("PostGameScreen");
         }
         // Special case that could possibly happen
         else if(numPlayersAlive == 0)
         {
-            // TODO: Transition to stats screen
             Debug.Log("Game ended in no winner");
+            SceneManager.LoadScene("PostGameScreen");
         }
     }
 
