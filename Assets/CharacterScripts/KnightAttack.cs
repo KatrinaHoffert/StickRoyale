@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class KnightAttack : MonoBehaviour
+public class KnightAttack : AttackBase
 {
     // a lock for attacking
     bool isAttacking;
     public float attackCooldown=2;
     //refrences the attack prefabs. used for their colliders
-    GameObject attack1prefab;
-    GameObject attack2prefab;
+    GameObject Attack1prefab;
+    GameObject Attack2prefab;
     public int attackDamage1 = 5;
     public int attackDamage2 = 5;
 
@@ -23,11 +23,11 @@ public class KnightAttack : MonoBehaviour
         {
             if (thing.CompareTag("Attack1"))
             {
-                attack1prefab = thing.gameObject;
+                Attack1prefab = thing.gameObject;
             }
             if (thing.CompareTag("Attack2"))
             {
-                attack2prefab = thing.gameObject;
+                Attack2prefab = thing.gameObject;
             }
         }
     }
@@ -39,22 +39,22 @@ public class KnightAttack : MonoBehaviour
         {
             if (Input.GetAxis("PrimaryAttack") > 0)
             {
-                attack1();
+                Attack1();
             }
             if (Input.GetAxis("SecondaryAttack") > 0)
             {
-                attack2();
+                Attack2();
             }
         }
     }
 
     //first attack variation
-    void attack1()
+    public override void Attack1()
     {
         if (!isAttacking)
         {
             isAttacking = true;
-            attack1prefab.GetComponent<BoxCollider2D>().enabled = true;
+            Attack1prefab.GetComponent<BoxCollider2D>().enabled = true;
             gameObject.GetComponent<PlayerMovement>().setDirectionLocked(true);
             Invoke("resetAttack", 1);
             Invoke("attackCooldownReset", attackCooldown);
@@ -63,23 +63,23 @@ public class KnightAttack : MonoBehaviour
     }
     //second attack variation
     
-    void attack2()
+    public override void Attack2()
     {
         if (!isAttacking)
         {
             isAttacking = true;
 
-            attack2prefab.GetComponent<BoxCollider2D>().enabled = true;
+            Attack2prefab.GetComponent<BoxCollider2D>().enabled = true;
             gameObject.GetComponent<PlayerMovement>().setDirectionLocked(true);
             Invoke("resetAttack", 1f);
             Invoke("attackCooldownReset", attackCooldown);
         }
     }
     
-    void resetAttack()
+    public void resetAttack()
     {
-        attack1prefab.GetComponent<BoxCollider2D>().enabled = false;
-        attack2prefab.GetComponent<BoxCollider2D>().enabled = false;
+        Attack1prefab.GetComponent<BoxCollider2D>().enabled = false;
+        Attack2prefab.GetComponent<BoxCollider2D>().enabled = false;
         gameObject.GetComponent<PlayerMovement>().setDirectionLocked(false);
     }
 
@@ -89,35 +89,35 @@ public class KnightAttack : MonoBehaviour
     }
 
 
-    public float GetAttack1Delay()
+    public override float GetAttack1Delay()
     {
         return 0.5f;
     }
 
-    public float GetAttack2Delay()
+    public override float GetAttack2Delay()
     {
         return 0.5f;
     }
 
-    public bool CanAttack1Hit()
+    public override bool CanAttack1Hit()
     {
         // TODO: Placeholder
         return false;
     }
 
-    public bool CanAttack2Hit()
+    public override bool CanAttack2Hit()
     {
         // TODO: Placeholder
         return false;
     }
 
-    public double GetAttack1AiWeight()
+    public override double GetAttack1AiWeight()
     {
         // TODO: Placeholder
         return 1.0;
     }
 
-    public double GetAttack2AiWeight()
+    public override double GetAttack2AiWeight()
     {
         // TODO: Placeholder
         return 1.0;

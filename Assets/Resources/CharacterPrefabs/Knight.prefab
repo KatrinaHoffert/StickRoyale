@@ -234,6 +234,7 @@ MonoBehaviour:
   currentHitpoints: 0
   lives: 3
   facing: 1
+  movementSpeedMultiplier: 1
 --- !u!212 &212000010219595960
 SpriteRenderer:
   m_ObjectHideFlags: 1
