@@ -61,14 +61,21 @@ public class CharacterBase : MonoBehaviour
         currentHitpoints = currentHitpoints - hp;
     }
 
+    /// <summary>
+    /// Call when this character should be considered dead to reset their HP and reduce their lives.
+    /// </summary>
     public void Die()
     {
         currentHitpoints = maxHitpoints;
         --lives;
     }
 
+    /// <summary>
+    /// Applies some force on this character as a knockback effect.
+    /// </summary>
+    /// <param name="forceDirection">The force to apply (direction and magnitude).</param>
     public void DamageForce(Vector3 forceDirection)
     {
-        gameObject.GetComponent<Rigidbody2D>().AddForce(forceDirection * 1000);
+        GetComponent<Rigidbody2D>().AddForce(forceDirection);
     }
 }
