@@ -3,6 +3,7 @@ using System.Collections;
 
 public class KnightAttackTrigger : MonoBehaviour
 {
+    /// <summary>
     /// Pushback intensity of the collision.
     /// </summary>
     public float pushbackMagnitude = 50;
@@ -14,7 +15,7 @@ public class KnightAttackTrigger : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D coll)
     {
-        if(coll.gameObject.CompareTag("Player"))
+        if (coll.gameObject.CompareTag("Player"))
         {
             int direction = transform.parent.GetComponent<CharacterBase>().facing;
             coll.gameObject.GetComponent<CharacterBase>().Damage(damage);
