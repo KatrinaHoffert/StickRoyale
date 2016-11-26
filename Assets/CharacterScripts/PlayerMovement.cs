@@ -43,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
     private AttackBase attackBase;
     private CharacterBase characterBase;
     private SpriteRenderer spriteRenderer;
+    private Animator animator;
 
     void Start()
     {
@@ -50,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
         attackBase = GetComponent<AttackBase>();
         characterBase = GetComponent<CharacterBase>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
     
     void Update()
@@ -77,9 +79,11 @@ public class PlayerMovement : MonoBehaviour
             rigidBody.velocity = new Vector2(rigidBody.velocity.x, 0);
 
             MaximalMove(new Vector2(0, jumpForce));
+            animator.SetBool("Grounded", false);
         }
-        
-        if(timeCanAttackNext <= Time.time && Input.GetButtonUp("PrimaryAttack"))
+        animator.SetFloat("Speed", rigidBody.velocity.x);
+
+        if (timeCanAttackNext <= Time.time && Input.GetButtonUp("PrimaryAttack"))
         {
             attackBase.Attack1();
             timeCanAttackNext = Time.time + attackBase.GetAttack1Delay();
@@ -111,6 +115,7 @@ public class PlayerMovement : MonoBehaviour
         if (coll.gameObject.tag == "Floor")
         {
             jumpsLeft = maxJumps;
+            animator.SetBool("Grounded", true);
         }
     }
 }
