@@ -39,6 +39,12 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private float timeCanAttackNext = 0f;
 
+    /// <summary>
+    /// Locks the direction the character can move. such as using an attack means you can't turn around till the attack 
+    /// has finished.
+    /// </summary>
+    private bool directionLocked= false;
+
     private Rigidbody2D rigidBody;
     private AttackBase attackBase;
     private CharacterBase characterBase;
@@ -52,20 +58,22 @@ public class PlayerMovement : MonoBehaviour
         characterBase = GetComponent<CharacterBase>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        directionLocked = false;
     }
     
     void Update()
     {
         var horizontal = Input.GetAxis("Horizontal");
         var jump = Input.GetButtonDown("Jump");
-        
-        if (horizontal > 0)
+        int facingDirection = characterBase.facing;
+
+        if (horizontal > 0 && (!directionLocked || facingDirection==1))
         {
             MaximalMove(new Vector2(baseRightMoveForce, 0) * Time.deltaTime);
             characterBase.facing = 1;
             spriteRenderer.flipX = false;
         }
-        else if (horizontal < 0)
+        else if (horizontal < 0 && (!directionLocked || facingDirection == -1))
         {
             MaximalMove(new Vector2(-baseRightMoveForce, 0) * Time.deltaTime);
             characterBase.facing = -1;
@@ -85,14 +93,23 @@ public class PlayerMovement : MonoBehaviour
 
         if (timeCanAttackNext <= Time.time && Input.GetButtonUp("PrimaryAttack"))
         {
-            attackBase.Attack1();
-            timeCanAttackNext = Time.time + attackBase.GetAttack1Delay();
+            //attackBase.Attack1();
+            //timeCanAttackNext = Time.time + attackBase.GetAttack1Delay();
         }
         else if (timeCanAttackNext <= Time.time && Input.GetButtonUp("SecondaryAttack"))
         {
-            attackBase.Attack2();
-            timeCanAttackNext = Time.time + attackBase.GetAttack2Delay();
+            //attackBase.Attack2();
+            //timeCanAttackNext = Time.time + attackBase.GetAttack2Delay();
         }
+    }
+
+    /// <summary>
+    /// Sets the direction lock
+    /// </summary>
+    /// <param name="locked">Value to set to Direction Locked. True = locked, False = unlocked</param>
+    public void setDirectionLocked(bool locked)
+    {
+        directionLocked = locked;
     }
 
     /// <summary>

@@ -55,6 +55,7 @@ public class KnightAttack : MonoBehaviour
         {
             isAttacking = true;
             attack1prefab.GetComponent<BoxCollider2D>().enabled = true;
+            gameObject.GetComponent<PlayerMovement>().setDirectionLocked(true);
             Invoke("resetAttack", 1);
             Invoke("attackCooldownReset", attackCooldown);
         }
@@ -69,6 +70,7 @@ public class KnightAttack : MonoBehaviour
             isAttacking = true;
 
             attack2prefab.GetComponent<BoxCollider2D>().enabled = true;
+            gameObject.GetComponent<PlayerMovement>().setDirectionLocked(true);
             Invoke("resetAttack", 1f);
             Invoke("attackCooldownReset", attackCooldown);
         }
@@ -76,10 +78,9 @@ public class KnightAttack : MonoBehaviour
     
     void resetAttack()
     {
-
         attack1prefab.GetComponent<BoxCollider2D>().enabled = false;
         attack2prefab.GetComponent<BoxCollider2D>().enabled = false;
-
+        gameObject.GetComponent<PlayerMovement>().setDirectionLocked(false);
     }
 
     void attackCooldownReset()
