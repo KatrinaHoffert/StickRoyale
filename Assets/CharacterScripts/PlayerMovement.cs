@@ -41,11 +41,15 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D rigidBody;
     private AttackBase attackBase;
+    private CharacterBase characterBase;
+    private SpriteRenderer spriteRenderer;
 
-    void Awake()
+    void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
         attackBase = GetComponent<AttackBase>();
+        characterBase = GetComponent<CharacterBase>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
     
     void Update()
@@ -56,10 +60,14 @@ public class PlayerMovement : MonoBehaviour
         if (horizontal > 0)
         {
             MaximalMove(new Vector2(baseRightMoveForce, 0) * Time.deltaTime);
+            characterBase.facing = 1;
+            spriteRenderer.flipX = false;
         }
         else if (horizontal < 0)
         {
             MaximalMove(new Vector2(-baseRightMoveForce, 0) * Time.deltaTime);
+            characterBase.facing = -1;
+            spriteRenderer.flipX = true;
         }
         if (jump && jumpsLeft > 0)
         {

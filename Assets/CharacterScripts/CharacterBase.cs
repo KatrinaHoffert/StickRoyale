@@ -19,6 +19,11 @@ public class CharacterBase : MonoBehaviour
     /// </summary>
     public int lives = 3;
 
+    /// <summary>
+    /// The direction that the character is facing. 1 for right, -1 for left.
+    /// </summary>
+    public int facing = 1;
+
     void Start()
     {
         currentHitpoints = maxHitpoints;

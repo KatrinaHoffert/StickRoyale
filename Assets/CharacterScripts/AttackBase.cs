@@ -3,6 +3,13 @@ using System.Collections;
 
 public abstract class AttackBase : MonoBehaviour
 {
+    protected CharacterBase characterBase;
+
+    void Start()
+    {
+        characterBase = GetComponent<CharacterBase>();
+    }
+
     // Implementations for performing an attack
     public abstract void Attack1();
     public abstract void Attack2();

@@ -12,8 +12,11 @@ public class MageAttacks : AttackBase
     public override void Attack1()
     {
         // Just a simple box in front of it, as a placeholder demonstration of doing an attack
-        var attackObject = (GameObject) Instantiate(mageAttack1Prefab, transform.position + new Vector3(0.5f, 0, 0), Quaternion.identity, transform);
+        var attackObject = (GameObject) Instantiate(mageAttack1Prefab, transform.position + new Vector3(characterBase.facing * 0.5f, 0, 0), Quaternion.identity, transform);
         attack1Projectiles.Enqueue(attackObject);
+
+        // Face the projectile the right way
+        if (characterBase.facing < 0) attackObject.GetComponent<SpriteRenderer>().flipX = true;
 
         // Remove the projectile later
         Invoke("ClearAttack1Projectile", 0.5f);
