@@ -17,6 +17,9 @@ public class KnightAttackTrigger : MonoBehaviour
     {
         if (coll.gameObject.CompareTag("Player"))
         {
+            // Don't hurt ourselves
+            if (coll.gameObject == transform.parent.gameObject) return;
+
             int direction = transform.parent.GetComponent<CharacterBase>().facing;
             coll.gameObject.GetComponent<CharacterBase>().Damage(damage);
             coll.gameObject.GetComponent<CharacterBase>().DamageForce(Vector3.right * direction * pushbackMagnitude);

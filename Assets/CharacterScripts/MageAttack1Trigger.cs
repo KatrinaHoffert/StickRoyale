@@ -23,6 +23,9 @@ public class MageAttack1Trigger : MonoBehaviour
     {
         if (coll.gameObject.CompareTag("Player") && !playersAlreadyHit.Contains(coll.gameObject))
         {
+            // Don't hurt ourselves
+            if (coll.gameObject == transform.parent.gameObject) return;
+
             int direction = GetComponent<SpriteRenderer>().flipX ? -1 : 1;
             coll.gameObject.GetComponent<CharacterBase>().Damage(damage);
             coll.gameObject.GetComponent<CharacterBase>().DamageForce(transform.right * pushbackMagnitude * direction);

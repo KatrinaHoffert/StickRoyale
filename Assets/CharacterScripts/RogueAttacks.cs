@@ -8,7 +8,7 @@ public class RogueAttacks : AttackBase
     private GameObject attack1Prefab;
     private GameObject attack2Prefab;
 
-    void Start()
+    void Awake()
     {
         // Assign the colliders in the attack prefabs so they can be called upon
         Transform[] childTransforms = GetComponentsInChildren<Transform>();
