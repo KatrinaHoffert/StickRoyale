@@ -168,7 +168,7 @@ public class LevelManager : MonoBehaviour
             int playerHp = players[i].GetComponent<CharacterBase>().currentHitpoints;
             int playerMaxHp = players[i].GetComponent<CharacterBase>().maxHitpoints;
             hitbars[i].transform.position = players[i].transform.position + new Vector3(-0.8f, 0.9f, 0);
-            hitbars[i].transform.FindChild("greenbar").transform.localScale = new Vector3((playerHp / (float)playerMaxHp), 1, 1);
+            hitbars[i].transform.FindChild("greenbar").transform.localScale = new Vector3((playerHp / (float)playerMaxHp), 0.6f, 1);
         }
 	}
 }

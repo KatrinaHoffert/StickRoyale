@@ -21,7 +21,7 @@ GameObject:
   - 4: {fileID: 4000014290760172}
   - 212: {fileID: 212000014152704386}
   m_Layer: 0
-  m_Name: player2
+  m_Name: Player2Indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

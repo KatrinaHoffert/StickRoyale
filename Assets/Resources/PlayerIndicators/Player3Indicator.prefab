@@ -38,7 +38,7 @@ GameObject:
   - 4: {fileID: 4000011518010298}
   - 212: {fileID: 212000010556154512}
   m_Layer: 0
-  m_Name: player3
+  m_Name: Player3Indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
