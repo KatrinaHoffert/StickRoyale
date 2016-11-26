@@ -106,6 +106,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mageAttack1Prefab: {fileID: 1000010431534126, guid: 8c7b7c1623bf59444834d93549e1b6de,
     type: 2}
+  mageAttack2Prefab: {fileID: 1000013181755352, guid: b66a9f67ad6127d4fb6adb4b3de9208d,
+    type: 2}
 --- !u!114 &114000014248054390
 MonoBehaviour:
   m_ObjectHideFlags: 1

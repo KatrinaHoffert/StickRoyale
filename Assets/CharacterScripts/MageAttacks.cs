@@ -6,7 +6,12 @@ using System;
 public class MageAttacks : AttackBase
 {
     public GameObject mageAttack1Prefab;
+    public GameObject mageAttack2Prefab;
 
+    /// <summary>
+    /// Collection of all attack1 projectiles that have been created. A queue so that we can
+    /// remove the oldest first.
+    /// </summary>
     private Queue<GameObject> attack1Projectiles = new Queue<GameObject>();
 
     public override void Attack1()
@@ -22,7 +27,7 @@ public class MageAttacks : AttackBase
         if (characterBase.facing < 0) attackObject.GetComponent<SpriteRenderer>().flipX = true;
 
         // Remove the projectile later
-        Invoke("ClearAttack1Projectile", 0.5f);
+        Invoke("ClearAttack1Projectile", 0.75f);
     }
 
     /// <summary>
@@ -35,7 +40,10 @@ public class MageAttacks : AttackBase
 
     public override void Attack2()
     {
-        // TODO
+        var attackObject = (GameObject)Instantiate(mageAttack2Prefab, transform.position + new Vector3(characterBase.facing * 0.5f, 0, 0),
+                Quaternion.identity);
+        if (characterBase.facing < 0) attackObject.GetComponent<SpriteRenderer>().flipX = true;
+        attackObject.GetComponent<MageAttack2Trigger>().casterObject = gameObject;
     }
 
     public override float GetAttack1Delay()
@@ -45,7 +53,7 @@ public class MageAttacks : AttackBase
 
     public override float GetAttack2Delay()
     {
-        return 0.25f;
+        return 0.75f;
     }
 
     public override bool CanAttack1Hit()
