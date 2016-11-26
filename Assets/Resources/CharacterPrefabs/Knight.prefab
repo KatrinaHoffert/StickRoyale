@@ -39,6 +39,7 @@ GameObject:
   - 212: {fileID: 212000010219595960}
   - 50: {fileID: 50000013612216438}
   - 61: {fileID: 61000011407587708}
+  - 114: {fileID: 114000014181781048}
   - 114: {fileID: 114000011504990072}
   - 95: {fileID: 95000013692232842}
   m_Layer: 0
@@ -218,6 +219,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2b0de5b3482d624a9d946e2d80d47c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114000014181781048
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012886910868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daed67ce57745ea47956dcaa16997091, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHitpoints: 100
+  currentHitpoints: 0
+  lives: 3
+  facing: 1
 --- !u!212 &212000010219595960
 SpriteRenderer:
   m_ObjectHideFlags: 1

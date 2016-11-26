@@ -101,12 +101,13 @@ public class PlayerMovement : MonoBehaviour
     /// <param name="vector">Movement vector to apply.</param>
     private void MaximalMove(Vector2 vector)
     {
-        rigidBody.AddForce(vector);
+        // All horizontal movement is modified by the character's soecific movement speed multiplier
+        rigidBody.AddForce(new Vector2(vector.x * characterBase.movementSpeedMultiplier, vector.y));
 
         var horizontalVelocity = rigidBody.velocity.x;
-        if (Math.Abs(horizontalVelocity) > maxHorizontalVelocity)
+        if (Math.Abs(horizontalVelocity) > maxHorizontalVelocity * characterBase.movementSpeedMultiplier)
         {
-            rigidBody.velocity = new Vector2(maxHorizontalVelocity * Math.Sign(horizontalVelocity), rigidBody.velocity.y);
+            rigidBody.velocity = new Vector2(maxHorizontalVelocity * Math.Sign(horizontalVelocity) * characterBase.movementSpeedMultiplier, rigidBody.velocity.y);
         }
     }
     

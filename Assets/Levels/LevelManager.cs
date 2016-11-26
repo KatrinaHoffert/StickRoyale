@@ -70,8 +70,6 @@ public class LevelManager : MonoBehaviour
                 // Load the appropriate prefab for the player's indicator
                 indicators[i] = Instantiate((GameObject)Resources.Load("player" + (i + 1)));
                 indicators[i].transform.localScale = new Vector3(1, 1, 1);
-
-                players[i].AddComponent<CharacterBase>();
                 hitbars[i] = Instantiate((GameObject)Resources.Load("redbar"));
             }
         }

@@ -24,6 +24,8 @@ public class CharacterBase : MonoBehaviour
     /// </summary>
     public int facing = 1;
 
+    public float movementSpeedMultiplier = 1.0f;
+
     void Start()
     {
         currentHitpoints = maxHitpoints;

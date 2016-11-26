@@ -22,6 +22,7 @@ GameObject:
   - 212: {fileID: 212000011217353150}
   - 50: {fileID: 50000010887537610}
   - 61: {fileID: 61000010863942378}
+  - 114: {fileID: 114000014248054390}
   - 114: {fileID: 114000011705370368}
   - 95: {fileID: 95000012426280918}
   m_Layer: 0
@@ -105,6 +106,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mageAttack1Prefab: {fileID: 1000010431534126, guid: 8c7b7c1623bf59444834d93549e1b6de,
     type: 2}
+--- !u!114 &114000014248054390
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014243963156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daed67ce57745ea47956dcaa16997091, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHitpoints: 100
+  currentHitpoints: 0
+  lives: 3
+  facing: 1
+  movementSpeedMultiplier: 0.8
 --- !u!212 &212000011217353150
 SpriteRenderer:
   m_ObjectHideFlags: 1
