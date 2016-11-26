@@ -14,6 +14,7 @@ public class DecisionTree : MonoBehaviour {
 
     Decision theDecision;
     Action theAction;
+
     /// <summary>
     /// Reference to left sub tree
     /// </summary>
@@ -59,11 +60,6 @@ public class DecisionTree : MonoBehaviour {
 
 
     }
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
     /// <summary>
     /// Insert Decision into left child node
