@@ -3,91 +3,46 @@ using System.Collections;
 
 public class KnightAttack : AttackBase
 {
-    // a lock for attacking
-    bool isAttacking;
-    public float attackCooldown=2;
-    //refrences the attack prefabs. used for their colliders
-    GameObject Attack1prefab;
-    GameObject Attack2prefab;
-    public int attackDamage1 = 5;
-    public int attackDamage2 = 5;
-
-
-    // Use this for initialization
+    private GameObject attack1Prefab;
+    private GameObject attack2Prefab;
+    
     void Start()
     {
-        //assign the colliders in the attack prefabs so they can be called upon
-        isAttacking = false;
-        Transform[] stuff = GetComponentsInChildren<Transform>();
-        foreach (Transform thing in stuff)
+        // Assign the colliders in the attack prefabs so they can be called upon
+        Transform[] childTransforms = GetComponentsInChildren<Transform>();
+        foreach (Transform transform in childTransforms)
         {
-            if (thing.CompareTag("Attack1"))
+            if (transform.tag == "Attack1")
             {
-                Attack1prefab = thing.gameObject;
+                attack1Prefab = transform.gameObject;
             }
-            if (thing.CompareTag("Attack2"))
+            if (transform.tag == "Attack2")
             {
-                Attack2prefab = thing.gameObject;
+                attack2Prefab = transform.gameObject;
             }
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (!isAttacking)
-        {
-            if (Input.GetAxis("PrimaryAttack") > 0)
-            {
-                Attack1();
-            }
-            if (Input.GetAxis("SecondaryAttack") > 0)
-            {
-                Attack2();
-            }
-        }
-    }
-
-    //first attack variation
+    
     public override void Attack1()
     {
-        if (!isAttacking)
-        {
-            isAttacking = true;
-            Attack1prefab.GetComponent<BoxCollider2D>().enabled = true;
-            gameObject.GetComponent<PlayerMovement>().setDirectionLocked(true);
-            Invoke("resetAttack", 1);
-            Invoke("attackCooldownReset", attackCooldown);
-        }
-
+        attack1Prefab.GetComponent<BoxCollider2D>().enabled = true;
+        gameObject.GetComponent<PlayerMovement>().setDirectionLocked(true);
+        Invoke("resetAttack", GetAttack1Delay());
     }
-    //second attack variation
     
     public override void Attack2()
     {
-        if (!isAttacking)
-        {
-            isAttacking = true;
-
-            Attack2prefab.GetComponent<BoxCollider2D>().enabled = true;
-            gameObject.GetComponent<PlayerMovement>().setDirectionLocked(true);
-            Invoke("resetAttack", 1f);
-            Invoke("attackCooldownReset", attackCooldown);
-        }
+        attack2Prefab.GetComponent<BoxCollider2D>().enabled = true;
+        gameObject.GetComponent<PlayerMovement>().setDirectionLocked(true);
+        Invoke("resetAttack", GetAttack2Delay());
     }
     
     public void resetAttack()
     {
-        Attack1prefab.GetComponent<BoxCollider2D>().enabled = false;
-        Attack2prefab.GetComponent<BoxCollider2D>().enabled = false;
+        attack1Prefab.GetComponent<BoxCollider2D>().enabled = false;
+        attack2Prefab.GetComponent<BoxCollider2D>().enabled = false;
         gameObject.GetComponent<PlayerMovement>().setDirectionLocked(false);
     }
-
-    void attackCooldownReset()
-    {
-        isAttacking = false;
-    }
-
 
     public override float GetAttack1Delay()
     {
