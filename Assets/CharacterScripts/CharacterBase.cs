@@ -57,7 +57,7 @@ public class CharacterBase : MonoBehaviour
         --lives;
     }
 
-    void DamageForce(Vector3 forceDirection)
+    public void DamageForce(Vector3 forceDirection)
     {
         gameObject.GetComponent<Rigidbody2D>().AddForce(forceDirection * 1000);
     }

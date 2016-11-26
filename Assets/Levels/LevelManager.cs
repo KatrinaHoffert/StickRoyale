@@ -138,7 +138,7 @@ public class LevelManager : MonoBehaviour
     /// <summary>
     /// Updates the canvas element displaying the player stats.
     /// </summary>
-    /*public void updateStats()
+    public void updateStats()
     {
         Text status = GameObject.Find("Text").GetComponent<Text>();
         
@@ -152,10 +152,10 @@ public class LevelManager : MonoBehaviour
             int playerMaxHp = players[i].GetComponent<CharacterBase>().maxHitpoints;
             status.text += "player " + (i + 1)+ "\n" + characterName + "\n" + playerHp + "/" + playerMaxHp + "\n";
         }
-    }*/
+    }
     
     void FixedUpdate () {
-        //updateStats();
+        updateStats();
 
         for(int i = 0; i < players.Length; i++)
         {
