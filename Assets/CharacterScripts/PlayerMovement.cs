@@ -62,6 +62,16 @@ public class PlayerMovement : MonoBehaviour
 
             MaximalMove(new Vector2(0, jumpForce));
         }
+
+        // TODO: Improve -- prevent spamming
+        if(Input.GetButtonUp("PrimaryAttack"))
+        {
+            GetComponent<AttackBase>().Attack1();
+        }
+        if (Input.GetButtonUp("SecondaryAttack"))
+        {
+            GetComponent<AttackBase>().Attack2();
+        }
     }
 
     /// <summary>
