@@ -15,6 +15,11 @@ public class MageAttack1Trigger : MonoBehaviour
     public int damage = 15;
 
     /// <summary>
+    /// The game object of the caster, who we don't want getting hurt by their own attack.
+    /// </summary>
+    public GameObject casterObject;
+
+    /// <summary>
     /// Players that have taken damage from this effect (so they can't be double tapped).
     /// </summary>
     private List<GameObject> playersAlreadyHit = new List<GameObject>();
@@ -24,7 +29,7 @@ public class MageAttack1Trigger : MonoBehaviour
         if (coll.gameObject.CompareTag("Player") && !playersAlreadyHit.Contains(coll.gameObject))
         {
             // Don't hurt ourselves
-            if (coll.gameObject == transform.parent.gameObject) return;
+            if (coll.gameObject == casterObject) return;
 
             int direction = GetComponent<SpriteRenderer>().flipX ? -1 : 1;
             coll.gameObject.GetComponent<CharacterBase>().Damage(damage);
