@@ -24,6 +24,9 @@ public class CharacterBase : MonoBehaviour
     /// </summary>
     public int facing = 1;
 
+    /// <summary>
+    /// A multiplier to movement speed that this character has.
+    /// </summary>
     public float movementSpeedMultiplier = 1.0f;
 
     void Start()
