@@ -56,7 +56,6 @@ public class PlayerMovement : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         attackBase = GetComponent<AttackBase>();
         characterBase = GetComponent<CharacterBase>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         directionLocked = false;
     }
@@ -70,14 +69,14 @@ public class PlayerMovement : MonoBehaviour
         if (horizontal > 0 && (!directionLocked || facingDirection==1))
         {
             MaximalMove(new Vector2(baseRightMoveForce, 0) * Time.deltaTime);
+            if (characterBase.facing < 0) transform.Rotate(0, 180, 0);
             characterBase.facing = 1;
-            spriteRenderer.flipX = false;
         }
         else if (horizontal < 0 && (!directionLocked || facingDirection == -1))
         {
             MaximalMove(new Vector2(-baseRightMoveForce, 0) * Time.deltaTime);
+            if(characterBase.facing > 0) transform.Rotate(0, 180, 0);
             characterBase.facing = -1;
-            spriteRenderer.flipX = true;
         }
         if (jump && jumpsLeft > 0)
         {
