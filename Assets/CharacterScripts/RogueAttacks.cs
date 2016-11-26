@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System;
 
-public class KnightAttack : AttackBase
+public class RogueAttacks : AttackBase
 {
     private GameObject attack1Prefab;
     private GameObject attack2Prefab;
-    
+
     void Start()
     {
         // Assign the colliders in the attack prefabs so they can be called upon
@@ -26,21 +28,21 @@ public class KnightAttack : AttackBase
         attack1Prefab.GetComponent<BoxCollider2D>().enabled = false;
         attack2Prefab.GetComponent<BoxCollider2D>().enabled = false;
     }
-    
+
     public override void Attack1()
     {
         attack1Prefab.GetComponent<BoxCollider2D>().enabled = true;
         gameObject.GetComponent<PlayerMovement>().setDirectionLocked(true);
         Invoke("resetAttack", GetAttack1Delay());
     }
-    
+
     public override void Attack2()
     {
         attack2Prefab.GetComponent<BoxCollider2D>().enabled = true;
         gameObject.GetComponent<PlayerMovement>().setDirectionLocked(true);
         Invoke("resetAttack", GetAttack2Delay());
     }
-    
+
     public void resetAttack()
     {
         attack1Prefab.GetComponent<BoxCollider2D>().enabled = false;
@@ -55,7 +57,7 @@ public class KnightAttack : AttackBase
 
     public override float GetAttack2Delay()
     {
-        return 0.5f;
+        return 1.0f;
     }
 
     public override bool CanAttack1Hit()
@@ -69,7 +71,7 @@ public class KnightAttack : AttackBase
         // TODO: Placeholder
         return false;
     }
-
+    
     public override double GetAttack1AiWeight()
     {
         // TODO: Placeholder
@@ -81,5 +83,4 @@ public class KnightAttack : AttackBase
         // TODO: Placeholder
         return 1.0;
     }
-
 }
