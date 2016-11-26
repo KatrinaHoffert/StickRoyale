@@ -22,6 +22,7 @@ GameObject:
   - 212: {fileID: 212000013563334330}
   - 50: {fileID: 50000013522611570}
   - 61: {fileID: 61000011409403288}
+  - 95: {fileID: 95000011370649662}
   m_Layer: 0
   m_Name: Rogue
   m_TagString: Player
@@ -73,6 +74,23 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 0.63, y: 0.61}
+--- !u!95 &95000011370649662
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010841828764}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 61e1fa1c8de9a468db7eb8a7b738e384, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!212 &212000013563334330
 SpriteRenderer:
   m_ObjectHideFlags: 1
