@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012757873214}
   - 61: {fileID: 61000013345429098}
-  - 114: {fileID: 114000014124765080}
+  - 114: {fileID: 114000010533418586}
   m_Layer: 0
   m_Name: KnightAttack2
   m_TagString: Attack2
@@ -40,7 +40,7 @@ GameObject:
   - 50: {fileID: 50000013612216438}
   - 61: {fileID: 61000011407587708}
   - 114: {fileID: 114000014181781048}
-  - 114: {fileID: 114000011504990072}
+  - 114: {fileID: 114000012034352288}
   - 95: {fileID: 95000013692232842}
   m_Layer: 0
   m_Name: Knight
@@ -58,7 +58,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011387126826}
   - 61: {fileID: 61000010538802246}
-  - 114: {fileID: 114000012540120448}
+  - 114: {fileID: 114000013075729958}
   m_Layer: 0
   m_Name: KnightAttack1
   m_TagString: Attack1
@@ -183,32 +183,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114000011504990072
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012886910868}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d4e502655e6ac64497fff1b28b388c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackCooldown: 2
-  attackDamage1: 5
-  attackDamage2: 5
---- !u!114 &114000012540120448
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013672185740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2b0de5b3482d624a9d946e2d80d47c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114000014124765080
+--- !u!114 &114000010533418586
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -219,6 +194,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2b0de5b3482d624a9d946e2d80d47c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pushbackMagnitude: 150
+  damage: 20
+--- !u!114 &114000012034352288
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012886910868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d4e502655e6ac64497fff1b28b388c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114000013075729958
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013672185740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd4b58ce0d3e85b4a9be7eb1119e2c35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pushbackMagnitude: 50
+  damage: 10
 --- !u!114 &114000014181781048
 MonoBehaviour:
   m_ObjectHideFlags: 1

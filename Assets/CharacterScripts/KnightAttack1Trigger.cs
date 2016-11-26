@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class KnightAttackTrigger : MonoBehaviour
+public class KnightAttack1Trigger : MonoBehaviour
 {
     /// <summary>
     /// Pushback intensity of the collision.

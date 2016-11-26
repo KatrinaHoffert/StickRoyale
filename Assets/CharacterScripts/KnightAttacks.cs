@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class KnightAttack : AttackBase
+public class KnightAttacks : AttackBase
 {
     private GameObject attack1Prefab;
     private GameObject attack2Prefab;

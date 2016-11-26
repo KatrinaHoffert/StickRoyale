@@ -8,7 +8,7 @@ public class MageAttack2Trigger : MonoBehaviour
     /// <summary>
     /// Pushback intensity of the collision.
     /// </summary>
-    public float pushbackMagnitude = 75;
+    public float pushbackMagnitude = 100;
     
     /// <summary>
     /// Damage taken on collision.
@@ -56,7 +56,7 @@ public class MageAttack2Trigger : MonoBehaviour
             if (coll.gameObject == casterObject) return;
             
             coll.gameObject.GetComponent<CharacterBase>().Damage(damage);
-            coll.gameObject.GetComponent<CharacterBase>().DamageForce(new Vector2(0.25f, 1.0f * direction) * pushbackMagnitude);
+            coll.gameObject.GetComponent<CharacterBase>().DamageForce(new Vector2(0.25f, direction) * pushbackMagnitude);
         }
 
         // No matter what we hit, the projectile gets destroyed

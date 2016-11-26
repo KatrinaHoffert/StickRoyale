@@ -33,7 +33,7 @@ public class MageAttack1Trigger : MonoBehaviour
 
             int direction = GetComponent<SpriteRenderer>().flipX ? -1 : 1;
             coll.gameObject.GetComponent<CharacterBase>().Damage(damage);
-            coll.gameObject.GetComponent<CharacterBase>().DamageForce(transform.right * pushbackMagnitude * direction);
+            coll.gameObject.GetComponent<CharacterBase>().DamageForce(new Vector2(0.25f * direction, 1.0f) * pushbackMagnitude);
             playersAlreadyHit.Add(coll.gameObject);
         }
     }

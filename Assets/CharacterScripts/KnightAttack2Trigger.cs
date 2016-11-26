@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class RogueAttack2Trigger : MonoBehaviour
+public class KnightAttack2Trigger : MonoBehaviour
 {
     /// <summary>
     /// Pushback intensity of the collision.
     /// </summary>
-    public float pushbackMagnitude = 150;
+    public float pushbackMagnitude = 125;
 
     /// <summary>
     /// Damage taken on collision.
@@ -22,7 +22,7 @@ public class RogueAttack2Trigger : MonoBehaviour
 
             int direction = transform.parent.GetComponent<CharacterBase>().facing;
             coll.gameObject.GetComponent<CharacterBase>().Damage(damage);
-            coll.gameObject.GetComponent<CharacterBase>().DamageForce(new Vector2(direction, 0.75f) * pushbackMagnitude);
+            coll.gameObject.GetComponent<CharacterBase>().DamageForce(new Vector2(direction, 0.5f) * pushbackMagnitude);
         }
     }
 }
