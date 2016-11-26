@@ -47,8 +47,8 @@ public class KnightAttack : MonoBehaviour
             }
         }
     }
+
     //first attack variation
-    
     void attack1()
     {
         if (!isAttacking)
@@ -86,6 +86,41 @@ public class KnightAttack : MonoBehaviour
     void attackCooldownReset()
     {
         isAttacking = false;
+    }
+
+
+    public float GetAttack1Delay()
+    {
+        return 0.5f;
+    }
+
+    public float GetAttack2Delay()
+    {
+        return 0.5f;
+    }
+
+    public bool CanAttack1Hit()
+    {
+        // TODO: Placeholder
+        return false;
+    }
+
+    public bool CanAttack2Hit()
+    {
+        // TODO: Placeholder
+        return false;
+    }
+
+    public double GetAttack1AiWeight()
+    {
+        // TODO: Placeholder
+        return 1.0;
+    }
+
+    public double GetAttack2AiWeight()
+    {
+        // TODO: Placeholder
+        return 1.0;
     }
 
 }

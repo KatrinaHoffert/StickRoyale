@@ -93,13 +93,13 @@ public class PlayerMovement : MonoBehaviour
 
         if (timeCanAttackNext <= Time.time && Input.GetButtonUp("PrimaryAttack"))
         {
-            //attackBase.Attack1();
-            //timeCanAttackNext = Time.time + attackBase.GetAttack1Delay();
+            attackBase.Attack1();
+            timeCanAttackNext = Time.time + attackBase.GetAttack1Delay();
         }
         else if (timeCanAttackNext <= Time.time && Input.GetButtonUp("SecondaryAttack"))
         {
-            //attackBase.Attack2();
-            //timeCanAttackNext = Time.time + attackBase.GetAttack2Delay();
+            attackBase.Attack2();
+            timeCanAttackNext = Time.time + attackBase.GetAttack2Delay();
         }
     }
 
