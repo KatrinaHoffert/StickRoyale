@@ -71,6 +71,7 @@ public class LevelManager : MonoBehaviour
                 indicators[i] = Instantiate((GameObject)Resources.Load("PlayerIndicators/Player" + i + "Indicator"));
                 indicators[i].transform.localScale = new Vector3(1, 1, 1);
                 hitbars[i] = Instantiate((GameObject)Resources.Load("PlayerIndicators/HealthBar"));
+                hitbars[i].name = "HealthBar" + i;
             }
         }
 
