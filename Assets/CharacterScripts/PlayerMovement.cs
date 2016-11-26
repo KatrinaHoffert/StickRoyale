@@ -33,11 +33,19 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     public int jumpsLeft;
 
+    /// <summary>
+    /// Time at which we can attack again. Used to add delays for attacks (partially to account for animation
+    /// and partially to prevent spamming).
+    /// </summary>
+    private float timeCanAttackNext = 0f;
+
     private Rigidbody2D rigidBody;
+    private AttackBase attackBase;
 
     void Awake()
     {
         rigidBody = GetComponent<Rigidbody2D>();
+        attackBase = GetComponent<AttackBase>();
     }
     
     void Update()
@@ -62,15 +70,16 @@ public class PlayerMovement : MonoBehaviour
 
             MaximalMove(new Vector2(0, jumpForce));
         }
-
-        // TODO: Improve -- prevent spamming
-        if(Input.GetButtonUp("PrimaryAttack"))
+        
+        if(timeCanAttackNext <= Time.time && Input.GetButtonUp("PrimaryAttack"))
         {
-            GetComponent<AttackBase>().Attack1();
+            attackBase.Attack1();
+            timeCanAttackNext = Time.time + attackBase.GetAttack1Delay();
         }
-        if (Input.GetButtonUp("SecondaryAttack"))
+        else if (timeCanAttackNext <= Time.time && Input.GetButtonUp("SecondaryAttack"))
         {
-            GetComponent<AttackBase>().Attack2();
+            attackBase.Attack2();
+            timeCanAttackNext = Time.time + attackBase.GetAttack2Delay();
         }
     }
 

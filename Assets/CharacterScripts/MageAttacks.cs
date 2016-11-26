@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class MageAttacks : AttackBase
 {
@@ -30,7 +31,17 @@ public class MageAttacks : AttackBase
     {
         // TODO
     }
-    
+
+    public override float GetAttack1Delay()
+    {
+        return 0.5f;
+    }
+
+    public override float GetAttack2Delay()
+    {
+        return 0.25f;
+    }
+
     public override bool CanAttack1Hit()
     {
         // TODO: Placeholder
