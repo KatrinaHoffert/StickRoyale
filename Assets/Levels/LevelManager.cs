@@ -49,7 +49,7 @@ public class LevelManager : MonoBehaviour
                 else
                 {
                     players[i].name = "AI" + i;
-                    // TODO: AI script
+                    players[i].AddComponent<Ai>();
                 }
             }
         }

@@ -30,14 +30,14 @@ public class KnightAttacks : AttackBase
     public override void Attack1()
     {
         attack1Prefab.GetComponent<BoxCollider2D>().enabled = true;
-        gameObject.GetComponent<PlayerMovement>().setDirectionLocked(true);
+        gameObject.GetComponent<CharacterBase>().directionLocked = true;
         Invoke("resetAttack", GetAttack1Delay());
     }
     
     public override void Attack2()
     {
         attack2Prefab.GetComponent<BoxCollider2D>().enabled = true;
-        gameObject.GetComponent<PlayerMovement>().setDirectionLocked(true);
+        gameObject.GetComponent<CharacterBase>().directionLocked = true;
         Invoke("resetAttack", GetAttack2Delay());
     }
     
@@ -45,7 +45,7 @@ public class KnightAttacks : AttackBase
     {
         attack1Prefab.GetComponent<BoxCollider2D>().enabled = false;
         attack2Prefab.GetComponent<BoxCollider2D>().enabled = false;
-        gameObject.GetComponent<PlayerMovement>().setDirectionLocked(false);
+        gameObject.GetComponent<CharacterBase>().directionLocked = false;
     }
 
     public override float GetAttack1Delay()

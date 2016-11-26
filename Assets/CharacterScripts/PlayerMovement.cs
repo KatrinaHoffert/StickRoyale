@@ -39,12 +39,6 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private float timeCanAttackNext = 0f;
 
-    /// <summary>
-    /// Locks the direction the character can move. such as using an attack means you can't turn around till the attack 
-    /// has finished.
-    /// </summary>
-    private bool directionLocked= false;
-
     private Rigidbody2D rigidBody;
     private AttackBase attackBase;
     private CharacterBase characterBase;
@@ -57,7 +51,6 @@ public class PlayerMovement : MonoBehaviour
         attackBase = GetComponent<AttackBase>();
         characterBase = GetComponent<CharacterBase>();
         animator = GetComponent<Animator>();
-        directionLocked = false;
     }
     
     void Update()
@@ -66,13 +59,13 @@ public class PlayerMovement : MonoBehaviour
         var jump = Input.GetButtonDown("Jump");
         int facingDirection = characterBase.facing;
 
-        if (horizontal > 0 && (!directionLocked || facingDirection==1))
+        if (horizontal > 0 && (!characterBase.directionLocked || facingDirection==1))
         {
             MaximalMove(new Vector2(baseRightMoveForce, 0) * Time.deltaTime);
             if (characterBase.facing < 0) transform.Rotate(0, 180, 0);
             characterBase.facing = 1;
         }
-        else if (horizontal < 0 && (!directionLocked || facingDirection == -1))
+        else if (horizontal < 0 && (!characterBase.directionLocked || facingDirection == -1))
         {
             MaximalMove(new Vector2(-baseRightMoveForce, 0) * Time.deltaTime);
             if(characterBase.facing > 0) transform.Rotate(0, 180, 0);
@@ -100,15 +93,6 @@ public class PlayerMovement : MonoBehaviour
             attackBase.Attack2();
             timeCanAttackNext = Time.time + attackBase.GetAttack2Delay();
         }
-    }
-
-    /// <summary>
-    /// Sets the direction lock
-    /// </summary>
-    /// <param name="locked">Value to set to Direction Locked. True = locked, False = unlocked</param>
-    public void setDirectionLocked(bool locked)
-    {
-        directionLocked = locked;
     }
 
     /// <summary>

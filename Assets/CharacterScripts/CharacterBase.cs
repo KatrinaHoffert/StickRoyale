@@ -29,6 +29,12 @@ public class CharacterBase : MonoBehaviour
     /// </summary>
     public float movementSpeedMultiplier = 1.0f;
 
+    /// <summary>
+    /// Locks the direction the character can move. such as using an attack means you can't turn around till the attack 
+    /// has finished.
+    /// </summary>
+    public bool directionLocked = false;
+
     void Start()
     {
         currentHitpoints = maxHitpoints;
