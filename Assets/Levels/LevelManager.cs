@@ -68,9 +68,9 @@ public class LevelManager : MonoBehaviour
                 players[i].transform.position = spawnPoints[i].transform.position;
 
                 // Load the appropriate prefab for the player's indicator
-                indicators[i] = Instantiate((GameObject)Resources.Load("player" + (i + 1)));
+                indicators[i] = Instantiate((GameObject)Resources.Load("PlayerIndicators/Player" + i + "Indicator"));
                 indicators[i].transform.localScale = new Vector3(1, 1, 1);
-                hitbars[i] = Instantiate((GameObject)Resources.Load("redbar"));
+                hitbars[i] = Instantiate((GameObject)Resources.Load("PlayerIndicators/HealthBar"));
             }
         }
 

@@ -38,7 +38,7 @@ GameObject:
   - 4: {fileID: 4000014210414758}
   - 212: {fileID: 212000010663573732}
   m_Layer: 0
-  m_Name: player4
+  m_Name: player0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -117,7 +117,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3b79db3389ca6204e835dacf93f3cb6c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1f1cd362aabdca44691ffc1f62c936d5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
