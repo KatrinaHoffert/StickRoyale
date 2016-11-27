@@ -57,6 +57,7 @@ public class CharacterSelectMenuScript : MonoBehaviour
         Dictionary<int, ControlType> dropdownControlTypes = new Dictionary<int, ControlType>();
         dropdownControlTypes[0] = ControlType.Closed;
         dropdownControlTypes[1] = ControlType.AI;
+        dropdownControlTypes[2] = ControlType.Player;
         return dropdownControlTypes;
     }
     

@@ -55,8 +55,8 @@ public class PlayerMovement : MonoBehaviour
     
     void Update()
     {
-        var horizontal = Input.GetAxis("Horizontal");
-        var jump = Input.GetButtonDown("Jump");
+        var horizontal = Input.GetAxis(gameObject.name+"_Horizontal");
+        var jump = Input.GetButtonDown(gameObject.name+"_Jump");
         int facingDirection = characterBase.facing;
 
         if (horizontal > 0 && (!characterBase.directionLocked || facingDirection==1))
@@ -83,12 +83,12 @@ public class PlayerMovement : MonoBehaviour
         }
         animator.SetFloat("Speed", rigidBody.velocity.x);
 
-        if (timeCanAttackNext <= Time.time && Input.GetButtonUp("PrimaryAttack"))
+        if (timeCanAttackNext <= Time.time && Input.GetButtonUp(gameObject.name+"_PrimaryAttack"))
         {
             attackBase.Attack1();
             timeCanAttackNext = Time.time + attackBase.GetAttack1Delay();
         }
-        else if (timeCanAttackNext <= Time.time && Input.GetButtonUp("SecondaryAttack"))
+        else if (timeCanAttackNext <= Time.time && Input.GetButtonUp(gameObject.name+"_SecondaryAttack"))
         {
             attackBase.Attack2();
             timeCanAttackNext = Time.time + attackBase.GetAttack2Delay();

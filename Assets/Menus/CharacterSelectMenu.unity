@@ -2425,6 +2425,8 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: AI
       m_Image: {fileID: 0}
+    - m_Text: Player
+      m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:

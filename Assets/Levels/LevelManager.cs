@@ -43,7 +43,7 @@ public class LevelManager : MonoBehaviour
                 // Name the objects for debugging
                 if(controlSlots[i].controlType == ControlType.Player)
                 {
-                    players[i].name = "Player";
+                    players[i].name = "P"+i;
                     players[i].AddComponent<PlayerMovement>();
                 }
                 else
