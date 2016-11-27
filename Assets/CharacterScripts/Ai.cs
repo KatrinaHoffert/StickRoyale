@@ -19,9 +19,25 @@ public class Ai : MonoBehaviour
     void Start()
     {
         decisionTree = DecisionTree.Decision(
-            PlayerInAttackRange,
-            DecisionTree.Action(AttackPlayer),
-            DecisionTree.Action(DoNothing)
+            AreWeBusy,
+            ifTrue: DecisionTree.Action(() => {}),
+            ifFalse: DecisionTree.Decision(
+                AreWeFalling,
+                ifTrue: DecisionTree.Action(JumpTowardsFloor),
+                ifFalse: DecisionTree.Decision(
+                    PlayerInAttackRange,
+                    ifTrue: DecisionTree.Decision(
+                        AreAttacksOnCooldown,
+                        ifTrue: DecisionTree.Action(StepAway),
+                        ifFalse: DecisionTree.Action(Attack)
+                    ),
+                    ifFalse: DecisionTree.Decision(
+                        PlayerInAttackRangeIfWeTurn,
+                        ifTrue: DecisionTree.Action(Turn),
+                        ifFalse: DecisionTree.Action(MoveTowardsPlayer)
+                    )
+                )
+            )
         );
     }
 
@@ -29,19 +45,59 @@ public class Ai : MonoBehaviour
     {
         decisionTree.Search();
     }
-
-    private bool PlayerInAttackRange()
+    
+    private bool AreWeBusy()
     {
+        // TODO: Implement
         return true;
     }
 
-    private void AttackPlayer()
+    private bool AreWeFalling()
     {
-        attackBase.Attack1();
+        // TODO: Implement
+        return false;
     }
 
-    private void DoNothing()
+    private void JumpTowardsFloor()
     {
+        // TODO: Implement
+    }
 
+    private bool PlayerInAttackRange()
+    {
+        // TODO: Implement
+        return false;
+    }
+
+    private bool AreAttacksOnCooldown()
+    {
+        // TODO: Implement
+        return false;
+    }
+
+    private void StepAway()
+    {
+        // TODO: Implement
+    }
+    
+    private void Attack()
+    {
+        // TODO: Implement
+    }
+
+    private bool PlayerInAttackRangeIfWeTurn()
+    {
+        // TODO: Implement
+        return false;
+    }
+
+    private void Turn()
+    {
+        // TODO: Implement
+    }
+
+    private void MoveTowardsPlayer()
+    {
+        // TODO: Implement
     }
 }
