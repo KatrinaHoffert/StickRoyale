@@ -5,15 +5,25 @@ using UnityEngine.Networking;
 
 public class Ai : MonoBehaviour
 {
-    DecisionTree decisionTree;
+    /// <summary>
+    /// The decision tree that controls AI behavior.
+    /// </summary>
+    private DecisionTree decisionTree;
+
+    /// <summary>
+    /// True when the AI is in the middle of some action (and thus must not try and perform another).
+    /// </summary>
+    private bool areWeBusy;
 
     private CharacterBase characterBase;
     private AttackBase attackBase;
+    private Rigidbody2D rigidBody;
 
     void Awake()
     {
         characterBase = GetComponent<CharacterBase>();
         attackBase = GetComponent<AttackBase>();
+        rigidBody = GetComponent<Rigidbody2D>();
     }
 
     void Start()
@@ -48,14 +58,19 @@ public class Ai : MonoBehaviour
     
     private bool AreWeBusy()
     {
-        // TODO: Implement
-        return true;
+        return areWeBusy;
     }
 
     private bool AreWeFalling()
     {
-        // TODO: Implement
-        return false;
+        // If there's a floor beneath us, we're definitely fine. Otherwise we look at our velocity to
+        // see if we're falling. This ensures we aren't "falling" if we're falling onto a platform.
+        var hits = Physics2D.RaycastAll(transform.position, Vector2.down);
+        foreach (var hit in hits)
+        {
+            if (hit.transform.tag == "Floor") return false;
+        }
+        return rigidBody.velocity.y < 0;
     }
 
     private void JumpTowardsFloor()
