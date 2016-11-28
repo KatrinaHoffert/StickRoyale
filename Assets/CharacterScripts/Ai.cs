@@ -16,12 +16,6 @@ public class Ai : MonoBehaviour
     /// The vertical force applied per jum.
     /// </summary>
     public float jumpVerticalForce = 300f;
-    
-    /// <summary>
-    /// Horizontal force applied in a jump. Needed because the horizontal movement can be done only once for
-    /// an AI jumping (unlike how a player continuously applies is).
-    /// </summary>
-    public float jumpHorizontalForce = 400f;
 
     /// <summary>
     /// Maximum velocity in the horizontal direction. This ensures that once we reach the max
@@ -106,29 +100,37 @@ public class Ai : MonoBehaviour
 
     private void JumpTowardsFloor()
     {
-        if (!canJump) return;
-
         // Identify nearest floor object
         var floors = GameObject.FindGameObjectsWithTag("Floor");
         GameObject nearestFloor = floors[0];
-        float nearestFloorDistance = Vector3.Distance(transform.position, nearestFloor.transform.position);
+        float nearestFloorDistance = Vector2.Distance(transform.position, nearestFloor.transform.position);
         foreach (var floor in floors.Skip(1))
         {
-            var distanceToFloor = Vector3.Distance(transform.position, floor.transform.position);
-            if(distanceToFloor < nearestFloorDistance)
+            var distanceToFloor = Vector2.Distance(transform.position, floor.transform.position);
+            if (distanceToFloor < nearestFloorDistance)
             {
+                // Ignore if directly above
+                var platformAngle = Vector2.Angle(transform.position, floor.transform.position);
+                if (platformAngle > 75 || platformAngle < 135) continue;
+
                 nearestFloor = floor;
                 nearestFloorDistance = distanceToFloor;
             }
         }
 
-        // Reset vertical velocity before a jump -- consistent with player
-        rigidBody.velocity = new Vector2(rigidBody.velocity.x, 0);
 
-        // Jump in that direction
+        if (canJump)
+        {
+            // Reset vertical velocity before a jump -- consistent with player
+            rigidBody.velocity = new Vector2(rigidBody.velocity.x, 0);
+            MaximalMove(new Vector2(0, jumpVerticalForce));
+            canJump = false;
+        }
+        
+        // Move in direction of platform until on it or under it
         var direction = Math.Sign(nearestFloor.transform.position.x - transform.position.x);
-        MaximalMove(new Vector2(400f * direction, jumpVerticalForce));
-        canJump = false;
+        Debug.Log("Moveing: " + (baseRightMoveForce * direction * Time.fixedDeltaTime));
+        MaximalMove(new Vector2(baseRightMoveForce * direction * Time.fixedDeltaTime, 0));
     }
 
     private bool PlayerInAttackRange()
