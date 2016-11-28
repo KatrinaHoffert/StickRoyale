@@ -62,25 +62,23 @@ public class RogueAttacks : AttackBase
 
     public override bool CanAttack1Hit(int facing)
     {
-        // TODO: Placeholder
-        return false;
+        var raycast = Physics2D.Raycast(transform.position + new Vector3(0.5f, 0, 0) * facing, Vector2.right * facing, 0.14f);
+        return raycast.transform != null ? raycast.transform.tag == "Player" : false;
     }
 
     public override bool CanAttack2Hit(int facing)
     {
-        // TODO: Placeholder
-        return false;
+        var raycast = Physics2D.Raycast(transform.position + new Vector3(0.5f, 0, 0) * facing, Vector2.right * facing, 0.2f);
+        return raycast.transform != null ? raycast.transform.tag == "Player" : false;
     }
     
     public override float GetAttack1AiWeight()
     {
-        // TODO: Placeholder
-        return 1.0f;
+        return 0.5f;
     }
 
     public override float GetAttack2AiWeight()
     {
-        // TODO: Placeholder
         return 1.0f;
     }
 }
