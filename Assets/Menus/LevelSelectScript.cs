@@ -40,6 +40,7 @@ public class LevelSelectScript : MonoBehaviour
                 if (string.IsNullOrEmpty(controlSlots[slot].chosenCharacter))
                 {
                     controlSlots[slot].chosenCharacter = characterOptions[UnityEngine.Random.Range(0, characterOptions.Length)];
+                    controlSlots[slot].chosenCharacter = "Mage";
                 }
             }
         }

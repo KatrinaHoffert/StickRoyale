@@ -56,27 +56,27 @@ public class MageAttacks : AttackBase
         return 0.75f;
     }
 
-    public override bool CanAttack1Hit()
+    public override bool CanAttack1Hit(int facing)
     {
-        // TODO: Placeholder
-        return false;
+        var raycast = Physics2D.Raycast(transform.position + new Vector3(0.5f, 0, 0) * facing, Vector2.right * facing, 0.3f);
+        return raycast.transform != null ? raycast.transform.tag == "Player" : false;
     }
 
-    public override bool CanAttack2Hit()
+    public override bool CanAttack2Hit(int facing)
     {
-        // TODO: Placeholder
-        return false;
+        var raycast = Physics2D.Raycast(transform.position + new Vector3(0.5f, 0, 0) * facing, Vector2.right * facing, 50f);
+        return raycast.transform != null ? raycast.transform.tag == "Player" : false;
     }
     
-    public override double GetAttack1AiWeight()
+    public override float GetAttack1AiWeight()
     {
-        // TODO: Placeholder
-        return 1.0;
+        return 0.75f;
     }
 
-    public override double GetAttack2AiWeight()
+    public override float GetAttack2AiWeight()
     {
-        // TODO: Placeholder
-        return 1.0;
+        // Depends on distance -- closer = higher weight
+        var raycast = Physics2D.Raycast(transform.position + new Vector3(0.5f, 0, 0), Vector2.right, 50f);
+        return 1.0f - raycast.distance / 100;
     }
 }

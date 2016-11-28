@@ -24,6 +24,12 @@ public class Ai : MonoBehaviour
     float maxHorizontalVelocity = 5f;
 
     /// <summary>
+    /// Time at which we can attack again. Used to add delays for attacks (partially to account for animation
+    /// and partially to prevent spamming).
+    /// </summary>
+    private float timeCanAttackNext = 0f;
+
+    /// <summary>
     /// The decision tree that controls AI behavior.
     /// </summary>
     private DecisionTree decisionTree;
@@ -117,8 +123,7 @@ public class Ai : MonoBehaviour
                 nearestFloorDistance = distanceToFloor;
             }
         }
-
-
+        
         if (canJump)
         {
             // Reset vertical velocity before a jump -- consistent with player
@@ -129,20 +134,17 @@ public class Ai : MonoBehaviour
         
         // Move in direction of platform until on it or under it
         var direction = Math.Sign(nearestFloor.transform.position.x - transform.position.x);
-        Debug.Log("Moveing: " + (baseRightMoveForce * direction * Time.fixedDeltaTime));
         MaximalMove(new Vector2(baseRightMoveForce * direction * Time.fixedDeltaTime, 0));
     }
 
     private bool PlayerInAttackRange()
     {
-        // TODO: Implement
-        return false;
+        return attackBase.CanAttack1Hit(characterBase.facing) || attackBase.CanAttack2Hit(characterBase.facing);
     }
 
     private bool AreAttacksOnCooldown()
     {
-        // TODO: Implement
-        return false;
+        return timeCanAttackNext >= Time.time;
     }
 
     private void StepAway()
@@ -152,18 +154,44 @@ public class Ai : MonoBehaviour
     
     private void Attack()
     {
-        // TODO: Implement
+        // Choose an attack
+        if(attackBase.CanAttack1Hit(characterBase.facing) && attackBase.CanAttack2Hit(characterBase.facing))
+        {
+            // Pick best, randomly weighing
+            var attack1Weight = attackBase.GetAttack1AiWeight();
+            var attack2Weight = attackBase.GetAttack2AiWeight();
+            if (UnityEngine.Random.Range(0, attack1Weight + attack2Weight) <= attack1Weight)
+            {
+                attackBase.Attack1();
+                timeCanAttackNext = Time.time + attackBase.GetAttack1Delay();
+            }
+            else
+            {
+                attackBase.Attack2();
+                timeCanAttackNext = Time.time + attackBase.GetAttack2Delay();
+            }
+        }
+        else if(attackBase.CanAttack1Hit(characterBase.facing))
+        {
+            attackBase.Attack1();
+            timeCanAttackNext = Time.time + attackBase.GetAttack1Delay();
+        }
+        else
+        {
+            attackBase.Attack2();
+            timeCanAttackNext = Time.time + attackBase.GetAttack2Delay();
+        }
     }
 
     private bool PlayerInAttackRangeIfWeTurn()
     {
-        // TODO: Implement
-        return false;
+        return attackBase.CanAttack1Hit(characterBase.facing * -1) || attackBase.CanAttack2Hit(characterBase.facing * -1);
     }
 
     private void Turn()
     {
-        // TODO: Implement
+        transform.Rotate(0, 180, 0);
+        characterBase.facing = characterBase.facing * -1;
     }
 
     private void MoveTowardsPlayer()

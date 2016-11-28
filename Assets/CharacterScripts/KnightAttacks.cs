@@ -58,28 +58,28 @@ public class KnightAttacks : AttackBase
         return 0.5f;
     }
 
-    public override bool CanAttack1Hit()
+    public override bool CanAttack1Hit(int facing)
     {
         // TODO: Placeholder
         return false;
     }
 
-    public override bool CanAttack2Hit()
+    public override bool CanAttack2Hit(int facing)
     {
         // TODO: Placeholder
         return false;
     }
 
-    public override double GetAttack1AiWeight()
+    public override float GetAttack1AiWeight()
     {
         // TODO: Placeholder
-        return 1.0;
+        return 1.0f;
     }
 
-    public override double GetAttack2AiWeight()
+    public override float GetAttack2AiWeight()
     {
         // TODO: Placeholder
-        return 1.0;
+        return 1.0f;
     }
 
 }
