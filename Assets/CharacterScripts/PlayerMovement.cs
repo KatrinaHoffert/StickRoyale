@@ -42,7 +42,6 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rigidBody;
     private AttackBase attackBase;
     private CharacterBase characterBase;
-    private SpriteRenderer spriteRenderer;
     private Animator animator;
 
     void Start()
