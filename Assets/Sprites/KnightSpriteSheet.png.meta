@@ -1,0 +1,284 @@
+fileFormatVersion: 2
+guid: 00cd43879a1eb6f479a90d49b90ee721
+timeCreated: 1480367858
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: KnightSpriteSheet_0
+    21300002: KnightSpriteSheet_1
+    21300004: KnightSpriteSheet_2
+    21300006: KnightSpriteSheet_3
+    21300008: KnightSpriteSheet_4
+    21300010: KnightSpriteSheet_5
+    21300012: KnightSpriteSheet_6
+    21300014: KnightSpriteSheet_7
+    21300016: KnightSpriteSheet_8
+    21300018: KnightSpriteSheet_9
+    21300020: KnightSpriteSheet_10
+    21300022: KnightSpriteSheet_11
+    21300024: KnightSpriteSheet_12
+    21300026: KnightSpriteSheet_13
+    21300028: KnightSpriteSheet_14
+    21300030: KnightSpriteSheet_15
+    21300032: KnightSpriteSheet_16
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: KnightSpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 137
+        width: 41
+        height: 55
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KnightSpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 139
+        width: 41
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KnightSpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 137
+        width: 40
+        height: 55
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KnightSpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 137
+        width: 41
+        height: 55
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KnightSpriteSheet_4
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 138
+        width: 41
+        height: 54
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KnightSpriteSheet_5
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 137
+        width: 41
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KnightSpriteSheet_6
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 69
+        width: 43
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KnightSpriteSheet_7
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 70
+        width: 49
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KnightSpriteSheet_9
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 70
+        width: 65
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KnightSpriteSheet_10
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 70
+        width: 47
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KnightSpriteSheet_11
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 70
+        width: 67
+        height: 66
+      alignment: 9
+      pivot: {x: 0.22514293, y: 0.49066705}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KnightSpriteSheet_12
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 5
+        width: 38
+        height: 61
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KnightSpriteSheet_13
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 5
+        width: 55
+        height: 54
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KnightSpriteSheet_14
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 9
+        width: 44
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KnightSpriteSheet_15
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 3
+        width: 104
+        height: 61
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KnightSpriteSheet_16
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 2
+        width: 81
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
