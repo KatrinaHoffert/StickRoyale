@@ -164,26 +164,22 @@ public class Ai : MonoBehaviour
             {
                 attackBase.Attack1();
                 timeCanAttackNext = Time.time + attackBase.GetAttack1Delay();
-                Debug.Log("Attacking1!");
             }
             else
             {
                 attackBase.Attack2();
                 timeCanAttackNext = Time.time + attackBase.GetAttack2Delay();
-                Debug.Log("Attacking2!");
             }
         }
         else if(attackBase.CanAttack1Hit(characterBase.facing))
         {
             attackBase.Attack1();
             timeCanAttackNext = Time.time + attackBase.GetAttack1Delay();
-            Debug.Log("Attacking1!");
         }
         else
         {
             attackBase.Attack2();
             timeCanAttackNext = Time.time + attackBase.GetAttack2Delay();
-            Debug.Log("Attacking2!");
         }
     }
 
