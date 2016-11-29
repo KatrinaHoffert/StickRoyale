@@ -212,16 +212,62 @@ public class Ai : MonoBehaviour
         // Platforms are the same? Just move towards the player.
         if(targetPlatform == ourPlatform)
         {
-            // Leave a ~0.5 gap where we don't move with the target on top of us
+            // Leave a ~0.5 gap so we don't move with the target on top of us
             var horizontalDistance = closestPlayer.transform.position.x - transform.position.x;
             if(Math.Abs(horizontalDistance) > 0.5)
             {
+                // Turn around if there's a change in direction
                 int direction = Math.Sign(horizontalDistance);
+                if (direction != characterBase.facing) Turn();
+
                 MaximalMove(new Vector2(baseRightMoveForce * direction * Time.fixedDeltaTime, 0));
             }
         }
+        // Otherwise figure out how to get to the target's platform -- if they aren't on a platform,
+        // do nothing.
+        else if(targetPlatform != null)
+        {
+            // TODO: This might occur if we're hanging at the edge. Should find way to fix that.
+            if (ourPlatform == null) return;
 
-        Debug.Log(gameObject.name + " is on " + ourPlatform.name + " and their target (" + closestPlayer.name + ") is on " + targetPlatform);
+            // Find the jump point on our platform in the right direction
+            int direction = Math.Sign(closestPlayer.transform.position.x - transform.position.x);
+            var jumpSpots = ourPlatform.transform.Cast<Transform>().Where(child => child.tag == "JumpSpot");
+
+            // Take the one in the direction towards our target if there is one or whatever the sole one
+            // is, otherwise
+            Transform jumpSpot;
+            jumpSpot = jumpSpots.Where(spot => Math.Sign(spot.transform.position.x - transform.position.x) == direction).FirstOrDefault();
+            if (jumpSpot == null) jumpSpot = jumpSpots.FirstOrDefault();
+            
+            // If still no jump spots, we're stuck
+            if(jumpSpot == null)
+            {
+                Debug.Log(gameObject.name + " is stuck on " + ourPlatform);
+                return;
+            }
+
+            // Actually move towards the jump spot
+            var distanceToJumpSpot = jumpSpot.position.x - transform.position.x;
+            MaximalMove(new Vector2(baseRightMoveForce * direction * Time.fixedDeltaTime, 0));
+
+            // If we're close, jump
+            if(Math.Abs(distanceToJumpSpot) < 0.5 && canJump)
+            {
+                rigidBody.velocity = new Vector2(rigidBody.velocity.x, 0);
+                MaximalMove(new Vector2(300f * direction, jumpVerticalForce));
+                canJump = false;
+            }
+            // Can't jump multiple times, silly. But stop us from moving so we don't lose the spot...
+            else if(Math.Abs(distanceToJumpSpot) < 0.5 && !canJump)
+            {
+                rigidBody.velocity = new Vector2(0, rigidBody.velocity.y);
+            }
+
+            //Debug.Log(gameObject.name + " moving towards jump spot " + jumpSpot + " (" + distanceToJumpSpot + " away)");
+        }
+
+        //Debug.Log(gameObject.name + " is on " + ourPlatform + " and their target (" + closestPlayer.name + ") is on " + targetPlatform);
     }
 
     /// <summary>

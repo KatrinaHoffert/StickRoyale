@@ -7,6 +7,7 @@ TagManager:
   - Floor
   - Attack1
   - Attack2
+  - JumpSpot
   layers:
   - Default
   - TransparentFX
