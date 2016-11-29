@@ -209,6 +209,13 @@ public class Ai : MonoBehaviour
         var targetPlatform = FindPlatformPlayerIsOn(closestPlayer);
         var ourPlatform = FindPlatformPlayerIsOn(gameObject);
 
+        // Platforms are the same? Just move towards the player.
+        if(targetPlatform == ourPlatform)
+        {
+            int direction = Math.Sign(closestPlayer.transform.position.x - transform.position.x);
+            MaximalMove(new Vector2(baseRightMoveForce * direction * Time.fixedDeltaTime, 0));
+        }
+
         Debug.Log(gameObject.name + " is on " + ourPlatform.name + " and their target (" + closestPlayer.name + ") is on " + targetPlatform);
     }
 
