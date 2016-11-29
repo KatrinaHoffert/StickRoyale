@@ -94,13 +94,7 @@ public class Ai : MonoBehaviour
 
     private bool AreWeFalling()
     {
-        // If there's a floor beneath us, we're definitely fine. Otherwise we look at our velocity to
-        // see if we're falling. This ensures we aren't "falling" if we're falling onto a platform.
-        var hits = Physics2D.RaycastAll(transform.position, Vector2.down);
-        foreach (var hit in hits)
-        {
-            if (hit.transform.tag == "Floor") return false;
-        }
+        if(FindPlatformPlayerIsOn(gameObject) != null) return false;
         return rigidBody.velocity.y < 0;
     }
 
@@ -196,7 +190,41 @@ public class Ai : MonoBehaviour
 
     private void MoveTowardsPlayer()
     {
-        // TODO: Implement
+        // First pick a target player -- for now just gonna pick whoever is closest
+        var players = GameObject.FindGameObjectsWithTag("Player").Where(player => player != gameObject).ToArray();
+
+        var closestPlayer = players[0];
+        var closestPlayerDistance = Vector3.Distance(closestPlayer.transform.position, transform.position);
+        for (int i = 1; i < players.Length; ++i)
+        {
+            var distanceToPlayer = Vector3.Distance(players[i].transform.position, transform.position);
+            if (distanceToPlayer < closestPlayerDistance)
+            {
+                closestPlayer = players[i];
+                closestPlayerDistance = distanceToPlayer;
+            }
+        }
+
+        // Figure out platforms each are on
+        var targetPlatform = FindPlatformPlayerIsOn(closestPlayer);
+        var ourPlatform = FindPlatformPlayerIsOn(gameObject);
+
+        Debug.Log(gameObject.name + " is on " + ourPlatform.name + " and their target (" + closestPlayer.name + ") is on " + targetPlatform);
+    }
+
+    /// <summary>
+    /// Returns the platform that the player is either on or over (could be in the air above it).
+    /// </summary>
+    /// <param name="player">The player to check.</param>
+    /// <returns>The game object for the platform that they're on, if there is one. Null otherwise.</returns>
+    private GameObject FindPlatformPlayerIsOn(GameObject player)
+    {
+        var hits = Physics2D.RaycastAll(player.transform.position, Vector2.down);
+        foreach (var hit in hits)
+        {
+            if (hit.transform.tag == "Floor") return hit.transform.gameObject;
+        }
+        return null;
     }
 
     /// <summary>
