@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 40847f2abb7d6664bbcec4474b8bd35b
-timeCreated: 1480368363
+timeCreated: 1480375634
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -189,11 +189,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 263
-        y: 69
-        width: 76
-        height: 60
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        y: 53
+        width: 88
+        height: 76
+      alignment: 9
+      pivot: {x: 0.596714, y: 0.5689138}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -253,12 +253,12 @@ TextureImporter:
       name: MageSpriteSheet_21
       rect:
         serializedVersion: 2
-        x: 255
-        y: 3
+        x: 265
+        y: 4
         width: 87
-        height: 42
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        height: 49
+      alignment: 9
+      pivot: {x: 0.51884514, y: 0.73422015}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

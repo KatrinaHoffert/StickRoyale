@@ -9,9 +9,9 @@ public class LevelSelectScript : MonoBehaviour
     /// </summary>
     public readonly string[] characterOptions =
     {
-        "Mage",
-        "Rogue",
-        "Knight"
+        "Mage Two",
+        "Rogue One",
+        "Knight One"
     };
 
     public void Level1Clicked()
