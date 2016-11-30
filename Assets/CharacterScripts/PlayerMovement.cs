@@ -3,6 +3,9 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
 
+/// <summary>
+/// Manages the movement of human players (either p0 or p1).
+/// </summary>
 public class PlayerMovement : MonoBehaviour
 {
     /// <summary>

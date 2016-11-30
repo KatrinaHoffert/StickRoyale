@@ -3,6 +3,12 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// The LevelManager performs all the fundamental actions that are needed for any particular level to work.
+/// All this functionality is necessary no matter what the level is. Specifically, it'll create the characters,
+/// attach appropriate scripts to each, handle the spawning (initially and on death), and handle the checking
+/// of victory conditions (and thus the progression to the next screen).
+/// </summary>
 public class LevelManager : MonoBehaviour
 {
     /// <summary>

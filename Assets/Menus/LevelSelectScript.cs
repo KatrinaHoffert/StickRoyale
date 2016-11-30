@@ -2,6 +2,9 @@
 using UnityEngine.SceneManagement;
 using Newtonsoft.Json;
 
+/// <summary>
+/// Scripting for the LevelSelectMenu.
+/// </summary>
 public class LevelSelectScript : MonoBehaviour
 {
     /// <summary>

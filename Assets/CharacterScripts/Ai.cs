@@ -4,6 +4,9 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Networking;
 
+/// <summary>
+/// Scripts the entire functionality of the AI. All movement, attacks, everything.
+/// </summary>
 public class Ai : MonoBehaviour
 {
     /// <summary>

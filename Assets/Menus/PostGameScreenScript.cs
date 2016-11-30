@@ -4,6 +4,9 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/// <summary>
+/// Scripting for the PostGameScreen.
+/// </summary>
 public class PostGameScreenScript : MonoBehaviour
 {
     void Start()

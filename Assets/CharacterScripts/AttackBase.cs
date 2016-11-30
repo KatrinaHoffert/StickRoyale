@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// Basic functionality of the attacks. Includes the ability to actually perform the attack, to figure
+/// out how long delays are, and AI helping methods.
+/// </summary>
 public abstract class AttackBase : MonoBehaviour
 {
     protected CharacterBase characterBase;

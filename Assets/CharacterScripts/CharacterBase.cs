@@ -2,6 +2,10 @@
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
+/// <summary>
+/// A variety of features that are common to every character. Managing of HP and lives are the
+/// most important here, but there's also some movement related stuff.
+/// </summary>
 public class CharacterBase : MonoBehaviour
 {
     /// <summary>

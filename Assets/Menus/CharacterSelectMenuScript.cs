@@ -11,6 +11,12 @@ using System;
 using UnityEngine.Networking.NetworkSystem;
 using Newtonsoft.Json;
 
+/// <summary>
+/// Scripting for the CharacterSelectMenu. This is the most complicated of the menus, as we have to
+/// allow multiple players to select their characters and there's multiple control slots that each
+/// player can have (see <see cref="ControlSlot"/>). The whole purpose of this menu is simply to
+/// populate the <see cref="controlSlots"/>.
+/// </summary>
 public class CharacterSelectMenuScript : MonoBehaviour
 {
     /// <summary>

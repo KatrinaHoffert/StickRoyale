@@ -3,6 +3,10 @@ using System.Collections;
 using UnityEngine.Networking;
 using System;
 
+/// <summary>
+/// Functionality related to the control slots. They're really just an array of a control type and
+/// a chosen character, but we also want to initialize the slots that make up the game's players.
+/// </summary>
 public class ControlSlotsScript : MonoBehaviour
 {
     /// <summary>

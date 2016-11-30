@@ -2,6 +2,9 @@
 using System.Collections;
 using System;
 
+/// <summary>
+/// An easily searched decision tree for structuring AI decision making.
+/// </summary>
 public class DecisionTree
 {
     /// <summary>
