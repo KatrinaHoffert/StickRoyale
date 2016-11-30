@@ -90,6 +90,34 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &15875490
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 15875491}
+  m_Layer: 0
+  m_Name: JumpSpot1
+  m_TagString: JumpSpot
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &15875491
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 15875490}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.423, y: 0.524, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 137421203}
+  m_RootOrder: 0
 --- !u!1 &81006989
 GameObject:
   m_ObjectHideFlags: 0
@@ -130,7 +158,8 @@ Transform:
   m_LocalPosition: {x: 15.4, y: -0.06, z: -10}
   m_LocalScale: {x: 3.796672, y: 6.911428, z: 0.9251133}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
+  m_Children:
+  - {fileID: 1564676556}
   m_Father: {fileID: 0}
   m_RootOrder: 5
 --- !u!1 &137421201
@@ -173,7 +202,8 @@ Transform:
   m_LocalPosition: {x: 2.91, y: 0.04, z: -10}
   m_LocalScale: {x: 6.9968686, y: 3.1408124, z: 0.8775984}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
+  m_Children:
+  - {fileID: 15875491}
   m_Father: {fileID: 0}
   m_RootOrder: 3
 --- !u!1 &203080468
@@ -216,7 +246,8 @@ Transform:
   m_LocalPosition: {x: 3, y: 3.79, z: -10}
   m_LocalScale: {x: 1.908777, y: 0.3543302, z: 0.8775984}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
+  m_Children:
+  - {fileID: 1165666623}
   m_Father: {fileID: 0}
   m_RootOrder: 2
 --- !u!1 &425726722
@@ -259,9 +290,39 @@ Transform:
   m_LocalPosition: {x: 10.42, y: 0.04, z: -10}
   m_LocalScale: {x: 2.5910149, y: 3.1408124, z: 0.8775984}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
+  m_Children:
+  - {fileID: 2132826294}
+  - {fileID: 455644746}
   m_Father: {fileID: 0}
   m_RootOrder: 4
+--- !u!1 &455644745
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 455644746}
+  m_Layer: 0
+  m_Name: JumpSpot3
+  m_TagString: JumpSpot
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &455644746
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 455644745}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.278, y: 0.524, z: 0}
+  m_LocalScale: {x: 2.7004352, y: 0.99999994, z: 0.99999994}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 425726724}
+  m_RootOrder: 1
 --- !u!1 &471180651
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,7 +453,9 @@ Transform:
   m_LocalPosition: {x: 8.18, y: 4.35, z: -10}
   m_LocalScale: {x: 1.908777, y: 0.3543302, z: 0.8775984}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
+  m_Children:
+  - {fileID: 1477768997}
+  - {fileID: 1809965497}
   m_Father: {fileID: 0}
   m_RootOrder: 11
 --- !u!1 &1134670265
@@ -451,6 +514,90 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 9
+--- !u!1 &1165666622
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1165666623}
+  m_Layer: 0
+  m_Name: JumpSpot7
+  m_TagString: JumpSpot
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1165666623
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1165666622}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.316, y: 0.33, z: 0}
+  m_LocalScale: {x: 3.6656287, y: 8.864082, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 203080470}
+  m_RootOrder: 0
+--- !u!1 &1477768996
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1477768997}
+  m_Layer: 0
+  m_Name: JumpSpot5
+  m_TagString: JumpSpot
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1477768997
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1477768996}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.5, y: 0.76, z: 0}
+  m_LocalScale: {x: 3.6656287, y: 8.864082, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 890492871}
+  m_RootOrder: 0
+--- !u!1 &1564676555
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1564676556}
+  m_Layer: 0
+  m_Name: JumpSpot4
+  m_TagString: JumpSpot
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1564676556
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1564676555}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.512, y: 0.491, z: 0}
+  m_LocalScale: {x: 1.8428949, y: 0.4544375, z: 0.9486386}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 81006991}
+  m_RootOrder: 0
 --- !u!1 &1568845481
 GameObject:
   m_ObjectHideFlags: 0
@@ -578,6 +725,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!1 &1809965496
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1809965497}
+  m_Layer: 0
+  m_Name: JumpSpot6
+  m_TagString: JumpSpot
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1809965497
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1809965496}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.523, y: 0.7599999, z: 0}
+  m_LocalScale: {x: 3.6656287, y: 8.864082, z: 0.99999994}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 890492871}
+  m_RootOrder: 1
 --- !u!1 &2025491012
 GameObject:
   m_ObjectHideFlags: 0
@@ -606,3 +781,31 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
+--- !u!1 &2132826293
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2132826294}
+  m_Layer: 0
+  m_Name: JumpSpot2
+  m_TagString: JumpSpot
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2132826294
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2132826293}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.525, y: 0.524, z: 0}
+  m_LocalScale: {x: 2.7004354, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 425726724}
+  m_RootOrder: 0
