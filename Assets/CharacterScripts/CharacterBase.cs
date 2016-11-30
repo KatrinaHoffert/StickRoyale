@@ -82,7 +82,7 @@ public class CharacterBase : MonoBehaviour
     {
         currentHitpoints = maxHitpoints;
         --lives;
-        anim.SetTrigger("Death");
+        //anim.SetTrigger("Death");
     }
 
     /// <summary>
