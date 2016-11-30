@@ -32,6 +32,11 @@ public class PlayerBase : MonoBehaviour
     /// </summary>
     protected float timeCanAttackNext = 0f;
 
+    /// <summary>
+    /// True if we're able to jump.
+    /// </summary>
+    protected bool canJump;
+
     protected CharacterBase characterBase;
     protected AttackBase attackBase;
     protected Rigidbody2D rigidBody;
@@ -43,12 +48,6 @@ public class PlayerBase : MonoBehaviour
         attackBase = GetComponent<AttackBase>();
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-    }
-    
-    protected void Turn()
-    {
-        transform.Rotate(0, 180, 0);
-        characterBase.facing = characterBase.facing * -1;
     }
 
     /// <summary>
@@ -64,6 +63,15 @@ public class PlayerBase : MonoBehaviour
         if (Math.Abs(horizontalVelocity) > maxHorizontalVelocity * characterBase.movementSpeedMultiplier)
         {
             rigidBody.velocity = new Vector2(maxHorizontalVelocity * Math.Sign(horizontalVelocity) * characterBase.movementSpeedMultiplier, rigidBody.velocity.y);
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        if (coll.gameObject.tag == "Floor")
+        {
+            canJump = true;
+            animator.SetBool("Grounded", true);
         }
     }
 }

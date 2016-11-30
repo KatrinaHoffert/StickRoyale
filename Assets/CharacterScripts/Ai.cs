@@ -18,11 +18,6 @@ public class Ai : PlayerBase
     /// True when the AI is in the middle of some action (and thus must not try and perform another).
     /// </summary>
     private bool areWeBusy;
-
-    /// <summary>
-    /// True if we're able to jump.
-    /// </summary>
-    private bool canJump;
     
     void Start()
     {
@@ -149,6 +144,12 @@ public class Ai : PlayerBase
         return attackBase.CanAttack1Hit(characterBase.facing * -1) || attackBase.CanAttack2Hit(characterBase.facing * -1);
     }
 
+    protected void Turn()
+    {
+        transform.Rotate(0, 180, 0);
+        characterBase.facing = characterBase.facing * -1;
+    }
+
     private void MoveTowardsPlayer()
     {
         // First pick a target player -- for now just gonna pick whoever is closest
@@ -244,14 +245,5 @@ public class Ai : PlayerBase
             if (hit.transform.tag == "Floor") return hit.transform.gameObject;
         }
         return null;
-    }
-
-    void OnCollisionEnter2D(Collision2D coll)
-    {
-        if (coll.gameObject.tag == "Floor")
-        {
-            canJump = true;
-            animator.SetBool("Grounded", true);
-        }
     }
 }

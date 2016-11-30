@@ -8,16 +8,6 @@ using UnityEngine.Networking;
 /// </summary>
 public class PlayerMovement : PlayerBase
 {
-    /// <summary>
-    /// Maximum number of jumps between touching the ground (change to allow double jumps).
-    /// </summary>
-    public int maxJumps = 1;
-
-    /// <summary>
-    /// Jumps left until we reach the ground. Reset upon touching anything marked as ground.
-    /// </summary>
-    public int jumpsLeft;
-    
     void Update()
     {
         var horizontal = Input.GetAxis(gameObject.name + "_Horizontal");
@@ -35,9 +25,9 @@ public class PlayerMovement : PlayerBase
             if(characterBase.facing > 0) transform.Rotate(0, 180, 0);
             characterBase.facing = -1;
         }
-        if (jump && jumpsLeft > 0)
+        if (jump && canJump)
         {
-            --jumpsLeft;
+            canJump = false;
 
             // Reset vertical velocity before a jump -- prevents wall jumping from being crazy
             rigidBody.velocity = new Vector2(rigidBody.velocity.x, 0);
@@ -63,7 +53,7 @@ public class PlayerMovement : PlayerBase
     {
         if (coll.gameObject.tag == "Floor")
         {
-            jumpsLeft = maxJumps;
+            canJump = true;
             animator.SetBool("Grounded", true);
         }
     }
