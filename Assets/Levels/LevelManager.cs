@@ -105,7 +105,7 @@ public class LevelManager : MonoBehaviour
             }
             else
             {
-                Debug.Log(player.name + " has died");
+                Debug.Log(player.name + " is out of lives");
                 Destroy(player);
                 VictoryConditionCheck();
             }
