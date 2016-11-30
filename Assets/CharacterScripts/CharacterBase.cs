@@ -72,7 +72,7 @@ public class CharacterBase : MonoBehaviour
     public void Damage(int hp)
     {
         currentHitpoints = currentHitpoints - hp;
-        anim.SetTrigger("Hit");
+        //anim.SetTrigger("Hit");
     }
 
     /// <summary>
