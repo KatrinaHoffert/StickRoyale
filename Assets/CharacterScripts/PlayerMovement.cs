@@ -40,11 +40,13 @@ public class PlayerMovement : PlayerBase
         if (timeCanAttackNext <= Time.time && Input.GetButtonUp(gameObject.name + "_PrimaryAttack"))
         {
             attackBase.Attack1();
+            animator.CrossFade("Attack1",0.05f,-1,2);
             timeCanAttackNext = Time.time + attackBase.GetAttack1Delay();
         }
         else if (timeCanAttackNext <= Time.time && Input.GetButtonUp(gameObject.name + "_SecondaryAttack"))
         {
             attackBase.Attack2();
+            animator.SetTrigger("Attack2");
             timeCanAttackNext = Time.time + attackBase.GetAttack2Delay();
         }
     }

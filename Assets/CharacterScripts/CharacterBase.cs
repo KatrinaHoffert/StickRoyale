@@ -39,9 +39,12 @@ public class CharacterBase : MonoBehaviour
     /// </summary>
     public bool directionLocked = false;
 
+    Animator anim;
+
     void Start()
     {
         currentHitpoints = maxHitpoints;
+        anim = gameObject.GetComponent<Animator>();
     }
     
     void FixedUpdate()
@@ -69,6 +72,7 @@ public class CharacterBase : MonoBehaviour
     public void Damage(int hp)
     {
         currentHitpoints = currentHitpoints - hp;
+        anim.SetTrigger("Hit");
     }
 
     /// <summary>
@@ -78,6 +82,7 @@ public class CharacterBase : MonoBehaviour
     {
         currentHitpoints = maxHitpoints;
         --lives;
+        anim.SetTrigger("Death");
     }
 
     /// <summary>
