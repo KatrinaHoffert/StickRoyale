@@ -27,6 +27,11 @@ public class LevelSelectScript : MonoBehaviour
         LoadLevel("Level2");
     }
 
+    public void Level3Clicked()
+    {
+        LoadLevel("level3");
+    }
+
     /// <summary>
     /// Does the level loading, finalizing anything before the match can begin.
     /// </summary>
