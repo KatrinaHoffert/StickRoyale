@@ -18,7 +18,7 @@ public class PlayerBase : MonoBehaviour
     /// <summary>
     /// The vertical force applied per jum.
     /// </summary>
-    public float jumpVerticalForce = 300f;
+    public float jumpVerticalForce = 400f;
 
     /// <summary>
     /// Maximum velocity in the horizontal direction. This ensures that once we reach the max
