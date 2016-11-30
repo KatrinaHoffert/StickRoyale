@@ -100,6 +100,7 @@ public class LevelManager : MonoBehaviour
             else
             {
                 Debug.Log(player.name + " has died");
+                Destroy(player);
                 VictoryConditionCheck();
             }
         }
@@ -133,29 +134,8 @@ public class LevelManager : MonoBehaviour
             SceneManager.LoadScene("PostGameScreen");
         }
     }
-
-    /// <summary>
-    /// Updates the canvas element displaying the player stats.
-    /// </summary>
-    public void updateStats()
-    {
-        Text status = GameObject.Find("Text").GetComponent<Text>();
-        
-        status.text = "";
-        for (int i = 0; i < players.Length; i++)
-        {
-            if (players[i] == null) continue;
-
-            string characterName = CharacterSelectMenuScript.controlSlots[i].chosenCharacter;
-            int playerHp = players[i].GetComponent<CharacterBase>().currentHitpoints;
-            int playerMaxHp = players[i].GetComponent<CharacterBase>().maxHitpoints;
-            status.text += "player " + (i + 1)+ "\n" + characterName + "\n" + playerHp + "/" + playerMaxHp + "\n";
-        }
-    }
     
     void FixedUpdate () {
-        updateStats();
-
         for(int i = 0; i < players.Length; i++)
         {
             if (players[i] == null) continue;
