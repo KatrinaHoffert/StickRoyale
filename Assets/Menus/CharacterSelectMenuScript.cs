@@ -19,6 +19,8 @@ public class CharacterSelectMenuScript : MonoBehaviour
     /// </summary>
     public static ControlSlot[] controlSlots;
 
+    private int selectingPlayer = 0;
+
     void Start()
     {
         // Initialize the control slots
@@ -30,6 +32,11 @@ public class CharacterSelectMenuScript : MonoBehaviour
 
         // We might have arrived here via back button on level select -- update the images in case.
         UpdateCharacterImages();
+
+        // Disable the selecting images until they are needed
+        GameObject.Find("P1Selecting").GetComponent<Image>().enabled = false;
+        GameObject.Find("P2Selecting").GetComponent<Image>().enabled = false;
+        GameObject.Find("P3Selecting").GetComponent<Image>().enabled = false;
     }
 
     /// <summary>
@@ -38,16 +45,39 @@ public class CharacterSelectMenuScript : MonoBehaviour
     /// <param name="name">The name of the chosen character.</param>
     public void CharacterButtonClicked(string name)
     {
-        // TODO: Currently can only set p0's character!
-        int slot = 0;
-        Debug.Log("Selected character " + name + " for player " + slot);
-        controlSlots[slot].chosenCharacter = name;
+        Debug.Log("Selected character " + name + " for player " + selectingPlayer);
+        controlSlots[selectingPlayer].chosenCharacter = name;
         UpdateCharacterImages();
     }
     
     public void ControlChange1(int value) { ControlChange(1, value); }
     public void ControlChange2(int value) { ControlChange(2, value); }
     public void ControlChange3(int value) { ControlChange(3, value); }
+    
+    /// <summary>
+    /// Sets a player as the one we are choosing a character for
+    /// </summary>
+    /// <param name="playerNumber">Player's number (0-3).</param>
+    public void PlayerSelected(int playerNumber)
+    {
+        if (controlSlots[playerNumber].controlType != ControlType.Closed)
+        {
+            selectingPlayer = playerNumber;
+
+            // Enable the appropriate selecting image
+            for(int i = 0; i < controlSlots.Length; ++i)
+            {
+                if(i == playerNumber)
+                {
+                    GameObject.Find("P" + i + "Selecting").GetComponent<Image>().enabled = true;
+                }
+                else
+                {
+                    GameObject.Find("P" + i + "Selecting").GetComponent<Image>().enabled = false;
+                }
+            }
+        }
+    }
 
     /// <summary>
     /// Map of the dropdown values to the actual control types.
