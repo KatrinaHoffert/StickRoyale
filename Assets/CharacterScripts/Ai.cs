@@ -111,7 +111,16 @@ public class Ai : PlayerBase
 
     private void StepAway()
     {
-        // TODO: Implement
+        var closestPlayer = GetClosestPlayer();
+        var closestPlayerDistance = closestPlayer.transform.position.x - transform.position.x;
+
+        // Only step away if they are really close
+        if (Math.Abs(closestPlayerDistance) < 1.5)
+        {
+            // Move in the opposite direction that they are in
+            var direction = Math.Sign(closestPlayerDistance) * -1;
+            MaximalMove(new Vector2(baseRightMoveForce * direction * Time.fixedDeltaTime, 0));
+        }
     }
     
     private void Attack()
@@ -157,19 +166,7 @@ public class Ai : PlayerBase
     private void MoveTowardsPlayer()
     {
         // First pick a target player -- for now just gonna pick whoever is closest
-        var players = GameObject.FindGameObjectsWithTag("Player").Where(player => player != gameObject).ToArray();
-
-        var closestPlayer = players[0];
-        var closestPlayerDistance = Vector3.Distance(closestPlayer.transform.position, transform.position);
-        for (int i = 1; i < players.Length; ++i)
-        {
-            var distanceToPlayer = Vector3.Distance(players[i].transform.position, transform.position);
-            if (distanceToPlayer < closestPlayerDistance)
-            {
-                closestPlayer = players[i];
-                closestPlayerDistance = distanceToPlayer;
-            }
-        }
+        var closestPlayer = GetClosestPlayer();
 
         // Figure out platforms each are on
         var targetPlatform = FindPlatformPlayerIsOn(closestPlayer);
@@ -234,6 +231,28 @@ public class Ai : PlayerBase
         }
 
         //Debug.Log(gameObject.name + " is on " + ourPlatform + " and their target (" + closestPlayer.name + ") is on " + targetPlatform);
+    }
+
+    /// <summary>
+    /// Gets the player closest to this AI character (absolute distance, not necessarily the easiest to attack).
+    /// </summary>
+    /// <returns>The closest player.</returns>
+    private GameObject GetClosestPlayer()
+    {
+        var players = GameObject.FindGameObjectsWithTag("Player").Where(player => player != gameObject).ToArray();
+
+        var closestPlayer = players[0];
+        var closestPlayerDistance = Vector3.Distance(closestPlayer.transform.position, transform.position);
+        for (int i = 1; i < players.Length; ++i)
+        {
+            var distanceToPlayer = Vector3.Distance(players[i].transform.position, transform.position);
+            if (distanceToPlayer < closestPlayerDistance)
+            {
+                closestPlayer = players[i];
+                closestPlayerDistance = distanceToPlayer;
+            }
+        }
+        return closestPlayer;
     }
 
     /// <summary>
