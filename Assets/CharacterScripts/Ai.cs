@@ -35,6 +35,23 @@ public class Ai : PlayerBase
     private const float targetOnTopLeewayDistance = 0.5f;
 
     /// <summary>
+    /// When moving towards a player, we need to save the jump spot to use, which only applies for a
+    /// pathfinding attempt from our platform to a target platform. Hence, we must save those too.
+    /// </summary>
+    private GameObject targetPlatformForMovement;
+
+    /// <summary>
+    /// <see cref="targetPlatformForMovement"/>.
+    /// </summary>
+    private GameObject ourPlatformForMovement;
+
+    /// <summary>
+    /// The jump spot that the AI is moving towards iff <see cref="targetPlatformForMovement"/> and
+    /// <see cref="ourPlatformForMovement"/> are correct.
+    /// </summary>
+    private GameObject jumpSpotToUse;
+
+    /// <summary>
     /// True when the AI is in the middle of some action (and thus must not try and perform another).
     /// </summary>
     private bool areWeBusy;
@@ -204,41 +221,53 @@ public class Ai : PlayerBase
         // do nothing.
         else if(targetPlatform != null)
         {
-            // TODO: This might occur if we're hanging at the edge. Should find way to fix that.
+            // This will happen when jumping between platforms; just wait till we're on something
             if (ourPlatform == null) return;
 
-            // Find the jump point on our platform in the right direction
-            int direction = Math.Sign(closestPlayer.transform.position.x - transform.position.x);
-            var jumpSpots = ourPlatform.transform.Cast<Transform>().Where(child => child.tag == "JumpSpot");
-
-            // Take the one in the direction towards our target if there is one or whatever the sole one
-            // is, otherwise
+            // Do we already have a jump spot we should be moving towards?
             Transform jumpSpot;
-            jumpSpot = jumpSpots.Where(spot => Math.Sign(spot.transform.position.x - transform.position.x) == direction).FirstOrDefault();
-            if (jumpSpot == null) jumpSpot = jumpSpots.FirstOrDefault();
+            if (targetPlatformForMovement == targetPlatform && ourPlatformForMovement == ourPlatform)
+            {
+                jumpSpot = jumpSpotToUse.transform;
+            }
+            else
+            {
+                // Find the jump point on our platform in the right direction
+                int directionToTarget = Math.Sign(closestPlayer.transform.position.x - transform.position.x);
+                var jumpSpots = ourPlatform.transform.Cast<Transform>().Where(child => child.tag == "JumpSpot");
+
+                // Take the one in the direction towards our target if there is one or whatever the sole one
+                // is, otherwise
+                jumpSpot = jumpSpots.Where(spot => Math.Sign(spot.transform.position.x - transform.position.x) == directionToTarget).FirstOrDefault();
+                if (jumpSpot == null) jumpSpot = jumpSpots.FirstOrDefault();
+
+                // Cache the targets for next time
+                ourPlatformForMovement = ourPlatform;
+                targetPlatformForMovement = targetPlatform;
+                jumpSpotToUse = jumpSpot.gameObject;
+            }
             
             // If still no jump spots, we're stuck
             if(jumpSpot == null)
             {
                 Debug.Log(gameObject.name + " is stuck on " + ourPlatform);
+                ourPlatformForMovement = null;
+                targetPlatformForMovement = null;
                 return;
             }
-
+            
             // Actually move towards the jump spot
+            int directionToJumpSpot = Math.Sign(jumpSpot.position.x - transform.position.x);
             var distanceToJumpSpot = jumpSpot.position.x - transform.position.x;
-            MaximalMove(new Vector2(baseRightMoveForce * direction * Time.fixedDeltaTime, 0));
+            MaximalMove(new Vector2(baseRightMoveForce * directionToJumpSpot * Time.fixedDeltaTime, 0));
 
             // If we're close, jump
             if(Math.Abs(distanceToJumpSpot) < 0.5 && canJump)
             {
+                int directionToTarget = Math.Sign(closestPlayer.transform.position.x - transform.position.x);
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, 0);
-                MaximalMove(new Vector2(300f * direction, jumpVerticalForce));
+                MaximalMove(new Vector2(800f * directionToTarget, jumpVerticalForce));
                 canJump = false;
-            }
-            // Can't jump multiple times, silly. But stop us from moving so we don't lose the spot...
-            else if(Math.Abs(distanceToJumpSpot) < 0.5 && !canJump)
-            {
-                rigidBody.velocity = new Vector2(0, rigidBody.velocity.y);
             }
 
             //Debug.Log(gameObject.name + " moving towards jump spot " + jumpSpot + " (" + distanceToJumpSpot + " away)");
