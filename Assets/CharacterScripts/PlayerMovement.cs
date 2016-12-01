@@ -34,6 +34,7 @@ public class PlayerMovement : PlayerBase
 
             MaximalMove(new Vector2(0, jumpVerticalForce));
             animator.SetBool("Grounded", false);
+			animator.SetTrigger ("Jump");
         }
         animator.SetFloat("Speed", rigidBody.velocity.x);
 
