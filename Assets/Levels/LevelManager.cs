@@ -48,6 +48,11 @@ public class LevelManager : MonoBehaviour
     /// </summary>
     private GameObject[] livesText;
 
+    /// <summary>
+    /// The pause menu canvas.
+    /// </summary>
+    private Canvas pauseMenu;
+
     private static Stats stats;
    
     void Start () {
@@ -118,6 +123,9 @@ public class LevelManager : MonoBehaviour
         stats = statsObject.AddComponent<Stats>();
         stats.matchStartTime = Time.time;
         DontDestroyOnLoad(statsObject);
+
+        // And add the pause menu (canvas disabled by default)
+        pauseMenu = Instantiate((GameObject)Resources.Load("PauseMenu")).GetComponent<Canvas>();
     }
 
     /// <summary>
@@ -238,8 +246,16 @@ public class LevelManager : MonoBehaviour
     {
         if (Input.GetButtonUp("Pause"))
         {
-            if (Time.timeScale == 0) Time.timeScale = 1;
-            else Time.timeScale = 0;
+            if (Time.timeScale == 0)
+            {
+                Time.timeScale = 1;
+                pauseMenu.enabled = false;
+            }
+            else
+            {
+                Time.timeScale = 0;
+                pauseMenu.enabled = true;
+            }
         }
     }
     
