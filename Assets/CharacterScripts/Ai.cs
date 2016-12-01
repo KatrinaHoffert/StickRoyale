@@ -111,32 +111,30 @@ public class Ai : PlayerBase
     private void Attack()
     {
         // Choose an attack
-        if(attackBase.CanAttack1Hit(characterBase.facing) && attackBase.CanAttack2Hit(characterBase.facing))
+        if (attackBase.CanAttack1Hit(characterBase.facing) && attackBase.CanAttack2Hit(characterBase.facing))
         {
             // Pick best, randomly weighing
             var attack1Weight = attackBase.GetAttack1AiWeight();
             var attack2Weight = attackBase.GetAttack2AiWeight();
-            if (UnityEngine.Random.Range(0, attack1Weight + attack2Weight) <= attack1Weight)
-            {
-                attackBase.Attack1();
-                timeCanAttackNext = Time.time + attackBase.GetAttack1Delay();
-            }
-            else
-            {
-                attackBase.Attack2();
-                timeCanAttackNext = Time.time + attackBase.GetAttack2Delay();
-            }
+            if (UnityEngine.Random.Range(0, attack1Weight + attack2Weight) <= attack1Weight) Attack1();
+            else Attack2();
         }
-        else if(attackBase.CanAttack1Hit(characterBase.facing))
-        {
-            attackBase.Attack1();
-            timeCanAttackNext = Time.time + attackBase.GetAttack1Delay();
-        }
-        else
-        {
-            attackBase.Attack2();
-            timeCanAttackNext = Time.time + attackBase.GetAttack2Delay();
-        }
+        else if (attackBase.CanAttack1Hit(characterBase.facing)) Attack1();
+        else Attack2();
+    }
+
+    private void Attack1()
+    {
+        attackBase.Attack1();
+        animator.SetTrigger("Attack1");
+        timeCanAttackNext = Time.time + attackBase.GetAttack1Delay();
+    }
+
+    private void Attack2()
+    {
+        attackBase.Attack2();
+        animator.SetTrigger("Attack2");
+        timeCanAttackNext = Time.time + attackBase.GetAttack2Delay();
     }
 
     private bool PlayerInAttackRangeIfWeTurn()
@@ -247,7 +245,7 @@ public class Ai : PlayerBase
         return null;
     }
 
-    void moveOffPlayer()
+    void MoveOffPlayer()
     {
         if (characterBase.facing == 1)
         {
@@ -264,7 +262,7 @@ public class Ai : PlayerBase
         if (coll.gameObject.tag == "Player")
         {
             Debug.Log("Should be sliding off of player's head");
-            moveOffPlayer();
+            MoveOffPlayer();
         }
     }
 }
