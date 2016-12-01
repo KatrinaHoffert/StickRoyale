@@ -162,7 +162,7 @@ public class LevelManager : MonoBehaviour
         else
         {
             // This is an index skipping the spawn points that are on cooldown
-            var spawnPointPseudoIndex = UnityEngine.Random.RandomRange(0, availableSpawnPoints - 1);
+            var spawnPointPseudoIndex = UnityEngine.Random.Range(0, availableSpawnPoints - 1);
             int spawnPointOffCooldownIndex = 0;
             for (int i = 0; i < spawnPointAvailabilityTime.Length; ++i)
             {

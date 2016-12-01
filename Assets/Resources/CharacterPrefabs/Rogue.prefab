@@ -219,7 +219,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000011596905866}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: daed67ce57745ea47956dcaa16997091, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a12a7f522f8bc140878d46e9460815d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHitpoints: 100

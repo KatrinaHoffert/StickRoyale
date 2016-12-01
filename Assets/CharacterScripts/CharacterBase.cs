@@ -6,7 +6,7 @@ using UnityEngine.UI;
 /// A variety of features that are common to every character. Managing of HP and lives are the
 /// most important here, but there's also some movement related stuff.
 /// </summary>
-public class CharacterBase : MonoBehaviour
+public abstract class CharacterBase : MonoBehaviour
 {
     /// <summary>
     /// Max HP. When it hits zero, the character dies.
@@ -88,6 +88,7 @@ public class CharacterBase : MonoBehaviour
     {
         currentHitpoints = maxHitpoints;
         --lives;
+        Cleanup();
         //anim.SetTrigger("Death");
     }
 
@@ -100,4 +101,6 @@ public class CharacterBase : MonoBehaviour
         GetComponent<Rigidbody2D>().AddForce(forceDirection);
         anim.SetTrigger("Hit");
     }
+
+    protected abstract void Cleanup();
 }
