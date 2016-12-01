@@ -233,6 +233,15 @@ public class LevelManager : MonoBehaviour
             SceneManager.LoadScene("PostGameScreen");
         }
     }
+
+    void Update()
+    {
+        if (Input.GetButtonUp("Pause"))
+        {
+            if (Time.timeScale == 0) Time.timeScale = 1;
+            else Time.timeScale = 0;
+        }
+    }
     
     void FixedUpdate () {
         for(int i = 0; i < players.Length; i++)
