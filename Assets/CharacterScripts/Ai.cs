@@ -246,4 +246,25 @@ public class Ai : PlayerBase
         }
         return null;
     }
+
+    void moveOffPlayer()
+    {
+        if (characterBase.facing == 1)
+        {
+            MaximalMove(new Vector2(50, 0));
+        }
+        else
+        {
+            MaximalMove(new Vector2(-50, 0));
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D coll)
+    {
+        if (coll.gameObject.tag == "Player")
+        {
+            Debug.Log("Should be sliding off of player's head");
+            moveOffPlayer();
+        }
+    }
 }
