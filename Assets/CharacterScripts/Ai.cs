@@ -52,15 +52,15 @@ public class Ai : PlayerBase
     private GameObject jumpSpotToUse;
 
     /// <summary>
-    /// True when the AI is in the middle of some action (and thus must not try and perform another).
+    /// True when the AI is in the middle of continuing movement from a jump.
     /// </summary>
-    private bool areWeBusy;
+    private bool continuingJumpMovement;
     
     void Start()
     {
         decisionTree = DecisionTree.Decision(
-            AreWeBusy,
-            ifTrue: DecisionTree.Action(() => {}),
+            AreWeContinuingMovement,
+            ifTrue: DecisionTree.Action(ContinueJumpMovement),
             ifFalse: DecisionTree.Decision(
                 AreWeFalling,
                 ifTrue: DecisionTree.Action(JumpTowardsFloor),
@@ -86,9 +86,24 @@ public class Ai : PlayerBase
         decisionTree.Search();
     }
     
-    private bool AreWeBusy()
+    private bool AreWeContinuingMovement()
     {
-        return areWeBusy;
+        return continuingJumpMovement && !canJump;
+    }
+
+    private void ContinueJumpMovement()
+    {
+        // Continue movement in whatever direction we're already going in unless we're over a different platform.
+        var ourCurrentPlatform = FindPlatformPlayerIsOn(gameObject);
+        if (ourCurrentPlatform == ourPlatformForMovement)
+        {
+            MaximalMove(new Vector2(baseRightMoveForce * characterBase.facing * Time.fixedDeltaTime, 0));
+        }
+        else if(ourCurrentPlatform != null)
+        {
+            // Slow us gradually so we can fall onto that platform
+            rigidBody.velocity = new Vector2(rigidBody.velocity.x / 2, rigidBody.velocity.y);
+        }
     }
 
     private bool AreWeFalling()
@@ -196,6 +211,8 @@ public class Ai : PlayerBase
 
     private void MoveTowardsPlayer()
     {
+        continuingJumpMovement = false;
+
         // First pick a target player -- for now just gonna pick whoever is closest
         var closestPlayer = GetClosestPlayer();
 
@@ -266,8 +283,9 @@ public class Ai : PlayerBase
             {
                 int directionToTarget = Math.Sign(closestPlayer.transform.position.x - transform.position.x);
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, 0);
-                MaximalMove(new Vector2(800f * directionToTarget, jumpVerticalForce));
+                MaximalMove(new Vector2(300f * directionToTarget, jumpVerticalForce));
                 canJump = false;
+                continuingJumpMovement = true;
             }
 
             //Debug.Log(gameObject.name + " moving towards jump spot " + jumpSpot + " (" + distanceToJumpSpot + " away)");
