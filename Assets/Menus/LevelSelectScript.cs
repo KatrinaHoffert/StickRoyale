@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using Newtonsoft.Json;
+using UnityEngine.UI;
 
 /// <summary>
 /// Scripting for the LevelSelectMenu.
@@ -32,6 +33,14 @@ public class LevelSelectScript : MonoBehaviour
         LoadLevel("level3");
     }
 
+    void Start()
+    {
+        // Update the lives GUI in case we already changed this from having went back to the
+        // character select
+        var controlSlots = GameObject.Find("ControlSlots").GetComponent<ControlSlotsScript>();
+        GameObject.Find("LivesText").GetComponent<Text>().text = "Lives: " + controlSlots.playerLives;
+    }
+
     /// <summary>
     /// Does the level loading, finalizing anything before the match can begin.
     /// </summary>
@@ -54,6 +63,20 @@ public class LevelSelectScript : MonoBehaviour
 
         Debug.Log("Level chosen. Final players: " + JsonConvert.SerializeObject(controlSlots));
         SceneManager.LoadScene(name);
+    }
+
+    public void IncreaseLivesButtonClicked()
+    {
+        var controlSlots = GameObject.Find("ControlSlots").GetComponent<ControlSlotsScript>();
+        if (controlSlots.playerLives < 99) ++controlSlots.playerLives;
+        GameObject.Find("LivesText").GetComponent<Text>().text = "Lives: " + controlSlots.playerLives;
+    }
+
+    public void DecreaseLivesButtonClicked()
+    {
+        var controlSlots = GameObject.Find("ControlSlots").GetComponent<ControlSlotsScript>();
+        if (controlSlots.playerLives > 1) --controlSlots.playerLives;
+        GameObject.Find("LivesText").GetComponent<Text>().text = "Lives: " + controlSlots.playerLives;
     }
 
     public void BackButtonClicked()

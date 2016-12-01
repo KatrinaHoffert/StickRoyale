@@ -14,6 +14,11 @@ public class ControlSlotsScript : MonoBehaviour
     /// </summary>
     public ControlSlot[] slots = new ControlSlot[4];
 
+    /// <summary>
+    /// Number of lives that the players should have to start with.
+    /// </summary>
+    public int playerLives = 3;
+
     void Awake()
     {
         // Default control slots layout

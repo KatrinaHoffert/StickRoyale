@@ -72,6 +72,7 @@ public class LevelManager : MonoBehaviour
 
         // Create player objects
         var controlSlots = GameObject.Find("ControlSlots").GetComponent<ControlSlotsScript>().slots;
+        var playerLives = GameObject.Find("ControlSlots").GetComponent<ControlSlotsScript>().playerLives;
         players = new GameObject[4];
         for(int i = 0; i < controlSlots.Length; ++i)
         {
@@ -91,6 +92,7 @@ public class LevelManager : MonoBehaviour
                     players[i].AddComponent<Ai>();
                 }
 
+                players[i].GetComponent<CharacterBase>().lives = playerLives;
                 livesText[i].GetComponent<Text>().enabled = true;
                 livesText[i].GetComponent<Text>().text = "Player " + i + " lives: " + players[i].GetComponent<CharacterBase>().lives;
             }
