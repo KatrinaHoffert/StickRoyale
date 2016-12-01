@@ -281,6 +281,32 @@ public class Ai : PlayerBase
         {
             if (hit.transform.tag == "Floor") return hit.transform.gameObject;
         }
+
+        // Maybe the raycast from the center is to blame? Try raycasts from sides too, but only if
+        // there's no y velocity (could be falling).
+        if(player.GetComponent<Rigidbody2D>().velocity.y == 0)
+        {
+            var hitsLeft = Physics2D.RaycastAll(player.transform.position - new Vector3(0.5f, 0), Vector2.down);
+            var hitsRight = Physics2D.RaycastAll(player.transform.position + new Vector3(0.5f, 0), Vector2.down);
+
+            var floorHitLeft = hitsLeft.Where(hit => hit.transform.tag == "Floor").FirstOrDefault();
+            var floorHitRight = hitsLeft.Where(hit => hit.transform.tag == "Floor").FirstOrDefault();
+            
+            // If we only get one hit, return that. Otherwise the closest
+            if (floorHitLeft.transform == null && floorHitRight.transform != null)
+            {
+                return floorHitRight.transform.gameObject;
+            }
+            else if (floorHitLeft.transform != null && floorHitRight.transform == null)
+            {
+                return floorHitLeft.transform.gameObject;
+            }
+            else if (floorHitLeft.transform != null && floorHitRight.transform != null)
+            {
+                return floorHitLeft.distance < floorHitRight.distance ? floorHitLeft.transform.gameObject : floorHitRight.transform.gameObject;
+            }
+        }
+
         return null;
     }
 
@@ -293,10 +319,8 @@ public class Ai : PlayerBase
     }
     
     /// <summary>
-    /// Checks if player is on top of another Players head, and then calls the function to move them off
-    /// of that players head.
+    /// Used for detecting player stacking.
     /// </summary>
-    /// <param name="coll">Whatever we collided with.</param>
     void OnTriggerStay2D(Collider2D coll)
     {
         if (coll.gameObject.tag == "Player")

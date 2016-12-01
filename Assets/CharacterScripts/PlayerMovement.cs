@@ -61,10 +61,8 @@ public class PlayerMovement : PlayerBase
     }
 
     /// <summary>
-    /// Checks if player is on top of another Players head, and then calls the function to move them off
-    /// of that players head.
+    /// Used for detecting if players stack.
     /// </summary>
-    /// <param name="coll">Whatever we collided with.</param>
     void OnTriggerStay2D(Collider2D coll)
     {
         if (coll.gameObject.tag == "Player")
@@ -74,9 +72,8 @@ public class PlayerMovement : PlayerBase
     }
 
     /// <summary>
-    /// Checks if player is colliding with floor, resets jumps if they are.
+    /// Used for jump resetting.
     /// </summary>
-    /// <param name="coll">Whatever we collided with.</param>
     void OnCollisionEnter2D(Collision2D coll)
     {
         if (coll.gameObject.tag == "Floor")
