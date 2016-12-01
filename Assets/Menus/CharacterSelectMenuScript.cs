@@ -25,6 +25,9 @@ public class CharacterSelectMenuScript : MonoBehaviour
     /// </summary>
     public static ControlSlot[] controlSlots;
 
+    /// <summary>
+    /// The player who is currently choosing their character.
+    /// </summary>
     private int selectingPlayer = 0;
 
     void Start()

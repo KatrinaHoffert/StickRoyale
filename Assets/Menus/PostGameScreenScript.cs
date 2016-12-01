@@ -12,13 +12,33 @@ public class PostGameScreenScript : MonoBehaviour
     void Start()
     {
         var stats = GameObject.Find("Stats").GetComponent<Stats>();
-        var statsText = GameObject.Find("StatsText").GetComponent<Text>();
+        var winnerText = GameObject.Find("WinnerText").GetComponent<Text>();
+        var statsText1 = GameObject.Find("StatsText1").GetComponent<Text>();
+        var statsText2 = GameObject.Find("StatsText2").GetComponent<Text>();
+        var controlSlots = CharacterSelectMenuScript.controlSlots;
 
-        string winnerLine = (stats.winner != "") ? "Winner is " + stats.winner + "!" : "No winner... :(";
+        winnerText.text = (stats.winner != "") ? "Winner is " + stats.winner + "!" : "No winner... :(";
 
-        statsText.text = winnerLine;
-
-        // TODO: Add more stats
+        for(int i = 0; i < controlSlots.Length; ++i)
+        {
+            if(controlSlots[i].controlType != ControlType.Closed)
+            {
+                if(i / 2 == 0)
+                {
+                    statsText1.text += "Player " + i + " (" + controlSlots[i].chosenCharacter + ")\n";
+                    statsText1.text += "Kills: " + stats.kills[i] + "\n";
+                    statsText1.text += "Falls: " + stats.falls[i] + "\n";
+                    statsText1.text += "\n";
+                }
+                else
+                {
+                    statsText2.text += "Player " + i + " (" + controlSlots[i].chosenCharacter + ")\n";
+                    statsText2.text += "Kills: " + stats.kills[i] + "\n";
+                    statsText2.text += "Falls: " + stats.falls[i] + "\n";
+                    statsText2.text += "\n";
+                }
+            }
+        }
     }
 
     public void NewGameButtonClicked()

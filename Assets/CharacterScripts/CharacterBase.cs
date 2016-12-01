@@ -40,11 +40,17 @@ public class CharacterBase : MonoBehaviour
     public bool directionLocked = false;
 
     Animator anim;
+    Stats stats;
 
-    void Start()
+    void Awake()
     {
         currentHitpoints = maxHitpoints;
         anim = gameObject.GetComponent<Animator>();
+    }
+
+    void Start()
+    {
+        stats = GameObject.Find("Stats").GetComponent<Stats>();
     }
     
     void FixedUpdate()
@@ -62,6 +68,7 @@ public class CharacterBase : MonoBehaviour
         if (transform.position.y < -5)
         {
             currentHitpoints = 0;
+            stats.AddFall(gameObject);
         }
     }
 
@@ -72,7 +79,6 @@ public class CharacterBase : MonoBehaviour
     public void Damage(int hp)
     {
         currentHitpoints = currentHitpoints - hp;
-        
     }
 
     /// <summary>
@@ -92,6 +98,6 @@ public class CharacterBase : MonoBehaviour
     public void DamageForce(Vector3 forceDirection)
     {
         GetComponent<Rigidbody2D>().AddForce(forceDirection);
-		anim.SetTrigger("Hit");
+        anim.SetTrigger("Hit");
     }
 }

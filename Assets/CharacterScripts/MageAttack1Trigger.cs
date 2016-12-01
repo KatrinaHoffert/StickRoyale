@@ -24,6 +24,13 @@ public class MageAttack1Trigger : MonoBehaviour
     /// </summary>
     private List<GameObject> playersAlreadyHit = new List<GameObject>();
 
+    private Stats stats;
+
+    void Start()
+    {
+        stats = GameObject.Find("Stats").GetComponent<Stats>();
+    }
+
     void OnTriggerEnter2D(Collider2D coll)
     {
         if (coll.gameObject.CompareTag("Player") && !playersAlreadyHit.Contains(coll.gameObject))
@@ -32,9 +39,12 @@ public class MageAttack1Trigger : MonoBehaviour
             if (coll.gameObject == casterObject) return;
 
             int direction = GetComponent<SpriteRenderer>().flipX ? -1 : 1;
-            coll.gameObject.GetComponent<CharacterBase>().Damage(damage);
-            coll.gameObject.GetComponent<CharacterBase>().DamageForce(new Vector2(0.25f * direction, 1.0f) * pushbackMagnitude);
+            var targetCharacterBase = coll.gameObject.GetComponent<CharacterBase>();
+            targetCharacterBase.Damage(damage);
+            targetCharacterBase.DamageForce(new Vector2(0.25f * direction, 1.0f) * pushbackMagnitude);
             playersAlreadyHit.Add(coll.gameObject);
+
+            if (targetCharacterBase.currentHitpoints <= 0) stats.AddKill(casterObject);
         }
     }
 }

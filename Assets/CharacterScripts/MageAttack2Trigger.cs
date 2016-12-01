@@ -35,6 +35,13 @@ public class MageAttack2Trigger : MonoBehaviour
     /// </summary>
     private int direction;
 
+    private Stats stats;
+
+    void Awake()
+    {
+        stats = GameObject.Find("Stats").GetComponent<Stats>();
+    }
+
     void Start()
     {
         direction = GetComponent<SpriteRenderer>().flipX ? -1 : 1;
@@ -54,9 +61,12 @@ public class MageAttack2Trigger : MonoBehaviour
         {
             // Don't hurt ourselves
             if (coll.gameObject == casterObject) return;
-            
-            coll.gameObject.GetComponent<CharacterBase>().Damage(damage);
-            coll.gameObject.GetComponent<CharacterBase>().DamageForce(new Vector2(0.25f, direction) * pushbackMagnitude);
+
+            var targetCharacterBase = coll.gameObject.GetComponent<CharacterBase>();
+            targetCharacterBase.Damage(damage);
+            targetCharacterBase.DamageForce(new Vector2(0.25f, direction) * pushbackMagnitude);
+
+            if (targetCharacterBase.currentHitpoints <= 0) stats.AddKill(casterObject);
         }
 
         // No matter what we hit, the projectile gets destroyed

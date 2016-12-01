@@ -13,6 +13,13 @@ public class RogueAttack1Trigger : MonoBehaviour
     /// </summary>
     public int damage = 10;
 
+    private Stats stats;
+
+    void Start()
+    {
+        stats = GameObject.Find("Stats").GetComponent<Stats>();
+    }
+
     void OnTriggerEnter2D(Collider2D coll)
     {
         if (coll.gameObject.CompareTag("Player"))
@@ -20,9 +27,12 @@ public class RogueAttack1Trigger : MonoBehaviour
             // Don't hurt ourselves
             if (coll.gameObject == transform.parent.gameObject) return;
 
-            int direction = transform.parent.GetComponent<CharacterBase>().facing;
-            coll.gameObject.GetComponent<CharacterBase>().Damage(damage);
-            coll.gameObject.GetComponent<CharacterBase>().DamageForce(Vector3.right * direction * pushbackMagnitude);
+            int direction = transform.parent.gameObject.GetComponent<CharacterBase>().facing;
+            var targetCharacterBase = coll.gameObject.GetComponent<CharacterBase>();
+            targetCharacterBase.Damage(damage);
+            targetCharacterBase.DamageForce(Vector3.right * direction * pushbackMagnitude);
+
+            if (targetCharacterBase.currentHitpoints <= 0) stats.AddKill(transform.parent.gameObject);
         }
     }
 }
