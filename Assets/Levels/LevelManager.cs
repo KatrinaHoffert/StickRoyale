@@ -182,7 +182,7 @@ public class LevelManager : MonoBehaviour
 
             livesText[playerNumber].GetComponent<Text>().text = "Player " + playerNumber + " lives: " + playerBase.lives;
 
-            if (playerBase.lives >= 0)
+            if (playerBase.lives > 0)
             {
                 player.transform.position = pickSpawnpoint().transform.position;
                 player.GetComponent<Rigidbody2D>().velocity = new Vector2();
@@ -211,7 +211,7 @@ public class LevelManager : MonoBehaviour
             if (players[i] == null) continue;
 
             var playerBase = players[i].GetComponent<CharacterBase>();
-            if (playerBase.lives >= 0)
+            if (playerBase.lives > 0)
             {
                 ++numPlayersAlive;
                 playerAliveName = "Player " + i;
