@@ -50,7 +50,28 @@ public class PlayerMovement : PlayerBase
             timeCanAttackNext = Time.time + attackBase.GetAttack2Delay();
         }
     }
-    
+
+    void moveOffPlayer()
+    {
+        if(characterBase.facing ==1)
+        {
+            MaximalMove(new Vector2(10f,-10));
+        }
+        else
+        {
+            MaximalMove(new Vector2(-10f, -10));
+        }
+        
+    }
+
+    void OnTriggerStay2D(Collider2D coll)
+    {
+        if (coll.gameObject.tag == "Player")
+        {
+            Debug.Log("Should be sliding off of player's head");
+            moveOffPlayer();
+        }
+    }
     void OnCollisionEnter2D(Collision2D coll)
     {
         if (coll.gameObject.tag == "Floor")
@@ -59,4 +80,6 @@ public class PlayerMovement : PlayerBase
             animator.SetBool("Grounded", true);
         }
     }
+
+
 }
