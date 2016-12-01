@@ -76,7 +76,6 @@ public class PlayerMovement : PlayerBase
     {
         if (coll.gameObject.tag == "Player")
         {
-            Debug.Log("Should be sliding off of player's head");
             moveOffPlayer();
         }
     }
