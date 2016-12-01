@@ -35,19 +35,35 @@ public class LevelManager : MonoBehaviour
     /// <summary>
     /// Stores the indicator objects for each player.
     /// </summary>
-    private static GameObject[] indicators;
+    private GameObject[] indicators;
 
     /// <summary>
     /// Stores the hitbar objects for each player. The redbar is the object stored here and it has a child,
     /// greenbar, that shrinks as HP is lost.
     /// </summary>
-    private static GameObject[] hitbars;
+    private GameObject[] hitbars;
+
+    /// <summary>
+    /// Text labels used for the display of how many lives each character has.
+    /// </summary>
+    private GameObject[] livesText;
 
     private static Stats stats;
    
     void Start () {
         spawnPoints = GameObject.FindGameObjectsWithTag("Respawn");
         spawnPointAvailabilityTime = new float[spawnPoints.Length];
+
+        // Get the GUI elements for displaying lives before players are created so that they
+        // can be enabled only for players that exist.
+        Instantiate(Resources.Load("LivesOverlay"));
+        livesText = new GameObject[]
+        {
+            GameObject.Find("Player0Lives"),
+            GameObject.Find("Player1Lives"),
+            GameObject.Find("Player2Lives"),
+            GameObject.Find("Player3Lives")
+        };
 
         // Create player objects
         var controlSlots = GameObject.Find("ControlSlots").GetComponent<ControlSlotsScript>().slots;
@@ -69,6 +85,9 @@ public class LevelManager : MonoBehaviour
                     players[i].name = "AI" + i;
                     players[i].AddComponent<Ai>();
                 }
+
+                livesText[i].GetComponent<Text>().enabled = true;
+                livesText[i].GetComponent<Text>().text = "Player " + i + " lives: " + players[i].GetComponent<CharacterBase>().lives;
             }
         }
 
@@ -155,10 +174,13 @@ public class LevelManager : MonoBehaviour
     /// <param name="player">The player to check if we should respawn.</param>
     private void RespawnIfDead(GameObject player)
     {
+        int playerNumber = player.name[player.name.Length - 1] - '0';
         var playerBase = player.GetComponent<CharacterBase>();
         if (playerBase.currentHitpoints <= 0)
         {
             playerBase.Die();
+
+            livesText[playerNumber].GetComponent<Text>().text = "Player " + playerNumber + " lives: " + playerBase.lives;
 
             if (playerBase.lives >= 0)
             {
@@ -168,7 +190,6 @@ public class LevelManager : MonoBehaviour
             else
             {
                 Debug.Log(player.name + " is out of lives");
-                char playerNumber = player.name[player.name.Length - 1];
                 Destroy(player);
                 Destroy(GameObject.Find("Indicator" + playerNumber));
                 Destroy(GameObject.Find("HealthBar" + playerNumber));
