@@ -357,7 +357,7 @@ public class Ai : PlayerBase
             //Debug.DrawRay(player.transform.position + new Vector3(halfWidth + distanceFuzz, 0), Vector2.down * 100, Color.red, 1.0f);
 
             var floorHitLeft = hitsLeft.Where(hit => hit.transform.tag == "Floor").FirstOrDefault();
-            var floorHitRight = hitsLeft.Where(hit => hit.transform.tag == "Floor").FirstOrDefault();
+            var floorHitRight = hitsRight.Where(hit => hit.transform.tag == "Floor").FirstOrDefault();
 
             // If we only get one hit, return that. Otherwise the closest
             if (floorHitLeft.transform == null && floorHitRight.transform != null)
