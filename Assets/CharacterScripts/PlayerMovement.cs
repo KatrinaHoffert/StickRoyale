@@ -59,11 +59,11 @@ public class PlayerMovement : PlayerBase
     {
         if(characterBase.facing ==1)
         {
-            MaximalMove(new Vector2(10f,-10));
+            MaximalMove(new Vector2(50f,-10));
         }
         else
         {
-            MaximalMove(new Vector2(-10f, -10));
+            MaximalMove(new Vector2(-50f, -10));
         }
         
     }
