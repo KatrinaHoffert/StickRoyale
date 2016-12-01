@@ -55,7 +55,7 @@ public class Ai : PlayerBase
     /// True when the AI is in the middle of continuing movement from a jump.
     /// </summary>
     private bool continuingJumpMovement;
-    
+	    
     void Start()
     {
         decisionTree = DecisionTree.Decision(
@@ -241,29 +241,42 @@ public class Ai : PlayerBase
             // This will happen when jumping between platforms; just wait till we're on something
             if (ourPlatform == null) return;
 
+			if (ourPlatform.transform.position.y > targetPlatform.transform.position.y
+				&& Math.Abs(Math.Abs(transform.position.x) - Math.Abs(closestPlayer.transform.position.x) )< 1) {
+				Debug.Log ("Below");
+				Physics2D.IgnoreCollision (transform.GetComponent<Collider2D> (), ourPlatform.GetComponent<Collider2D> (),true);
+				StartCoroutine (reenablePlatformCollision(ourPlatform.transform, 2f));
+				return;
+			} 
+		
+		
+			
+
+
+
             // Do we already have a jump spot we should be moving towards?
             Transform jumpSpot;
-            if (targetPlatformForMovement == targetPlatform && ourPlatformForMovement == ourPlatform)
-            {
-                jumpSpot = jumpSpotToUse.transform;
-            }
-            else
-            {
-                // Find the jump point on our platform in the right direction
-                int directionToTarget = Math.Sign(closestPlayer.transform.position.x - transform.position.x);
-                var jumpSpots = ourPlatform.transform.Cast<Transform>().Where(child => child.tag == "JumpSpot");
+			if (targetPlatformForMovement == targetPlatform && ourPlatformForMovement == ourPlatform) {
+				jumpSpot = jumpSpotToUse.transform;
 
-                // Take the one in the direction towards our target if there is one or whatever the sole one
-                // is, otherwise
-                jumpSpot = jumpSpots.Where(spot => Math.Sign(spot.transform.position.x - transform.position.x) == directionToTarget).FirstOrDefault();
-                if (jumpSpot == null) jumpSpot = jumpSpots.FirstOrDefault();
+			} else {
+				// Find the jump point on our platform in the right direction
+				int directionToTarget = Math.Sign (closestPlayer.transform.position.x - transform.position.x);
+				var jumpSpots = ourPlatform.transform.Cast<Transform> ().Where (child => child.tag == "JumpSpot");
 
-                // Cache the targets for next time
-                ourPlatformForMovement = ourPlatform;
-                targetPlatformForMovement = targetPlatform;
-                jumpSpotToUse = jumpSpot.gameObject;
-            }
-            
+				// Take the one in the direction towards our target if there is one or whatever the sole one
+				// is, otherwise
+				jumpSpot = jumpSpots.Where (spot => Math.Sign (spot.transform.position.x - transform.position.x) == directionToTarget).FirstOrDefault ();
+				if (jumpSpot == null)
+					jumpSpot = jumpSpots.FirstOrDefault ();
+
+				// Cache the targets for next time
+				ourPlatformForMovement = ourPlatform;
+				targetPlatformForMovement = targetPlatform;
+				jumpSpotToUse = jumpSpot.gameObject;
+
+			}
+				
             // If still no jump spots, we're stuck
             if(jumpSpot == null)
             {
@@ -368,6 +381,7 @@ public class Ai : PlayerBase
     {
         MaximalMove(new Vector2(antiStackingHorizontalForce * characterBase.facing, antiStackingVerticalForce));
     }
+						
     
     /// <summary>
     /// Used for detecting player stacking.
@@ -379,4 +393,10 @@ public class Ai : PlayerBase
             MoveOffPlayer();
         }
     }
+
+	IEnumerator reenablePlatformCollision(Transform platform,float delay){
+		yield return new WaitForSeconds (delay);
+		Physics2D.IgnoreCollision (transform.GetComponent<Collider2D> (), platform.GetComponent<Collider2D> (), false);
+	}
+		
 }
