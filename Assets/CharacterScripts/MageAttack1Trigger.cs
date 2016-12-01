@@ -12,7 +12,7 @@ public class MageAttack1Trigger : MonoBehaviour
     /// <summary>
     /// Damage taken on collision.
     /// </summary>
-    public int damage = 20;
+    public int damage = 15;
 
     /// <summary>
     /// The game object of the caster, who we don't want getting hurt by their own attack.
