@@ -51,7 +51,10 @@ public class PlayerMovement : PlayerBase
             timeCanAttackNext = Time.time + attackBase.GetAttack2Delay();
         }
     }
-
+    /// <summary>
+    /// Method that moves the player a little bit so that they
+    /// dont stay on top of another players head
+    /// </summary>
     void moveOffPlayer()
     {
         if(characterBase.facing ==1)
@@ -64,7 +67,11 @@ public class PlayerMovement : PlayerBase
         }
         
     }
-
+    /// <summary>
+    /// Checks if player is on top of another Players head, and then 
+    /// calls the function to move them off of that players head
+    /// </summary>
+    /// <param name="coll"></param>
     void OnTriggerStay2D(Collider2D coll)
     {
         if (coll.gameObject.tag == "Player")
@@ -73,6 +80,10 @@ public class PlayerMovement : PlayerBase
             moveOffPlayer();
         }
     }
+    /// <summary>
+    /// Checks if player is colliding with floor, resets jumps if they are
+    /// </summary>
+    /// <param name="coll"></param>
     void OnCollisionEnter2D(Collision2D coll)
     {
         if (coll.gameObject.tag == "Floor")
