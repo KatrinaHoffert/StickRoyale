@@ -25,6 +25,7 @@ GameObject:
   - 114: {fileID: 114000013936215774}
   - 114: {fileID: 114000012590097334}
   - 95: {fileID: 95000013260974240}
+  - 58: {fileID: 58000010703755934}
   m_Layer: 0
   m_Name: Mage
   m_TagString: Player
@@ -39,7 +40,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014034060180}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.7084384, y: -1.3598821, z: 0}
+  m_LocalPosition: {x: -210.24309, y: 145.09349, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -62,6 +63,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!58 &58000010703755934
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014034060180}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: -0.24}
+  serializedVersion: 2
+  m_Radius: 0.25
 --- !u!61 &61000012537787632
 BoxCollider2D:
   m_ObjectHideFlags: 1

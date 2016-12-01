@@ -245,18 +245,26 @@ public class Ai : PlayerBase
         return null;
     }
 
+    /// <summary>
+    /// Method that moves the player a little bit so that they don't stay on top of another players head.
+    /// </summary>
     void MoveOffPlayer()
     {
         if (characterBase.facing == 1)
         {
-            MaximalMove(new Vector2(50, 0));
+            MaximalMove(new Vector2(50f, -10f));
         }
         else
         {
-            MaximalMove(new Vector2(-50, 0));
+            MaximalMove(new Vector2(-50f, -10f));
         }
     }
-
+    
+    /// <summary>
+    /// Checks if player is on top of another Players head, and then calls the function to move them off
+    /// of that players head.
+    /// </summary>
+    /// <param name="coll"></param>
     void OnTriggerStay2D(Collider2D coll)
     {
         if (coll.gameObject.tag == "Player")
