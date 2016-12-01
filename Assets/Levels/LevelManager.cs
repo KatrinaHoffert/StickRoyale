@@ -116,6 +116,7 @@ public class LevelManager : MonoBehaviour
         // Create the game stats storing object
         var statsObject = new GameObject("Stats");
         stats = statsObject.AddComponent<Stats>();
+        stats.matchStartTime = Time.time;
         DontDestroyOnLoad(statsObject);
     }
 
@@ -221,12 +222,14 @@ public class LevelManager : MonoBehaviour
         if (numPlayersAlive == 1)
         {
             stats.winner = playerAliveName;
+            stats.matchEndTime = Time.time;
             SceneManager.LoadScene("PostGameScreen");
         }
         // Special case that could possibly happen
         else if(numPlayersAlive == 0)
         {
             stats.winner = "";
+            stats.matchEndTime = Time.time;
             SceneManager.LoadScene("PostGameScreen");
         }
     }

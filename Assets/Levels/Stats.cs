@@ -24,6 +24,16 @@ public class Stats : MonoBehaviour
     public int[] falls = new int[4];
 
     /// <summary>
+    /// Timestamp of when the match started.
+    /// </summary>
+    public float matchStartTime;
+
+    /// <summary>
+    /// Timestamp of when the match ended.
+    /// </summary>
+    public float matchEndTime;
+
+    /// <summary>
     /// Adds a kill for this player.
     /// </summary>
     /// <param name="player">The player who got the kill.</param>

@@ -18,7 +18,9 @@ public class PostGameScreenScript : MonoBehaviour
         var controlSlots = CharacterSelectMenuScript.controlSlots;
 
         winnerText.text = (stats.winner != "") ? "Winner is " + stats.winner + "!" : "No winner... :(";
+        winnerText.text += " - Game duration: " + FormatTime(stats.matchEndTime - stats.matchStartTime);
 
+        // Note that the stats text is split into two columns for low resolution support
         for(int i = 0; i < controlSlots.Length; ++i)
         {
             if(controlSlots[i].controlType != ControlType.Closed)
@@ -39,6 +41,16 @@ public class PostGameScreenScript : MonoBehaviour
                 }
             }
         }
+    }
+
+    /// <summary>
+    /// Formats a duration in seconds as a minutes and seconds timestamp (like "123:45").
+    /// </summary>
+    /// <param name="duration">The duration we want as a more readable timestamp.</param>
+    /// <returns>A string for the timestamp.</returns>
+    private string FormatTime(float duration)
+    {
+        return String.Format("{0}:{1:00}", (int)duration / 60, duration % 60);
     }
 
     public void NewGameButtonClicked()
