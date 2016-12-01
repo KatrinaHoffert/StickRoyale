@@ -45,6 +45,8 @@ public class KnightAttacks : AttackBase
     {
         attack1Prefab.GetComponent<BoxCollider2D>().enabled = false;
         attack2Prefab.GetComponent<BoxCollider2D>().enabled = false;
+        attack1Prefab.GetComponent<KnightAttack1Trigger>().playersAlreadyHit.Clear();
+        attack2Prefab.GetComponent<KnightAttack2Trigger>().playersAlreadyHit.Clear();
         gameObject.GetComponent<CharacterBase>().directionLocked = false;
     }
 

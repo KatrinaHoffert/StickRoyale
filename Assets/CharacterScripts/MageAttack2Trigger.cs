@@ -35,6 +35,11 @@ public class MageAttack2Trigger : MonoBehaviour
     /// </summary>
     private int direction;
 
+    /// <summary>
+    /// Players that have taken damage from this effect (so they can't be double tapped).
+    /// </summary>
+    private List<GameObject> playersAlreadyHit = new List<GameObject>();
+
     private Stats stats;
 
     void Awake()
@@ -57,7 +62,7 @@ public class MageAttack2Trigger : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D coll)
     {
-        if (coll.gameObject.CompareTag("Player"))
+        if (coll.gameObject.CompareTag("Player") && !playersAlreadyHit.Contains(coll.gameObject))
         {
             // Don't hurt ourselves
             if (coll.gameObject == casterObject) return;
@@ -65,6 +70,7 @@ public class MageAttack2Trigger : MonoBehaviour
             var targetCharacterBase = coll.gameObject.GetComponent<CharacterBase>();
             targetCharacterBase.Damage(damage);
             targetCharacterBase.DamageForce(new Vector2(0.25f, direction) * pushbackMagnitude);
+            playersAlreadyHit.Add(coll.gameObject);
 
             if (targetCharacterBase.currentHitpoints <= 0) stats.AddKill(casterObject);
         }
