@@ -62,13 +62,13 @@ public class RogueAttacks : AttackBase
 
     public override bool CanAttack1Hit(int facing)
     {
-        var raycast = Physics2D.Raycast(transform.position + new Vector3(0.5f, 0, 0) * facing, Vector2.right * facing, 0.14f);
+        var raycast = Physics2D.Raycast(transform.position + new Vector3(0.5f, 0, 0) * facing, Vector2.right * facing, 0.13f);
         return raycast.transform != null ? raycast.transform.tag == "Player" : false;
     }
 
     public override bool CanAttack2Hit(int facing)
     {
-        var raycast = Physics2D.Raycast(transform.position + new Vector3(0.5f, 0, 0) * facing, Vector2.right * facing, 0.2f);
+        var raycast = Physics2D.Raycast(transform.position + new Vector3(0.5f, 0, 0) * facing, Vector2.right * facing, 0.19f);
         return raycast.transform != null ? raycast.transform.tag == "Player" : false;
     }
     
