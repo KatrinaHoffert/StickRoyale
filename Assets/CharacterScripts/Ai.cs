@@ -18,7 +18,21 @@ public class Ai : PlayerBase
     /// A delay that is added between all attacks because the AI is faster than humans. This makes
     /// it a bit slower to give folks a chance.
     /// </summary>
-    private float extraAttackDelay = 0.1f;
+    private const float extraAttackDelay = 0.1f;
+
+    /// <summary>
+    /// Distance at which the AI will try and get away from the nearest player when attacks are on
+    /// cooldown. See <see cref="StepAway"/>.
+    /// </summary>
+    private const float stepAwayDistance = 1.5f;
+
+    /// <summary>
+    /// Amount of leeway to leave when moving so that when the foe is directly above us, we're not
+    /// moving perfectly with them. Most importantly this helps avoid players stacking on top of
+    /// others. Especially since we measure the distance from the center of the character and two
+    /// characters will NEVER get this close if they are on the same platform.
+    /// </summary>
+    private const float targetOnTopLeewayDistance = 0.5f;
 
     /// <summary>
     /// True when the AI is in the middle of some action (and thus must not try and perform another).
@@ -115,7 +129,7 @@ public class Ai : PlayerBase
         var closestPlayerDistance = closestPlayer.transform.position.x - transform.position.x;
 
         // Only step away if they are really close
-        if (Math.Abs(closestPlayerDistance) < 1.5)
+        if (Math.Abs(closestPlayerDistance) < stepAwayDistance)
         {
             // Move in the opposite direction that they are in
             var direction = Math.Sign(closestPlayerDistance) * -1;
@@ -175,9 +189,9 @@ public class Ai : PlayerBase
         // Platforms are the same? Just move towards the player.
         if(targetPlatform == ourPlatform)
         {
-            // Leave a ~0.5 gap so we don't move with the target on top of us
+            // Leave a gap so we don't move with the target on top of us
             var horizontalDistance = closestPlayer.transform.position.x - transform.position.x;
-            if(Math.Abs(horizontalDistance) > 0.5)
+            if(Math.Abs(horizontalDistance) > targetOnTopLeewayDistance)
             {
                 // Turn around if there's a change in direction
                 int direction = Math.Sign(horizontalDistance);
@@ -275,21 +289,14 @@ public class Ai : PlayerBase
     /// </summary>
     void MoveOffPlayer()
     {
-        if (characterBase.facing == 1)
-        {
-            MaximalMove(new Vector2(50f, -10f));
-        }
-        else
-        {
-            MaximalMove(new Vector2(-50f, -10f));
-        }
+        MaximalMove(new Vector2(antiStackingHorizontalForce * characterBase.facing, antiStackingVerticalForce));
     }
     
     /// <summary>
     /// Checks if player is on top of another Players head, and then calls the function to move them off
     /// of that players head.
     /// </summary>
-    /// <param name="coll"></param>
+    /// <param name="coll">Whatever we collided with.</param>
     void OnTriggerStay2D(Collider2D coll)
     {
         if (coll.gameObject.tag == "Player")

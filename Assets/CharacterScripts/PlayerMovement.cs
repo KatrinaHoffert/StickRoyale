@@ -51,27 +51,20 @@ public class PlayerMovement : PlayerBase
             timeCanAttackNext = Time.time + attackBase.GetAttack2Delay();
         }
     }
+
     /// <summary>
-    /// Method that moves the player a little bit so that they
-    /// dont stay on top of another players head
+    /// Method that moves the player a little bit so that they don't stay on top of another players head.
     /// </summary>
     void moveOffPlayer()
     {
-        if(characterBase.facing ==1)
-        {
-            MaximalMove(new Vector2(50f,-10));
-        }
-        else
-        {
-            MaximalMove(new Vector2(-50f, -10));
-        }
-        
+        MaximalMove(new Vector2(antiStackingHorizontalForce * characterBase.facing, antiStackingVerticalForce));
     }
+
     /// <summary>
-    /// Checks if player is on top of another Players head, and then 
-    /// calls the function to move them off of that players head
+    /// Checks if player is on top of another Players head, and then calls the function to move them off
+    /// of that players head.
     /// </summary>
-    /// <param name="coll"></param>
+    /// <param name="coll">Whatever we collided with.</param>
     void OnTriggerStay2D(Collider2D coll)
     {
         if (coll.gameObject.tag == "Player")
@@ -79,10 +72,11 @@ public class PlayerMovement : PlayerBase
             moveOffPlayer();
         }
     }
+
     /// <summary>
-    /// Checks if player is colliding with floor, resets jumps if they are
+    /// Checks if player is colliding with floor, resets jumps if they are.
     /// </summary>
-    /// <param name="coll"></param>
+    /// <param name="coll">Whatever we collided with.</param>
     void OnCollisionEnter2D(Collision2D coll)
     {
         if (coll.gameObject.tag == "Floor")

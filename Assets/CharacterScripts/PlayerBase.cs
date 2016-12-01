@@ -33,6 +33,16 @@ public class PlayerBase : MonoBehaviour
     protected float timeCanAttackNext = 0f;
 
     /// <summary>
+    /// Force applied when a player stacks on top of another, to prevent them from staying on top.
+    /// </summary>
+    protected const float antiStackingHorizontalForce = 50f;
+
+    /// <summary>
+    /// Downward force for when players are stacked to ensure that they will be unstacked.
+    /// </summary>
+    protected const float antiStackingVerticalForce = -10f;
+
+    /// <summary>
     /// True if we're able to jump.
     /// </summary>
     protected bool canJump;
