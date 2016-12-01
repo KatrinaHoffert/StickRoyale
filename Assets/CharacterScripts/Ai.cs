@@ -277,15 +277,19 @@ public class Ai : PlayerBase
             int directionToJumpSpot = Math.Sign(jumpSpot.position.x - transform.position.x);
             var distanceToJumpSpot = jumpSpot.position.x - transform.position.x;
             MaximalMove(new Vector2(baseRightMoveForce * directionToJumpSpot * Time.fixedDeltaTime, 0));
+            if (directionToJumpSpot != characterBase.facing) Turn();
 
             // If we're close, jump
-            if(Math.Abs(distanceToJumpSpot) < 0.5 && canJump)
+            if (Math.Abs(distanceToJumpSpot) < 0.5 && canJump)
             {
                 int directionToTarget = Math.Sign(closestPlayer.transform.position.x - transform.position.x);
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, 0);
                 MaximalMove(new Vector2(300f * directionToTarget, jumpVerticalForce));
                 canJump = false;
                 continuingJumpMovement = true;
+
+                // Make sure we face the right way
+                if (directionToTarget != characterBase.facing) Turn();
             }
 
             //Debug.Log(gameObject.name + " moving towards jump spot " + jumpSpot + " (" + distanceToJumpSpot + " away)");
