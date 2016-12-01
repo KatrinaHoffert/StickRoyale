@@ -19,12 +19,12 @@ public class LevelSelectScript : MonoBehaviour
 
     public void Level1Clicked()
     {
-        LoadLevel("Level4");
+        LoadLevel("Level6");
     }
     
     public void Level2Clicked()
     {
-        LoadLevel("Level5");
+        LoadLevel("Level7");
     }
 
     public void Level3Clicked()
