@@ -34,8 +34,9 @@ public class PlayerMovement : PlayerBase
 
             MaximalMove(new Vector2(0, jumpVerticalForce));
             animator.SetBool("Grounded", false);
+			animator.SetTrigger ("Jump");
         }
-        animator.SetFloat("Speed", rigidBody.velocity.x);
+		animator.SetFloat("Speed", Math.Abs(rigidBody.velocity.x));
 
         if (timeCanAttackNext <= Time.time && Input.GetButtonUp(gameObject.name + "_PrimaryAttack"))
         {
