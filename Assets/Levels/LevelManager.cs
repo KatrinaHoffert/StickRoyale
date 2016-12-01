@@ -177,6 +177,10 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Checks if the game's victory condition (namely being the last player standing) has
+    /// been met. If so, transitions us to the stats screen.
+    /// </summary>
     private void VictoryConditionCheck()
     {
         int numPlayersAlive = 0;
