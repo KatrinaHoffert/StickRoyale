@@ -15,6 +15,12 @@ public class Ai : PlayerBase
     private DecisionTree decisionTree;
 
     /// <summary>
+    /// A delay that is added between all attacks because the AI is faster than humans. This makes
+    /// it a bit slower to give folks a chance.
+    /// </summary>
+    private float extraAttackDelay = 0.1f;
+
+    /// <summary>
     /// True when the AI is in the middle of some action (and thus must not try and perform another).
     /// </summary>
     private bool areWeBusy;
@@ -127,14 +133,14 @@ public class Ai : PlayerBase
     {
         attackBase.Attack1();
         animator.SetTrigger("Attack1");
-        timeCanAttackNext = Time.time + attackBase.GetAttack1Delay();
+        timeCanAttackNext = Time.time + attackBase.GetAttack1Delay() + extraAttackDelay;
     }
 
     private void Attack2()
     {
         attackBase.Attack2();
         animator.SetTrigger("Attack2");
-        timeCanAttackNext = Time.time + attackBase.GetAttack2Delay();
+        timeCanAttackNext = Time.time + attackBase.GetAttack2Delay() + extraAttackDelay;
     }
 
     private bool PlayerInAttackRangeIfWeTurn()
