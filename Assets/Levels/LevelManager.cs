@@ -169,6 +169,24 @@ public class LevelManager : MonoBehaviour
                 if (spawnPointAvailabilityTime[i] + spawnPointCooldown > Time.time) continue;
                 if (spawnPointOffCooldownIndex == spawnPointPseudoIndex) spawnPointToUse = i;
                 ++spawnPointOffCooldownIndex;
+                // Working on getting it to pick furthest spawn point from players
+                /*GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+                float[] distanceToSpawnPoint = new float[players.Length];
+                foreach(GameObject item in players)
+                {
+                    distanceToSpawnPoint[i] = Vector3.Distance(item.transform.position, spawnPoints[i].transform.position);
+                }
+                float max = distanceToSpawnPoint[1];
+                GameObject furthestPoint = spawnPoints[1];
+                for(int j = 1; j < players.Length;j++)
+                {
+                    max = Mathf.Max(max, distanceToSpawnPoint[j]);
+                    if(max==distanceToSpawnPoint[j])
+                    {
+                        spawnPointToUse = j;
+                    }
+                }*/
+                
             }
         }
 
