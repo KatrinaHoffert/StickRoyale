@@ -304,10 +304,10 @@ public class Ai : PlayerBase
                 if (directionToTarget != characterBase.facing) Turn();
             }
 
-            //Debug.Log(gameObject.name + " moving towards jump spot " + jumpSpot + " (" + distanceToJumpSpot + " away)");
+            Debug.Log(gameObject.name + " moving towards jump spot " + jumpSpot + " (" + distanceToJumpSpot + " away)");
         }
 
-        //Debug.Log(gameObject.name + " is on " + ourPlatform + " and their target (" + closestPlayer.name + ") is on " + targetPlatform);
+        Debug.Log(gameObject.name + " is on " + ourPlatform + " and their target (" + closestPlayer.name + ") is on " + targetPlatform);
     }
 
     /// <summary>
@@ -349,8 +349,12 @@ public class Ai : PlayerBase
         // there's no y velocity (could be falling).
         if (player.GetComponent<Rigidbody2D>().velocity.y == 0)
         {
-            var hitsLeft = Physics2D.RaycastAll(player.transform.position - new Vector3(0.5f, 0), Vector2.down);
-            var hitsRight = Physics2D.RaycastAll(player.transform.position + new Vector3(0.5f, 0), Vector2.down);
+            var halfWidth = GetComponent<BoxCollider2D>().size.x / 2f;
+            var distanceFuzz = 0.05f;
+            var hitsLeft = Physics2D.RaycastAll(player.transform.position - new Vector3(halfWidth + distanceFuzz, 0), Vector2.down);
+            var hitsRight = Physics2D.RaycastAll(player.transform.position + new Vector3(halfWidth + distanceFuzz, 0), Vector2.down);
+            //Debug.DrawRay(player.transform.position - new Vector3(halfWidth + distanceFuzz, 0), Vector2.down * 100, Color.red, 1.0f);
+            //Debug.DrawRay(player.transform.position + new Vector3(halfWidth + distanceFuzz, 0), Vector2.down * 100, Color.red, 1.0f);
 
             var floorHitLeft = hitsLeft.Where(hit => hit.transform.tag == "Floor").FirstOrDefault();
             var floorHitRight = hitsLeft.Where(hit => hit.transform.tag == "Floor").FirstOrDefault();
