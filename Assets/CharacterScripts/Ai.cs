@@ -254,11 +254,11 @@ public class Ai : PlayerBase
     {
         if (characterBase.facing == 1)
         {
-            MaximalMove(new Vector2(50, 0));
+            MaximalMove(new Vector2(10f, -10f));
         }
         else
         {
-            MaximalMove(new Vector2(-50, 0));
+            MaximalMove(new Vector2(-10f, -10f));
         }
     }
     /// <summary>
