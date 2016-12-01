@@ -22,6 +22,17 @@ public class LevelManager : MonoBehaviour
     private GameObject[] spawnPoints;
 
     /// <summary>
+    /// The next game time that the spawn point is available. Facilitates cooldowns so that multiple players
+    /// aren't using a spawn point and so players aren't respawning too frequently at a spawn point.
+    /// </summary>
+    private float[] spawnPointAvailabilityTime;
+
+    /// <summary>
+    /// Cooldown time for a spawn point to be used. Only violated if all spawn points are on cooldown.
+    /// </summary>
+    private const float spawnPointCooldown = 3.0f;
+
+    /// <summary>
     /// Stores the indicator objects for each player.
     /// </summary>
     private static GameObject[] indicators;
@@ -36,6 +47,7 @@ public class LevelManager : MonoBehaviour
    
     void Start () {
         spawnPoints = GameObject.FindGameObjectsWithTag("Respawn");
+        spawnPointAvailabilityTime = new float[spawnPoints.Length];
 
         // Create player objects
         var controlSlots = GameObject.Find("ControlSlots").GetComponent<ControlSlotsScript>().slots;
@@ -71,10 +83,11 @@ public class LevelManager : MonoBehaviour
             if (CharacterSelectMenuScript.controlSlots[i].controlType != ControlType.Closed)
             {
                 // Puts players in spawn points (assumes there's at least 4 spawn points)
-                players[i].transform.position = spawnPoints[i].transform.position;
+                players[i].transform.position = pickSpawnpoint().transform.position;
 
                 // Load the appropriate prefab for the player's indicator
                 indicators[i] = Instantiate((GameObject)Resources.Load("PlayerIndicators/Player" + i + "Indicator"));
+                indicators[i].name = "Indicator" + i;
                 indicators[i].transform.localScale = new Vector3(1, 1, 1);
                 hitbars[i] = Instantiate((GameObject)Resources.Load("PlayerIndicators/HealthBar"));
                 hitbars[i].name = "HealthBar" + i;
@@ -85,6 +98,55 @@ public class LevelManager : MonoBehaviour
         var statsObject = new GameObject("Stats");
         stats = statsObject.AddComponent<Stats>();
         DontDestroyOnLoad(statsObject);
+    }
+
+    /// <summary>
+    /// Picks a spawn point to use. Tries to find a random one off cooldown if possible. Otherwise
+    /// will pick the one with the shortest cooldown. Will set the cooldown of the spawn point that
+    /// gets returned.
+    /// </summary>
+    /// <returns>The spawnpoint the player should spawn at.</returns>
+    private GameObject pickSpawnpoint()
+    {
+        var availableSpawnPoints = 0;
+        foreach(var availabilityTime in spawnPointAvailabilityTime)
+        {
+            if (availabilityTime + spawnPointCooldown <= Time.time) ++availableSpawnPoints;
+        }
+
+        // No spawn points? Pick the oldest one
+        int spawnPointToUse = -1;
+        if (availableSpawnPoints == 0)
+        {
+            float minTime = spawnPointAvailabilityTime[0];
+            spawnPointToUse = 0;
+            for (int i = 1; i < spawnPointAvailabilityTime.Length; ++i)
+            {
+                if (spawnPointAvailabilityTime[i] < minTime)
+                {
+                    minTime = spawnPointAvailabilityTime[i];
+                    spawnPointToUse = i;
+                }
+            }
+            Debug.Log("No spawn points off cooldown, using " + spawnPoints[spawnPointToUse].name);
+        }
+        // Otherwise pick a random spawn point from those available
+        else
+        {
+            // This is an index skipping the spawn points that are on cooldown
+            var spawnPointPseudoIndex = UnityEngine.Random.RandomRange(0, availableSpawnPoints - 1);
+            int spawnPointOffCooldownIndex = 0;
+            for (int i = 0; i < spawnPointAvailabilityTime.Length; ++i)
+            {
+                if (spawnPointAvailabilityTime[i] + spawnPointCooldown > Time.time) continue;
+                if (spawnPointOffCooldownIndex == spawnPointPseudoIndex) spawnPointToUse = i;
+                ++spawnPointOffCooldownIndex;
+            }
+        }
+
+        // Make sure we reset the cooldown on the spawn point we're using
+        spawnPointAvailabilityTime[spawnPointToUse] = Time.time + spawnPointCooldown;
+        return spawnPoints[spawnPointToUse];
     }
 
     /// <summary>
@@ -100,13 +162,16 @@ public class LevelManager : MonoBehaviour
 
             if (playerBase.lives >= 0)
             {
-                player.transform.position = spawnPoints[Random.Range(0, spawnPoints.Length - 1)].transform.position;
+                player.transform.position = pickSpawnpoint().transform.position;
                 player.GetComponent<Rigidbody2D>().velocity = new Vector2();
             }
             else
             {
-                Debug.Log(player.name + " has died");
+                Debug.Log(player.name + " is out of lives");
+                char playerNumber = player.name[player.name.Length - 1];
                 Destroy(player);
+                Destroy(GameObject.Find("Indicator" + playerNumber));
+                Destroy(GameObject.Find("HealthBar" + playerNumber));
                 VictoryConditionCheck();
             }
         }

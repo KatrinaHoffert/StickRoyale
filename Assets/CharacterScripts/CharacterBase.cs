@@ -72,7 +72,7 @@ public class CharacterBase : MonoBehaviour
     public void Damage(int hp)
     {
         currentHitpoints = currentHitpoints - hp;
-        //anim.SetTrigger("Hit");
+        
     }
 
     /// <summary>
@@ -92,5 +92,6 @@ public class CharacterBase : MonoBehaviour
     public void DamageForce(Vector3 forceDirection)
     {
         GetComponent<Rigidbody2D>().AddForce(forceDirection);
+		anim.SetTrigger("Hit");
     }
 }
