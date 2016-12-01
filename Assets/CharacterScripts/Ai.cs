@@ -55,7 +55,7 @@ public class Ai : PlayerBase
     /// True when the AI is in the middle of continuing movement from a jump.
     /// </summary>
     private bool continuingJumpMovement;
-	    
+
     void Start()
     {
         decisionTree = DecisionTree.Decision(
@@ -85,7 +85,7 @@ public class Ai : PlayerBase
     {
         decisionTree.Search();
     }
-    
+
     private bool AreWeContinuingMovement()
     {
         return continuingJumpMovement && !canJump;
@@ -99,7 +99,7 @@ public class Ai : PlayerBase
         {
             MaximalMove(new Vector2(baseRightMoveForce * characterBase.facing * Time.fixedDeltaTime, 0));
         }
-        else if(ourCurrentPlatform != null)
+        else if (ourCurrentPlatform != null)
         {
             // Slow us gradually so we can fall onto that platform
             rigidBody.velocity = new Vector2(rigidBody.velocity.x / 2, rigidBody.velocity.y);
@@ -108,7 +108,7 @@ public class Ai : PlayerBase
 
     private bool AreWeFalling()
     {
-        if(FindPlatformPlayerIsOn(gameObject) != null) return false;
+        if (FindPlatformPlayerIsOn(gameObject) != null) return false;
         return rigidBody.velocity.y < 0;
     }
 
@@ -131,7 +131,7 @@ public class Ai : PlayerBase
                 nearestFloorDistance = distanceToFloor;
             }
         }
-        
+
         if (canJump)
         {
             // Reset vertical velocity before a jump -- consistent with player
@@ -139,7 +139,7 @@ public class Ai : PlayerBase
             MaximalMove(new Vector2(0, jumpVerticalForce));
             canJump = false;
         }
-        
+
         // Move in direction of platform until on it or under it
         var direction = Math.Sign(nearestFloor.transform.position.x - transform.position.x);
         MaximalMove(new Vector2(baseRightMoveForce * direction * Time.fixedDeltaTime, 0));
@@ -168,7 +168,7 @@ public class Ai : PlayerBase
             MaximalMove(new Vector2(baseRightMoveForce * direction * Time.fixedDeltaTime, 0));
         }
     }
-    
+
     private void Attack()
     {
         // Choose an attack
@@ -221,11 +221,11 @@ public class Ai : PlayerBase
         var ourPlatform = FindPlatformPlayerIsOn(gameObject);
 
         // Platforms are the same? Just move towards the player.
-        if(targetPlatform == ourPlatform)
+        if (targetPlatform == ourPlatform)
         {
             // Leave a gap so we don't move with the target on top of us
             var horizontalDistance = closestPlayer.transform.position.x - transform.position.x;
-            if(Math.Abs(horizontalDistance) > targetOnTopLeewayDistance)
+            if (Math.Abs(horizontalDistance) > targetOnTopLeewayDistance)
             {
                 // Turn around if there's a change in direction
                 int direction = Math.Sign(horizontalDistance);
@@ -236,56 +236,55 @@ public class Ai : PlayerBase
         }
         // Otherwise figure out how to get to the target's platform -- if they aren't on a platform,
         // do nothing.
-        else if(targetPlatform != null)
+        else if (targetPlatform != null)
         {
             // This will happen when jumping between platforms; just wait till we're on something
             if (ourPlatform == null) return;
 
-			if (ourPlatform.transform.position.y > targetPlatform.transform.position.y
-				&& Math.Abs(Math.Abs(transform.position.x) - Math.Abs(closestPlayer.transform.position.x) )< 1) {
-				Debug.Log ("Below");
-				Physics2D.IgnoreCollision (transform.GetComponent<Collider2D> (), ourPlatform.GetComponent<Collider2D> (),true);
-				StartCoroutine (reenablePlatformCollision(ourPlatform.transform, 2f));
-				return;
-			} 
-		
-		
-			
-
-
+            // Handle dropping down from platforms if we're above the target
+            if (ourPlatform.transform.position.y > targetPlatform.transform.position.y
+                && Math.Abs(Math.Abs(transform.position.x) - Math.Abs(closestPlayer.transform.position.x)) < 1)
+            {
+                Physics2D.IgnoreCollision(transform.GetComponent<Collider2D>(), ourPlatform.GetComponent<Collider2D>(), true);
+                StartCoroutine(ReenablePlatformCollision(ourPlatform.transform, 2f));
+                return;
+            }
 
             // Do we already have a jump spot we should be moving towards?
             Transform jumpSpot;
-			if (targetPlatformForMovement == targetPlatform && ourPlatformForMovement == ourPlatform) {
-				jumpSpot = jumpSpotToUse.transform;
+            if (targetPlatformForMovement == targetPlatform && ourPlatformForMovement == ourPlatform)
+            {
+                jumpSpot = jumpSpotToUse.transform;
 
-			} else {
-				// Find the jump point on our platform in the right direction
-				int directionToTarget = Math.Sign (closestPlayer.transform.position.x - transform.position.x);
-				var jumpSpots = ourPlatform.transform.Cast<Transform> ().Where (child => child.tag == "JumpSpot");
+            }
+            else
+            {
+                // Find the jump point on our platform in the right direction
+                int directionToTarget = Math.Sign(closestPlayer.transform.position.x - transform.position.x);
+                var jumpSpots = ourPlatform.transform.Cast<Transform>().Where(child => child.tag == "JumpSpot");
 
-				// Take the one in the direction towards our target if there is one or whatever the sole one
-				// is, otherwise
-				jumpSpot = jumpSpots.Where (spot => Math.Sign (spot.transform.position.x - transform.position.x) == directionToTarget).FirstOrDefault ();
-				if (jumpSpot == null)
-					jumpSpot = jumpSpots.FirstOrDefault ();
+                // Take the one in the direction towards our target if there is one or whatever the sole one
+                // is, otherwise
+                jumpSpot = jumpSpots.Where(spot => Math.Sign(spot.transform.position.x - transform.position.x) == directionToTarget).FirstOrDefault();
+                if (jumpSpot == null)
+                    jumpSpot = jumpSpots.FirstOrDefault();
 
-				// Cache the targets for next time
-				ourPlatformForMovement = ourPlatform;
-				targetPlatformForMovement = targetPlatform;
-				jumpSpotToUse = jumpSpot.gameObject;
+                // Cache the targets for next time
+                ourPlatformForMovement = ourPlatform;
+                targetPlatformForMovement = targetPlatform;
+                jumpSpotToUse = jumpSpot.gameObject;
 
-			}
-				
+            }
+
             // If still no jump spots, we're stuck
-            if(jumpSpot == null)
+            if (jumpSpot == null)
             {
                 Debug.Log(gameObject.name + " is stuck on " + ourPlatform);
                 ourPlatformForMovement = null;
                 targetPlatformForMovement = null;
                 return;
             }
-            
+
             // Actually move towards the jump spot
             int directionToJumpSpot = Math.Sign(jumpSpot.position.x - transform.position.x);
             var distanceToJumpSpot = jumpSpot.position.x - transform.position.x;
@@ -348,14 +347,14 @@ public class Ai : PlayerBase
 
         // Maybe the raycast from the center is to blame? Try raycasts from sides too, but only if
         // there's no y velocity (could be falling).
-        if(player.GetComponent<Rigidbody2D>().velocity.y == 0)
+        if (player.GetComponent<Rigidbody2D>().velocity.y == 0)
         {
             var hitsLeft = Physics2D.RaycastAll(player.transform.position - new Vector3(0.5f, 0), Vector2.down);
             var hitsRight = Physics2D.RaycastAll(player.transform.position + new Vector3(0.5f, 0), Vector2.down);
 
             var floorHitLeft = hitsLeft.Where(hit => hit.transform.tag == "Floor").FirstOrDefault();
             var floorHitRight = hitsLeft.Where(hit => hit.transform.tag == "Floor").FirstOrDefault();
-            
+
             // If we only get one hit, return that. Otherwise the closest
             if (floorHitLeft.transform == null && floorHitRight.transform != null)
             {
@@ -381,8 +380,8 @@ public class Ai : PlayerBase
     {
         MaximalMove(new Vector2(antiStackingHorizontalForce * characterBase.facing, antiStackingVerticalForce));
     }
-						
-    
+
+
     /// <summary>
     /// Used for detecting player stacking.
     /// </summary>
@@ -394,9 +393,15 @@ public class Ai : PlayerBase
         }
     }
 
-	IEnumerator reenablePlatformCollision(Transform platform,float delay){
-		yield return new WaitForSeconds (delay);
-		Physics2D.IgnoreCollision (transform.GetComponent<Collider2D> (), platform.GetComponent<Collider2D> (), false);
-	}
-		
+    /// <summary>
+    /// Re-enables collision between this character and a given platform.
+    /// </summary>
+    /// <param name="platform">The transform of the platform in question.</param>
+    /// <param name="delay">Delay to wait before enabling collision again.</param>
+    /// <returns></returns>
+    IEnumerator ReenablePlatformCollision(Transform platform, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Physics2D.IgnoreCollision(transform.GetComponent<Collider2D>(), platform.GetComponent<Collider2D>(), false);
+    }
 }
