@@ -41,7 +41,7 @@ public class CharacterBase : MonoBehaviour
 
     Animator anim;
 
-    void Awake()
+    void Start()
     {
         currentHitpoints = maxHitpoints;
         anim = gameObject.GetComponent<Animator>();
@@ -62,7 +62,6 @@ public class CharacterBase : MonoBehaviour
         if (transform.position.y < -5)
         {
             currentHitpoints = 0;
-            Debug.Log(gameObject.name + " has fallen");
         }
     }
 
@@ -73,7 +72,7 @@ public class CharacterBase : MonoBehaviour
     public void Damage(int hp)
     {
         currentHitpoints = currentHitpoints - hp;
-        //anim.SetTrigger("Hit");
+        
     }
 
     /// <summary>
@@ -83,7 +82,6 @@ public class CharacterBase : MonoBehaviour
     {
         currentHitpoints = maxHitpoints;
         --lives;
-        Debug.Log(gameObject.name + " has died!");
         //anim.SetTrigger("Death");
     }
 
@@ -94,5 +92,6 @@ public class CharacterBase : MonoBehaviour
     public void DamageForce(Vector3 forceDirection)
     {
         GetComponent<Rigidbody2D>().AddForce(forceDirection);
+		anim.SetTrigger("Hit");
     }
 }
