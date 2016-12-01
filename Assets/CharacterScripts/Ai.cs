@@ -304,10 +304,10 @@ public class Ai : PlayerBase
                 if (directionToTarget != characterBase.facing) Turn();
             }
 
-            Debug.Log(gameObject.name + " moving towards jump spot " + jumpSpot + " (" + distanceToJumpSpot + " away)");
+            //Debug.Log(gameObject.name + " moving towards jump spot " + jumpSpot + " (" + distanceToJumpSpot + " away)");
         }
 
-        Debug.Log(gameObject.name + " is on " + ourPlatform + " and their target (" + closestPlayer.name + ") is on " + targetPlatform);
+        //Debug.Log(gameObject.name + " is on " + ourPlatform + " and their target (" + closestPlayer.name + ") is on " + targetPlatform);
     }
 
     /// <summary>
