@@ -35,10 +35,6 @@ public class CharacterSelectMenuScript : MonoBehaviour
         // Initialize the control slots
         controlSlots = GameObject.Find("ControlSlots").GetComponent<ControlSlotsScript>().slots;
 
-        // Player must be p0, so disable the select there (it's not a real dropdown anyway, since there's
-        // only one option)
-        GameObject.Find("P0Control").GetComponent<Dropdown>().enabled = false;
-
         // We might have arrived here via back button on level select -- update the images in case.
         UpdateCharacterImages();
 
@@ -58,7 +54,8 @@ public class CharacterSelectMenuScript : MonoBehaviour
         controlSlots[selectingPlayer].chosenCharacter = name;
         UpdateCharacterImages();
     }
-    
+
+    public void ControlChange0(int value) { ControlChange(0, value); }
     public void ControlChange1(int value) { ControlChange(1, value); }
     public void ControlChange2(int value) { ControlChange(2, value); }
     public void ControlChange3(int value) { ControlChange(3, value); }
