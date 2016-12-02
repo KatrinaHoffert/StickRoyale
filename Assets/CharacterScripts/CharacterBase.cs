@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
@@ -39,6 +40,8 @@ public abstract class CharacterBase : MonoBehaviour
     /// </summary>
     public bool directionLocked = false;
 
+    private List<PowerupRecord> powerups = new List<PowerupRecord>();
+
     Animator anim;
     Stats stats;
 
@@ -51,6 +54,22 @@ public abstract class CharacterBase : MonoBehaviour
     void Start()
     {
         stats = GameObject.Find("Stats").GetComponent<Stats>();
+    }
+
+    void Update()
+    {
+        // Traverse backwards for safe removal while iterating
+        for (int i = powerups.Count - 1; i >= 0; --i)
+        {
+            // Remove expired powerups
+            if(powerups[i].pickupTime + powerups[i].powerup.GetDuration() >= Time.time)
+            {
+                powerups[i].powerup.ApplyEnd(this);
+                powerups.RemoveAt(i);
+            }
+
+            powerups[i].powerup.ApplyUpdate(this);
+        }
     }
     
     void FixedUpdate()
@@ -102,5 +121,24 @@ public abstract class CharacterBase : MonoBehaviour
         anim.SetTrigger("Hit");
     }
 
+    /// <summary>
+    /// Performs any cleanup that should occur every time the character dies (eg, removal of projectiles).
+    /// </summary>
     protected abstract void Cleanup();
+
+    public void ConsumePowerup(PowerupBase powerup)
+    {
+        // Duration zero powerups don't need to be added to the list since they'd just get
+        // popped instantly
+        powerup.ApplyStart(this);
+        if (powerup.GetDuration() != 0f)
+        {
+            powerups.Add(new PowerupRecord(powerup));
+        }
+        else
+        {
+            // Since it's "popped instantly"
+            powerup.ApplyEnd(this);
+        }
+    }
 }

@@ -5745,6 +5745,7 @@ MonoBehaviour:
     chosenCharacter: 
   - controlType: 0
     chosenCharacter: 
+  playerLives: 3
 --- !u!224 &2057839553
 RectTransform:
   m_ObjectHideFlags: 0

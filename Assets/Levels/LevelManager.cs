@@ -128,6 +128,9 @@ public class LevelManager : MonoBehaviour
 
         // And add the pause menu (canvas disabled by default)
         pauseMenu = Instantiate((GameObject)Resources.Load("PauseMenu")).GetComponent<Canvas>();
+
+        // Attach the powerup manager (it'll run on its own)
+        gameObject.AddComponent<PowerupManager>();
     }
 
     /// <summary>
