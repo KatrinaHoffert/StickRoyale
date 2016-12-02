@@ -36,7 +36,14 @@ public class CharacterSelectMenuScript : MonoBehaviour
         controlSlots = GameObject.Find("ControlSlots").GetComponent<ControlSlotsScript>().slots;
 
         // We might have arrived here via back button on level select -- update the images in case.
+        // Similarly, set the dropdowns
         UpdateCharacterImages();
+        var controlMapping = GetDropdownControlMapping().GroupBy(x => x.Value, x => x.Key)
+            .ToDictionary(g => g.Key, g => g.ToList().FirstOrDefault());
+        for (int i = 0; i < controlSlots.Length; ++i)
+        {
+            GameObject.Find("P" + i + "Control").GetComponent<Dropdown>().value = controlMapping[controlSlots[i].controlType];
+        }
 
         // Disable the selecting images until they are needed
         GameObject.Find("P1Selecting").GetComponent<Image>().enabled = false;
