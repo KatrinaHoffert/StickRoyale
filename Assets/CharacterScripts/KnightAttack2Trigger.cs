@@ -33,9 +33,10 @@ public class KnightAttack2Trigger : MonoBehaviour
             // Don't hurt ourselves
             if (coll.gameObject == transform.parent.gameObject) return;
 
-            int direction = transform.parent.gameObject.GetComponent<CharacterBase>().facing;
+            var attackerCharacter = transform.parent.gameObject.GetComponent<CharacterBase>();
+            int direction = attackerCharacter.facing;
             var targetCharacterBase = coll.gameObject.GetComponent<CharacterBase>();
-            targetCharacterBase.Damage(damage);
+            targetCharacterBase.Damage((int)(damage * attackerCharacter.damageMultiplier));
             targetCharacterBase.DamageForce(new Vector2(direction, 0.5f) * pushbackMagnitude);
             playersAlreadyHit.Add(coll.gameObject);
 

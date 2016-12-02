@@ -16,7 +16,8 @@ public class PowerupManager : MonoBehaviour
     /// </summary>
     private PowerupSpawnRate[] powerups = new PowerupSpawnRate[]
     {
-        new PowerupSpawnRate("PowerupBurger", 1.0f)
+        new PowerupSpawnRate("PowerupBurger", 1.0f),
+        new PowerupSpawnRate("PowerupSteroids", 0.35f),
     };
 
     /// <summary>

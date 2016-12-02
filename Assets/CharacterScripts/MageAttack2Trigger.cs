@@ -68,7 +68,7 @@ public class MageAttack2Trigger : MonoBehaviour
             if (coll.gameObject == casterObject) return;
 
             var targetCharacterBase = coll.gameObject.GetComponent<CharacterBase>();
-            targetCharacterBase.Damage(damage);
+            targetCharacterBase.Damage((int)(damage * casterObject.GetComponent<CharacterBase>().damageMultiplier));
             targetCharacterBase.DamageForce(new Vector2(0.25f, direction) * pushbackMagnitude);
             playersAlreadyHit.Add(coll.gameObject);
 
