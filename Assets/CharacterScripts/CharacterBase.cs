@@ -35,6 +35,11 @@ public abstract class CharacterBase : MonoBehaviour
     public float movementSpeedMultiplier = 1.0f;
 
     /// <summary>
+    /// A multiplier to all damage that this character deals.
+    /// </summary>
+    public float damageMultiplier = 1.0f;
+
+    /// <summary>
     /// Locks the direction the character can move. such as using an attack means you can't turn around till the attack 
     /// has finished.
     /// </summary>
@@ -65,10 +70,11 @@ public abstract class CharacterBase : MonoBehaviour
         for (int i = powerups.Count - 1; i >= 0; --i)
         {
             // Remove expired powerups
-            if(powerups[i].pickupTime + powerups[i].powerup.GetDuration() >= Time.time)
+            if(powerups[i].pickupTime + powerups[i].powerup.GetDuration() <= Time.time)
             {
                 powerups[i].powerup.ApplyEnd(this);
                 powerups.RemoveAt(i);
+                continue;
             }
 
             powerups[i].powerup.ApplyUpdate(this);
