@@ -21,11 +21,12 @@ GameObject:
   - 4: {fileID: 4000010582435276}
   - 114: {fileID: 114000011926198936}
   - 114: {fileID: 114000010864919308}
-  - 114: {fileID: 114000011862800712}
   - 114: {fileID: 114000011562622860}
   - 114: {fileID: 114000013537647250}
   - 50: {fileID: 50000010427433544}
   - 61: {fileID: 61000010081339316}
+  - 114: {fileID: 114000013482426018}
+  - 114: {fileID: 114000011406861206}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -76,7 +77,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1.28, y: 1.28}
+  m_Size: {x: 0.4, y: 0.5}
 --- !u!114 &114000010864919308
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -88,6 +89,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68ea132838308ec4792ad4ac902634ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114000011406861206
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012608651472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca6f776cb6c7fca43b7d100865b0fe04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  atk1: 0
+  atk2: 0
+  walk: 0
+  playerIndex: 0
 --- !u!114 &114000011562622860
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -101,26 +117,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerName: 
   uniquePlayerId: 
---- !u!114 &114000011862800712
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012608651472}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1768714887, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_TransformSyncMode: 2
-  m_SendInterval: 0.09090909
-  m_SyncRotationAxis: 3
-  m_RotationSyncCompression: 0
-  m_SyncSpin: 0
-  m_MovementTheshold: 0.001
-  m_SnapThreshold: 5
-  m_InterpolateRotation: 1
-  m_InterpolateMovement: 1
 --- !u!114 &114000011926198936
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -153,6 +149,26 @@ MonoBehaviour:
     i15: 121
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
+--- !u!114 &114000013482426018
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012608651472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 2
+  m_SendInterval: 0.033333335
+  m_SyncRotationAxis: 3
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 1
+  m_MovementTheshold: 0.001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
 --- !u!114 &114000013537647250
 MonoBehaviour:
   m_ObjectHideFlags: 1

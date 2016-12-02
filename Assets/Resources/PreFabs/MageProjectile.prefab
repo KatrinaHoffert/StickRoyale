@@ -20,10 +20,12 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011918117190}
   - 212: {fileID: 212000011781027260}
-  - 58: {fileID: 58000012377506930}
+  - 114: {fileID: 114000010798541610}
+  - 61: {fileID: 61000010723130716}
+  - 114: {fileID: 114000010979419582}
   m_Layer: 0
   m_Name: MageProjectile
-  m_TagString: Untagged
+  m_TagString: MageBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36,13 +38,13 @@ Transform:
   m_GameObject: {fileID: 1000011600508930}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.399, y: -1.036, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 20, y: 20, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!58 &58000012377506930
-CircleCollider2D:
+--- !u!61 &61000010723130716
+BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -52,9 +54,55 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0.06, y: -0.03}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.14894927
+  m_Size: {x: 0.34, y: 0.37}
+--- !u!114 &114000010798541610
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011600508930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 27
+    i1: 128
+    i2: 66
+    i3: 11
+    i4: 20
+    i5: 149
+    i6: 91
+    i7: 212
+    i8: 186
+    i9: 128
+    i10: 230
+    i11: 224
+    i12: 127
+    i13: 78
+    i14: 76
+    i15: 255
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
+--- !u!114 &114000010979419582
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011600508930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2220630f34f5d641aee1ddb95ddb06c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  owner: 0
+  speed: 0
+  directionRight: 0
 --- !u!212 &212000011781027260
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -84,7 +132,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300016, guid: cfbd0a9e735c544a7a0275a22c77d246, type: 3}
+  m_Sprite: {fileID: 21300020, guid: cfbd0a9e735c544a7a0275a22c77d246, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
