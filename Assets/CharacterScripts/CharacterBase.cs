@@ -40,6 +40,9 @@ public abstract class CharacterBase : MonoBehaviour
     /// </summary>
     public bool directionLocked = false;
 
+    /// <summary>
+    /// All powerups that this character currently has.
+    /// </summary>
     private List<PowerupRecord> powerups = new List<PowerupRecord>();
 
     Animator anim;

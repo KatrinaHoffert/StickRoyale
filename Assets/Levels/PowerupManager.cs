@@ -10,6 +10,10 @@ using System.Linq;
 /// </summary>
 public class PowerupManager : MonoBehaviour
 {
+    /// <summary>
+    /// All powerups and their spawn weighting. Higher numbers mean a proportionately higher
+    /// chance of being chosen.
+    /// </summary>
     private PowerupSpawnRate[] powerups = new PowerupSpawnRate[]
     {
         new PowerupSpawnRate("PowerupBurger", 1.0f)
