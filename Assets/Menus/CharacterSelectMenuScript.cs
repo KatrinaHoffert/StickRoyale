@@ -115,6 +115,16 @@ public class CharacterSelectMenuScript : MonoBehaviour
         Debug.Log("Set player in slot " + slot + " as control type " + dropdownControlTypes[value]);
         controlSlots[slot].controlType = dropdownControlTypes[value];
         UpdateCharacterImages();
+
+        // There must be at least 2 non-closed characters, otherwise disable the start button
+        if(controlSlots.Count(controlSlot => controlSlot.controlType != ControlType.Closed) >= 2)
+        {
+            GameObject.Find("StartGameButton").GetComponent<Button>().interactable = true;
+        }
+        else
+        {
+            GameObject.Find("StartGameButton").GetComponent<Button>().interactable = false;
+        }
     }
 
     /// <summary>
