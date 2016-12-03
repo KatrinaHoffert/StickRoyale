@@ -25,7 +25,7 @@ public class Ai : PlayerBase
     /// Distance at which the AI will try and get away from the nearest player when attacks are on
     /// cooldown. See <see cref="StepAway"/>.
     /// </summary>
-    private const float stepAwayDistance = 1.5f;
+    private const float stepAwayDistance = 3f;
 
     /// <summary>
     /// Amount of leeway to leave when moving so that when the foe is directly above us, we're not
@@ -183,6 +183,7 @@ public class Ai : PlayerBase
         {
             // Move in the opposite direction that they are in
             var direction = Math.Sign(closestPlayerDistance) * -1;
+            rigidBody.velocity = new Vector2(rigidBody.velocity.x / 2, rigidBody.velocity.y);
             MaximalMove(new Vector2(baseRightMoveForce * direction * Time.fixedDeltaTime, 0));
         }
     }
@@ -300,6 +301,9 @@ public class Ai : PlayerBase
         var targetPlatform = FindPlatformPlayerIsOn(target);
         var ourPlatform = FindPlatformPlayerIsOn(gameObject);
 
+        // Can't do anything if we don't know platforms
+        if (targetPlatform == null || ourPlatform == null) return;
+
         // Platforms are the same? Just move towards the player.
         if (targetPlatform == ourPlatform)
         {
@@ -318,9 +322,6 @@ public class Ai : PlayerBase
         // do nothing.
         else if (targetPlatform != null)
         {
-            // This will happen when jumping between platforms; just wait till we're on something
-            if (ourPlatform == null) return;
-
             // Handle dropping down from platforms if we're above the target
             if (ourPlatform.transform.position.y > targetPlatform.transform.position.y
                 && Math.Abs(Math.Abs(transform.position.x) - Math.Abs(target.transform.position.x)) < 1)
