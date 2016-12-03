@@ -44,11 +44,6 @@ public class CharacterSelectMenuScript : MonoBehaviour
         {
             GameObject.Find("P" + i + "Control").GetComponent<Dropdown>().value = controlMapping[controlSlots[i].controlType];
         }
-
-        // Disable the selecting images until they are needed
-        GameObject.Find("P1Selecting").GetComponent<Image>().enabled = false;
-        GameObject.Find("P2Selecting").GetComponent<Image>().enabled = false;
-        GameObject.Find("P3Selecting").GetComponent<Image>().enabled = false;
     }
 
     /// <summary>
