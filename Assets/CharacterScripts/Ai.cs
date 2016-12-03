@@ -99,7 +99,7 @@ public class Ai : PlayerBase
         );
     }
 
-    void FixedUpdate()
+    void Update()
     {
         decisionTree.Search();
     }
@@ -115,7 +115,7 @@ public class Ai : PlayerBase
         var ourCurrentPlatform = FindPlatformPlayerIsOn(gameObject);
         if (ourCurrentPlatform == ourPlatformForMovement)
         {
-            MaximalMove(new Vector2(baseRightMoveForce * characterBase.facing * Time.fixedDeltaTime, 0));
+            MaximalMove(new Vector2(baseRightMoveForce * characterBase.facing * Time.deltaTime, 0));
         }
         else if (ourCurrentPlatform != null)
         {
@@ -160,7 +160,7 @@ public class Ai : PlayerBase
 
         // Move in direction of platform until on it or under it
         var direction = Math.Sign(nearestFloor.transform.position.x - transform.position.x);
-        MaximalMove(new Vector2(baseRightMoveForce * direction * Time.fixedDeltaTime, 0));
+        MaximalMove(new Vector2(baseRightMoveForce * direction * Time.deltaTime, 0));
     }
 
     private bool PlayerInAttackRange()
@@ -184,7 +184,7 @@ public class Ai : PlayerBase
             // Move in the opposite direction that they are in
             var direction = Math.Sign(closestPlayerDistance) * -1;
             rigidBody.velocity = new Vector2(rigidBody.velocity.x / 2, rigidBody.velocity.y);
-            MaximalMove(new Vector2(baseRightMoveForce * direction * Time.fixedDeltaTime, 0));
+            MaximalMove(new Vector2(baseRightMoveForce * direction * Time.deltaTime, 0));
         }
     }
 
@@ -315,7 +315,7 @@ public class Ai : PlayerBase
                 int direction = Math.Sign(horizontalDistance);
                 if (direction != characterBase.facing) Turn();
 
-                MaximalMove(new Vector2(baseRightMoveForce * direction * Time.fixedDeltaTime, 0));
+                MaximalMove(new Vector2(baseRightMoveForce * direction * Time.deltaTime, 0));
             }
         }
         // Otherwise figure out how to get to the target's platform -- if they aren't on a platform,
@@ -369,7 +369,7 @@ public class Ai : PlayerBase
             // Actually move towards the jump spot
             int directionToJumpSpot = Math.Sign(jumpSpot.position.x - transform.position.x);
             var distanceToJumpSpot = jumpSpot.position.x - transform.position.x;
-            MaximalMove(new Vector2(baseRightMoveForce * directionToJumpSpot * Time.fixedDeltaTime, 0));
+            MaximalMove(new Vector2(baseRightMoveForce * directionToJumpSpot * Time.deltaTime, 0));
             if (directionToJumpSpot != characterBase.facing) Turn();
 
             // If we're close, jump
