@@ -74,7 +74,11 @@ public class Ai : PlayerBase
                     ifFalse: DecisionTree.Decision(
                         PlayerInAttackRangeIfWeTurn,
                         ifTrue: DecisionTree.Action(Turn),
-                        ifFalse: DecisionTree.Action(MoveTowardsPlayer)
+                        ifFalse: DecisionTree.Decision(
+                            ShouldWeSeekOutAPowerup,
+                            ifTrue: DecisionTree.Action(MoveTowardsPowerup),
+                            ifFalse: DecisionTree.Action(MoveTowardsPlayer)
+                        )
                     )
                 )
             )
@@ -209,22 +213,52 @@ public class Ai : PlayerBase
         characterBase.facing = characterBase.facing * -1;
     }
 
+    private bool ShouldWeSeekOutAPowerup()
+    {
+        // TODO: Placeholder seek out a powerup if there is one
+        return FindObjectsOfType<PowerupBase>().Count() > 0;
+    }
+
+    private void MoveTowardsPowerup()
+    {
+        // TODO: Just picks the first powerup we find (which we know exists if we reached this
+        // method.
+        MoveTowardsTarget(FindObjectOfType<PowerupBase>().gameObject);
+    }
+
     private void MoveTowardsPlayer()
+    {
+        // First pick a target player -- for now just gonna pick whoever is closest
+        var closestPlayer = GetClosestPlayer();
+        MoveTowardsTarget(closestPlayer);
+    }
+
+    /// <summary>
+    /// The process of moving the AI towards some target object. The process can be summed up as:
+    /// 
+    /// 1. If we're on the same platform, just move towards them, leaving some leeway in case they're
+    ///    in the air.
+    /// 2. If we're on different platforms and not on a platform above them, we identify the pre-placed
+    ///    jump spots on our platform. If there's just one, we obviously have to take it. Otherwise
+    ///    we pick the one in the direction of our target.
+    /// 3. We move towards the jump spot. Once we're close to it, we jump in the direction towards the
+    ///    target.
+    /// 4. If the player is on a platform below, we can drop down through the platform instead.
+    /// </summary>
+    /// <param name="target">The target to seek out.</param>
+    private void MoveTowardsTarget(GameObject target)
     {
         continuingJumpMovement = false;
 
-        // First pick a target player -- for now just gonna pick whoever is closest
-        var closestPlayer = GetClosestPlayer();
-
         // Figure out platforms each are on
-        var targetPlatform = FindPlatformPlayerIsOn(closestPlayer);
+        var targetPlatform = FindPlatformPlayerIsOn(target);
         var ourPlatform = FindPlatformPlayerIsOn(gameObject);
 
         // Platforms are the same? Just move towards the player.
         if (targetPlatform == ourPlatform)
         {
             // Leave a gap so we don't move with the target on top of us
-            var horizontalDistance = closestPlayer.transform.position.x - transform.position.x;
+            var horizontalDistance = target.transform.position.x - transform.position.x;
             if (Math.Abs(horizontalDistance) > targetOnTopLeewayDistance)
             {
                 // Turn around if there's a change in direction
@@ -243,7 +277,7 @@ public class Ai : PlayerBase
 
             // Handle dropping down from platforms if we're above the target
             if (ourPlatform.transform.position.y > targetPlatform.transform.position.y
-                && Math.Abs(Math.Abs(transform.position.x) - Math.Abs(closestPlayer.transform.position.x)) < 1)
+                && Math.Abs(Math.Abs(transform.position.x) - Math.Abs(target.transform.position.x)) < 1)
             {
                 Physics2D.IgnoreCollision(transform.GetComponent<Collider2D>(), ourPlatform.GetComponent<Collider2D>(), true);
                 StartCoroutine(ReenablePlatformCollision(ourPlatform.transform, 2f));
@@ -260,7 +294,7 @@ public class Ai : PlayerBase
             else
             {
                 // Find the jump point on our platform in the right direction
-                int directionToTarget = Math.Sign(closestPlayer.transform.position.x - transform.position.x);
+                int directionToTarget = Math.Sign(target.transform.position.x - transform.position.x);
                 var jumpSpots = ourPlatform.transform.Cast<Transform>().Where(child => child.tag == "JumpSpot");
 
                 // Take the one in the direction towards our target if there is one or whatever the sole one
@@ -294,7 +328,7 @@ public class Ai : PlayerBase
             // If we're close, jump
             if (Math.Abs(distanceToJumpSpot) < 0.5 && canJump)
             {
-                int directionToTarget = Math.Sign(closestPlayer.transform.position.x - transform.position.x);
+                int directionToTarget = Math.Sign(target.transform.position.x - transform.position.x);
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, 0);
                 MaximalMove(new Vector2(300f * directionToTarget, jumpVerticalForce));
                 canJump = false;
@@ -307,7 +341,7 @@ public class Ai : PlayerBase
             //Debug.Log(gameObject.name + " moving towards jump spot " + jumpSpot + " (" + distanceToJumpSpot + " away)");
         }
 
-        //Debug.Log(gameObject.name + " is on " + ourPlatform + " and their target (" + closestPlayer.name + ") is on " + targetPlatform);
+        //Debug.Log(gameObject.name + " is on " + ourPlatform + " and their target (" + target.name + ") is on " + targetPlatform);
     }
 
     /// <summary>
