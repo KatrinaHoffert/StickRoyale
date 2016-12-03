@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -50,6 +51,19 @@ public class Ai : PlayerBase
     /// <see cref="ourPlatformForMovement"/> are correct.
     /// </summary>
     private GameObject jumpSpotToUse;
+
+    /// <summary>
+    /// The powerup that we are seeking, if there is one. If <see cref="ShouldWeSeekOutAPowerup"/>
+    /// returns true, then this must be non-null.
+    /// </summary>
+    private GameObject powerupWeAreSeeking;
+
+    /// <summary>
+    /// To add some randomness, the AI has a chance not to pursue any powerup at all per frame.
+    /// This thus multiplies with the chance to actually pursue the powerup based on desire
+    /// for it.
+    /// </summary>
+    private float chanceToPursuePowerupPerFrame = 0.05f;
 
     /// <summary>
     /// True when the AI is in the middle of continuing movement from a jump.
@@ -215,15 +229,47 @@ public class Ai : PlayerBase
 
     private bool ShouldWeSeekOutAPowerup()
     {
-        // TODO: Placeholder seek out a powerup if there is one
-        return FindObjectsOfType<PowerupBase>().Count() > 0;
+        var powerupsAvailable = FindObjectsOfType<PowerupBase>();
+
+        // Trivial case: no powerups exist
+        if (powerupsAvailable.Count() == 0) return false;
+
+        // If we've already decided we're seeking out a powerup and it's still there,
+        // keep at it, little guy. TODO: Re-evaluate if this powerup is still worth
+        // going for.
+        if (powerupWeAreSeeking != null) return true;
+
+        // Should we even consider powerups right now?
+        var randomWeighting = UnityEngine.Random.value;
+        if (randomWeighting > chanceToPursuePowerupPerFrame) return false;
+
+        // If another character is less than half of our distance from the powerup, don't bother.
+        var otherPlayers = FindObjectsOfType<CharacterBase>().Where(c => c.gameObject != gameObject);
+        var random = UnityEngine.Random.value;
+        foreach (var powerup in powerupsAvailable)
+        {
+            var ourDistance = Vector3.Distance(transform.position, powerup.transform.position);
+            foreach(var player in otherPlayers)
+            {
+                var distanceToThatPlayer = Vector3.Distance(player.transform.position, powerup.transform.position);
+                if (distanceToThatPlayer < ourDistance / 2) continue;
+            }
+
+            // Powerup is viable, see if we'd pick it
+            if(random < powerup.GetAiWeight(characterBase))
+            {
+                powerupWeAreSeeking = powerup.gameObject;
+                return true;
+            }
+        }
+
+        // Didn't choose any powerups
+        return false;
     }
 
     private void MoveTowardsPowerup()
     {
-        // TODO: Just picks the first powerup we find (which we know exists if we reached this
-        // method.
-        MoveTowardsTarget(FindObjectOfType<PowerupBase>().gameObject);
+        MoveTowardsTarget(powerupWeAreSeeking);
     }
 
     private void MoveTowardsPlayer()
