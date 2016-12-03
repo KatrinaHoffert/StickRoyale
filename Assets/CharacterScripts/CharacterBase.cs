@@ -7,7 +7,7 @@ using UnityEngine.UI;
 /// A variety of features that are common to every character. Managing of HP and lives are the
 /// most important here, but there's also some movement related stuff.
 /// </summary>
-public abstract class CharacterBase : MonoBehaviour
+public class CharacterBase : MonoBehaviour
 {
     /// <summary>
     /// Max HP. When it hits zero, the character dies.
@@ -133,7 +133,15 @@ public abstract class CharacterBase : MonoBehaviour
     /// <summary>
     /// Performs any cleanup that should occur every time the character dies (eg, removal of projectiles).
     /// </summary>
-    protected abstract void Cleanup();
+    protected virtual void Cleanup()
+    {
+        // Remove all powerups
+        for (int i = powerups.Count - 1; i >= 0; --i)
+        {
+            powerups[i].powerup.ApplyEnd(this);
+            powerups.RemoveAt(i);
+        }
+    }
 
     public void ConsumePowerup(PowerupBase powerup)
     {

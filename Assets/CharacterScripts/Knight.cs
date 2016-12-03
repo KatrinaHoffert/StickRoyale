@@ -11,6 +11,8 @@ public class Knight : CharacterBase
 {
     protected override void Cleanup()
     {
+        base.Cleanup();
+
         // Ensure that our attack AoEs are disabled
         Transform[] childTransforms = GetComponentsInChildren<Transform>();
         foreach (Transform transform in childTransforms)
