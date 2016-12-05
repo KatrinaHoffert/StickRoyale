@@ -98,10 +98,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 15875491}
+  - 114: {fileID: 15875492}
   m_Layer: 0
   m_Name: Jump2
   m_TagString: JumpSpot
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -118,6 +119,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 137421203}
   m_RootOrder: 0
+--- !u!114 &15875492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 15875490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2774966b7e28f574697a084b751475a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpDirections:
+  - targetPlatform: {fileID: 203080468}
+    direction: -1
 --- !u!1 &81006989
 GameObject:
   m_ObjectHideFlags: 0
@@ -322,10 +337,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 455644746}
+  - 114: {fileID: 455644747}
   m_Layer: 0
   m_Name: Jump5
   m_TagString: JumpSpot
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -342,6 +358,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 425726724}
   m_RootOrder: 1
+--- !u!114 &455644747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 455644745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2774966b7e28f574697a084b751475a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpDirections: []
 --- !u!1 &471180651
 GameObject:
   m_ObjectHideFlags: 0
@@ -353,7 +381,7 @@ GameObject:
   m_Layer: 0
   m_Name: SpawnPosition1
   m_TagString: Respawn
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -378,10 +406,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 524395383}
+  - 114: {fileID: 524395384}
   m_Layer: 0
   m_Name: Jump3
   m_TagString: JumpSpot
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -398,6 +427,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 137421203}
   m_RootOrder: 1
+--- !u!114 &524395384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 524395382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2774966b7e28f574697a084b751475a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpDirections:
+  - targetPlatform: {fileID: 203080468}
+    direction: 0
 --- !u!1 &792034539
 GameObject:
   m_ObjectHideFlags: 0
@@ -471,7 +514,7 @@ GameObject:
   m_Layer: 0
   m_Name: SpawnPosition3
   m_TagString: Respawn
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -499,7 +542,7 @@ GameObject:
   m_Layer: 0
   m_Name: SpawnPosition4
   m_TagString: Respawn
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -524,10 +567,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1165666623}
+  - 114: {fileID: 1165666624}
   m_Layer: 0
   m_Name: Jump1
   m_TagString: JumpSpot
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -544,6 +588,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 203080470}
   m_RootOrder: 0
+--- !u!114 &1165666624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1165666622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2774966b7e28f574697a084b751475a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpDirections: []
 --- !u!1 &1564676555
 GameObject:
   m_ObjectHideFlags: 0
@@ -552,10 +608,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1564676556}
+  - 114: {fileID: 1564676557}
   m_Layer: 0
   m_Name: Jump6
   m_TagString: JumpSpot
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -572,6 +629,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 81006991}
   m_RootOrder: 0
+--- !u!114 &1564676557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1564676555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2774966b7e28f574697a084b751475a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpDirections: []
 --- !u!1 &1568845481
 GameObject:
   m_ObjectHideFlags: 0
@@ -710,7 +779,7 @@ GameObject:
   m_Layer: 0
   m_Name: SpawnPosition2
   m_TagString: Respawn
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -735,10 +804,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 2132826294}
+  - 114: {fileID: 2132826295}
   m_Layer: 0
   m_Name: Jump4
   m_TagString: JumpSpot
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -755,3 +825,15 @@ Transform:
   m_Children: []
   m_Father: {fileID: 425726724}
   m_RootOrder: 0
+--- !u!114 &2132826295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2132826293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2774966b7e28f574697a084b751475a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpDirections: []

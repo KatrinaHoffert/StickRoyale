@@ -373,10 +373,17 @@ public class Ai : PlayerBase
             if (Math.Abs(distanceToJumpSpot) < 0.5 && canJump)
             {
                 int directionToTarget = Math.Sign(target.transform.position.x - transform.position.x);
+
+                // See if the jump spot has a hard coded direction we should be jumping to get to our
+                // target (otherwise stick with default behavior)
+                var jumpSpotDirectionList = jumpSpot.GetComponent<JumpSpot>().jumpDirections;
+                var directionsToTarget = jumpSpotDirectionList.Where(directions => directions.targetPlatform == targetPlatform).FirstOrDefault();
+                if (directionsToTarget != null) directionToTarget = directionsToTarget.direction;
+
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, 0);
                 MaximalMove(new Vector2(300f * directionToTarget, jumpVerticalForce));
                 canJump = false;
-                continuingJumpMovement = true;
+                if(directionToTarget != 0) continuingJumpMovement = true;
 
                 // Make sure we face the right way
                 if (directionToTarget != characterBase.facing) Turn();
