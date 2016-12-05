@@ -49,8 +49,9 @@ public class PowerupManager : MonoBehaviour
             var floorChoice = floors[UnityEngine.Random.Range(0, floors.Length - 1)];
 
             // Pick a point on its surface (assuming that the platform is flat)
-            var floorSize = floorChoice.GetComponent<BoxCollider2D>().bounds.size;
-            var floorCenter = floorChoice.transform.position;
+            var floorCollider = floorChoice.GetComponent<BoxCollider2D>();
+            var floorSize = floorCollider.bounds.size;
+            var floorCenter = floorCollider.bounds.center;
 
             // Pick a random powerup to spawn
             var totalWeights = powerups.Sum(record => record.spawnWeighting);
