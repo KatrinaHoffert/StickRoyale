@@ -12,7 +12,9 @@ public class PlayerMovement : PlayerBase
     {
         var horizontal = Input.GetAxis(gameObject.name + "_Horizontal");
         var jump = Input.GetButtonDown(gameObject.name + "_Jump");
+        var dropDown = Input.GetButtonDown(gameObject.name + "_Down");
 
+        // Only turn if not direction locked
         if (horizontal > 0 && (!characterBase.directionLocked || characterBase.facing == 1))
         {
             MaximalMove(new Vector2(baseRightMoveForce, 0) * Time.deltaTime);
@@ -25,6 +27,8 @@ public class PlayerMovement : PlayerBase
             if(characterBase.facing > 0) transform.Rotate(0, 180, 0);
             characterBase.facing = -1;
         }
+
+        // Jumping and dropping down mutually exclusive
         if (jump && canJump)
         {
             canJump = false;
@@ -36,6 +40,19 @@ public class PlayerMovement : PlayerBase
             animator.SetBool("Grounded", false);
             animator.SetTrigger ("Jump");
         }
+        // Player must be grounded to do this
+        else if(dropDown && canJump)
+        {
+            var ourPlatform = FindPlatformPlayerIsOn(gameObject);
+
+            // Can only drop down through the kinds of platforms that we can also jump up through. These
+            // all have platform effectors.
+            if(ourPlatform.GetComponent<PlatformEffector2D>() != null)
+            {
+                DisablePlatformCollision(ourPlatform.transform, 1f);
+            }
+        }
+        
         animator.SetFloat("Speed", Math.Abs(rigidBody.velocity.x));
 
         if (timeCanAttackNext <= Time.time && Input.GetButtonUp(gameObject.name + "_PrimaryAttack"))

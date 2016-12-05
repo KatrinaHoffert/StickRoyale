@@ -326,8 +326,7 @@ public class Ai : PlayerBase
             if (ourPlatform.transform.position.y > targetPlatform.transform.position.y
                 && Math.Abs(Math.Abs(transform.position.x) - Math.Abs(target.transform.position.x)) < 1)
             {
-                Physics2D.IgnoreCollision(transform.GetComponent<Collider2D>(), ourPlatform.GetComponent<Collider2D>(), true);
-                StartCoroutine(ReenablePlatformCollision(ourPlatform.transform, 2f));
+                DisablePlatformCollision(ourPlatform.transform, 1f);
                 return;
             }
 
@@ -336,7 +335,6 @@ public class Ai : PlayerBase
             if (targetPlatformForMovement == targetPlatform && ourPlatformForMovement == ourPlatform)
             {
                 jumpSpot = jumpSpotToUse.transform;
-
             }
             else
             {
@@ -354,7 +352,6 @@ public class Ai : PlayerBase
                 ourPlatformForMovement = ourPlatform;
                 targetPlatformForMovement = targetPlatform;
                 jumpSpotToUse = jumpSpot.gameObject;
-
             }
 
             // If still no jump spots, we're stuck
@@ -414,51 +411,6 @@ public class Ai : PlayerBase
     }
 
     /// <summary>
-    /// Returns the platform that the player is either on or over (could be in the air above it).
-    /// </summary>
-    /// <param name="player">The player to check.</param>
-    /// <returns>The game object for the platform that they're on, if there is one. Null otherwise.</returns>
-    private GameObject FindPlatformPlayerIsOn(GameObject player)
-    {
-        var hits = Physics2D.RaycastAll(player.transform.position, Vector2.down);
-        foreach (var hit in hits)
-        {
-            if (hit.transform.tag == "Floor") return hit.transform.gameObject;
-        }
-
-        // Maybe the raycast from the center is to blame? Try raycasts from sides too, but only if
-        // there's no y velocity (could be falling).
-        if (player.GetComponent<Rigidbody2D>().velocity.y == 0)
-        {
-            var halfWidth = GetComponent<BoxCollider2D>().size.x / 2f;
-            var distanceFuzz = 0.05f;
-            var hitsLeft = Physics2D.RaycastAll(player.transform.position - new Vector3(halfWidth + distanceFuzz, 0), Vector2.down);
-            var hitsRight = Physics2D.RaycastAll(player.transform.position + new Vector3(halfWidth + distanceFuzz, 0), Vector2.down);
-            //Debug.DrawRay(player.transform.position - new Vector3(halfWidth + distanceFuzz, 0), Vector2.down * 100, Color.red, 1.0f);
-            //Debug.DrawRay(player.transform.position + new Vector3(halfWidth + distanceFuzz, 0), Vector2.down * 100, Color.red, 1.0f);
-
-            var floorHitLeft = hitsLeft.Where(hit => hit.transform.tag == "Floor").FirstOrDefault();
-            var floorHitRight = hitsRight.Where(hit => hit.transform.tag == "Floor").FirstOrDefault();
-
-            // If we only get one hit, return that. Otherwise the closest
-            if (floorHitLeft.transform == null && floorHitRight.transform != null)
-            {
-                return floorHitRight.transform.gameObject;
-            }
-            else if (floorHitLeft.transform != null && floorHitRight.transform == null)
-            {
-                return floorHitLeft.transform.gameObject;
-            }
-            else if (floorHitLeft.transform != null && floorHitRight.transform != null)
-            {
-                return floorHitLeft.distance < floorHitRight.distance ? floorHitLeft.transform.gameObject : floorHitRight.transform.gameObject;
-            }
-        }
-
-        return null;
-    }
-
-    /// <summary>
     /// Method that moves the player a little bit so that they don't stay on top of another players head.
     /// </summary>
     void MoveOffPlayer()
@@ -476,17 +428,5 @@ public class Ai : PlayerBase
         {
             MoveOffPlayer();
         }
-    }
-
-    /// <summary>
-    /// Re-enables collision between this character and a given platform.
-    /// </summary>
-    /// <param name="platform">The transform of the platform in question.</param>
-    /// <param name="delay">Delay to wait before enabling collision again.</param>
-    /// <returns></returns>
-    IEnumerator ReenablePlatformCollision(Transform platform, float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        Physics2D.IgnoreCollision(transform.GetComponent<Collider2D>(), platform.GetComponent<Collider2D>(), false);
     }
 }
