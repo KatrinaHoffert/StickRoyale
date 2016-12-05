@@ -88,8 +88,9 @@ public class PlayerBase : MonoBehaviour
     /// <returns>The game object for the platform that they're on, if there is one. Null otherwise.</returns>
     protected GameObject FindPlatformPlayerIsOn(GameObject player)
     {
+        // Note: object might not be a player, so assume that this can fail
         var playerBase = player.GetComponent<PlayerBase>();
-        if (playerBase.platformGroundedOn != null) return playerBase.platformGroundedOn;
+        if (playerBase != null && playerBase.platformGroundedOn != null) return playerBase.platformGroundedOn;
 
         var hits = Physics2D.RaycastAll(player.transform.position, Vector2.down);
         foreach (var hit in hits)

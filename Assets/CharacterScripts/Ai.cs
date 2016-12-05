@@ -324,11 +324,18 @@ public class Ai : PlayerBase
         else if (targetPlatform != null)
         {
             // Handle dropping down from platforms if we're above the target
-            if (ourPlatform.transform.position.y > targetPlatform.transform.position.y
-                && Math.Abs(Math.Abs(transform.position.x) - Math.Abs(target.transform.position.x)) < 1)
+            if (ourPlatform.transform.position.y > targetPlatform.transform.position.y)
             {
-                DisablePlatformCollision(ourPlatform.transform, 2f);
-                return;
+                var rayHits = Physics2D.RaycastAll(transform.position, Vector2.down, 100f);
+                if (Math.Abs(Math.Abs(transform.position.x) - Math.Abs(target.transform.position.x)) < 1 ||
+                    rayHits.Where(hit => hit.transform.gameObject == targetPlatform).Count() > 0)
+                {
+                    // To avoid falling through a platform and velocity carrying us off the edge, reduce that
+                    rigidBody.velocity = new Vector2(rigidBody.velocity.x * 0.25f, rigidBody.velocity.y);
+
+                    DisablePlatformCollision(ourPlatform.transform, 2f);
+                    return;
+                }
             }
 
             // Move towards the jump spot
