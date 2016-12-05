@@ -47,6 +47,11 @@ public class PlayerBase : MonoBehaviour
     /// </summary>
     protected bool canJump;
 
+    /// <summary>
+    /// The platform that we are on if not in the air.
+    /// </summary>
+    protected GameObject platformGroundedOn = null;
+
     protected CharacterBase characterBase;
     protected AttackBase attackBase;
     protected Rigidbody2D rigidBody;
@@ -83,6 +88,9 @@ public class PlayerBase : MonoBehaviour
     /// <returns>The game object for the platform that they're on, if there is one. Null otherwise.</returns>
     protected GameObject FindPlatformPlayerIsOn(GameObject player)
     {
+        var playerBase = player.GetComponent<PlayerBase>();
+        if (playerBase.platformGroundedOn != null) return playerBase.platformGroundedOn;
+
         var hits = Physics2D.RaycastAll(player.transform.position, Vector2.down);
         foreach (var hit in hits)
         {
@@ -93,12 +101,12 @@ public class PlayerBase : MonoBehaviour
         // there's no y velocity (could be falling).
         if (player.GetComponent<Rigidbody2D>().velocity.y == 0)
         {
-            var halfWidth = GetComponent<BoxCollider2D>().size.x / 2f;
+            var bounds = GetComponent<BoxCollider2D>().bounds;
             var distanceFuzz = 0.05f;
-            var hitsLeft = Physics2D.RaycastAll(player.transform.position - new Vector3(halfWidth + distanceFuzz, 0), Vector2.down);
-            var hitsRight = Physics2D.RaycastAll(player.transform.position + new Vector3(halfWidth + distanceFuzz, 0), Vector2.down);
-            //Debug.DrawRay(player.transform.position - new Vector3(halfWidth + distanceFuzz, 0), Vector2.down * 100, Color.red, 1.0f);
-            //Debug.DrawRay(player.transform.position + new Vector3(halfWidth + distanceFuzz, 0), Vector2.down * 100, Color.red, 1.0f);
+            var hitsLeft = Physics2D.RaycastAll(bounds.center - new Vector3(bounds.extents.x + distanceFuzz, 0), Vector2.down);
+            var hitsRight = Physics2D.RaycastAll(bounds.center + new Vector3(bounds.extents.x + distanceFuzz, 0), Vector2.down);
+            //Debug.DrawRay(bounds.center - new Vector3(bounds.extents.x + distanceFuzz, 0), Vector2.down * 100, Color.red, 1.0f);
+            //Debug.DrawRay(bounds.center + new Vector3(bounds.extents.x + distanceFuzz, 0), Vector2.down * 100, Color.red, 1.0f);
 
             var floorHitLeft = hitsLeft.Where(hit => hit.transform.tag == "Floor").FirstOrDefault();
             var floorHitRight = hitsRight.Where(hit => hit.transform.tag == "Floor").FirstOrDefault();
@@ -149,6 +157,7 @@ public class PlayerBase : MonoBehaviour
         if (coll.gameObject.tag == "Floor")
         {
             canJump = true;
+            platformGroundedOn = coll.gameObject;
             animator.SetBool("Grounded", true);
         }
     }

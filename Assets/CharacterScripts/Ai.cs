@@ -156,6 +156,7 @@ public class Ai : PlayerBase
             rigidBody.velocity = new Vector2(rigidBody.velocity.x, 0);
             MaximalMove(new Vector2(0, jumpVerticalForce));
             canJump = false;
+            platformGroundedOn = null;
         }
 
         // Move in direction of platform until on it or under it
@@ -326,7 +327,7 @@ public class Ai : PlayerBase
             if (ourPlatform.transform.position.y > targetPlatform.transform.position.y
                 && Math.Abs(Math.Abs(transform.position.x) - Math.Abs(target.transform.position.x)) < 1)
             {
-                DisablePlatformCollision(ourPlatform.transform, 1f);
+                DisablePlatformCollision(ourPlatform.transform, 2f);
                 return;
             }
 
@@ -351,7 +352,8 @@ public class Ai : PlayerBase
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, 0);
                 MaximalMove(new Vector2(300f * directionToTarget, jumpVerticalForce));
                 canJump = false;
-                if(directionToTarget != 0) continuingJumpMovement = true;
+                platformGroundedOn = null;
+                if (directionToTarget != 0) continuingJumpMovement = true;
 
                 // Make sure we face the right way
                 if (directionToTarget != characterBase.facing) Turn();

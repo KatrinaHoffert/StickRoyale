@@ -38,11 +38,13 @@ public class DecisionTree
         }
         if (action != null)
         {
+            //Debug.Log("AI action: " + action.Method.Name);
             action();
             return;
         }
         if (decision != null)
         {
+            //Debug.Log("AI decision: " + decision.Method.Name);
             if (decision()) trueSubTree.Search();
             else falseSubTree.Search();
         }

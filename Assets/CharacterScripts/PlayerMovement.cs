@@ -32,6 +32,7 @@ public class PlayerMovement : PlayerBase
         if (jump && canJump)
         {
             canJump = false;
+            platformGroundedOn = null;
 
             // Reset vertical velocity before a jump -- prevents wall jumping from being crazy
             rigidBody.velocity = new Vector2(rigidBody.velocity.x, 0);
