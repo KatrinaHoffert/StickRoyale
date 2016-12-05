@@ -331,7 +331,7 @@ public class Ai : PlayerBase
             }
 
             // Do we already have a jump spot we should be moving towards?
-            Transform jumpSpot;
+            Transform jumpSpot = null;
             if (targetPlatformForMovement == targetPlatform && ourPlatformForMovement == ourPlatform)
             {
                 jumpSpot = jumpSpotToUse.transform;
@@ -342,9 +342,23 @@ public class Ai : PlayerBase
                 int directionToTarget = Math.Sign(target.transform.position.x - transform.position.x);
                 var jumpSpots = ourPlatform.transform.Cast<Transform>().Where(child => child.tag == "JumpSpot");
 
-                // Take the one in the direction towards our target if there is one or whatever the sole one
-                // is, otherwise
-                jumpSpot = jumpSpots.Where(spot => Math.Sign(spot.transform.position.x - transform.position.x) == directionToTarget).FirstOrDefault();
+                // Take the closest in the direction of our target or that can reach all
+                var distanceToChosenSpot = float.PositiveInfinity;
+                foreach(var possibleJumpSpot in jumpSpots)
+                {
+                    var distanceToPossibleJumpSpot = Math.Abs(possibleJumpSpot.transform.position.x - transform.position.x);
+                    var directionPossibleToJumpSpot = Math.Sign(possibleJumpSpot.transform.position.x - transform.position.x);
+                    if (directionPossibleToJumpSpot == directionToTarget || possibleJumpSpot.GetComponent<JumpSpot>().canReachAllPlatforms)
+                    {
+                        if(distanceToPossibleJumpSpot < distanceToChosenSpot)
+                        {
+                            distanceToChosenSpot = distanceToPossibleJumpSpot;
+                            jumpSpot = possibleJumpSpot.transform;
+                        }
+                    }
+                }
+
+                // Haven't found one? Get a different one.
                 if (jumpSpot == null)
                     jumpSpot = jumpSpots.FirstOrDefault();
 

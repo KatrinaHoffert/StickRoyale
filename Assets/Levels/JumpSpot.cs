@@ -13,6 +13,11 @@ public class JumpSpot : MonoBehaviour
     /// target is in).
     /// </summary>
     public JumpDirection[] jumpDirections;
+
+    /// <summary>
+    /// If true, this jump spot will be considered if closer even if not in the right direction.
+    /// </summary>
+    public bool canReachAllPlatforms;
 }
 
 [Serializable]
