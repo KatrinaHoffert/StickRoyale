@@ -330,54 +330,8 @@ public class Ai : PlayerBase
                 return;
             }
 
-            // Do we already have a jump spot we should be moving towards?
-            Transform jumpSpot = null;
-            if (targetPlatformForMovement == targetPlatform && ourPlatformForMovement == ourPlatform)
-            {
-                jumpSpot = jumpSpotToUse.transform;
-            }
-            else
-            {
-                // Find the jump point on our platform in the right direction
-                int directionToTarget = Math.Sign(target.transform.position.x - transform.position.x);
-                var jumpSpots = ourPlatform.transform.Cast<Transform>().Where(child => child.tag == "JumpSpot");
-
-                // Take the closest in the direction of our target or that can reach all
-                var distanceToChosenSpot = float.PositiveInfinity;
-                foreach(var possibleJumpSpot in jumpSpots)
-                {
-                    var distanceToPossibleJumpSpot = Math.Abs(possibleJumpSpot.transform.position.x - transform.position.x);
-                    var directionPossibleToJumpSpot = Math.Sign(possibleJumpSpot.transform.position.x - transform.position.x);
-                    if (directionPossibleToJumpSpot == directionToTarget || possibleJumpSpot.GetComponent<JumpSpot>().canReachAllPlatforms)
-                    {
-                        if(distanceToPossibleJumpSpot < distanceToChosenSpot)
-                        {
-                            distanceToChosenSpot = distanceToPossibleJumpSpot;
-                            jumpSpot = possibleJumpSpot.transform;
-                        }
-                    }
-                }
-
-                // Haven't found one? Get a different one.
-                if (jumpSpot == null)
-                    jumpSpot = jumpSpots.FirstOrDefault();
-
-                // Cache the targets for next time
-                ourPlatformForMovement = ourPlatform;
-                targetPlatformForMovement = targetPlatform;
-                jumpSpotToUse = jumpSpot.gameObject;
-            }
-
-            // If still no jump spots, we're stuck
-            if (jumpSpot == null)
-            {
-                Debug.Log(gameObject.name + " is stuck on " + ourPlatform);
-                ourPlatformForMovement = null;
-                targetPlatformForMovement = null;
-                return;
-            }
-
-            // Actually move towards the jump spot
+            // Move towards the jump spot
+            var jumpSpot = ChooseJumpSpot(ourPlatform, targetPlatform, target);
             int directionToJumpSpot = Math.Sign(jumpSpot.position.x - transform.position.x);
             var distanceToJumpSpot = jumpSpot.position.x - transform.position.x;
             MaximalMove(new Vector2(baseRightMoveForce * directionToJumpSpot * Time.deltaTime, 0));
@@ -432,14 +386,73 @@ public class Ai : PlayerBase
     }
 
     /// <summary>
+    /// Selects the jump spot that we're gonna move towards. Assumes we are on a different platform than
+    /// the target.
+    /// </summary>
+    /// <param name="ourPlatform">Platform we are on.</param>
+    /// <param name="targetPlatform">Platform target is on.</param>
+    /// <param name="target">Target we are seeking out.</param>
+    /// <returns>Transform of the jump spot to move towards.</returns>
+    private Transform ChooseJumpSpot(GameObject ourPlatform, GameObject targetPlatform, GameObject target)
+    {
+        // Do we already have a jump spot we should be moving towards?
+        Transform jumpSpot = null;
+        if (targetPlatformForMovement == targetPlatform && ourPlatformForMovement == ourPlatform)
+        {
+            jumpSpot = jumpSpotToUse.transform;
+        }
+        else
+        {
+            // Find the jump point on our platform in the right direction
+            int directionToTarget = Math.Sign(target.transform.position.x - transform.position.x);
+            var jumpSpots = ourPlatform.transform.Cast<Transform>().Where(child => child.tag == "JumpSpot");
+
+            // Take the closest in the direction of our target or that can reach all
+            var distanceToChosenSpot = float.PositiveInfinity;
+            foreach (var possibleJumpSpot in jumpSpots)
+            {
+                var distanceToPossibleJumpSpot = Math.Abs(possibleJumpSpot.transform.position.x - transform.position.x);
+                var directionPossibleToJumpSpot = Math.Sign(possibleJumpSpot.transform.position.x - transform.position.x);
+                if (directionPossibleToJumpSpot == directionToTarget || possibleJumpSpot.GetComponent<JumpSpot>().canReachAllPlatforms)
+                {
+                    if (distanceToPossibleJumpSpot < distanceToChosenSpot)
+                    {
+                        distanceToChosenSpot = distanceToPossibleJumpSpot;
+                        jumpSpot = possibleJumpSpot.transform;
+                    }
+                }
+            }
+
+            // Haven't found one? Get a different one.
+            if (jumpSpot == null)
+                jumpSpot = jumpSpots.FirstOrDefault();
+
+            // Cache the targets for next time
+            ourPlatformForMovement = ourPlatform;
+            targetPlatformForMovement = targetPlatform;
+            jumpSpotToUse = jumpSpot.gameObject;
+        }
+
+        // If still no jump spots, we're stuck
+        if (jumpSpot == null)
+        {
+            Debug.Log(gameObject.name + " is stuck on " + ourPlatform);
+            ourPlatformForMovement = null;
+            targetPlatformForMovement = null;
+            return null;
+        }
+
+        return jumpSpot;
+    }
+
+    /// <summary>
     /// Method that moves the player a little bit so that they don't stay on top of another players head.
     /// </summary>
-    void MoveOffPlayer()
+    private void MoveOffPlayer()
     {
         MaximalMove(new Vector2(antiStackingHorizontalForce * characterBase.facing, antiStackingVerticalForce));
     }
-
-
+    
     /// <summary>
     /// Used for detecting player stacking.
     /// </summary>
