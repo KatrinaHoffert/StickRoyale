@@ -20,11 +20,14 @@ public class RogueAttack1Trigger : MonoBehaviour
     public List<GameObject> playersAlreadyHit = new List<GameObject>();
 
     private Stats stats;
+    
 
     void Start()
     {
         stats = GameObject.Find("Stats").GetComponent<Stats>();
     }
+
+
 
     void OnTriggerEnter2D(Collider2D coll)
     {

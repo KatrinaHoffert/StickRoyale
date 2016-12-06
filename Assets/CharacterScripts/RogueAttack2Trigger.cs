@@ -26,6 +26,8 @@ public class RogueAttack2Trigger : MonoBehaviour
         stats = GameObject.Find("Stats").GetComponent<Stats>();
     }
 
+
+
     void OnTriggerEnter2D(Collider2D coll)
     {
         if (coll.gameObject.CompareTag("Player") && !playersAlreadyHit.Contains(coll.gameObject))

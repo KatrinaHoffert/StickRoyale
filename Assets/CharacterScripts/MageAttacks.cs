@@ -22,6 +22,7 @@ public class MageAttacks : AttackBase
                 Quaternion.AngleAxis(90, Vector3.forward * characterBase.facing));
         attack1Projectiles.Enqueue(attackObject);
         attackObject.GetComponent<MageAttack1Trigger>().casterObject = gameObject;
+        attackObject.GetComponent<AudioSource>().Play();
 
         // Face the projectile the right way
         if (characterBase.facing < 0) attackObject.GetComponent<SpriteRenderer>().flipX = true;
@@ -44,6 +45,7 @@ public class MageAttacks : AttackBase
                 Quaternion.identity);
         if (characterBase.facing < 0) attackObject.GetComponent<SpriteRenderer>().flipX = true;
         attackObject.GetComponent<MageAttack2Trigger>().casterObject = gameObject;
+        attackObject.GetComponent<AudioSource>().Play();
     }
 
     public override float GetAttack1Delay()

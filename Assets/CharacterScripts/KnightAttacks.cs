@@ -5,7 +5,10 @@ public class KnightAttacks : AttackBase
 {
     private GameObject attack1Prefab;
     private GameObject attack2Prefab;
-    
+
+    AudioSource source1;
+    AudioSource source2;
+
     void Awake()
     {
         // Assign the colliders in the attack prefabs so they can be called upon
@@ -21,7 +24,8 @@ public class KnightAttacks : AttackBase
                 attack2Prefab = transform.gameObject;
             }
         }
-
+        source1 = attack1Prefab.GetComponent<AudioSource>();
+        source2 = attack2Prefab.GetComponent<AudioSource>();
         // Make sure that the attack AoEs aren't initially active
         attack1Prefab.GetComponent<BoxCollider2D>().enabled = false;
         attack2Prefab.GetComponent<BoxCollider2D>().enabled = false;
@@ -29,6 +33,7 @@ public class KnightAttacks : AttackBase
     
     public override void Attack1()
     {
+        source1.Play();
         attack1Prefab.GetComponent<BoxCollider2D>().enabled = true;
         gameObject.GetComponent<CharacterBase>().directionLocked = true;
         Invoke("resetAttack", GetAttack1Delay());
@@ -36,6 +41,7 @@ public class KnightAttacks : AttackBase
     
     public override void Attack2()
     {
+        source2.Play();
         attack2Prefab.GetComponent<BoxCollider2D>().enabled = true;
         gameObject.GetComponent<CharacterBase>().directionLocked = true;
         Invoke("resetAttack", GetAttack2Delay());

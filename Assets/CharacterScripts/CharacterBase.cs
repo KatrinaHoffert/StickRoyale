@@ -50,6 +50,8 @@ public class CharacterBase : MonoBehaviour
     /// </summary>
     private List<PowerupRecord> powerups = new List<PowerupRecord>();
 
+
+    AudioSource source;
     Animator anim;
     Stats stats;
 
@@ -57,6 +59,7 @@ public class CharacterBase : MonoBehaviour
     {
         currentHitpoints = maxHitpoints;
         anim = gameObject.GetComponent<Animator>();
+        source = gameObject.GetComponent<AudioSource>();
     }
 
     void Start()
@@ -107,6 +110,7 @@ public class CharacterBase : MonoBehaviour
     public void Damage(int hp)
     {
         currentHitpoints = currentHitpoints - hp;
+        source.Play();
     }
 
     /// <summary>
