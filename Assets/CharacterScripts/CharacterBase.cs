@@ -121,7 +121,7 @@ public class CharacterBase : MonoBehaviour
         currentHitpoints = maxHitpoints;
         --lives;
         Cleanup();
-        //anim.SetTrigger("Death");
+        anim.SetTrigger("Death");
     }
 
     /// <summary>
