@@ -22,7 +22,6 @@ GameObject:
   - 212: {fileID: 212000011072498614}
   - 50: {fileID: 50000012986617348}
   - 61: {fileID: 61000010118772242}
-  - 58: {fileID: 58000011868292640}
   - 114: {fileID: 114000010177329968}
   - 114: {fileID: 114000014045939296}
   - 95: {fileID: 95000011729808506}
@@ -30,6 +29,23 @@ GameObject:
   m_Layer: 0
   m_Name: Knight
   m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1000012927904272
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000013154612068}
+  - 68: {fileID: 68000011427632694}
+  - 114: {fileID: 114000010940927462}
+  m_Layer: 0
+  m_Name: HeadDetector
+  m_TagString: HeadDetector
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103,14 +119,28 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010605907266}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.998265, y: 3.9369252, z: 0}
+  m_LocalPosition: {x: 17.579607, y: 4.8389635, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000011966468348}
   - {fileID: 4000011409818916}
+  - {fileID: 4000013154612068}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!4 &4000013154612068
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012927904272}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000013035185608}
+  m_RootOrder: 2
 --- !u!50 &50000012986617348
 Rigidbody2D:
   serializedVersion: 2
@@ -120,7 +150,7 @@ Rigidbody2D:
   m_GameObject: {fileID: 1000010605907266}
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 0.05
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_IsKinematic: 0
@@ -128,20 +158,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &58000011868292640
-CircleCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010605907266}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_Offset: {x: 0, y: -0.24}
-  serializedVersion: 2
-  m_Radius: 0.275
 --- !u!61 &61000010118772242
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -150,7 +166,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1000010605907266}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 2838d1ba33967b94f8489dd3fa269592, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
@@ -162,7 +178,7 @@ BoxCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013845488796}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -184,6 +200,21 @@ BoxCollider2D:
   m_Offset: {x: 0.3849125, y: 0.02154541}
   serializedVersion: 2
   m_Size: {x: 0.42010176, y: 0.33245027}
+--- !u!68 &68000011427632694
+EdgeCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012927904272}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: -0.31}
+  m_Points:
+  - {x: -0.2934432, y: -0.00000017881393}
+  - {x: 0.28515148, y: -0.00000017881393}
 --- !u!82 &82000010946748778
 AudioSource:
   m_ObjectHideFlags: 1
@@ -434,6 +465,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5663b63977699704089165cf42c2e637, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  burning: 10
+  onFire: 0
+  invincible: 0
   maxHitpoints: 200
   currentHitpoints: 0
   lives: 3
@@ -441,6 +475,17 @@ MonoBehaviour:
   movementSpeedMultiplier: 1
   damageMultiplier: 1
   directionLocked: 0
+--- !u!114 &114000010940927462
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012927904272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e05cfb3c38d7bf249921255d7188f855, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000010972044390
 MonoBehaviour:
   m_ObjectHideFlags: 1

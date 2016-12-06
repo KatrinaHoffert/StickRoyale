@@ -8,6 +8,7 @@ TagManager:
   - Attack1
   - Attack2
   - JumpSpot
+  - HeadDetector
   layers:
   - Default
   - TransparentFX

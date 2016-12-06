@@ -73,21 +73,23 @@ public class PlayerMovement : PlayerBase
     /// <summary>
     /// Method that moves the player a little bit so that they don't stay on top of another players head.
     /// </summary>
-    void moveOffPlayer()
+    public void moveOffPlayer()
     {
         MaximalMove(new Vector2(antiStackingHorizontalForce * characterBase.facing, antiStackingVerticalForce));
+        Debug.Log("fuck you");
     }
 
     /// <summary>
     /// Used for detecting if players stack.
     /// </summary>
-    void OnTriggerStay2D(Collider2D coll)
+    /*void OnTriggerStay2D(Collider2D coll)
     {
         if (coll.gameObject.tag == "Player")
         {
+            Debug.Log(coll.gameObject.ToString());
             moveOffPlayer();
         }
-    }
+    }*/
 
     /// <summary>
     /// Used for jump resetting.
