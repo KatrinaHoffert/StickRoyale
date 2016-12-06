@@ -9,6 +9,7 @@ using UnityEngine.UI;
 /// </summary>
 public class CharacterBase : MonoBehaviour
 {
+    public bool invincible = false;
     /// <summary>
     /// Max HP. When it hits zero, the character dies.
     /// </summary>
@@ -109,7 +110,7 @@ public class CharacterBase : MonoBehaviour
     /// <param name="hp">Amount of HP points to deduct.</param>
     public void Damage(int hp)
     {
-        currentHitpoints = currentHitpoints - hp;
+        if (!invincible) { currentHitpoints = currentHitpoints - hp; }
         source.Play();
     }
 
