@@ -448,7 +448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a12a7f522f8bc140878d46e9460815d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHitpoints: 100
+  maxHitpoints: 150
   currentHitpoints: 0
   lives: 3
   facing: 1
