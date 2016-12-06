@@ -44,6 +44,16 @@ public class MageAttack1Trigger : MonoBehaviour
             targetCharacterBase.DamageForce(new Vector2(0.25f * direction, 1.0f) * pushbackMagnitude);
             playersAlreadyHit.Add(coll.gameObject);
 
+            ///burns target if the fire powerup is active
+            ///
+            if (transform.parent != null)
+            {
+                if (transform.parent.gameObject.GetComponent<CharacterBase>().onFire)
+                {
+                    targetCharacterBase.burning = 0;
+                }
+            }
+
             if (targetCharacterBase.currentHitpoints <= 0) stats.AddKill(casterObject);
         }
     }

@@ -40,6 +40,12 @@ public class KnightAttack1Trigger : MonoBehaviour
             targetCharacterBase.DamageForce(Vector3.right * direction * pushbackMagnitude);
             playersAlreadyHit.Add(coll.gameObject);
 
+            ///burns target if the fire powerup is active
+            if (attackerCharacter.onFire)
+            {
+                targetCharacterBase.burning = 0;
+            }
+
             if (targetCharacterBase.currentHitpoints <= 0) stats.AddKill(transform.parent.gameObject);
         }
     }

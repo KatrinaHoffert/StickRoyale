@@ -9,6 +9,21 @@ using UnityEngine.UI;
 /// </summary>
 public class CharacterBase : MonoBehaviour
 {
+    /// <summary>
+    /// character takes 1 damage per frame when burning is less than 10
+    /// </summary>
+    public int burning = 10;
+
+
+    /// <summary>
+    /// character will cause other players to burn when this is true
+    /// 
+    /// </summary>
+    public bool onFire = false;
+
+    /// <summary>
+    /// When invincible is true the character does not take damage
+    /// </summary>
     public bool invincible = false;
     /// <summary>
     /// Max HP. When it hits zero, the character dies.
@@ -87,6 +102,14 @@ public class CharacterBase : MonoBehaviour
     
     void FixedUpdate()
     {
+
+        ///burning 10 damage per frame
+        ///
+        burning++;
+        if (burning < 10)
+        {
+            Damage(10);
+        }
         CheckForFallDeath();
     }
 
@@ -103,6 +126,8 @@ public class CharacterBase : MonoBehaviour
             stats.AddFall(gameObject);
         }
     }
+
+    
 
     /// <summary>
     /// Inflict some HP damage to this character.

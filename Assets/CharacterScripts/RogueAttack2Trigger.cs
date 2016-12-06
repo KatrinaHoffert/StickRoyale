@@ -42,6 +42,13 @@ public class RogueAttack2Trigger : MonoBehaviour
             targetCharacterBase.DamageForce(new Vector2(direction, 0.75f) * pushbackMagnitude);
             playersAlreadyHit.Add(coll.gameObject);
 
+            ///burns target if the fire powerup is active
+            if (transform.parent.gameObject.GetComponent<CharacterBase>().onFire)
+            {
+                targetCharacterBase.burning = 0;
+            }
+
+
             if (targetCharacterBase.currentHitpoints <= 0) stats.AddKill(transform.parent.gameObject);
         }
     }
