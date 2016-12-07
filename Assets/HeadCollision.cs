@@ -23,7 +23,14 @@ public class HeadCollision : MonoBehaviour {
         if (coll.gameObject.tag == "Player")
         {
             Debug.Log(coll.gameObject.ToString());
-            gameObject.GetComponentInParent<PlayerMovement>().moveOffPlayer();
+            if(gameObject.GetComponentInParent<Ai>())
+            {
+                gameObject.GetComponentInParent<Ai>().moveOffPlayer();
+            } else
+            {
+                gameObject.GetComponentInParent<PlayerMovement>().moveOffPlayer();
+            }
+            
         }
     }
 }

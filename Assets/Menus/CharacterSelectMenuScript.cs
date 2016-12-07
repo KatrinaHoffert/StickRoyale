@@ -164,4 +164,9 @@ public class CharacterSelectMenuScript : MonoBehaviour
             }
         }
     }
+
+    public void ControlsButtonClicked()
+    {
+        SceneManager.LoadScene("Controls");
+    }
 }
