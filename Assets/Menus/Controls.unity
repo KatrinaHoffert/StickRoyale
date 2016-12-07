@@ -1021,10 +1021,10 @@ MonoBehaviour:
     m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: P0 Controls
+  m_Text: P1 Controls
 --- !u!222 &2047694742
 CanvasRenderer:
   m_ObjectHideFlags: 0
