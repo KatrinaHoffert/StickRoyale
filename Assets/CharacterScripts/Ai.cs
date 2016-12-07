@@ -445,9 +445,6 @@ public class Ai : PlayerBase
         return closestPlayer;
     }
 
-
-
-
     /// <summary>
     /// Selects the jump spot that we're gonna move towards. Assumes we are on a different platform than
     /// the target.
@@ -506,14 +503,6 @@ public class Ai : PlayerBase
         }
 
         return jumpSpot;
-    }
-
-    /// <summary>
-    /// Method that moves the player a little bit so that they don't stay on top of another players head.
-    /// </summary>
-    public void moveOffPlayer()
-    {
-        MaximalMove(new Vector2(antiStackingHorizontalForce * characterBase.facing, antiStackingVerticalForce));
     }
 
     protected override void OnGrounded()

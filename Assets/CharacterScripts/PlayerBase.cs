@@ -153,6 +153,14 @@ public class PlayerBase : MonoBehaviour
         Physics2D.IgnoreCollision(transform.GetComponent<Collider2D>(), platform.GetComponent<Collider2D>(), false);
     }
 
+    /// <summary>
+    /// Method that moves the player a little bit so that they don't stay on top of another players head.
+    /// </summary>
+    public void MoveOffPlayer()
+    {
+        MaximalMove(new Vector2(antiStackingHorizontalForce * characterBase.facing, antiStackingVerticalForce));
+    }
+
     void OnCollisionEnter2D(Collision2D coll)
     {
         if (coll.gameObject.tag == "Floor")
