@@ -2,55 +2,30 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class MageAttack1Trigger : MonoBehaviour
+public class MageAttack1Trigger : AttackTriggerBase
 {
-    /// <summary>
-    /// Pushback intensity of the collision.
-    /// </summary>
-    public float pushbackMagnitude = 100;
-    
-    /// <summary>
-    /// Damage taken on collision.
-    /// </summary>
-    public int damage = 20;
-
     /// <summary>
     /// The game object of the caster, who we don't want getting hurt by their own attack.
     /// </summary>
     public GameObject casterObject;
 
-    /// <summary>
-    /// Players that have taken damage from this effect (so they can't be double tapped).
-    /// </summary>
-    private List<GameObject> playersAlreadyHit = new List<GameObject>();
-
-    private Stats stats;
-
-    void Start()
+    protected override int GetDamage()
     {
-        stats = GameObject.Find("Stats").GetComponent<Stats>();
+        return 20;
     }
 
-    void OnTriggerEnter2D(Collider2D coll)
+    protected override Vector2 GetDamageForce()
     {
-        if (coll.gameObject.CompareTag("Player") && !playersAlreadyHit.Contains(coll.gameObject))
-        {
-            // Don't hurt ourselves
-            if (coll.gameObject == casterObject) return;
+        return new Vector2(0.25f, 1.0f) * 100;
+    }
 
-            int direction = GetComponent<SpriteRenderer>().flipX ? -1 : 1;
-            var targetCharacterBase = coll.gameObject.GetComponent<CharacterBase>();
-            var attackerCharacterBase = casterObject.GetComponent<CharacterBase>();
-            targetCharacterBase.Damage((int)(damage * attackerCharacterBase.damageMultiplier));
-            targetCharacterBase.DamageForce(new Vector2(0.25f * direction, 1.0f) * pushbackMagnitude);
-            playersAlreadyHit.Add(coll.gameObject);
-            
-            if (attackerCharacterBase.onFire)
-            {
-                targetCharacterBase.SetOnFire();
-            }
+    protected override CharacterBase GetAttackerCharacterBase()
+    {
+        return casterObject.GetComponent<CharacterBase>();
+    }
 
-            if (targetCharacterBase.currentHitpoints <= 0) stats.AddKill(casterObject);
-        }
+    protected override int GetAttackDirection(CharacterBase attackerCharacter)
+    {
+        return GetComponent<SpriteRenderer>().flipX ? -1 : 1;
     }
 }

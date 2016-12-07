@@ -2,50 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class KnightAttack2Trigger : MonoBehaviour
+public class KnightAttack2Trigger : AttackTriggerBase
 {
-    /// <summary>
-    /// Pushback intensity of the collision.
-    /// </summary>
-    public float pushbackMagnitude = 125;
-
-    /// <summary>
-    /// Damage taken on collision.
-    /// </summary>
-    public int damage = 15;
-
-    /// <summary>
-    /// Players that have taken damage from this effect (so they can't be double tapped).
-    /// </summary>
-    public List<GameObject> playersAlreadyHit = new List<GameObject>();
-
-    private Stats stats;
-
-    void Start()
+    protected override int GetDamage()
     {
-        stats = GameObject.Find("Stats").GetComponent<Stats>();
+        return 15;
     }
 
-    void OnTriggerEnter2D(Collider2D coll)
+    protected override Vector2 GetDamageForce()
     {
-        if (coll.gameObject.CompareTag("Player") && !playersAlreadyHit.Contains(coll.gameObject))
-        {
-            // Don't hurt ourselves
-            if (coll.gameObject == transform.parent.gameObject) return;
-
-            var attackerCharacter = transform.parent.gameObject.GetComponent<CharacterBase>();
-            int direction = attackerCharacter.facing;
-            var targetCharacterBase = coll.gameObject.GetComponent<CharacterBase>();
-            targetCharacterBase.Damage((int)(damage * attackerCharacter.damageMultiplier));
-            targetCharacterBase.DamageForce(new Vector2(direction, 0.5f) * pushbackMagnitude);
-            playersAlreadyHit.Add(coll.gameObject);
-
-            if (attackerCharacter.onFire)
-            {
-                targetCharacterBase.SetOnFire();
-            }
-
-            if (targetCharacterBase.currentHitpoints <= 0) stats.AddKill(transform.parent.gameObject);
-        }
+        return new Vector2(1.0f, 0.5f) * 125;
     }
 }
