@@ -18,6 +18,11 @@ public class JumpSpot : MonoBehaviour
     /// If true, this jump spot will be considered if closer even if not in the right direction.
     /// </summary>
     public bool canReachAllPlatforms;
+
+    /// <summary>
+    /// If true, instead of jumping once you reach this jump spot, just drop down.
+    /// </summary>
+    public bool dropdown;
 }
 
 [Serializable]

@@ -140,6 +140,7 @@ MonoBehaviour:
   - targetPlatform: {fileID: 1406259772}
     direction: 0
   canReachAllPlatforms: 0
+  dropdown: 0
 --- !u!1 &54259263
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,6 +253,7 @@ MonoBehaviour:
   - targetPlatform: {fileID: 811485773}
     direction: 1
   canReachAllPlatforms: 1
+  dropdown: 0
 --- !u!1 &312302262
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,6 +298,7 @@ MonoBehaviour:
   - targetPlatform: {fileID: 584202082}
     direction: 1
   canReachAllPlatforms: 0
+  dropdown: 0
 --- !u!1 &384925194
 GameObject:
   m_ObjectHideFlags: 0
@@ -491,6 +494,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpDirections: []
   canReachAllPlatforms: 0
+  dropdown: 1
 --- !u!1 &949274273
 GameObject:
   m_ObjectHideFlags: 0
@@ -537,6 +541,7 @@ MonoBehaviour:
   - targetPlatform: {fileID: 584202082}
     direction: 1
   canReachAllPlatforms: 0
+  dropdown: 0
 --- !u!1 &1193899765
 GameObject:
   m_ObjectHideFlags: 0
@@ -649,6 +654,7 @@ MonoBehaviour:
   - targetPlatform: {fileID: 1406259772}
     direction: 0
   canReachAllPlatforms: 0
+  dropdown: 0
 --- !u!1 &1388784946
 GameObject:
   m_ObjectHideFlags: 0
@@ -695,6 +701,7 @@ MonoBehaviour:
   - targetPlatform: {fileID: 1193899765}
     direction: 1
   canReachAllPlatforms: 0
+  dropdown: 0
 --- !u!1 &1403615635
 GameObject:
   m_ObjectHideFlags: 0
@@ -741,6 +748,7 @@ MonoBehaviour:
   - targetPlatform: {fileID: 1193899765}
     direction: 0
   canReachAllPlatforms: 0
+  dropdown: 0
 --- !u!1 &1406259772
 GameObject:
   m_ObjectHideFlags: 0
@@ -1080,6 +1088,7 @@ MonoBehaviour:
   - targetPlatform: {fileID: 584202082}
     direction: 0
   canReachAllPlatforms: 0
+  dropdown: 0
 --- !u!1 &1701031900
 GameObject:
   m_ObjectHideFlags: 0
@@ -1150,6 +1159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpDirections: []
   canReachAllPlatforms: 0
+  dropdown: 1
 --- !u!1 &1759356885
 GameObject:
   m_ObjectHideFlags: 0
@@ -1267,6 +1277,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpDirections: []
   canReachAllPlatforms: 0
+  dropdown: 0
 --- !u!1 &1962094677
 GameObject:
   m_ObjectHideFlags: 0
@@ -1313,6 +1324,7 @@ MonoBehaviour:
   - targetPlatform: {fileID: 811485773}
     direction: 1
   canReachAllPlatforms: 0
+  dropdown: 0
 --- !u!1 &1971204856
 GameObject:
   m_ObjectHideFlags: 0

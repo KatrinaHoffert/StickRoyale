@@ -377,7 +377,6 @@ public class Ai : PlayerBase
                 {
                     // To avoid falling through a platform and velocity carrying us off the edge, reduce that
                     rigidBody.velocity = new Vector2(rigidBody.velocity.x * 0.25f, rigidBody.velocity.y);
-
                     DisablePlatformCollision(ourPlatform.transform, 2f);
                     return;
                 }
@@ -385,19 +384,20 @@ public class Ai : PlayerBase
 
             // Move towards the jump spot
             var jumpSpot = ChooseJumpSpot(ourPlatform, targetPlatform, target);
+            var jumpSpotScript = jumpSpot.GetComponent<JumpSpot>();
             int directionToJumpSpot = Math.Sign(jumpSpot.position.x - transform.position.x);
             var distanceToJumpSpot = jumpSpot.position.x - transform.position.x;
             MaximalMove(new Vector2(baseRightMoveForce * directionToJumpSpot * Time.deltaTime, 0));
             if (directionToJumpSpot != characterBase.facing) Turn();
 
             // If we're close, jump
-            if (Math.Abs(distanceToJumpSpot) < 0.5 && canJump)
+            if (Math.Abs(distanceToJumpSpot) < 0.5 && canJump && !jumpSpotScript.dropdown)
             {
                 int directionToTarget = Math.Sign(target.transform.position.x - transform.position.x);
 
                 // See if the jump spot has a hard coded direction we should be jumping to get to our
                 // target (otherwise stick with default behavior)
-                var jumpSpotDirectionList = jumpSpot.GetComponent<JumpSpot>().jumpDirections;
+                var jumpSpotDirectionList = jumpSpotScript.jumpDirections;
                 var directionsToTarget = jumpSpotDirectionList.Where(directions => directions.targetPlatform == targetPlatform).FirstOrDefault();
                 if (directionsToTarget != null) directionToTarget = directionsToTarget.direction;
 
@@ -409,6 +409,12 @@ public class Ai : PlayerBase
 
                 // Make sure we face the right way
                 if (directionToTarget != characterBase.facing) Turn();
+            }
+            // Dropdown if we're supposed to
+            else if(Math.Abs(distanceToJumpSpot) < 0.5 && canJump && jumpSpotScript.dropdown)
+            {
+                rigidBody.velocity = new Vector2(rigidBody.velocity.x * 0.25f, rigidBody.velocity.y);
+                DisablePlatformCollision(ourPlatform.transform, 2f);
             }
 
             //Debug.Log(gameObject.name + " moving towards jump spot " + jumpSpot + " (" + distanceToJumpSpot + " away)");

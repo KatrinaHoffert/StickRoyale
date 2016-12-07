@@ -134,6 +134,7 @@ MonoBehaviour:
   - targetPlatform: {fileID: 203080468}
     direction: -1
   canReachAllPlatforms: 0
+  dropdown: 0
 --- !u!1 &81006989
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,6 +373,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpDirections: []
   canReachAllPlatforms: 0
+  dropdown: 0
 --- !u!1 &471180651
 GameObject:
   m_ObjectHideFlags: 0
@@ -444,6 +446,7 @@ MonoBehaviour:
   - targetPlatform: {fileID: 203080468}
     direction: 0
   canReachAllPlatforms: 0
+  dropdown: 0
 --- !u!1 &792034539
 GameObject:
   m_ObjectHideFlags: 0
@@ -604,6 +607,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpDirections: []
   canReachAllPlatforms: 0
+  dropdown: 1
 --- !u!1 &1564676555
 GameObject:
   m_ObjectHideFlags: 0
@@ -646,6 +650,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpDirections: []
   canReachAllPlatforms: 0
+  dropdown: 0
 --- !u!1 &1568845481
 GameObject:
   m_ObjectHideFlags: 0
@@ -918,3 +923,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpDirections: []
   canReachAllPlatforms: 0
+  dropdown: 0
