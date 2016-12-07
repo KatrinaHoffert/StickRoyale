@@ -38,7 +38,6 @@ public class RogueAttacks : AttackBase
     {
         source1.Play();
         attack1Prefab.GetComponent<BoxCollider2D>().enabled = true;
-        gameObject.GetComponent<CharacterBase>().directionLocked = true;
         Invoke("resetAttack", GetAttack1Delay());
     }
 
@@ -46,7 +45,6 @@ public class RogueAttacks : AttackBase
     {
         source2.Play();
         attack2Prefab.GetComponent<BoxCollider2D>().enabled = true;
-        gameObject.GetComponent<CharacterBase>().directionLocked = true;
         Invoke("resetAttack", GetAttack2Delay());
     }
 
@@ -56,7 +54,6 @@ public class RogueAttacks : AttackBase
         attack2Prefab.GetComponent<BoxCollider2D>().enabled = false;
         attack1Prefab.GetComponent<RogueAttack1Trigger>().playersAlreadyHit.Clear();
         attack2Prefab.GetComponent<RogueAttack2Trigger>().playersAlreadyHit.Clear();
-        gameObject.GetComponent<CharacterBase>().directionLocked = false;
     }
 
     public override float GetAttack1Delay()

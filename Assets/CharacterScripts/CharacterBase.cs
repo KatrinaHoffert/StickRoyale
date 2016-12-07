@@ -55,12 +55,6 @@ public class CharacterBase : MonoBehaviour
     private int burning = 0;
 
     /// <summary>
-    /// Locks the direction the character can move. such as using an attack means you can't turn around till the attack 
-    /// has finished.
-    /// </summary>
-    public bool directionLocked = false;
-
-    /// <summary>
     /// All powerups that this character currently has.
     /// </summary>
     private List<PowerupRecord> powerups = new List<PowerupRecord>();
