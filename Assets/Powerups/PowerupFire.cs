@@ -53,7 +53,6 @@ public class PowerupFire : PowerupBase
             color1.b + deltaG * progressBetweenColours,
             color1.g + deltaB * progressBetweenColours
         );
-        Debug.Log(character.gameObject.GetComponent<SpriteRenderer>().color);
     }
 
     public override void ApplyEnd(CharacterBase character)
