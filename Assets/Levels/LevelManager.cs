@@ -109,7 +109,7 @@ public class LevelManager : MonoBehaviour
             if (CharacterSelectMenuScript.controlSlots[i].controlType != ControlType.Closed)
             {
                 // Puts players in spawn points (assumes there's at least 4 spawn points)
-                players[i].transform.position = pickSpawnpoint().transform.position;
+                players[i].transform.position = PickSpawnpoint().transform.position;
 
                 // Load the appropriate prefab for the player's indicator
                 indicators[i] = Instantiate((GameObject)Resources.Load("PlayerIndicators/Player" + i + "Indicator"));
@@ -139,7 +139,7 @@ public class LevelManager : MonoBehaviour
     /// gets returned.
     /// </summary>
     /// <returns>The spawnpoint the player should spawn at.</returns>
-    private GameObject pickSpawnpoint()
+    private GameObject PickSpawnpoint()
     {
         var availableSpawnPoints = 0;
         foreach(var availabilityTime in spawnPointAvailabilityTime)
@@ -174,24 +174,6 @@ public class LevelManager : MonoBehaviour
                 if (spawnPointAvailabilityTime[i] + spawnPointCooldown > Time.time) continue;
                 if (spawnPointOffCooldownIndex == spawnPointPseudoIndex) spawnPointToUse = i;
                 ++spawnPointOffCooldownIndex;
-                // Working on getting it to pick furthest spawn point from players
-                /*GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-                float[] distanceToSpawnPoint = new float[players.Length];
-                foreach(GameObject item in players)
-                {
-                    distanceToSpawnPoint[i] = Vector3.Distance(item.transform.position, spawnPoints[i].transform.position);
-                }
-                float max = distanceToSpawnPoint[1];
-                GameObject furthestPoint = spawnPoints[1];
-                for(int j = 1; j < players.Length;j++)
-                {
-                    max = Mathf.Max(max, distanceToSpawnPoint[j]);
-                    if(max==distanceToSpawnPoint[j])
-                    {
-                        spawnPointToUse = j;
-                    }
-                }*/
-                
             }
         }
 
@@ -216,7 +198,7 @@ public class LevelManager : MonoBehaviour
 
             if (playerBase.lives > 0)
             {
-                player.transform.position = pickSpawnpoint().transform.position;
+                player.transform.position = PickSpawnpoint().transform.position;
                 player.GetComponent<Rigidbody2D>().velocity = new Vector2();
             }
             else

@@ -10,16 +10,6 @@ using UnityEngine.UI;
 public class CharacterBase : MonoBehaviour
 {
     /// <summary>
-    /// character will cause other players to burn when this is true
-    /// 
-    /// </summary>
-    public bool onFire = false;
-
-    /// <summary>
-    /// When invincible is true the character does not take damage
-    /// </summary>
-    public bool invincible = false;
-    /// <summary>
     /// Max HP. When it hits zero, the character dies.
     /// </summary>
     public int maxHitpoints = 100;
@@ -50,7 +40,17 @@ public class CharacterBase : MonoBehaviour
     public float damageMultiplier = 1.0f;
 
     /// <summary>
-    /// Frames of burning damage to take.
+    /// If true, we can pass on the burning negative status with our attacks.
+    /// </summary>
+    public bool onFire = false;
+
+    /// <summary>
+    /// When invincible is true the character does not take damage.
+    /// </summary>
+    public bool invincible = false;
+
+    /// <summary>
+    /// Intervals of burning damage to take.
     /// </summary>
     private int burning = 0;
 
@@ -120,7 +120,6 @@ public class CharacterBase : MonoBehaviour
     {
         if (burning > 0)
         {
-            Debug.Log("Fire tick. HP: " + currentHitpoints);
             Damage(5);
             --burning;
         }
@@ -146,7 +145,7 @@ public class CharacterBase : MonoBehaviour
     /// <param name="hp">Amount of HP points to deduct.</param>
     public void Damage(int hp)
     {
-        if (!invincible) { currentHitpoints = currentHitpoints - hp; }
+        if (!invincible) currentHitpoints = currentHitpoints - hp;
         source.Play();
     }
 
@@ -158,7 +157,7 @@ public class CharacterBase : MonoBehaviour
         currentHitpoints = maxHitpoints;
         --lives;
         Cleanup();
-        anim.SetTrigger("Death");
+        //anim.SetTrigger("Death");
     }
 
     /// <summary>
