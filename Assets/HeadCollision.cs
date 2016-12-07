@@ -19,7 +19,7 @@ public class HeadCollision : MonoBehaviour {
     /// </summary>
     void OnTriggerStay2D(Collider2D coll)
     {
-        Debug.Log(coll.gameObject.ToString());
+        //Debug.Log(coll.gameObject.ToString());
         if (coll.gameObject.tag == "Player")
         {
             Debug.Log(coll.gameObject.ToString());

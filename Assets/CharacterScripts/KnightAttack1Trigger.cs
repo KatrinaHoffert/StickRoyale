@@ -7,7 +7,7 @@ public class KnightAttack1Trigger : AttackTriggerBase
 {
     protected override int GetDamage()
     {
-        return 20;
+        return 24;
     }
 
     protected override Vector2 GetDamageForce()
