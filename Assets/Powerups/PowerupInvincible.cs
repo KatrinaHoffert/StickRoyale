@@ -9,6 +9,9 @@ public class PowerupInvincible : PowerupBase
     /// </summary>
     public float blinkPeriod = 0.2f;
 
+    /// <summary>
+    /// Time that this powerup was obtained, and hence when the animation looping is based from.
+    /// </summary>
     public float animationStartTime;
 
     public override float GetDuration()
