@@ -70,6 +70,11 @@ public class Ai : PlayerBase
     /// </summary>
     private bool continuingJumpMovement;
 
+    /// <summary>
+    /// Chance *per frame* of deciding to dodge an incoming mage's projectile.
+    /// </summary>
+    private float dodgeChance = 0.1f;
+
     void Start()
     {
         decisionTree = DecisionTree.Decision(
@@ -89,9 +94,13 @@ public class Ai : PlayerBase
                         PlayerInAttackRangeIfWeTurn,
                         ifTrue: DecisionTree.Action(Turn),
                         ifFalse: DecisionTree.Decision(
-                            ShouldWeSeekOutAPowerup,
-                            ifTrue: DecisionTree.Action(MoveTowardsPowerup),
-                            ifFalse: DecisionTree.Action(MoveTowardsPlayer)
+                            ShouldWeDodgeProjectile,
+                            ifTrue: DecisionTree.Action(DodgeProjectile),
+                            ifFalse: DecisionTree.Decision(
+                                ShouldWeSeekOutAPowerup,
+                                ifTrue: DecisionTree.Action(MoveTowardsPowerup),
+                                ifFalse: DecisionTree.Action(MoveTowardsPlayer)
+                            )
                         )
                     )
                 )
@@ -102,13 +111,6 @@ public class Ai : PlayerBase
     void Update()
     {
         decisionTree.Search();
-
-        
-        //Mages do not need to dodge magic
-       if (this.gameObject.GetComponent<Mage>() == null)
-        {
-            dodgeMagicBullet();
-        }
     }
 
     private bool AreWeContinuingMovement()
@@ -234,6 +236,35 @@ public class Ai : PlayerBase
     {
         transform.Rotate(0, 180, 0);
         characterBase.facing = characterBase.facing * -1;
+    }
+
+    private bool ShouldWeDodgeProjectile()
+    {
+        foreach (var projectile in FindObjectsOfType<MageAttack2Trigger>())
+        {
+            // Don't dodge if we were close to the caster -- that's cheating!
+            if (Math.Abs(projectile.casterObject.transform.position.x - transform.position.x) < 4) return false;
+
+            if (Math.Abs(projectile.transform.position.y - transform.position.y) < 2
+                && Math.Abs(projectile.transform.position.x - transform.position.x) < 2
+                && UnityEngine.Random.Range(0, 1) < dodgeChance)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private void DodgeProjectile()
+    {
+        if (canJump)
+        {
+            canJump = false;
+            MaximalMove(new Vector2(0, jumpVerticalForce));
+            animator.SetBool("Grounded", false);
+            animator.SetTrigger("Jump");
+        }
     }
 
     private bool ShouldWeSeekOutAPowerup()
@@ -470,25 +501,5 @@ public class Ai : PlayerBase
     public void moveOffPlayer()
     {
         MaximalMove(new Vector2(antiStackingHorizontalForce * characterBase.facing, antiStackingVerticalForce));
-    }
-
-    public void dodgeMagicBullet()
-    {
-        foreach (GameObject g in GameObject.FindGameObjectsWithTag("MageBullet"))
-        {
-            if (Math.Abs(g.transform.position.y - this.transform.position.y) < 2
-                && Math.Abs(g.transform.position.x - this.transform.position.x) < 2)
-                //&& Math.Abs(g.transform.position.x - this.transform.position.x) > 10)
-            {
-                //jump
-                if (this.canJump)
-                {
-                    this.canJump = false;
-                    MaximalMove(new Vector2(0, jumpVerticalForce));
-                    animator.SetBool("Grounded", false);
-                    animator.SetTrigger("Jump");
-                }
-            }
-        }
     }
 }
