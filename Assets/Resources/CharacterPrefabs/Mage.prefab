@@ -70,7 +70,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014034060180}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18.336443, y: 4.599298, z: 0}
+  m_LocalPosition: {x: -17.801918, y: -1.4433987, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -121,8 +121,8 @@ EdgeCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: -0.37}
   m_Points:
-  - {x: -0.23367691, y: -0.00000035762787}
-  - {x: 0.22538567, y: -0.0035156012}
+  - {x: -0.29618454, y: -0.00000035762787}
+  - {x: 0.29157066, y: -0.0035156012}
 --- !u!82 &82000013599836424
 AudioSource:
   m_ObjectHideFlags: 1
@@ -251,15 +251,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9507112d448e8b443a871a1dfa0681c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  burning: 10
-  onFire: 0
-  invincible: 0
   maxHitpoints: 100
   currentHitpoints: 0
   lives: 3
   facing: 1
   movementSpeedMultiplier: 0.8
   damageMultiplier: 1
+  onFire: 0
+  invincible: 0
   directionLocked: 0
 --- !u!212 &212000014181505724
 SpriteRenderer:
