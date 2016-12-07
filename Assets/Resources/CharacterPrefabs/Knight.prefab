@@ -224,7 +224,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 1eaf555a81d656f43bdf27c6ee51fc15, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 82ee0b99b1ccf9e4f87f0d9fd74df825, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -298,7 +298,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 1eaf555a81d656f43bdf27c6ee51fc15, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 82ee0b99b1ccf9e4f87f0d9fd74df825, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -465,15 +465,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5663b63977699704089165cf42c2e637, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  burning: 10
-  onFire: 0
-  invincible: 0
   maxHitpoints: 200
   currentHitpoints: 0
   lives: 3
   facing: 1
   movementSpeedMultiplier: 1
   damageMultiplier: 1
+  onFire: 0
+  invincible: 0
   directionLocked: 0
 --- !u!114 &114000010940927462
 MonoBehaviour:
@@ -497,8 +496,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2b0de5b3482d624a9d946e2d80d47c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pushbackMagnitude: 150
-  damage: 20
   playersAlreadyHit: []
 --- !u!114 &114000012839570664
 MonoBehaviour:
@@ -511,8 +508,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd4b58ce0d3e85b4a9be7eb1119e2c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pushbackMagnitude: 50
-  damage: 10
   playersAlreadyHit: []
 --- !u!114 &114000014045939296
 MonoBehaviour:
