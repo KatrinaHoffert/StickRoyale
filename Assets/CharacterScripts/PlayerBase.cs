@@ -80,7 +80,7 @@ public class PlayerBase : MonoBehaviour
             rigidBody.velocity = new Vector2(maxHorizontalVelocity * Math.Sign(horizontalVelocity) * characterBase.movementSpeedMultiplier, rigidBody.velocity.y);
         }
     }
-    
+
     /// <summary>
     /// Returns the platform that the player is either on or over (could be in the air above it).
     /// </summary>
@@ -160,6 +160,12 @@ public class PlayerBase : MonoBehaviour
             canJump = true;
             platformGroundedOn = coll.gameObject;
             animator.SetBool("Grounded", true);
+            OnGrounded();
         }
     }
+
+    /// <summary>
+    /// Called whenever the character is grounded.
+    /// </summary>
+    protected virtual void OnGrounded() { }
 }

@@ -515,4 +515,9 @@ public class Ai : PlayerBase
     {
         MaximalMove(new Vector2(antiStackingHorizontalForce * characterBase.facing, antiStackingVerticalForce));
     }
+
+    protected override void OnGrounded()
+    {
+        continuingJumpMovement = false;
+    }
 }
