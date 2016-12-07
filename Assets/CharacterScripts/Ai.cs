@@ -102,6 +102,13 @@ public class Ai : PlayerBase
     void Update()
     {
         decisionTree.Search();
+
+        
+        //Mages do not need to dodge magic
+       if (this.gameObject.GetComponent<Mage>() == null)
+        {
+            dodgeMagicBullet();
+        }
     }
 
     private bool AreWeContinuingMovement()
@@ -394,6 +401,9 @@ public class Ai : PlayerBase
         return closestPlayer;
     }
 
+
+
+
     /// <summary>
     /// Selects the jump spot that we're gonna move towards. Assumes we are on a different platform than
     /// the target.
@@ -460,5 +470,25 @@ public class Ai : PlayerBase
     public void moveOffPlayer()
     {
         MaximalMove(new Vector2(antiStackingHorizontalForce * characterBase.facing, antiStackingVerticalForce));
+    }
+
+    public void dodgeMagicBullet()
+    {
+        foreach (GameObject g in GameObject.FindGameObjectsWithTag("MageBullet"))
+        {
+            if (Math.Abs(g.transform.position.y - this.transform.position.y) < 2
+                && Math.Abs(g.transform.position.x - this.transform.position.x) < 2)
+                //&& Math.Abs(g.transform.position.x - this.transform.position.x) > 10)
+            {
+                //jump
+                if (this.canJump)
+                {
+                    this.canJump = false;
+                    MaximalMove(new Vector2(0, jumpVerticalForce));
+                    animator.SetBool("Grounded", false);
+                    animator.SetTrigger("Jump");
+                }
+            }
+        }
     }
 }

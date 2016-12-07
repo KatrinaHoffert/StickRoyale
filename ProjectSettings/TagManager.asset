@@ -9,6 +9,7 @@ TagManager:
   - Attack2
   - JumpSpot
   - HeadDetector
+  - MageBullet
   layers:
   - Default
   - TransparentFX
