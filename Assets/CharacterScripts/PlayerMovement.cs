@@ -15,13 +15,13 @@ public class PlayerMovement : PlayerBase
         var dropDown = Input.GetButtonDown(gameObject.name + "_Down");
 
         // Only turn if not direction locked
-        if (horizontal > 0 && (!characterBase.directionLocked || characterBase.facing == 1))
+        if (horizontal > 0)
         {
             MaximalMove(new Vector2(baseRightMoveForce, 0) * Time.deltaTime);
             if (characterBase.facing < 0) transform.Rotate(0, 180, 0);
             characterBase.facing = 1;
         }
-        else if (horizontal < 0 && (!characterBase.directionLocked || characterBase.facing == -1))
+        else if (horizontal < 0)
         {
             MaximalMove(new Vector2(-baseRightMoveForce, 0) * Time.deltaTime);
             if(characterBase.facing > 0) transform.Rotate(0, 180, 0);
