@@ -76,7 +76,6 @@ public class PlayerMovement : PlayerBase
     public void moveOffPlayer()
     {
         MaximalMove(new Vector2(antiStackingHorizontalForce * characterBase.facing, antiStackingVerticalForce));
-        Debug.Log("fuck you");
     }
 
     /// <summary>
