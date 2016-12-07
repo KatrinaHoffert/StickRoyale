@@ -75,6 +75,13 @@ public class Ai : PlayerBase
     /// </summary>
     private float dodgeChance = 0.1f;
 
+    /// <summary>
+    /// The rate at which we reduce our velocity per frame when we have jumped and are now
+    /// over a different platfrom. Should be in [0, 1]. Larger values mean less slowdown (more
+    /// likely to overshoot jumps). Smaller values look unnatural and are kinda cheaty.
+    /// </summary>
+    private float fallingOntoPlatformSlowdown = 0.9f;
+
     void Start()
     {
         decisionTree = DecisionTree.Decision(
@@ -129,7 +136,7 @@ public class Ai : PlayerBase
         else if (ourCurrentPlatform != null)
         {
             // Slow us gradually so we can fall onto that platform
-            rigidBody.velocity = new Vector2(rigidBody.velocity.x / 2, rigidBody.velocity.y);
+            rigidBody.velocity = new Vector2(rigidBody.velocity.x * fallingOntoPlatformSlowdown, rigidBody.velocity.y);
         }
     }
 
