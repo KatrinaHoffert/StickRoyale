@@ -25,7 +25,7 @@ GameObject:
   - 82: {fileID: 82000010440020838}
   m_Layer: 0
   m_Name: MageAttack1
-  m_TagString: Untagged
+  m_TagString: Attack1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -142,8 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58a13738e1a8fb24b85ee8298a1d681c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pushbackMagnitude: 100
-  damage: 15
+  playersAlreadyHit: []
   casterObject: {fileID: 0}
 --- !u!212 &212000013299722062
 SpriteRenderer:
