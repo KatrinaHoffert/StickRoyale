@@ -50,12 +50,12 @@ public class MageAttacks : AttackBase
 
     public override float GetAttack1Delay()
     {
-        return 0.5f;
+        return 0.75f;
     }
 
     public override float GetAttack2Delay()
     {
-        return 0.75f;
+        return 0.9f;
     }
 
     public override bool CanAttack1Hit(int facing)

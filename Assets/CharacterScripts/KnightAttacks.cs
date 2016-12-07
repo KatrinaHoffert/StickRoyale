@@ -60,7 +60,7 @@ public class KnightAttacks : AttackBase
 
     public override float GetAttack2Delay()
     {
-        return 0.5f;
+        return 0.8f;
     }
 
     public override bool CanAttack1Hit(int facing)
