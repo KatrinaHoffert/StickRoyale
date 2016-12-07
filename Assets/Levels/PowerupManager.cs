@@ -18,8 +18,8 @@ public class PowerupManager : MonoBehaviour
     {
         new PowerupSpawnRate("PowerupBurger", 1.0f),
         new PowerupSpawnRate("PowerupSteroids", 0.35f),
-        new PowerupSpawnRate("PowerupInvincible",0.5f),
-        new PowerupSpawnRate("PowerupFire",2f)
+        new PowerupSpawnRate("PowerupInvincible", 0.5f),
+        new PowerupSpawnRate("PowerupFire", 0.5f)
     };
 
     /// <summary>
