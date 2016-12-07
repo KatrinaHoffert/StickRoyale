@@ -5212,7 +5212,7 @@ GameObject:
   - 4: {fileID: 1919379255}
   - 212: {fileID: 1919379254}
   m_Layer: 0
-  m_Name: pristine_looseleaf_paper_by_cliffski
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5258,8 +5258,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1919379253}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.01, y: -0.02, z: 0}
-  m_LocalScale: {x: 2.3090668, y: 1.6991696, z: 1}
+  m_LocalPosition: {x: -0.18, y: -0.06, z: 0}
+  m_LocalScale: {x: 3.0709121, y: 2.5288794, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
