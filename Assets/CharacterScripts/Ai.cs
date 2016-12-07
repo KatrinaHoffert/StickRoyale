@@ -457,19 +457,8 @@ public class Ai : PlayerBase
     /// <summary>
     /// Method that moves the player a little bit so that they don't stay on top of another players head.
     /// </summary>
-    private void MoveOffPlayer()
+    public void moveOffPlayer()
     {
         MaximalMove(new Vector2(antiStackingHorizontalForce * characterBase.facing, antiStackingVerticalForce));
-    }
-    
-    /// <summary>
-    /// Used for detecting player stacking.
-    /// </summary>
-    void OnTriggerStay2D(Collider2D coll)
-    {
-        if (coll.gameObject.tag == "Player")
-        {
-            MoveOffPlayer();
-        }
     }
 }
