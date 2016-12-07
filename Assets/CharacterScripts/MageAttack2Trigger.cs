@@ -68,22 +68,16 @@ public class MageAttack2Trigger : MonoBehaviour
             if (coll.gameObject == casterObject) return;
 
             var targetCharacterBase = coll.gameObject.GetComponent<CharacterBase>();
-            targetCharacterBase.Damage((int)(damage * casterObject.GetComponent<CharacterBase>().damageMultiplier));
+            var attackerCharacterBase = casterObject.GetComponent<CharacterBase>();
+            targetCharacterBase.Damage((int)(damage * attackerCharacterBase.damageMultiplier));
             targetCharacterBase.DamageForce(new Vector2(0.25f, direction) * pushbackMagnitude);
             playersAlreadyHit.Add(coll.gameObject);
 
-            ///burns target if the fire powerup is active
-            ///
-            if (transform.parent != null)
+            if (attackerCharacterBase.onFire)
             {
-                if (transform.parent.gameObject.GetComponent<CharacterBase>().onFire)
-                {
-                    targetCharacterBase.burning = 0;
-
-                }
+                targetCharacterBase.SetOnFire();
             }
-
-
+            
             if (targetCharacterBase.currentHitpoints <= 0) stats.AddKill(casterObject);
         }
 

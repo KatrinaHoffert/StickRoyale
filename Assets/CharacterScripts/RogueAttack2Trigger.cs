@@ -26,8 +26,6 @@ public class RogueAttack2Trigger : MonoBehaviour
         stats = GameObject.Find("Stats").GetComponent<Stats>();
     }
 
-
-
     void OnTriggerEnter2D(Collider2D coll)
     {
         if (coll.gameObject.CompareTag("Player") && !playersAlreadyHit.Contains(coll.gameObject))
@@ -41,13 +39,11 @@ public class RogueAttack2Trigger : MonoBehaviour
             targetCharacterBase.Damage((int)(damage * attackerCharacter.damageMultiplier));
             targetCharacterBase.DamageForce(new Vector2(direction, 0.75f) * pushbackMagnitude);
             playersAlreadyHit.Add(coll.gameObject);
-            Debug.Log(coll.gameObject.ToString() + "Hit");
-            ///burns target if the fire powerup is active
-            if (transform.parent.gameObject.GetComponent<CharacterBase>().onFire)
-            {
-                targetCharacterBase.burning = 0;
-            }
 
+            if (attackerCharacter.onFire)
+            {
+                targetCharacterBase.SetOnFire();
+            }
 
             if (targetCharacterBase.currentHitpoints <= 0) stats.AddKill(transform.parent.gameObject);
         }

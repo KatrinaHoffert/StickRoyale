@@ -10,12 +10,6 @@ using UnityEngine.UI;
 public class CharacterBase : MonoBehaviour
 {
     /// <summary>
-    /// character takes 1 damage per frame when burning is less than 10
-    /// </summary>
-    public int burning = 10;
-
-
-    /// <summary>
     /// character will cause other players to burn when this is true
     /// 
     /// </summary>
@@ -56,6 +50,11 @@ public class CharacterBase : MonoBehaviour
     public float damageMultiplier = 1.0f;
 
     /// <summary>
+    /// Frames of burning damage to take.
+    /// </summary>
+    private int burning = 0;
+
+    /// <summary>
     /// Locks the direction the character can move. such as using an attack means you can't turn around till the attack 
     /// has finished.
     /// </summary>
@@ -65,8 +64,7 @@ public class CharacterBase : MonoBehaviour
     /// All powerups that this character currently has.
     /// </summary>
     private List<PowerupRecord> powerups = new List<PowerupRecord>();
-
-
+    
     AudioSource source;
     Animator anim;
     Stats stats;
@@ -81,6 +79,7 @@ public class CharacterBase : MonoBehaviour
     void Start()
     {
         stats = GameObject.Find("Stats").GetComponent<Stats>();
+        InvokeRepeating("CheckForBurning", 1.0f, 1.0f);
     }
 
     void Update()
@@ -102,15 +101,29 @@ public class CharacterBase : MonoBehaviour
     
     void FixedUpdate()
     {
-
-        ///burning 10 damage per frame
-        ///
-        burning++;
-        if (burning < 10)
-        {
-            Damage(10);
-        }
         CheckForFallDeath();
+    }
+
+    /// <summary>
+    /// Sets the targets on fire, dealing burning damage over time.
+    /// </summary>
+    public void SetOnFire()
+    {
+        burning = 5;
+    }
+
+    /// <summary>
+    /// Called on interval to check if we are burning and if so, deal 5 damage per interval
+    /// until the burning wears off (does nothing if we're not burning).
+    /// </summary>
+    private void CheckForBurning()
+    {
+        if (burning > 0)
+        {
+            Debug.Log("Fire tick. HP: " + currentHitpoints);
+            Damage(5);
+            --burning;
+        }
     }
 
     /// <summary>
@@ -126,8 +139,6 @@ public class CharacterBase : MonoBehaviour
             stats.AddFall(gameObject);
         }
     }
-
-    
 
     /// <summary>
     /// Inflict some HP damage to this character.
