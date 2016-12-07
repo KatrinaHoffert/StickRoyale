@@ -55,8 +55,11 @@ public abstract class AttackTriggerBase : MonoBehaviour
 
             if (targetCharacterBase.currentHitpoints <= 0) stats.AddKill(attackerCharacter.gameObject);
         }
+        if(coll.gameObject.tag != "Attack1" || coll.gameObject.tag != "Attack2")
+        {
+            PostCollisionTrigger();
+        }
 
-        PostCollisionTrigger();
     }
 
     /// <summary>
