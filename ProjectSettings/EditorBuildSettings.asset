@@ -8,28 +8,14 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Menus/CharacterSelectMenu.unity
   - enabled: 1
+    path: Assets/Menus/Controls.unity
+  - enabled: 1
     path: Assets/Menus/LevelSelect.unity
   - enabled: 1
     path: Assets/Menus/PostGameScreen.unity
-  - enabled: 0
-    path: Assets/Levels/Level2.unity
-  - enabled: 0
-    path: Assets/Levels/Level1.unity
-  - enabled: 0
-    path: Assets/Levels/Level3.unity
-  - enabled: 0
-    path: Assets/Levels/Level4.unity
-  - enabled: 0
-    path: Assets/Levels/Level5.unity
-  - enabled: 0
-    path: Assets/Levels/Level6.unity
-  - enabled: 0
-    path: Assets/Levels/Level7.unity
   - enabled: 1
     path: Assets/Levels/FlatLevel.unity
   - enabled: 1
     path: Assets/Levels/MushroomsLevel.unity
   - enabled: 1
     path: Assets/Levels/PlatformsLevel.unity
-  - enabled: 1
-    path: Assets/Menus/Controls.unity
