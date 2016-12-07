@@ -13,7 +13,7 @@ public class PlayerBase : MonoBehaviour
     /// Basic amount of horizontal force that is added per second of applied movement. This is basically
     /// acceleration.
     /// </summary>
-    public float baseRightMoveForce = 1000f;
+    public float baseRightMoveForce = 500f;
 
     /// <summary>
     /// The vertical force applied per jum.

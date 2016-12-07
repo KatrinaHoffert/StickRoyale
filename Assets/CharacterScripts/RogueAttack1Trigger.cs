@@ -6,7 +6,7 @@ public class RogueAttack1Trigger : AttackTriggerBase
 {
     protected override int GetDamage()
     {
-        return 10;
+        return 15;
     }
 
     protected override Vector2 GetDamageForce()

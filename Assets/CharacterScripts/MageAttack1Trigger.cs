@@ -11,7 +11,7 @@ public class MageAttack1Trigger : AttackTriggerBase
 
     protected override int GetDamage()
     {
-        return 20;
+        return 35;
     }
 
     protected override Vector2 GetDamageForce()
